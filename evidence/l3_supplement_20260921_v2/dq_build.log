@@ -1,0 +1,28 @@
+In file included from core/include/l2_queue.cuh:8,
+                 from core/include/ml_queue.cuh:9,
+                 from scripts/multigpu/test_dq_publication.cu:5:
+core/include/../cu_delta_queue/cu_delta_queue.cuh:3: warning: "MEM_BLOCK_SIZE" redefined
+    3 | #define MEM_BLOCK_SIZE 512
+      | 
+In file included from core/include/l2_queue.cuh:5:
+core/include/../cu_vector/cu_vector.cuh:4: note: this is the location of the previous definition
+    4 | #define MEM_BLOCK_SIZE 256
+      | 
+In file included from core/include/l2_queue.cuh:8,
+                 from core/include/ml_queue.cuh:9,
+                 from scripts/multigpu/test_dq_publication.cu:5:
+core/include/../cu_delta_queue/cu_delta_queue.cuh:3: warning: "MEM_BLOCK_SIZE" redefined
+    3 | #define MEM_BLOCK_SIZE 512
+      | 
+In file included from core/include/l2_queue.cuh:5:
+core/include/../cu_vector/cu_vector.cuh:4: note: this is the location of the previous definition
+    4 | #define MEM_BLOCK_SIZE 256
+      | 
+core/include/../cu_vector/cu_multi_vector.cuh: In member function ‘init_status l2_multi_vector_queue<eletype>::host_init(int, mlmq_mdata&, eletype, mlmq_setup)’:
+core/include/../cu_vector/cu_multi_vector.cuh:19:1: warning: no return statement in function returning non-void [-Wreturn-type]
+   19 |     }
+      | ^
+core/include/../cu_vector/cu_multi_vector.cuh: In member function ‘init_status l2_multi_vector_queue<eletype>::host_reinit(int, mlmq_mdata&, eletype, mlmq_setup)’:
+core/include/../cu_vector/cu_multi_vector.cuh:28:1: warning: no return statement in function returning non-void [-Wreturn-type]
+   28 |     }
+      | ^

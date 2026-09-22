@@ -1,0 +1,89 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+    "-n",
+    "1",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "8.676380",
+      "query_wall_ms": "12.050880",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "8.702893",
+      "query_wall_ms": "11.280993",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "2",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "9.262236",
+      "query_wall_ms": "11.816639",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "3",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "8.476290",
+      "query_wall_ms": "11.044650",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "4",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "8.627251",
+      "query_wall_ms": "11.181334",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "217833",
+      "repeat": "5",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "10.840708",
+      "query_wall_ms": "13.392088",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.692759096971713
+}

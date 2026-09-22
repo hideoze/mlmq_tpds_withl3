@@ -1,0 +1,230 @@
+ptxas info    : Overriding maximum register limit 256 for '__cuda_dummy_entry__' with  64 of maxrregcount option
+ptxas info    : 0 bytes gmem
+ptxas info    : Overriding maximum register limit 256 for '__cuda_dummy_entry__' with  64 of maxrregcount option
+ptxas info    : 0 bytes gmem
+ptxas info    : Overriding maximum register limit 256 for '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' with  64 of maxrregcount option
+ptxas info    : 613 bytes gmem
+ptxas info    : Function properties for _ZN11node_structC2Ev
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC1Ev
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC2Eii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structaSEi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' for 'sm_80'
+ptxas info    : Function properties for _ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, 352 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    8 bytes stack frame, 4 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 64 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    64 bytes stack frame, 148 bytes spill stores, 188 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 504 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    16 bytes stack frame, 32 bytes spill stores, 32 bytes spill loads
+ptxas info    : Used 64 registers, 600 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 504 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 600 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 592 bytes cmem[0], 8 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    768 bytes stack frame, 252 bytes spill stores, 496 bytes spill loads
+ptxas info    : Used 64 registers, 688 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    72 bytes stack frame, 160 bytes spill stores, 208 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 488 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    96 bytes stack frame, 188 bytes spill stores, 300 bytes spill loads
+ptxas info    : Used 64 registers, 584 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 488 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    80 bytes stack frame, 172 bytes spill stores, 280 bytes spill loads
+ptxas info    : Used 64 registers, 584 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 488 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    88 bytes stack frame, 152 bytes spill stores, 196 bytes spill loads
+ptxas info    : Used 64 registers, 584 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 480 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    104 bytes stack frame, 176 bytes spill stores, 272 bytes spill loads
+ptxas info    : Used 64 registers, 576 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 480 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    80 bytes stack frame, 156 bytes spill stores, 252 bytes spill loads
+ptxas info    : Used 64 registers, 576 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 480 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    96 bytes stack frame, 188 bytes spill stores, 320 bytes spill loads
+ptxas info    : Used 64 registers, 576 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    72 bytes stack frame, 156 bytes spill stores, 220 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 63 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 56 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 28 registers, 512 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 608 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    64 bytes stack frame, 144 bytes spill stores, 208 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    64 bytes stack frame, 148 bytes spill stores, 188 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_iT_S7_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 568 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PfS7_S7_
+    32 bytes stack frame, 76 bytes spill stores, 92 bytes spill loads
+ptxas info    : Used 64 registers, 664 bytes cmem[0]
+ptxas info    : Function properties for _ZN11node_structC1Eii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads

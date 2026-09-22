@@ -1,0 +1,1026 @@
+[
+  {
+    "graph": "NY",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "132173",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "8.948338",
+        "query_wall_ms": "12.855670",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.6185428990283981
+  },
+  {
+    "graph": "NY",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "132173",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "8.535562",
+        "query_wall_ms": "12.329428",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.6121618089964613
+  },
+  {
+    "graph": "NY",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "132173",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "10.511810",
+        "collection_ms": "0.271588",
+        "query_wall_ms": "16.647939",
+        "prepare_ms": "5.770350",
+        "post_solve_ms": "0.094051",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.7935212389566004
+  },
+  {
+    "graph": "NY",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "132173",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "10.305835",
+        "collection_ms": "0.125605",
+        "query_wall_ms": "17.769990",
+        "prepare_ms": "7.250819",
+        "post_solve_ms": "0.087702",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.799849230912514
+  },
+  {
+    "graph": "BAY",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "160635",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "7.523465",
+        "query_wall_ms": "11.453476",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.639149378053844
+  },
+  {
+    "graph": "BAY",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "160635",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "6.460780",
+        "query_wall_ms": "10.342250",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.6091953209834173
+  },
+  {
+    "graph": "BAY",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "160635",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "8.743752",
+        "collection_ms": "0.317439",
+        "query_wall_ms": "15.003599",
+        "prepare_ms": "5.844934",
+        "post_solve_ms": "0.097344",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.8046908879186958
+  },
+  {
+    "graph": "BAY",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "160635",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "12.451119",
+        "collection_ms": "0.304439",
+        "query_wall_ms": "20.132388",
+        "prepare_ms": "7.277665",
+        "post_solve_ms": "0.099024",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.8126896800240502
+  },
+  {
+    "graph": "COL",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "217833",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "14.457320",
+        "query_wall_ms": "18.364208",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.6442928469041362
+  },
+  {
+    "graph": "COL",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "217833",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "10.113468",
+        "query_wall_ms": "14.067532",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.6382622219389305
+  },
+  {
+    "graph": "COL",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "217833",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "13.799886",
+        "collection_ms": "0.176620",
+        "query_wall_ms": "20.300803",
+        "prepare_ms": "6.208336",
+        "post_solve_ms": "0.115939",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.8375754749868065
+  },
+  {
+    "graph": "COL",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "217833",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "13.798688",
+        "collection_ms": "0.398727",
+        "query_wall_ms": "21.456999",
+        "prepare_ms": "7.164021",
+        "post_solve_ms": "0.095423",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.8759443819290027
+  },
+  {
+    "graph": "FLA",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "0",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "24.936127",
+        "query_wall_ms": "30.950534",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.7546730650356039
+  },
+  {
+    "graph": "FLA",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "0",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "20.633390",
+        "query_wall_ms": "26.686455",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.7488586129620671
+  },
+  {
+    "graph": "FLA",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "0",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "26.548234",
+        "collection_ms": "0.359662",
+        "query_wall_ms": "34.378064",
+        "prepare_ms": "7.321813",
+        "post_solve_ms": "0.148321",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.9447033000178635
+  },
+  {
+    "graph": "FLA",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "0",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "22.567433",
+        "collection_ms": "0.488551",
+        "query_wall_ms": "31.318870",
+        "prepare_ms": "8.167819",
+        "post_solve_ms": "0.095036",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.9557863859226927
+  },
+  {
+    "graph": "CAL",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "945407",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "33.513540",
+        "query_wall_ms": "40.598403",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.9069759669946507
+  },
+  {
+    "graph": "CAL",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "945407",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "20.472008",
+        "query_wall_ms": "27.539358",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 0.8922261520056054
+  },
+  {
+    "graph": "CAL",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "945407",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "36.220795",
+        "collection_ms": "2.068928",
+        "query_wall_ms": "45.010223",
+        "prepare_ms": "6.610614",
+        "post_solve_ms": "0.109855",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.122008786071092
+  },
+  {
+    "graph": "CAL",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "945407",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "41.726204",
+        "collection_ms": "1.810146",
+        "query_wall_ms": "50.244248",
+        "prepare_ms": "6.589271",
+        "post_solve_ms": "0.118604",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.144277257961221
+  },
+  {
+    "graph": "E",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "1799311",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "33.583555",
+        "query_wall_ms": "42.363597",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.2194722290150821
+  },
+  {
+    "graph": "E",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "1799311",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "29.522337",
+        "query_wall_ms": "38.048578",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.2041120079811662
+  },
+  {
+    "graph": "E",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "1799311",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "37.707189",
+        "collection_ms": "3.746573",
+        "query_wall_ms": "48.907901",
+        "prepare_ms": "7.363004",
+        "post_solve_ms": "0.091113",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.436138233053498
+  },
+  {
+    "graph": "E",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "1799311",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "31.035090",
+        "collection_ms": "4.007439",
+        "query_wall_ms": "43.354692",
+        "prepare_ms": "8.202305",
+        "post_solve_ms": "0.109828",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.4905231220182031
+  },
+  {
+    "graph": "W",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "3131052",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "44.109511",
+        "query_wall_ms": "56.974048",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.6747725510504097
+  },
+  {
+    "graph": "W",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "3131052",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "34.893764",
+        "query_wall_ms": "47.846759",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 1.7239467499312013
+  },
+  {
+    "graph": "W",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "3131052",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "47.617473",
+        "collection_ms": "6.073067",
+        "query_wall_ms": "60.817591",
+        "prepare_ms": "7.023401",
+        "post_solve_ms": "0.103619",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 2.0065948310075328
+  },
+  {
+    "graph": "W",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "3131052",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "36.040520",
+        "collection_ms": "5.307784",
+        "query_wall_ms": "48.784405",
+        "prepare_ms": "7.337436",
+        "post_solve_ms": "0.098631",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 2.0471946799661964
+  },
+  {
+    "graph": "USA",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "11973673",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "106.353499",
+        "query_wall_ms": "184.873172",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 5.114342137007043
+  },
+  {
+    "graph": "USA",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "gpu_count": "1",
+        "source": "11973673",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "83.857104",
+        "query_wall_ms": "166.228804",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 5.302298285998404
+  },
+  {
+    "graph": "USA",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "11973673",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "109.904098",
+        "collection_ms": "46.504532",
+        "query_wall_ms": "164.361406",
+        "prepare_ms": "7.844924",
+        "post_solve_ms": "0.107831",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 5.713047947967425
+  },
+  {
+    "graph": "USA",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 0,
+    "valid": true,
+    "reason": "ok",
+    "samples": [
+      {
+        "algorithm": "MLMQ",
+        "gpu_count": "2",
+        "source": "11973673",
+        "repeat": "0",
+        "warmup": "0",
+        "queue": "L1SLF_L2DQ",
+        "solve_ms": "103.304177",
+        "collection_ms": "49.807422",
+        "query_wall_ms": "159.640641",
+        "prepare_ms": "6.410453",
+        "post_solve_ms": "0.118567",
+        "correct": "1"
+      }
+    ],
+    "host_elapsed_seconds": 6.050022882060148
+  }
+]

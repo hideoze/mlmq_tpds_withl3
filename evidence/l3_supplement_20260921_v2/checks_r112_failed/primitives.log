@@ -1,0 +1,11 @@
+DEVICE gpu=0 name=NVIDIA A100 80GB PCIe cc=80 sms=108
+P2P source=0 target=1 access=1 native_atomics=1
+DEVICE gpu=1 name=NVIDIA A100 80GB PCIe cc=80 sms=108
+P2P source=1 target=0 access=1 native_atomics=1
+CANDIDATE gpu=0 controlled=96 racing=32 updates_per_race=32768 PASS
+CANDIDATE gpu=1 controlled=96 racing=32 updates_per_race=32768 PASS
+TRANSPORT source=0 target=1 epochs=256 backpressure_retries=54 precommit_checks=256 l2_writes=8192 delayed_ack_fired=1 pending=0 PASS
+TRANSPORT source=1 target=0 epochs=256 backpressure_retries=23 precommit_checks=256 l2_writes=8192 delayed_ack_fired=1 pending=0 PASS
+L3_SUPPLEMENT_PRIMITIVES PASS
+
+RUN_RC=0

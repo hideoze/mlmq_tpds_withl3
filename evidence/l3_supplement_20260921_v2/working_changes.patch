@@ -1,0 +1,39 @@
+diff --git a/SSSP/sssp.cuh b/SSSP/sssp.cuh
+index ff25d92..75244cf 100644
+--- a/SSSP/sssp.cuh
++++ b/SSSP/sssp.cuh
+@@ -3,8 +3,8 @@
+ #include "csr_graph.h"
+ #include "../core/include/ml_queue.cuh"
+ 
+-// 1GB device memory
+-#define GPU_MEMORY (2.0 * 1024 * 1024 * 1024)
++// The queue host API takes int bytes: 2 GiB itself is not representable.
++#define GPU_MEMORY INT_MAX
+ 
+ // Exact static domain of remote marks; runtime candidates remain dynamic.
+ #ifndef L3_BOUNDARY_INDEX
+diff --git a/core/cu_delta_queue/cu_delta_queue.cuh b/core/cu_delta_queue/cu_delta_queue.cuh
+index dea332b..da2877e 100644
+--- a/core/cu_delta_queue/cu_delta_queue.cuh
++++ b/core/cu_delta_queue/cu_delta_queue.cuh
+@@ -130,7 +130,9 @@ struct l2_delta_queue
+         cudaMalloc(&block_write_done, sizeof(int) * all_total_block_size);
+         cudaMemset(block_write_done, 0, sizeof(int) * all_total_block_size);
+ 
+-        total_size = (max_size / sizeof(eletype) + bucketNum - 1) / bucketNum / MEM_BLOCK_SIZE * MEM_BLOCK_SIZE;
++        // Round DOWN within the allocation. Ceil division can advertise a
++        // final bucket/block whose tail was never allocated (e.g. INT_MAX bytes).
++        total_size = all_total_size / bucketNum / MEM_BLOCK_SIZE * MEM_BLOCK_SIZE;
+         total_block_size = total_size / MEM_BLOCK_SIZE;
+ 
+         cudaMalloc(&read_pos, sizeof(int) * bucketNum);
+@@ -174,7 +176,7 @@ struct l2_delta_queue
+         cudaMemset(data, 0, sizeof(eletype) * all_total_size);
+         cudaMemset(block_write_done, 0, sizeof(int) * all_total_block_size);
+ 
+-        total_size = (max_size / sizeof(eletype) + bucketNum - 1) / bucketNum / MEM_BLOCK_SIZE * MEM_BLOCK_SIZE;
++        total_size = all_total_size / bucketNum / MEM_BLOCK_SIZE * MEM_BLOCK_SIZE;
+         total_block_size = total_size / MEM_BLOCK_SIZE;
+ 
+         cudaMemset(read_pos, 0, sizeof(int) * bucketNum);

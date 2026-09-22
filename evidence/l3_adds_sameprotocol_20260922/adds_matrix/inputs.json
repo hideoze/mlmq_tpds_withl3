@@ -1,0 +1,14 @@
+{
+  "adds": {
+    "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/adds_official_v4/adds",
+    "sha256": "511e88f56762914829a055aea0215a6c8e3c0d1dfc1c078f5f2247a559638ec2"
+  },
+  "frozen_graphs": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/matrix/graphs.json",
+  "protocol": {
+    "warmups": 1,
+    "formal": 5,
+    "rounds": 2,
+    "reversed_round2": true,
+    "source": "frozen 37327 graphs and sources"
+  }
+}

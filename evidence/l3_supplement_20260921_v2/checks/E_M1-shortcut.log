@@ -1,0 +1,58 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr
+nnodes=3598623, nedges=9908486.
+Host memory for graph: 103 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+Maximum degree: 12
+----------Graph information----------
+number of vertices 3598623 number of edges 9908486
+average nnz 2.75 maximum nnz 12.00 deviation nnz 1.29
+average weight 2616.56 maximum weight 261183.00 deviation weight 3867.54 
+-------------------------------------
+CPU done!
+CPU total work count 9908486
+CPU sequential time 422.39 ms
+GPU begin!
+NO_L3_CONFIG workers=512 delta=200000 queue=L1SLF_L2DQ
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+CAPACITY_BUCKET gpu=0 bucket=0 capacity=16776704 writes=95627 reads=95627 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=1 capacity=16776704 writes=87623 reads=87623 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=2 capacity=16776704 writes=100441 reads=100441 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=3 capacity=16776704 writes=111232 reads=111232 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=4 capacity=16776704 writes=158623 reads=158623 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=5 capacity=16776704 writes=349539 reads=349539 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=6 capacity=16776704 writes=398854 reads=398854 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=7 capacity=16776704 writes=271833 reads=271833 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=8 capacity=16776704 writes=216362 reads=216362 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=9 capacity=16776704 writes=137937 reads=137937 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=10 capacity=16776704 writes=124903 reads=124903 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=11 capacity=16776704 writes=157199 reads=157199 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=12 capacity=16776704 writes=179727 reads=179727 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=13 capacity=16776704 writes=107447 reads=107447 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=14 capacity=16776704 writes=93062 reads=93062 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=15 capacity=16776704 writes=109045 reads=109045 no_wrap=1
+CAPACITY_QUERY gpu=0 total=2699454 completed=2699454 guarded=1
+Elapse time: 29.58 ms
+WIDE_ORACLE vertices=3598623 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=1799311 repeat=0 warmup=0 queue=L1SLF_L2DQ solve_ms=29.522337 query_wall_ms=38.048578 correct=1
+GPU done!
+gpu
+1447791 1448509 1448811 1448655 1457860 1449642 1460129 1453152 1460560 1460566 1460604 1460644 1456247 1452009 1461037 1460904 1460605 1459891 1458484 1457460 1466370 1462485 1461719 1463936 1462179 1460771 1458744 1459604 1459246 1467181 
+cpu
+1447791 1448509 1448811 1448655 1457860 1449642 1460129 1453152 1460560 1460566 1460604 1460644 1456247 1452009 1461037 1460904 1460605 1459891 1458484 1457460 1466370 1462485 1461719 1463936 1462179 1460771 1458744 1459604 1459246 1467181 
+WIDE_ORACLE vertices=3598623 correct=1
+mlmq sssp correct!
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=1.204112

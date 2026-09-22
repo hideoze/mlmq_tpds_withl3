@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "0",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "103.304177",
+      "collection_ms": "49.807422",
+      "query_wall_ms": "159.640641",
+      "prepare_ms": "6.410453",
+      "post_solve_ms": "0.118567",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 6.050022882060148
+}

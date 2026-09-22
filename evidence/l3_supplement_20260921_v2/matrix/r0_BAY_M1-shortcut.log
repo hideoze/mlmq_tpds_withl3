@@ -1,0 +1,60 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr
+nnodes=321270, nedges=884786.
+Host memory for graph:   9 MB
+	  1%
+	 11%
+	 21%
+	 31%
+	 41%
+	 51%
+	 61%
+	 71%
+	 81%
+	 91%
+Maximum degree: 12
+----------Graph information----------
+number of vertices 321270 number of edges 884786
+average nnz 2.75 maximum nnz 12.00 deviation nnz 1.28
+average weight 1942.23 maximum weight 201076.00 deviation weight 3397.61 
+-------------------------------------
+CPU done!
+CPU total work count 884786
+CPU sequential time 30.44 ms
+GPU begin!
+NO_L3_CONFIG workers=512 delta=200000 queue=L1SLF_L2DQ
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 5.53 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=0 warmup=1 queue=L1SLF_L2DQ solve_ms=5.519658 query_wall_ms=8.591458 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 4.23 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=1 warmup=0 queue=L1SLF_L2DQ solve_ms=4.230348 query_wall_ms=6.739579 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 4.26 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=2 warmup=0 queue=L1SLF_L2DQ solve_ms=4.260751 query_wall_ms=6.754262 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 4.11 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=3 warmup=0 queue=L1SLF_L2DQ solve_ms=4.109306 query_wall_ms=6.594660 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 4.04 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=4 warmup=0 queue=L1SLF_L2DQ solve_ms=4.032772 query_wall_ms=6.522399 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+Elapse time: 4.12 ms
+WIDE_ORACLE vertices=321270 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=160635 repeat=5 warmup=0 queue=L1SLF_L2DQ solve_ms=4.111088 query_wall_ms=6.595312 correct=1
+GPU done!
+gpu
+587598 592297 606326 592296 610335 606764 578210 599000 607387 608935 570458 585482 597224 556586 594679 600616 550991 558929 593163 603666 559784 537054 588080 602604 560909 524608 526313 587056 588682 601897 
+cpu
+587598 592297 606326 592296 610335 606764 578210 599000 607387 608935 570458 585482 597224 556586 594679 600616 550991 558929 593163 603666 559784 537054 588080 602604 560909 524608 526313 587056 588682 601897 
+WIDE_ORACLE vertices=321270 correct=1
+mlmq sssp correct!
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=0.650073

@@ -1,0 +1,139 @@
+{
+  "problems": [
+    {
+      "test": "sequential_reset",
+      "rc": 2
+    },
+    {
+      "test": "NY_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "NY_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "NY_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "NY_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "BAY_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "BAY_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "BAY_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "BAY_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "COL_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "COL_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "COL_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "COL_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "FLA_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "FLA_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "FLA_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "FLA_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "CAL_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "CAL_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "CAL_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "CAL_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "E_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "E_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "E_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "E_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "W_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "W_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "W_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "W_M2-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "USA_M1-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "USA_M1-shortcut",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "USA_M2-original",
+      "reason": "missing capacity audit"
+    },
+    {
+      "test": "USA_M2-shortcut",
+      "reason": "missing capacity audit"
+    }
+  ],
+  "reset_pass": false,
+  "capacity_queries": 32,
+  "valid": false
+}

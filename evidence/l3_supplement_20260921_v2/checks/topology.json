@@ -1,0 +1,8 @@
+{
+  "command": [
+    "nvidia-smi",
+    "topo",
+    "-m"
+  ],
+  "rc": 0
+}

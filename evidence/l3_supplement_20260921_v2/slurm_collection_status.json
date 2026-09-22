@@ -1,0 +1,6 @@
+{
+  "accounting": "disabled",
+  "37327_controller_query": "Invalid job id specified; record expired",
+  "37329": "COMPLETED ExitCode=0:0; raw record saved",
+  "user_queue_at_final_check": "empty"
+}

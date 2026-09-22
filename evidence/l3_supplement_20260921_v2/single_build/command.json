@@ -1,0 +1,20 @@
+[
+  "nvcc",
+  "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_source/SSSP/main.cu",
+  "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_source/SSSP/csr_graph.cu",
+  "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_source/SSSP/sssp_run.cu",
+  "-o",
+  "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_build/mlmq",
+  "-DWORK_COUNT=false",
+  "-DMLMQ_WORKER_THREADS=512",
+  "-O3",
+  "-m64",
+  "-gencode=arch=compute_80,code=sm_80",
+  "-rdc=true",
+  "-lcuda",
+  "-lcudart",
+  "-w",
+  "-I/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_source/core/include",
+  "-I/a100-data/wyh/boost_1_87_0/",
+  "-lcusparse"
+]

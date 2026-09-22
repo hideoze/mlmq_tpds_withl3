@@ -1,0 +1,43 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=264346, nedges=788664.
+Host memory for graph:   8 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+MLMQ BENCH failure: worker geometry requires one resident block per SM
+MLMQ BENCH failure: inject scan counter reset
+Maximum degree: 12
+----------Graph information----------
+number of vertices 264346 number of edges 788664
+average nnz 2.98 maximum nnz 12.00 deviation nnz 1.19
+average weight 1432.17 maximum weight 77053.00 deviation weight 1517.65 
+-------------------------------------
+CPU done!
+CPU total work count 788664
+CPU sequential time 25.42 ms
+GPU0 partition: [0, 158607) v_local=158607 nedges=458499
+GPU1 partition: [158607, 264346) v_local=105739 nedges=330165
+L3_BOUNDARY_INDEX gpu=0 dense_words=3305 boundary_words=149 indexed=1 build_ms=2.060528
+L3_BOUNDARY_INDEX gpu=1 dense_words=4957 boundary_words=123 indexed=1 build_ms=1.541301
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=5.062842 reference_ms=25.424000 initialization_other_ms=333.105273 setup_wall_ms=363.592115
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu0 src=132173 reset=1 free=78588.94MiB min=78588.94MiB max=78588.94MiB
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu1 src=132173 reset=1 free=78590.94MiB min=78590.94MiB max=78590.94MiB
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=0.786498

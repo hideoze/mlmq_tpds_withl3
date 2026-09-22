@@ -1,0 +1,31 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr
+nnodes=321270, nedges=800172.
+Host memory for graph:   8 MB
+	  1%
+	 11%
+	 21%
+	 31%
+	 41%
+	 51%
+	 61%
+	 71%
+	 81%
+	 91%
+NO_L3 CUDA error: too many resources requested for launch
+Maximum degree: 7
+----------Graph information----------
+number of vertices 321270 number of edges 800172
+average nnz 2.49 maximum nnz 7.00 deviation nnz 0.99
+average weight 1630.20 maximum weight 94305.00 deviation weight 2385.91 
+-------------------------------------
+CPU done!
+CPU total work count 800172
+CPU sequential time 28.69 ms
+GPU begin!
+NO_L3_CONFIG workers=512 delta=200000 queue=L1SLF_L2DQ
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=0.608801

@@ -1,0 +1,115 @@
+{
+ "version": "ADDS-SAMEGRAPH-SIXCONFIG-20260922",
+ "records_sources": {
+  "mlmq4": "tmp/l3_supplement_20260921_v2/matrix/records.json (job 37327)",
+  "adds2": "tmp/l3_adds_sameprotocol_20260922/adds_matrix/records.json (job 37646)"
+ },
+ "adds_binary": {
+  "path": "tmp/adds_official_v4/adds",
+  "sha256": "511e88f56762914829a055aea0215a6c8e3c0d1dfc1c078f5f2247a559638ec2"
+ },
+ "frozen_graphs": "tmp/l3_supplement_20260921_v2/matrix/graphs.json (37327 export)",
+ "protocol": "2 interleaved rounds (round 1 reversed), 1 warmup + 5 formal per process, median of 10 formal samples, slow samples kept, solve-only timing",
+ "timing_boundary": {
+  "ADDS": "solve_ms = driver_kernel launch to cudaDeviceSynchronize; parameter profiling reported separately in parameter_ms",
+  "MLMQ": "solve_ms = host barrier after both GPUs ready to last GPU sync; oracle check after timing"
+ },
+ "unit": "ms",
+ "series": [
+  "ADDS-G",
+  "ADDS-Gp",
+  "M1-original",
+  "M1-shortcut",
+  "M2-original",
+  "M2-shortcut"
+ ],
+ "per_graph": [
+  {
+   "graph": "NY",
+   "ADDS-G": 10.6574685,
+   "ADDS-Gp": 9.709357,
+   "M1-original": 6.4630399999999995,
+   "M1-shortcut": 6.009793999999999,
+   "M2-original": 7.1297365,
+   "M2-shortcut": 6.3752130000000005
+  },
+  {
+   "graph": "BAY",
+   "ADDS-G": 13.1007555,
+   "ADDS-Gp": 11.427104,
+   "M1-original": 5.124087,
+   "M1-shortcut": 4.128704,
+   "M2-original": 5.7296415,
+   "M2-shortcut": 4.741928
+  },
+  {
+   "graph": "COL",
+   "ADDS-G": 24.961257500000002,
+   "ADDS-Gp": 18.457121,
+   "M1-original": 8.629116,
+   "M1-shortcut": 5.7924690000000005,
+   "M2-original": 9.7735385,
+   "M2-shortcut": 6.937176
+  },
+  {
+   "graph": "FLA",
+   "ADDS-G": 54.645424,
+   "ADDS-Gp": 44.995158,
+   "M1-original": 20.2767845,
+   "M1-shortcut": 17.308101,
+   "M2-original": 21.421107999999997,
+   "M2-shortcut": 17.6974545
+  },
+  {
+   "graph": "CAL",
+   "ADDS-G": 37.1897015,
+   "ADDS-Gp": 22.9162335,
+   "M1-original": 25.0760885,
+   "M1-shortcut": 17.146794,
+   "M2-original": 27.690725,
+   "M2-shortcut": 18.0617105
+  },
+  {
+   "graph": "E",
+   "ADDS-G": 39.737751,
+   "ADDS-Gp": 30.340698500000002,
+   "M1-original": 29.1492295,
+   "M1-shortcut": 23.4167415,
+   "M2-original": 30.589239999999997,
+   "M2-shortcut": 24.228617
+  },
+  {
+   "graph": "W",
+   "ADDS-G": 55.234947500000004,
+   "ADDS-Gp": 38.648937000000004,
+   "M1-original": 38.2060595,
+   "M1-shortcut": 29.167167499999998,
+   "M2-original": 43.286013,
+   "M2-shortcut": 30.012015499999997
+  },
+  {
+   "graph": "USA",
+   "ADDS-G": 136.3699095,
+   "ADDS-Gp": 95.2021465,
+   "M1-original": 96.67506850000001,
+   "M1-shortcut": 75.3453575,
+   "M2-original": 112.14104449999999,
+   "M2-shortcut": 68.20657499999999
+  }
+ ],
+ "geomean": {
+  "ADDS-G": 34.73690666749401,
+  "ADDS-Gp": 26.39679424505429,
+  "M1-original": 18.80589654455327,
+  "M1-shortcut": 14.712308646797092,
+  "M2-original": 20.809600150099854,
+  "M2-shortcut": 15.49597866429749
+ },
+ "ratios_geomean": {
+  "ADDS-G_over_M1-original": 1.8471284570346538,
+  "ADDS-Gp_over_M1-shortcut": 1.7941979657149825,
+  "ADDS-G_over_M2-shortcut": 2.241672334482967,
+  "ADDS-Gp_over_M2-shortcut": 1.7034609311815927,
+  "ADDS_shortcut_gain": 1.3159517153868907
+ }
+}

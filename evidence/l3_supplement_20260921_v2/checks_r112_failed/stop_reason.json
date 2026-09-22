@@ -1,0 +1,4 @@
+{
+  "reason": "Diagnostic register limit 112 still yields zero W512 occupancy; stopped only own job 37328 after repeated launch failures. All evidence retained.",
+  "job": 37328
+}

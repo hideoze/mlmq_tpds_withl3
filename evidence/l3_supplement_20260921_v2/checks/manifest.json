@@ -1,0 +1,10 @@
+{
+  "job": "37329",
+  "binaries": {
+    "test_primitives": "2cf6727b5200992f48381a2b037977e83c5c7f03ad2fc667d933810efdef5d85",
+    "test_dq": "d8ddd50e98d263d10d3fa5b3adc47ca476e4a0605ba35e9fb342de2620410cbf",
+    "test_capacity": "fc903a572d7bda4458d00c80f3264615032d23f6a680b6d059c59fc42803658a",
+    "single_diagnostic_build/mlmq": "d14e447ab9c64e8da93a457a99d116b8a88342c07472617d5be3eefeeb0b5448",
+    "dual_diagnostic_build/mlmq": "f94334a4243cbc28478fbde2e548aed474535cc8fb53c01bfe22c977624b1b65"
+  }
+}

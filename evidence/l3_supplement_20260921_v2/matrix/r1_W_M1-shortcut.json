@@ -1,0 +1,89 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+    "-n",
+    "1",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "29.612667",
+      "query_wall_ms": "42.416634",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "29.252081",
+      "query_wall_ms": "41.272848",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "2",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "29.036541",
+      "query_wall_ms": "40.841013",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "3",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "28.274416",
+      "query_wall_ms": "40.088284",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "4",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "28.339334",
+      "query_wall_ms": "40.128869",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "gpu_count": "1",
+      "source": "3131052",
+      "repeat": "5",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "28.918645",
+      "query_wall_ms": "40.710328",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 2.017476325039752
+}

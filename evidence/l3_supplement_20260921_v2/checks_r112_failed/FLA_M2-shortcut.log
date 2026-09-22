@@ -1,0 +1,44 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=1070376, nedges=3021626.
+Host memory for graph:  31 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+MLMQ BENCH failure: worker geometry requires one resident block per SM
+Invalid MLMQ_WORK_BLOCKS=107; expected [1,-1]
+Maximum degree: 10
+ADAPTIVE-Q: cross_ratio=0.0364% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 1070376 number of edges 3021626
+average nnz 2.82 maximum nnz 10.00 deviation nnz 1.27
+average weight 2404.55 maximum weight 328376.00 deviation weight 3844.09 
+-------------------------------------
+CPU done!
+CPU total work count 3021626
+CPU sequential time 104.31 ms
+GPU0 partition: [0, 535188) v_local=535188 nedges=1514890
+GPU1 partition: [535188, 1070376) v_local=535188 nedges=1506736
+L3_BOUNDARY_INDEX gpu=0 dense_words=16725 boundary_words=217 indexed=1 build_ms=2.162445
+L3_BOUNDARY_INDEX gpu=1 dense_words=16725 boundary_words=214 indexed=1 build_ms=1.624762
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=20.580265 reference_ms=104.306000 initialization_other_ms=397.311051 setup_wall_ms=522.197316
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu1 src=0 reset=1 free=78544.94MiB min=78544.94MiB max=78544.94MiB
+QUERY_REUSE gpu0 src=0 reset=1 free=78544.94MiB min=78544.94MiB max=78544.94MiB
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=0.961311

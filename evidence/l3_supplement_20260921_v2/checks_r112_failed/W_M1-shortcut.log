@@ -1,0 +1,32 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr
+nnodes=6262104, nedges=17557344.
+Host memory for graph: 181 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+NO_L3 CUDA error: too many resources requested for launch
+Maximum degree: 14
+----------Graph information----------
+number of vertices 6262104 number of edges 17557344
+average nnz 2.80 maximum nnz 14.00 deviation nnz 1.35
+average weight 4467.20 maximum weight 533146.00 deviation weight 7270.79 
+-------------------------------------
+CPU done!
+CPU total work count 17557344
+CPU sequential time 786.76 ms
+GPU begin!
+NO_L3_CONFIG workers=512 delta=200000 queue=L1SLF_L2DQ
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=1.666068

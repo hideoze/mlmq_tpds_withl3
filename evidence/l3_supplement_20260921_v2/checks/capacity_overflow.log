@@ -1,0 +1,4 @@
+tmp/l3_supplement_20260921_v2/dual_diagnostic_source/core/include/../cu_delta_queue/cu_delta_queue.cuh:465: write_status l2_delta_queue<eletype>::write(eletype *, int &, int, int, int, unsigned int *) [with eletype = Item]: block: [0,0,0], thread: [31,0,0] Assertion `current_reserve >= 0 && (long long)current_reserve + write_bucket_num <= total_size` failed.
+CAPACITY_BOUNDARY rejected=1056 capacity=1024 expected_device_assert=1 PASS
+
+RUN_RC=0

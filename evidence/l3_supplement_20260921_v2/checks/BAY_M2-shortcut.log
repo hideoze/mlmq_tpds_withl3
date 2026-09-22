@@ -1,0 +1,88 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=321270, nedges=884786.
+Host memory for graph:   9 MB
+	  1%
+	 11%
+	 21%
+	 31%
+	 41%
+	 51%
+	 61%
+	 71%
+	 81%
+	 91%
+Maximum degree: 12
+ADAPTIVE-Q: cross_ratio=0.0549% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 321270 number of edges 884786
+average nnz 2.75 maximum nnz 12.00 deviation nnz 1.28
+average weight 1942.23 maximum weight 201076.00 deviation weight 3397.61 
+-------------------------------------
+CPU done!
+CPU total work count 884786
+CPU sequential time 30.68 ms
+GPU0 partition: [0, 160635) v_local=160635 nedges=433835
+GPU1 partition: [160635, 321270) v_local=160635 nedges=450951
+L3_BOUNDARY_INDEX gpu=0 dense_words=5020 boundary_words=126 indexed=1 build_ms=2.003961
+L3_BOUNDARY_INDEX gpu=1 dense_words=5020 boundary_words=115 indexed=1 build_ms=1.725043
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=6.103251 reference_ms=30.684000 initialization_other_ms=337.044073 setup_wall_ms=373.831324
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu1 src=160635 reset=1 free=78586.94MiB min=78586.94MiB max=78586.94MiB
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu0 src=160635 reset=1 free=78586.94MiB min=78586.94MiB max=78586.94MiB
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_GEOMETRY gpu=1 threads=544 warps=16 blocks=107 resident=1 ack_slots=1712 shm=68608
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_GEOMETRY gpu=0 threads=544 warps=16 blocks=107 resident=1 ack_slots=1712 shm=68608
+CAPACITY_BUCKET gpu=1 bucket=0 capacity=16776704 writes=308 reads=308 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=1 capacity=16776704 writes=1075 reads=1075 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=2 capacity=16776704 writes=1124 reads=1124 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=3 capacity=16776704 writes=207 reads=207 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=4 capacity=16776704 writes=53869 reads=53869 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=5 capacity=16776704 writes=34 reads=34 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=6 capacity=16776704 writes=0 reads=0 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=7 capacity=16776704 writes=35359 reads=35359 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=8 capacity=16776704 writes=145 reads=145 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=9 capacity=16776704 writes=6407 reads=6407 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=10 capacity=16776704 writes=70 reads=70 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=11 capacity=16776704 writes=37 reads=37 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=12 capacity=16776704 writes=0 reads=0 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=13 capacity=16776704 writes=2091 reads=2091 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=14 capacity=16776704 writes=36 reads=36 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=15 capacity=16776704 writes=137722 reads=137722 no_wrap=1
+CAPACITY_QUERY gpu=1 total=238484 completed=238484 guarded=1
+CAPACITY_BUCKET gpu=0 bucket=0 capacity=16776704 writes=0 reads=0 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=1 capacity=16776704 writes=33 reads=33 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=2 capacity=16776704 writes=39 reads=39 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=3 capacity=16776704 writes=22248 reads=22248 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=4 capacity=16776704 writes=100432 reads=100432 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=5 capacity=16776704 writes=67567 reads=67567 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=6 capacity=16776704 writes=75436 reads=75436 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=7 capacity=16776704 writes=83612 reads=83612 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=8 capacity=16776704 writes=25345 reads=25345 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=9 capacity=16776704 writes=6702 reads=6702 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=10 capacity=16776704 writes=1305 reads=1305 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=11 capacity=16776704 writes=904 reads=904 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=12 capacity=16776704 writes=0 reads=0 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=13 capacity=16776704 writes=36 reads=36 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=14 capacity=16776704 writes=0 reads=0 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=15 capacity=16776704 writes=150 reads=150 no_wrap=1
+CAPACITY_QUERY gpu=0 total=383809 completed=383809 guarded=1
+L2_FINAL gpu=1 buckets=16 reads=238484 writes=238484 completed=238484
+L2_FINAL gpu=0 buckets=16 reads=383809 writes=383809 completed=383809
+GPU multi-GPU wall time 19.83 ms
+gpu
+587598 592297 606326 592296 610335 606764 578210 599000 607387 608935 570458 585482 597224 556586 594679 600616 550991 558929 593163 603666 559784 537054 588080 602604 560909 524608 526313 587056 588682 601897 
+cpu
+587598 592297 606326 592296 610335 606764 578210 599000 607387 608935 570458 585482 597224 556586 594679 600616 550991 558929 593163 603666 559784 537054 588080 602604 560909 524608 526313 587056 588682 601897 
+WIDE_ORACLE vertices=321270 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=160635 repeat=0 warmup=0 queue=L1SLF_L2DQ solve_ms=12.451119 collection_ms=0.304439 query_wall_ms=20.132388 prepare_ms=7.277665 post_solve_ms=0.099024 correct=1
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=0.812690

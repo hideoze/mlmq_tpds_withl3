@@ -1,0 +1,53 @@
+ptxas info    : 199 bytes gmem
+ptxas info    : Function properties for _ZN7wl_ct_t10get_globalEj
+    48 bytes stack frame, 48 bytes spill stores, 48 bytes spill loads
+ptxas info    : Function properties for _ZN7wl_ct_t15tb_coop_processER8CSRGraphi
+    64 bytes stack frame, 60 bytes spill stores, 60 bytes spill loads
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' for 'sm_80'
+ptxas info    : Function properties for _ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, 352 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z15profiler_kernel8CSRGraphPfi' for 'sm_80'
+ptxas info    : Function properties for _Z15profiler_kernel8CSRGraphPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 24 registers, 164 bytes smem, 668 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z13driver_kernelii7wl_ct_t8CSRGraphjPj' for 'sm_80'
+ptxas info    : Function properties for _Z13driver_kernelii7wl_ct_t8CSRGraphjPj
+    16 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, 1048 bytes cmem[0]
+ptxas info    : Function properties for _ZN7wl_ct_t12init_regularEv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Compiling entry function '_Z11sssp_kernel8CSRGraph7wl_ct_tPj' for 'sm_80'
+ptxas info    : Function properties for _Z11sssp_kernel8CSRGraph7wl_ct_tPj
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 51 registers, 24576 bytes smem, 1032 bytes cmem[0], 8 bytes cmem[2]
+ptxas info    : Compiling entry function '_Z6kernel8CSRGraphi' for 'sm_80'
+ptxas info    : Function properties for _Z6kernel8CSRGraphi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, 660 bytes cmem[0]
+ptxas info    : Function properties for _ZN7wl_ct_t13alloc_managerEv
+    56 bytes stack frame, 56 bytes spill stores, 56 bytes spill loads
+ptxas info    : Function properties for _ZN7wl_ct_t14assign_managerEi
+    216 bytes stack frame, 212 bytes spill stores, 212 bytes spill loads
+ptxas info    : Function properties for _ZN7wl_ct_t12read_managerEv
+    8 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Function properties for _ZN7wl_ct_t12manager_initEv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Compiling entry function '_Z9wl_kernel7wl_ct_ti' for 'sm_80'
+ptxas info    : Function properties for _Z9wl_kernel7wl_ct_ti
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 112 registers, 724 bytes cmem[0], 24 bytes cmem[2]
+ptxas info    : 0 bytes gmem
+ptxas info    : 0 bytes gmem
+tmp/adds_official_v4/vendor/ppopp-code/ads_int/csr_graph.cu: In member function ‘unsigned int CSRGraph::allocOnHost()’:
+tmp/adds_official_v4/vendor/ppopp-code/ads_int/csr_graph.cu:81:15: warning: format ‘%u’ expects argument of type ‘unsigned int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+   81 |         printf("Host memory for graph: %3u MB\n", mem_usage / 1048756);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~
+      |                                                            |
+      |                                                            size_t {aka long unsigned int}
+tmp/adds_official_v4/vendor/ppopp-code/ads_int/csr_graph.cu: In member function ‘unsigned int CSRGraph::readFromGR(char*)’:
+tmp/adds_official_v4/vendor/ppopp-code/ads_int/csr_graph.cu:285:15: warning: format ‘%lld’ expects argument of type ‘long long int’, but argument 2 has type ‘size_t’ {aka ‘long unsigned int’} [-Wformat=]
+  285 |         printf("read %lld bytes\n\r\n", masterLength);
+      |               ^~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~~~~~~
+      |                                        |
+      |                                        size_t {aka long unsigned int}

@@ -1,0 +1,222 @@
+ptxas info    : Overriding maximum register limit 256 for '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' with  64 of maxrregcount option
+ptxas info    : 18 bytes gmem
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' for 'sm_80'
+ptxas info    : Function properties for _ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, 352 bytes cmem[0]
+ptxas info    : Overriding maximum register limit 256 for '__cuda_dummy_entry__' with  64 of maxrregcount option
+ptxas info    : 0 bytes gmem
+ptxas info    : Overriding maximum register limit 256 for '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' with  64 of maxrregcount option
+ptxas info    : Overriding maximum register limit 256 for '_Z21l3_fill_values_kernelIiEvPT_S1_mS0_' with  64 of maxrregcount option
+ptxas info    : 6619 bytes gmem
+ptxas info    : Function properties for _Z26l3_worker_recovery_servicePiS_iiiii$51
+    72 bytes stack frame, 44 bytes spill stores, 44 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC2Ev
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC1Ev
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC2Eii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structaSEi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Compiling entry function '_ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv' for 'sm_80'
+ptxas info    : Function properties for _ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 4 registers, 352 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    16 bytes stack frame, 4 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 64 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    80 bytes stack frame, 204 bytes spill stores, 224 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+ptxas info    : Used 80 registers, 1056 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    32 bytes stack frame, 60 bytes spill stores, 48 bytes spill loads
+ptxas info    : Used 64 registers, 712 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 4 bytes spill stores, 4 bytes spill loads
+ptxas info    : Used 80 registers, 1056 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 64 registers, 712 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    312 bytes stack frame, 56 bytes spill stores, 56 bytes spill loads
+ptxas info    : Used 80 registers, 1144 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    808 bytes stack frame, 300 bytes spill stores, 564 bytes spill loads
+ptxas info    : Used 64 registers, 800 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    24 bytes stack frame, 12 bytes spill stores, 20 bytes spill loads
+ptxas info    : Used 64 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    88 bytes stack frame, 216 bytes spill stores, 240 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    16 bytes stack frame, 8 bytes spill stores, 16 bytes spill loads
+ptxas info    : Used 64 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 140 bytes spill stores, 136 bytes spill loads
+ptxas info    : Used 80 registers, 1040 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    120 bytes stack frame, 248 bytes spill stores, 328 bytes spill loads
+ptxas info    : Used 64 registers, 696 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 140 bytes spill stores, 136 bytes spill loads
+ptxas info    : Used 80 registers, 1040 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    112 bytes stack frame, 240 bytes spill stores, 324 bytes spill loads
+ptxas info    : Used 64 registers, 696 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 140 bytes spill stores, 136 bytes spill loads
+ptxas info    : Used 80 registers, 1040 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    120 bytes stack frame, 236 bytes spill stores, 252 bytes spill loads
+ptxas info    : Used 64 registers, 696 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 136 bytes spill stores, 132 bytes spill loads
+ptxas info    : Used 80 registers, 1032 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    120 bytes stack frame, 236 bytes spill stores, 304 bytes spill loads
+ptxas info    : Used 64 registers, 688 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 136 bytes spill stores, 132 bytes spill loads
+ptxas info    : Used 80 registers, 1032 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    104 bytes stack frame, 220 bytes spill stores, 288 bytes spill loads
+ptxas info    : Used 64 registers, 688 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 136 bytes spill stores, 132 bytes spill loads
+ptxas info    : Used 80 registers, 1032 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    120 bytes stack frame, 252 bytes spill stores, 356 bytes spill loads
+ptxas info    : Used 64 registers, 688 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    80 bytes stack frame, 200 bytes spill stores, 240 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    16 bytes stack frame, 4 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 64 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    8 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 60 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    72 bytes stack frame, 8 bytes spill stores, 8 bytes spill loads
+ptxas info    : Used 80 registers, 1064 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    16 bytes stack frame, 8 bytes spill stores, 16 bytes spill loads
+ptxas info    : Used 64 registers, 720 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    80 bytes stack frame, 200 bytes spill stores, 240 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    80 bytes stack frame, 204 bytes spill stores, 220 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_' for 'sm_80'
+ptxas info    : Function properties for _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_
+    192 bytes stack frame, 124 bytes spill stores, 124 bytes spill loads
+ptxas info    : Used 80 registers, 1120 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_' for 'sm_80'
+ptxas info    : Function properties for _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_
+    48 bytes stack frame, 120 bytes spill stores, 104 bytes spill loads
+ptxas info    : Used 64 registers, 776 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z21l3_fill_values_kernelIiEvPT_S1_mS0_' for 'sm_80'
+ptxas info    : Function properties for _Z21l3_fill_values_kernelIiEvPT_S1_mS0_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 12 registers, 380 bytes cmem[0]
+ptxas info    : Function properties for _Z26l3_worker_recovery_servicePiS_iiiii
+    72 bytes stack frame, 44 bytes spill stores, 44 bytes spill loads
+ptxas info    : Function properties for _ZN11node_structC1Eii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads

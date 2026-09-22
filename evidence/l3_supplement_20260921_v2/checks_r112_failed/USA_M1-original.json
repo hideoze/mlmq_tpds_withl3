@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+    "-n",
+    "1",
+    "-d",
+    "200000"
+  ],
+  "rc": 2,
+  "valid": false,
+  "reason": "nonzero return code",
+  "samples": [],
+  "host_elapsed_seconds": 4.7274928169790655
+}

@@ -1,0 +1,3 @@
+DQ_PUBLICATION tests=400 clamp_diag=1 PASS
+
+RUN_RC=0

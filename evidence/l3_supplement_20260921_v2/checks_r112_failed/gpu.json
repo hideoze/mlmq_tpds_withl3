@@ -1,0 +1,6 @@
+{
+  "command": [
+    "nvidia-smi"
+  ],
+  "rc": 0
+}

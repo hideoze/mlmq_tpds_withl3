@@ -1,0 +1,89 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=23947347, nedges=57708624.
+Host memory for graph: 622 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+Maximum degree: 9
+ADAPTIVE-Q: cross_ratio=0.0169% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 23947347 number of edges 57708624
+average nnz 2.44 maximum nnz 9.00 deviation nnz 0.85
+average weight 2285.73 maximum weight 368855.00 deviation weight 3901.49 
+-------------------------------------
+CPU done!
+CPU total work count 57708624
+CPU sequential time 3168.98 ms
+GPU0 partition: [0, 14368408) v_local=14368408 nedges=34589534
+GPU1 partition: [14368408, 23947347) v_local=9578939 nedges=23119090
+L3_BOUNDARY_INDEX gpu=0 dense_words=299342 boundary_words=700 indexed=1 build_ms=29.794936
+L3_BOUNDARY_INDEX gpu=1 dense_words=449013 boundary_words=662 indexed=1 build_ms=20.912420
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=376.281153 reference_ms=3168.983887 initialization_other_ms=1444.754271 setup_wall_ms=4990.019311
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu0 src=11973673 reset=1 free=77614.94MiB min=77614.94MiB max=77614.94MiB
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_GEOMETRY gpu=0 threads=544 warps=16 blocks=107 resident=1 ack_slots=1712 shm=68608
+QUERY_REUSE gpu1 src=11973673 reset=1 free=77752.94MiB min=77752.94MiB max=77752.94MiB
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_GEOMETRY gpu=1 threads=544 warps=16 blocks=107 resident=1 ack_slots=1712 shm=68608
+CAPACITY_BUCKET gpu=1 bucket=0 capacity=16776704 writes=366904 reads=366904 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=1 capacity=16776704 writes=279546 reads=279546 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=2 capacity=16776704 writes=256501 reads=256501 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=3 capacity=16776704 writes=261974 reads=261974 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=4 capacity=16776704 writes=249509 reads=249509 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=5 capacity=16776704 writes=181924 reads=181924 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=6 capacity=16776704 writes=183673 reads=183673 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=7 capacity=16776704 writes=216975 reads=216975 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=8 capacity=16776704 writes=291437 reads=291437 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=9 capacity=16776704 writes=304474 reads=304474 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=10 capacity=16776704 writes=280934 reads=280934 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=11 capacity=16776704 writes=283507 reads=283507 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=12 capacity=16776704 writes=300047 reads=300047 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=13 capacity=16776704 writes=296913 reads=296913 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=14 capacity=16776704 writes=279745 reads=279745 no_wrap=1
+CAPACITY_BUCKET gpu=1 bucket=15 capacity=16776704 writes=354713 reads=354713 no_wrap=1
+CAPACITY_QUERY gpu=1 total=4388776 completed=4388776 guarded=1
+L2_FINAL gpu=1 buckets=16 reads=4388776 writes=4388776 completed=4388776
+CAPACITY_BUCKET gpu=0 bucket=0 capacity=16776704 writes=344734 reads=344734 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=1 capacity=16776704 writes=371740 reads=371740 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=2 capacity=16776704 writes=428264 reads=428264 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=3 capacity=16776704 writes=404513 reads=404513 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=4 capacity=16776704 writes=367185 reads=367185 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=5 capacity=16776704 writes=368017 reads=368017 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=6 capacity=16776704 writes=337407 reads=337407 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=7 capacity=16776704 writes=333484 reads=333484 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=8 capacity=16776704 writes=337224 reads=337224 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=9 capacity=16776704 writes=320940 reads=320940 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=10 capacity=16776704 writes=307699 reads=307699 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=11 capacity=16776704 writes=352640 reads=352640 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=12 capacity=16776704 writes=380760 reads=380760 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=13 capacity=16776704 writes=357985 reads=357985 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=14 capacity=16776704 writes=369749 reads=369749 no_wrap=1
+CAPACITY_BUCKET gpu=0 bucket=15 capacity=16776704 writes=336031 reads=336031 no_wrap=1
+CAPACITY_QUERY gpu=0 total=5718372 completed=5718372 guarded=1
+L2_FINAL gpu=0 buckets=16 reads=5718372 writes=5718372 completed=5718372
+GPU multi-GPU wall time 117.86 ms
+gpu
+3885704 3889069 3889665 3887147 3889909 3891006 3891660 3888157 3888872 3892869 3894621 3893646 3893843 3889024 3884747 3893318 3892607 3895480 3894442 3894667 3890133 3887462 3883751 3896038 3894488 3889248 3893240 3896477 3899421 3893918 
+cpu
+3885704 3889069 3889665 3887147 3889909 3891006 3891660 3888157 3888872 3892869 3894621 3893646 3893843 3889024 3884747 3893318 3892607 3895480 3894442 3894667 3890133 3887462 3883751 3896038 3894488 3889248 3893240 3896477 3899421 3893918 
+WIDE_ORACLE vertices=23947347 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=11973673 repeat=0 warmup=0 queue=L1SLF_L2DQ solve_ms=109.904098 collection_ms=46.504532 query_wall_ms=164.361406 prepare_ms=7.844924 post_solve_ms=0.107831 correct=1
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=5.713048

@@ -1,0 +1,102 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/adds_official_v4/adds",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "0",
+      "warmup": "1",
+      "reset_ms": "0.100004",
+      "parameter_ms": "0.048920",
+      "solve_ms": "12.313836",
+      "complete_solve_ms": "12.362756",
+      "collection_ms": "0.534954",
+      "query_wall_ms": "12.997714",
+      "correct": "1"
+    },
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "1",
+      "warmup": "0",
+      "reset_ms": "0.080858",
+      "parameter_ms": "0.034964",
+      "solve_ms": "9.701716",
+      "complete_solve_ms": "9.736680",
+      "collection_ms": "0.111331",
+      "query_wall_ms": "9.928869",
+      "correct": "1"
+    },
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "2",
+      "warmup": "0",
+      "reset_ms": "0.078293",
+      "parameter_ms": "0.027184",
+      "solve_ms": "9.713237",
+      "complete_solve_ms": "9.740421",
+      "collection_ms": "0.109405",
+      "query_wall_ms": "9.928119",
+      "correct": "1"
+    },
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "3",
+      "warmup": "0",
+      "reset_ms": "0.076682",
+      "parameter_ms": "0.025143",
+      "solve_ms": "9.727013",
+      "complete_solve_ms": "9.752156",
+      "collection_ms": "0.107601",
+      "query_wall_ms": "9.936439",
+      "correct": "1"
+    },
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "4",
+      "warmup": "0",
+      "reset_ms": "0.077380",
+      "parameter_ms": "0.025280",
+      "solve_ms": "9.744644",
+      "complete_solve_ms": "9.769924",
+      "collection_ms": "0.107536",
+      "query_wall_ms": "9.954840",
+      "correct": "1"
+    },
+    {
+      "algorithm": "ADDS",
+      "baseline": "official_v3",
+      "gpu_count": "1",
+      "source": "132173",
+      "repeat": "5",
+      "warmup": "0",
+      "reset_ms": "0.076719",
+      "parameter_ms": "0.025068",
+      "solve_ms": "9.634211",
+      "complete_solve_ms": "9.659279",
+      "collection_ms": "0.107109",
+      "query_wall_ms": "9.843107",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.43825430900324136
+}

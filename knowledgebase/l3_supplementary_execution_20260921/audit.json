@@ -1,0 +1,71 @@
+{
+  "base": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2",
+  "formal_queries": 320,
+  "total_queries": 384,
+  "processes": 64,
+  "wide_oracle_lines": 416,
+  "dual_final_conservation_lines": 384,
+  "identical_core_file_count": 19,
+  "source_provenance": {
+    "single": {
+      "source.tgz": "99635ebf46060d306f7456edfd416a07031d5a4d6f7e39657bd240d2fe6d349f",
+      "mlmq": "07baa7447bd942a955d7381ff418d312456946767ead7d71829a15303db0c0da",
+      "command.json": "685f14718a84cc5c100f66edf10162446a4f265baa34aaf80f044cafbe24e806"
+    },
+    "dual": {
+      "source.tgz": "c1971da823bb42963563db1d385e9fad0f7379ca7c10a2808d7ba25c05da92ef",
+      "mlmq": "12c97d8405fd2acddc8c296c182bc7bf5b8e51b55bd267fc552ab3545e2d3c08",
+      "command.json": "7e4b9c9072243be5804ec497f72d56d5db32f9e45f654058f2a792ee851dd9c6"
+    },
+    "single_diagnostic": {
+      "source.tgz": "095f3775c83da2424c2fb38b200c94a2990b17c4b0c64fc32b5c5e1167851c6a",
+      "mlmq": "d14e447ab9c64e8da93a457a99d116b8a88342c07472617d5be3eefeeb0b5448",
+      "command.json": "0be3c74b6f5d0797f4d638dcb6b5a007cd5052ee412ede19f94185aea7e0ead2"
+    },
+    "dual_diagnostic": {
+      "source.tgz": "571b57a3a18ef40619890a36f0366bf48ea4c48c1a67dbed63b951ec1533faa7",
+      "mlmq": "f94334a4243cbc28478fbde2e548aed474535cc8fb53c01bfe22c977624b1b65",
+      "command.json": "4b2213ab88b045e2b29f5a0860405896214991aa9e4b3f2653de8071ece552cd"
+    }
+  },
+  "checks": {
+    "problems": [],
+    "reset_pass": true,
+    "capacity_queries": 32,
+    "valid": true
+  },
+  "max_bucket": {
+    "graph": "CAL",
+    "variant": "M2-shortcut",
+    "gpu": "0",
+    "bucket": "7",
+    "capacity": "16776704",
+    "writes": "3222849",
+    "reads": "3222849",
+    "no_wrap": "1"
+  },
+  "max_capacity_fraction": 0.19210263231681265,
+  "primitive_transport": [
+    {
+      "source": "0",
+      "target": "1",
+      "epochs": "256",
+      "backpressure_retries": "44",
+      "precommit_checks": "256",
+      "l2_writes": "8192",
+      "delayed_ack_fired": "1",
+      "pending": "0"
+    },
+    {
+      "source": "1",
+      "target": "0",
+      "epochs": "256",
+      "backpressure_retries": "47",
+      "precommit_checks": "256",
+      "l2_writes": "8192",
+      "delayed_ack_fired": "1",
+      "pending": "0"
+    }
+  ],
+  "note": "Performance and capacity-guard runs are different executions. No weak-memory proof is implied."
+}

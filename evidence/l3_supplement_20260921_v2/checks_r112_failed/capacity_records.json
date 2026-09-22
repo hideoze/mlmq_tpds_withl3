@@ -1,0 +1,578 @@
+[
+  {
+    "graph": "NY",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.601321181980893
+  },
+  {
+    "graph": "NY",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.626351582002826
+  },
+  {
+    "graph": "NY",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.7848031220491976
+  },
+  {
+    "graph": "NY",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.7864980230806395
+  },
+  {
+    "graph": "BAY",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.6088009970262647
+  },
+  {
+    "graph": "BAY",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.6132146429736167
+  },
+  {
+    "graph": "BAY",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.8134681639494374
+  },
+  {
+    "graph": "BAY",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.7955531791085377
+  },
+  {
+    "graph": "COL",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.624938573106192
+  },
+  {
+    "graph": "COL",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.6293193709570915
+  },
+  {
+    "graph": "COL",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.8127742849756032
+  },
+  {
+    "graph": "COL",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.8170116849942133
+  },
+  {
+    "graph": "FLA",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.7100952490000054
+  },
+  {
+    "graph": "FLA",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.7474081009859219
+  },
+  {
+    "graph": "FLA",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.9103584219701588
+  },
+  {
+    "graph": "FLA",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.9613108559278771
+  },
+  {
+    "graph": "CAL",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.8426673200447112
+  },
+  {
+    "graph": "CAL",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 0.873335923999548
+  },
+  {
+    "graph": "CAL",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.061780996969901
+  },
+  {
+    "graph": "CAL",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.092286007013172
+  },
+  {
+    "graph": "E",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.1173162939958274
+  },
+  {
+    "graph": "E",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.1705088060116395
+  },
+  {
+    "graph": "E",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.3753559980541468
+  },
+  {
+    "graph": "E",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.4302924509393051
+  },
+  {
+    "graph": "W",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.575100159039721
+  },
+  {
+    "graph": "W",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.6660682659130543
+  },
+  {
+    "graph": "W",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.8992780230473727
+  },
+  {
+    "graph": "W",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 1.9869338779244572
+  },
+  {
+    "graph": "USA",
+    "variant": "M1-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 4.7274928169790655
+  },
+  {
+    "graph": "USA",
+    "variant": "M1-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+      "-n",
+      "1",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 4.982226432999596
+  },
+  {
+    "graph": "USA",
+    "variant": "M2-original",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 5.465702782035805
+  },
+  {
+    "graph": "USA",
+    "variant": "M2-shortcut",
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_diagnostic_build/mlmq",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "rc": 2,
+    "valid": false,
+    "reason": "missing capacity audit",
+    "samples": [],
+    "host_elapsed_seconds": 5.822704530088231
+  }
+]

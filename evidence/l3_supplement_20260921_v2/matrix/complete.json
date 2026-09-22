@@ -1,0 +1,12 @@
+{
+  "processes": 64,
+  "queries": 384,
+  "formal": 320,
+  "valid": true,
+  "geomeans": {
+    "same_original": 0.9037125369495882,
+    "same_shortcut": 0.9494275234576853,
+    "complete": 1.213598505261354,
+    "single_shortcut_gain": 1.27824238846752
+  }
+}

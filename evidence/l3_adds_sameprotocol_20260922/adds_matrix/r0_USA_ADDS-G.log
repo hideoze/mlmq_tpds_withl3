@@ -1,0 +1,45 @@
+nnodes=23947347, nedges=57708624.
+Host memory for graph: 622 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+read 653247800 bytes
+
+ADDS_CONFIG baseline=official_v3 tb_size=768 per_sm=1 blocks=107 suggested_threads=576 cub=toolkit
+BENCH_SETUP algorithm=ADDS baseline=official_v3 input_ms=365.857756 reference_ms=3287.418325 device_upload_ms=203.446502 workspace_ms=12.195984
+float 33.614914, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2592.180664, ave_degree 2.409813, delta init 5 (33.614914)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=0 warmup=1 reset_ms=0.173700 parameter_ms=0.051918 solve_ms=138.826744 complete_solve_ms=138.878662 collection_ms=51.295181 query_wall_ms=190.347543 correct=1
+float 34.572426, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2666.018311, ave_degree 2.409813, delta init 5 (34.572426)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=1 warmup=0 reset_ms=0.159620 parameter_ms=0.040159 solve_ms=136.681845 complete_solve_ms=136.722004 collection_ms=8.958073 query_wall_ms=145.839697 correct=1
+float 34.701340, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2675.959229, ave_degree 2.409813, delta init 5 (34.701340)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=2 warmup=0 reset_ms=0.156791 parameter_ms=0.036549 solve_ms=136.406834 complete_solve_ms=136.443383 collection_ms=8.946521 query_wall_ms=145.546695 correct=1
+float 34.741539, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2679.059326, ave_degree 2.409813, delta init 5 (34.741539)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=3 warmup=0 reset_ms=0.155258 parameter_ms=0.033527 solve_ms=136.332985 complete_solve_ms=136.366512 collection_ms=8.952255 query_wall_ms=145.474025 correct=1
+float 34.644169, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2671.550537, ave_degree 2.409813, delta init 5 (34.644169)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=4 warmup=0 reset_ms=0.158136 parameter_ms=0.032706 solve_ms=136.923190 complete_solve_ms=136.955896 collection_ms=8.935620 query_wall_ms=146.049652 correct=1
+float 34.604202, round 32
+multi-bag, multi-warp, variant c, wl size is 134217728, linear size is 134217728
+MAX_CON_BAG 4, MINI_GRAIN 8, ave_wt 2668.468750, ave_degree 2.409813, delta init 5 (34.604202)
+BENCH algorithm=ADDS baseline=official_v3 gpu_count=1 source=11973673 repeat=5 warmup=0 reset_ms=0.158434 parameter_ms=0.031705 solve_ms=136.042547 complete_solve_ms=136.074252 collection_ms=8.960161 query_wall_ms=145.192847 correct=1
+ADDS official sssp correct!
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=5.176901

@@ -1,0 +1,19 @@
+{
+  "command": [
+    "nvcc",
+    "scripts/multigpu/test_l3_supplement.cu",
+    "-o",
+    "tmp/l3_supplement_20260921_v2/test_primitives",
+    "-O3",
+    "-std=c++17",
+    "-rdc=true",
+    "-gencode=arch=compute_80,code=sm_80",
+    "-Icore/include",
+    "-I/a100-data/wyh/boost_1_87_0/",
+    "-DL3_DIRECT_RX=true",
+    "-DL3_FAULT_INJECT_ACK_DELAY=true",
+    "-DBULK_NO_CACHE=true"
+  ],
+  "cwd": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26",
+  "recorded_from_executed_command": true
+}

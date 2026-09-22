@@ -1,0 +1,158 @@
+{
+  "job": "37327",
+  "host": "ada-A100",
+  "graphs": {
+    "NY": {
+      "source": 132173,
+      "cut": 158607,
+      "cut_percent": 60,
+      "vertices": 264346,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/NY/oracle.i32",
+      "hashes": {
+        "original": "61d7210370a505501dfad3788295ee2489608896f672ff47a545bb2f2ee868f9",
+        "augmented": "910e458a05ab713c2d021b7a5857093f3b118286b2cd01963a91940798c0b5b6",
+        "oracle": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+      }
+    },
+    "BAY": {
+      "source": 160635,
+      "cut": 160635,
+      "cut_percent": 50,
+      "vertices": 321270,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/BAY/oracle.i32",
+      "hashes": {
+        "original": "0c9b8f7cf580397d9fc67367a5870c5278cf4c31ace89d3eab12e7370e549d90",
+        "augmented": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf",
+        "oracle": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+      }
+    },
+    "COL": {
+      "source": 217833,
+      "cut": 239616,
+      "cut_percent": 55,
+      "vertices": 435666,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/oracle.i32",
+      "hashes": {
+        "original": "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02",
+        "augmented": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19",
+        "oracle": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+      }
+    },
+    "FLA": {
+      "source": 0,
+      "cut": 535188,
+      "cut_percent": 50,
+      "vertices": 1070376,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/FLA/oracle.i32",
+      "hashes": {
+        "original": "90d79eaa748594bef016485d2aff3f5d104a3919da02ee40baff22ef457298d8",
+        "augmented": "02c0e956fc627fbae535879b4f7f56c252dbe2e09ba83d8938ee7826dfbb23c5",
+        "oracle": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+      }
+    },
+    "CAL": {
+      "source": 945407,
+      "cut": 945407,
+      "cut_percent": 50,
+      "vertices": 1890815,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/CAL/oracle.i32",
+      "hashes": {
+        "original": "68c2c6b2367bfd31b94aab1f49ad43676391118c38cd32ee140a3565870ffa83",
+        "augmented": "8a96eb63f7ebdb7b3bfefc604ee1d305e63b8a2f298426da3d34c3cb75ae0653",
+        "oracle": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+      }
+    },
+    "E": {
+      "source": 1799311,
+      "cut": 1799311,
+      "cut_percent": 50,
+      "vertices": 3598623,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/E/oracle.i32",
+      "hashes": {
+        "original": "ade94913f189242434fe1cbe2c12e74340921fd379bb366b9913b5a94958c471",
+        "augmented": "d522c12d6951421dc80c775cd38938350cc5dfb498d52784fa98ff7a9ce30d31",
+        "oracle": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+      }
+    },
+    "W": {
+      "source": 3131052,
+      "cut": 2504841,
+      "cut_percent": 40,
+      "vertices": 6262104,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/W/oracle.i32",
+      "hashes": {
+        "original": "9ad135bb15d8d6e53a6ad06749f2812ac16aae3660dafc95db2de28aad1f12a6",
+        "augmented": "8879c9ea0671bdc50df24b91ff50837cc9bb3f2c4fecf81ad41206b8bda9cce9",
+        "oracle": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+      }
+    },
+    "USA": {
+      "source": 11973673,
+      "cut": 14368408,
+      "cut_percent": 60,
+      "vertices": 23947347,
+      "original": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "augmented": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/augmented.gr",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/oracle.i32",
+      "hashes": {
+        "original": "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7",
+        "augmented": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+        "oracle": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+      }
+    }
+  },
+  "binaries": {
+    "single": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/single_build/mlmq",
+      "sha256": "07baa7447bd942a955d7381ff418d312456946767ead7d71829a15303db0c0da"
+    },
+    "dual": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/dual_build/mlmq",
+      "sha256": "12c97d8405fd2acddc8c296c182bc7bf5b8e51b55bd267fc552ab3545e2d3c08"
+    }
+  },
+  "variants": {
+    "M1-original": [
+      "single",
+      "original",
+      1
+    ],
+    "M1-shortcut": [
+      "single",
+      "augmented",
+      1
+    ],
+    "M2-original": [
+      "dual",
+      "original",
+      2
+    ],
+    "M2-shortcut": [
+      "dual",
+      "augmented",
+      2
+    ]
+  },
+  "warmups": 1,
+  "formal": 5,
+  "rounds": 2,
+  "workers": 512,
+  "blocks": 107,
+  "delta": 200000,
+  "single": "Independent no-L3 worker from frozen 213, shared core synchronized to current dual source",
+  "adapters": "Host oracle, capacity disclosure, INT_MAX byte budget; host chain disabled; no GPU test hooks"
+}

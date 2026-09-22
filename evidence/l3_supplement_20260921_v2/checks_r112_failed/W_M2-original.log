@@ -1,0 +1,44 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=6262104, nedges=15248146.
+Host memory for graph: 164 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+MLMQ BENCH failure: worker geometry requires one resident block per SM
+Invalid MLMQ_WORK_BLOCKS=107; expected [1,-1]
+Maximum degree: 9
+ADAPTIVE-Q: cross_ratio=0.0550% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 6262104 number of edges 15248146
+average nnz 2.43 maximum nnz 9.00 deviation nnz 0.93
+average weight 3587.62 maximum weight 368855.00 deviation weight 5270.09 
+-------------------------------------
+CPU done!
+CPU total work count 15248146
+CPU sequential time 752.26 ms
+GPU0 partition: [0, 2504841) v_local=2504841 nedges=6019846
+GPU1 partition: [2504841, 6262104) v_local=3757263 nedges=9228300
+L3_BOUNDARY_INDEX gpu=0 dense_words=117415 boundary_words=510 indexed=1 build_ms=5.178507
+L3_BOUNDARY_INDEX gpu=1 dense_words=78277 boundary_words=498 indexed=1 build_ms=7.987347
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=100.761332 reference_ms=752.263977 initialization_other_ms=605.158229 setup_wall_ms=1458.183538
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu1 src=3131052 reset=1 free=78336.94MiB min=78336.94MiB max=78336.94MiB
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+QUERY_REUSE gpu0 src=3131052 reset=1 free=78374.94MiB min=78374.94MiB max=78374.94MiB
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=1.899278

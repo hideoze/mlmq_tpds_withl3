@@ -1,0 +1,5 @@
+ORACLE source=0 vertices=2052 reached=2050 max_distance=2049 arithmetic=int64
+ORACLE source=0 vertices=2052 reached=2050 max_distance=2049 arithmetic=int64
+EXPORT vertices=2052 original_edges=5638 augmented_edges=5644 cut=1026 source=0 shortcuts=6 ordered_csr_readback=PASS
+
+RUN_RC=0

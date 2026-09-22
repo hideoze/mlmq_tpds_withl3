@@ -1,0 +1,8 @@
+{
+  "command": [
+    "nvidia-smi",
+    "--query-compute-apps=pid",
+    "--format=csv,noheader"
+  ],
+  "rc": 0
+}

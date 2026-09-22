@@ -1,0 +1,1 @@
+Same test_dq_publication binary as batch 37326. Queue allocation and reinit are not called by this manually allocated publication fixture; unrelated capacity host arithmetic changes do not affect this binary.
