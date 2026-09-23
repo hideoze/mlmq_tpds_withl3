@@ -1,0 +1,99 @@
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_compact/usa_gplus_s11973673_d400000_b107_compact/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": null,
+    "S_solve_T1_over_T2": null,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.33967150000000856,
+        "mad_ms": 0.14450100000001953,
+        "median_ms": 154.879756,
+        "q1_ms": 154.61233499999997,
+        "q3_ms": 154.95200649999998,
+        "samples_ms": [
+          154.879756,
+          154.344914,
+          155.024257
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.4408999999999992,
+        "mad_ms": 0.1188279999999935,
+        "median_ms": 75.972599,
+        "q1_ms": 75.591113,
+        "q3_ms": 76.032013,
+        "samples_ms": [
+          76.091427,
+          75.209627,
+          75.972599
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 0,
+      "reason": "one or more runs/samples invalid",
+      "valid": false
+    },
+    "target": 1.2,
+    "target_met": null,
+    "valid": false
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": false,
+  "records_file": "tmp/l3_30h_20260923/route_b2_compact/usa_gplus_s11973673_d400000_b107_compact/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": null,
+      "S_solve_T1_over_T2": null,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.33967150000000856,
+          "mad_ms": 0.14450100000001953,
+          "median_ms": 154.879756,
+          "q1_ms": 154.61233499999997,
+          "q3_ms": 154.95200649999998,
+          "samples_ms": [
+            154.879756,
+            154.344914,
+            155.024257
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.4408999999999992,
+          "mad_ms": 0.1188279999999935,
+          "median_ms": 75.972599,
+          "q1_ms": 75.591113,
+          "q3_ms": 76.032013,
+          "samples_ms": [
+            76.091427,
+            75.209627,
+            75.972599
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 0,
+        "reason": "nonzero return code; contract: expected at least 4 WIDE_ORACLE lines, got 0; dual contract lines remain after the final BENCH row; expected 4 dual BENCH contract groups, got 0",
+        "valid": false
+      },
+      "round": 0,
+      "valid": false
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": null
+}

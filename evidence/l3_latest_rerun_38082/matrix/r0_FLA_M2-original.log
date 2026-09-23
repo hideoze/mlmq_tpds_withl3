@@ -1,0 +1,119 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr
+nGPU: 2
+sources: 1
+delta override: 200000
+nnodes=1070376, nedges=2712798.
+Host memory for graph:  28 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+Maximum degree: 8
+ADAPTIVE-Q: cross_ratio=0.0405% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 1070376 number of edges 2712798
+average nnz 2.53 maximum nnz 8.00 deviation nnz 0.96
+average weight 2045.44 maximum weight 214013.00 deviation weight 2916.87 
+-------------------------------------
+CPU done!
+CPU total work count 2712798
+CPU sequential time 98.46 ms
+GPU0 partition: [0, 535188) v_local=535188 nedges=1359356
+GPU1 partition: [535188, 1070376) v_local=535188 nedges=1353442
+L3_BOUNDARY_INDEX gpu=0 dense_words=16725 boundary_words=217 indexed=1 build_ms=2.145766
+L3_BOUNDARY_INDEX gpu=1 dense_words=16725 boundary_words=214 indexed=1 build_ms=1.623639
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=17.242641 reference_ms=98.460999 initialization_other_ms=368.590828 setup_wall_ms=484.294468
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1271894 writes=1271894 completed=1271894
+L2_FINAL gpu=1 buckets=16 reads=490395 writes=490395 completed=490395
+GPU multi-GPU wall time 31.18 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=0 warmup=1 queue=L1SLF_L2DQ solve_ms=24.187070 collection_ms=0.686536 query_wall_ms=31.865427 prepare_ms=6.925806 post_solve_ms=0.065981 correct=1
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1502642 writes=1502642 completed=1502642
+L2_FINAL gpu=1 buckets=16 reads=490747 writes=490747 completed=490747
+GPU multi-GPU wall time 23.41 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=1 warmup=0 queue=L1SLF_L2DQ solve_ms=20.526877 collection_ms=0.501713 query_wall_ms=23.911334 prepare_ms=2.825251 post_solve_ms=0.057477 correct=1
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1385827 writes=1385827 completed=1385827
+L2_FINAL gpu=1 buckets=16 reads=471472 writes=471472 completed=471472
+GPU multi-GPU wall time 24.66 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=2 warmup=0 queue=L1SLF_L2DQ solve_ms=22.172607 collection_ms=0.542771 query_wall_ms=25.200892 prepare_ms=2.443955 post_solve_ms=0.041536 correct=1
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1283953 writes=1283953 completed=1283953
+L2_FINAL gpu=1 buckets=16 reads=468258 writes=468258 completed=468258
+GPU multi-GPU wall time 23.74 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=3 warmup=0 queue=L1SLF_L2DQ solve_ms=21.249798 collection_ms=0.374207 query_wall_ms=24.113756 prepare_ms=2.452460 post_solve_ms=0.037261 correct=1
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1525813 writes=1525813 completed=1525813
+L2_FINAL gpu=1 buckets=16 reads=560471 writes=560471 completed=560471
+GPU multi-GPU wall time 23.55 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=4 warmup=0 queue=L1SLF_L2DQ solve_ms=20.685243 collection_ms=0.452652 query_wall_ms=24.007192 prepare_ms=2.827251 post_solve_ms=0.041996 correct=1
+L3_CONFIG gpu=1 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_CONFIG gpu=0 work_blocks=107 delta=200000 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L2_FINAL gpu=0 buckets=16 reads=1149501 writes=1149501 completed=1149501
+L2_FINAL gpu=1 buckets=16 reads=474960 writes=474960 completed=474960
+GPU multi-GPU wall time 23.73 ms
+gpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+cpu
+0 14188 3172 3291 15287 9599 5075 15803 16263 10439 15917 9484 11871 15291 43084 19971 13207 21241 18262 15457 41766 47754 20754 22091 22529 32846 22684 20335 18245 45857 
+WIDE_ORACLE vertices=1070376 correct=1
+WIDE_ORACLE vertices=1070376 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=0 repeat=5 warmup=0 queue=L1SLF_L2DQ solve_ms=21.238078 collection_ms=0.440170 query_wall_ms=24.172816 prepare_ms=2.447776 post_solve_ms=0.046758 correct=1
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=1.077780

@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_a_control_25k_usa_retry/usa_gplus_s11973673_d400000_b107/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 2.1505809585417626,
+    "S_solve_T1_over_T2": 1.1934932297646736,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 1.5112575000000277,
+        "mad_ms": 0.601869000000022,
+        "median_ms": 155.903259,
+        "q1_ms": 154.69293599999997,
+        "q3_ms": 156.2041935,
+        "samples_ms": [
+          155.903259,
+          156.505128,
+          153.482613
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.6254709999999903,
+        "mad_ms": 0.04323800000000233,
+        "median_ms": 76.572622,
+        "q1_ms": 75.96877,
+        "q3_ms": 76.594241,
+        "samples_ms": [
+          76.572622,
+          76.61586,
+          75.364918
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.5051954999999992,
+        "mad_ms": 0.42532099999999673,
+        "median_ms": 72.493555,
+        "q1_ms": 72.20102,
+        "q3_ms": 72.7062155,
+        "samples_ms": [
+          72.493555,
+          72.918876,
+          71.908485
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.880474999999997,
+        "mad_ms": 0.6186330000000027,
+        "median_ms": 64.158405,
+        "q1_ms": 63.8490885,
+        "q3_ms": 64.7295635,
+        "samples_ms": [
+          63.539772,
+          65.300722,
+          64.158405
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "tmp/l3_30h_20260923/route_a_control_25k_usa_retry/usa_gplus_s11973673_d400000_b107/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 2.1505809585417626,
+      "S_solve_T1_over_T2": 1.1934932297646736,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 1.5112575000000277,
+          "mad_ms": 0.601869000000022,
+          "median_ms": 155.903259,
+          "q1_ms": 154.69293599999997,
+          "q3_ms": 156.2041935,
+          "samples_ms": [
+            155.903259,
+            156.505128,
+            153.482613
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.6254709999999903,
+          "mad_ms": 0.04323800000000233,
+          "median_ms": 76.572622,
+          "q1_ms": 75.96877,
+          "q3_ms": 76.594241,
+          "samples_ms": [
+            76.572622,
+            76.61586,
+            75.364918
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.5051954999999992,
+          "mad_ms": 0.42532099999999673,
+          "median_ms": 72.493555,
+          "q1_ms": 72.20102,
+          "q3_ms": 72.7062155,
+          "samples_ms": [
+            72.493555,
+            72.918876,
+            71.908485
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.880474999999997,
+          "mad_ms": 0.6186330000000027,
+          "median_ms": 64.158405,
+          "q1_ms": 63.8490885,
+          "q3_ms": 64.7295635,
+          "samples_ms": [
+            63.539772,
+            65.300722,
+            64.158405
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

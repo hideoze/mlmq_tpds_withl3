@@ -1,0 +1,496 @@
+{
+  "schema": 1,
+  "scan": "full rows, destinations, and edge payload; streaming SHA256",
+  "records": [
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/sssp-int/delaunay_n20.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/delaunay_n20.gr",
+      "sha256": "ad0cee15ab4bf410a1c431c09c36526ee414185a48061084e36324077bc50913",
+      "file_bytes": 58719624,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 1048576,
+        "directed_edges": 6291372
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 8388640,
+        "destination_padding_bytes": 0,
+        "weight_offset": 33554128,
+        "expected_payload_end": 58719616,
+        "trailing_bytes": 8,
+        "trailing_prefix_hex": "0000000000000000"
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 6291372,
+        "invalid_target_count": 0,
+        "target_minimum": 0,
+        "target_maximum": 1048575,
+        "positive_outdegree_vertices": 1048576,
+        "maximum_outdegree": 23
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": 1,
+        "maximum": 1,
+        "negative_count": 0,
+        "zero_count": 0,
+        "one_count": 6291372,
+        "mean": 1.0,
+        "full_log2_histogram": {
+          "1": 6291372
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 6291372,
+          "nan_count": 0,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 0,
+          "finite_minimum": 1.401298464324817e-45,
+          "finite_maximum": 1.401298464324817e-45
+        }
+      },
+      "weight_encoding_diagnostic": "bytes_are_consistent_with_nonnegative_int32_not_float32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        349525,
+        699050
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 1048575,
+        "coarse_bound_is_sufficient": true,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 4194308,
+        "csr_destination_int32": 25165488,
+        "csr_weight_int32": 25165488,
+        "distance_int32": 4194304,
+        "total": 58719588,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": true,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    },
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/sssp-int/delaunay_n23.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/delaunay_n23.gr",
+      "sha256": "0631c968bacd8919d79f6ba75263da60cc4f77e8024364e92728d615e5160099",
+      "file_bytes": 469761448,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 8388608,
+        "directed_edges": 50331568
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 67108896,
+        "destination_padding_bytes": 0,
+        "weight_offset": 268435168,
+        "expected_payload_end": 469761440,
+        "trailing_bytes": 8,
+        "trailing_prefix_hex": "0000000000000000"
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 50331568,
+        "invalid_target_count": 0,
+        "target_minimum": 0,
+        "target_maximum": 8388607,
+        "positive_outdegree_vertices": 8388608,
+        "maximum_outdegree": 28
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": 1,
+        "maximum": 1,
+        "negative_count": 0,
+        "zero_count": 0,
+        "one_count": 50331568,
+        "mean": 1.0,
+        "full_log2_histogram": {
+          "1": 50331568
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 50331568,
+          "nan_count": 0,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 0,
+          "finite_minimum": 1.401298464324817e-45,
+          "finite_maximum": 1.401298464324817e-45
+        }
+      },
+      "weight_encoding_diagnostic": "bytes_are_consistent_with_nonnegative_int32_not_float32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        2796202,
+        5592404
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 8388607,
+        "coarse_bound_is_sufficient": true,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 33554436,
+        "csr_destination_int32": 201326272,
+        "csr_weight_int32": 201326272,
+        "distance_int32": 33554432,
+        "total": 469761412,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": true,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    },
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+      "sha256": "2617ea8de3091120c2233a5668bb5e7b04766369a5c780e7247ed061b12e5d70",
+      "file_bytes": 118654568,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 1048576,
+        "directed_edges": 13783240
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 8388640,
+        "destination_padding_bytes": 0,
+        "weight_offset": 63521600,
+        "expected_payload_end": 118654560,
+        "trailing_bytes": 8,
+        "trailing_prefix_hex": "0000000000000000"
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 13783240,
+        "invalid_target_count": 0,
+        "target_minimum": 0,
+        "target_maximum": 1048575,
+        "positive_outdegree_vertices": 1048575,
+        "maximum_outdegree": 36
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": 1,
+        "maximum": 1,
+        "negative_count": 0,
+        "zero_count": 0,
+        "one_count": 13783240,
+        "mean": 1.0,
+        "full_log2_histogram": {
+          "1": 13783240
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 13783240,
+          "nan_count": 0,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 0,
+          "finite_minimum": 1.401298464324817e-45,
+          "finite_maximum": 1.401298464324817e-45
+        }
+      },
+      "weight_encoding_diagnostic": "bytes_are_consistent_with_nonnegative_int32_not_float32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        349524,
+        699050
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 1048575,
+        "coarse_bound_is_sufficient": true,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 4194308,
+        "csr_destination_int32": 55132960,
+        "csr_weight_int32": 55132960,
+        "distance_int32": 4194304,
+        "total": 118654532,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": true,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    },
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/nlpkkt80.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/nlpkkt80.gr",
+      "sha256": "66207f6d82ee925c3d6044a473c95528672a5260d57d79f21492cbd4f592772c",
+      "file_bytes": 238136616,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 1062400,
+        "directed_edges": 28704672
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 8499232,
+        "destination_padding_bytes": 0,
+        "weight_offset": 123317920,
+        "expected_payload_end": 238136608,
+        "trailing_bytes": 8,
+        "trailing_prefix_hex": "0000000000000000"
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 28704672,
+        "invalid_target_count": 0,
+        "target_minimum": 0,
+        "target_maximum": 1062399,
+        "positive_outdegree_vertices": 1062400,
+        "maximum_outdegree": 28
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": -16,
+        "maximum": 200,
+        "negative_count": 26618272,
+        "zero_count": 550400,
+        "one_count": 0,
+        "mean": 0.09804564218674926,
+        "full_log2_histogram": {
+          "4-7": 500160,
+          "8-15": 11840,
+          "128-255": 1024000
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 2086400,
+          "nan_count": 26618272,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 550400,
+          "finite_minimum": 0.0,
+          "finite_maximum": 2.802596928649634e-43
+        }
+      },
+      "weight_encoding_diagnostic": "not_admissible_as_nonnegative_int32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        354133,
+        708266
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 212479800,
+        "coarse_bound_is_sufficient": true,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 4249604,
+        "csr_destination_int32": 114818688,
+        "csr_weight_int32": 114818688,
+        "distance_int32": 4249600,
+        "total": 238136580,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": false,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    },
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+      "sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+      "file_bytes": 94476128,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 1489752,
+        "directed_edges": 10319760
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 11918048,
+        "destination_padding_bytes": 0,
+        "weight_offset": 53197088,
+        "expected_payload_end": 94476128,
+        "trailing_bytes": 0,
+        "trailing_prefix_hex": ""
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 10319760,
+        "invalid_target_count": 0,
+        "target_minimum": 0,
+        "target_maximum": 1489751,
+        "positive_outdegree_vertices": 1489752,
+        "maximum_outdegree": 7
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": 39601,
+        "maximum": 3201404,
+        "negative_count": 0,
+        "zero_count": 0,
+        "one_count": 0,
+        "mean": 912487.8749040675,
+        "full_log2_histogram": {
+          "32768-65535": 5928912,
+          "1048576-2097151": 2901096,
+          "2097152-4194303": 1489752
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 10319760,
+          "nan_count": 0,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 0,
+          "finite_minimum": 5.549282048572708e-41,
+          "finite_maximum": 4.4861225088833267e-39
+        }
+      },
+      "weight_encoding_diagnostic": "bytes_are_consistent_with_nonnegative_int32_not_float32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        496583,
+        993167
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 4769294810404,
+        "coarse_bound_is_sufficient": false,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 5959012,
+        "csr_destination_int32": 41279040,
+        "csr_weight_int32": 41279040,
+        "distance_int32": 5959008,
+        "total": 94476100,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": true,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    },
+    {
+      "requested_path": "/a100-data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+      "realpath": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+      "sha256": "164e61cce40603749d8df44fd5bcff9445a0b4bd83f0045be11670a63234b994",
+      "file_bytes": 299363568,
+      "header": {
+        "version": 1,
+        "edge_payload_bytes": 4,
+        "vertices": 4194304,
+        "directed_edges": 33226138
+      },
+      "layout": {
+        "row_end_offset": 32,
+        "destination_offset": 33554464,
+        "destination_padding_bytes": 0,
+        "weight_offset": 166459016,
+        "expected_payload_end": 299363568,
+        "trailing_bytes": 0,
+        "trailing_prefix_hex": ""
+      },
+      "csr_checks": {
+        "row_nonmonotonic_count": 0,
+        "row_out_of_range_count": 0,
+        "last_row_end": 33226138,
+        "invalid_target_count": 0,
+        "target_minimum": 1,
+        "target_maximum": 4194303,
+        "positive_outdegree_vertices": 3402506,
+        "maximum_outdegree": 2118
+      },
+      "weights": {
+        "interpretation": "little_endian_signed_int32",
+        "minimum": 1,
+        "maximum": 4194304,
+        "negative_count": 0,
+        "zero_count": 0,
+        "one_count": 11,
+        "mean": 2096972.7587740412,
+        "full_log2_histogram": {
+          "1": 11,
+          "2-3": 18,
+          "4-7": 32,
+          "8-15": 60,
+          "16-31": 136,
+          "32-63": 257,
+          "64-127": 486,
+          "128-255": 1041,
+          "256-511": 1957,
+          "512-1023": 4195,
+          "1024-2047": 8152,
+          "2048-4095": 16346,
+          "4096-8191": 32562,
+          "8192-16383": 65310,
+          "16384-32767": 129889,
+          "32768-65535": 259973,
+          "65536-131071": 518690,
+          "131072-262143": 1039636,
+          "262144-524287": 2077909,
+          "524288-1048575": 4154820,
+          "1048576-2097151": 8303171,
+          "2097152-4194303": 16611473,
+          "4194304-8388607": 14
+        },
+        "same_bytes_as_float32": {
+          "finite_count": 33226138,
+          "nan_count": 0,
+          "infinite_count": 0,
+          "negative_count": 0,
+          "zero_count": 0,
+          "finite_minimum": 1.401298464324817e-45,
+          "finite_maximum": 5.877471754111438e-39
+        }
+      },
+      "weight_encoding_diagnostic": "bytes_are_consistent_with_nonnegative_int32_not_float32",
+      "weight_provenance": "not_provable_from_GR_bytes_requires_external_confirmation",
+      "fixed_source_rule": "rank 0, floor((k-1)/3), floor(2*(k-1)/3) in ascending vertices with positive outdegree",
+      "fixed_sources": [
+        0,
+        1391054,
+        2786146
+      ],
+      "int32_path_diagnostic": {
+        "coarse_simple_path_bound": 17592181850112,
+        "coarse_bound_is_sufficient": false,
+        "note": "A false sufficient check does not reject the graph; run an int64 oracle and checked-add GPU validation for each selected source."
+      },
+      "minimum_graph_storage_bytes": {
+        "csr_row_int32": 16777220,
+        "csr_destination_int32": 132904552,
+        "csr_weight_int32": 132904552,
+        "distance_int32": 16777216,
+        "total": 299363540,
+        "note": "Excludes L2, candidate, inbox, boundary index, retained TX, and workspace allocations."
+      },
+      "format_valid": true,
+      "weighted_nonnegative_int32_admissible": true,
+      "oracle_status": "NOT_RUN",
+      "gpu_capacity_status": "NOT_RUN"
+    }
+  ],
+  "all_format_valid": true,
+  "all_weighted_nonnegative_int32_admissible": false
+}

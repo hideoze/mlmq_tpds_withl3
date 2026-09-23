@@ -1,0 +1,3382 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-09-23T10:17:56.004577+00:00",
+  "generator": "scripts/multigpu/audit_l3_capacity.py",
+  "execution_policy": "CPU/read-only audit; no GPU program or scheduler command invoked",
+  "status_vocabulary": {
+    "STATIC": "Derived from archived source/build commands and audited input metadata.",
+    "RUNTIME": "Validated only for the queries in an existing log.",
+    "NOT_RUN": "No matching execution was performed or consumed.",
+    "NOT_PROVEN": "Available evidence cannot establish the claimed bound."
+  },
+  "inputs": {
+    "dataset_manifest": {
+      "path": "evidence/l3_30h_20260923/stage0/dataset_manifest.json",
+      "sha256": "835f6e668a551911e8ca8fd03ef158fc436574ee20a1522f0ad2b20b5296a32e"
+    },
+    "oracle_manifest": {
+      "path": "evidence/l3_30h_20260923/stage0/oracle_manifest.json",
+      "sha256": "290aca19ff1d97f589c269ae3f1ad603cba9efc4f8627d1321b74e4ac74779cd"
+    },
+    "hardware": {
+      "evidence_class": "RUNTIME_PREFLIGHT_LOG",
+      "path": "evidence/l3_30h_20260923/stage0/gpu_preflight_38122/cuda_preflight.log",
+      "sha256": "0e5f7cd268ff66ed602e9694ad7007776cec0b9b08f225d2ddbe8bf58bbc543c",
+      "devices": [
+        {
+          "gpu": 0,
+          "sm_count": 108,
+          "total_bytes": 85095874560,
+          "free_bytes_at_preflight": 84652523520
+        },
+        {
+          "gpu": 1,
+          "sm_count": 108,
+          "total_bytes": 85095874560,
+          "free_bytes_at_preflight": 84652523520
+        }
+      ],
+      "minimum_total_bytes": 85095874560
+    },
+    "builds": {
+      "stage0_baseline_control": {
+        "name": "stage0_baseline_control",
+        "command_path": "evidence/l3_30h_20260923/stage0/build_base/dual_build/command.json",
+        "command_sha256": "5c35a2548a9cd30010d6b487ee5c2d4e5216aed545c3d9e763ed4f8ecb7a1b05",
+        "source_archive": "evidence/l3_30h_20260923/stage0/build_base/dual_build/source.tgz",
+        "source_archive_sha256": "c756c4015a94c3ee529951af005772f4e64c27a660477495f2026f187667fc54",
+        "source_member_sha256": {
+          "SSSP/sssp.cuh": "b407364d09599c9e44dddbf3681f3e2f7364cba44b2a47575254fc6dc732d57d",
+          "SSSP/sssp_run.cu": "957ca5d27712c59eafb6e3eacefffd24cb96cd4df9ef63514650e5a218fb4e6d",
+          "SSSP/graph_partition.h": "8ec376454af735a5257d8053a8bde3cfb9ceb108d9c7812ba30f39020d71463e",
+          "SSSP/csr_graph.h": "cbaf1b0195d0ca7be552bc8c15337ec51c37885b91e013c18c5a98b72ed074ba",
+          "SSSP/l3/l3_boundary_index.cuh": "f2f3695602c81396858dcc38ee5b1048b6e1677d20a3353935450e8cccfcefa5",
+          "SSSP/l3/l3_bulk.cuh": "bc438a62dc5d0bf7fbc04ca83bf4c6e0ebce6c57222cbcd126007ad71d05c030",
+          "core/cu_delta_queue/cu_delta_queue.cuh": "0e2e8f09a8eae7d28a278daa02c361dcc870a000436a854dbed957b6df196f77",
+          "core/src/ml_queue.cu": "3e79b52c9feddc83ab7de37e46188bd36fef0bff203fb99ec7e81976bc00f869",
+          "core/include/common.h": "3d259320d46cb16b9add83940ee60b77229bca29f44c022e20b783ced315db4e",
+          "core/include/GPU_setup.h": "3d76b5e4b1e590486eee384c913cd81521e199d618f885f3bba611746be8e219"
+        },
+        "defines": {
+          "WORK_COUNT": "false",
+          "MLMQ_WORKER_THREADS": "512",
+          "L3_COOPERATIVE_COLLECT": "true",
+          "L3_DIRECT_RX": "true",
+          "L3_RETAIN_TX": "true",
+          "L3_WINDOW_MODE": "2",
+          "L3_WORKER_RECOVERY": "true",
+          "L3_TERM_WAIT_ACK": "true",
+          "L3_ACK_SCAN": "true",
+          "L3_ACK_WIDE_SCAN": "true",
+          "L3_BOUNDARY_INDEX": "true",
+          "L3_L2_FINAL_COUNTS": "true",
+          "L3_CHAIN_SHORTCUTS": "false",
+          "L3_IDLE_TOKEN_PROBE": "true"
+        },
+        "compact_candidates": false,
+        "contract_check": "PASS",
+        "macro_mismatches": {}
+      },
+      "latest_r96v2_control": {
+        "name": "latest_r96v2_control",
+        "command_path": "tmp/l3_30h_20260923/variant_control_r96v2/dual_build/command.json",
+        "command_sha256": "83c2672a3faac2f04e3ef3b950d28ed590705a8c7e915420ef62179f68c35be7",
+        "source_archive": "tmp/l3_30h_20260923/variant_control_r96v2/dual_build/source.tgz",
+        "source_archive_sha256": "439000360fe32c5e2ef39285f50aa84681b1295dfa3933b857f33baf725856c0",
+        "source_member_sha256": {
+          "SSSP/sssp.cuh": "7b12066c19363b7948afa2a1bbe12d4f74ac593b0f9e0164308d3bc7912b444c",
+          "SSSP/sssp_run.cu": "dd84dd6cc718f93c85e4e3502f54f9791ea78a7818d3257171dd7001659bf6f4",
+          "SSSP/graph_partition.h": "8ec376454af735a5257d8053a8bde3cfb9ceb108d9c7812ba30f39020d71463e",
+          "SSSP/csr_graph.h": "cbaf1b0195d0ca7be552bc8c15337ec51c37885b91e013c18c5a98b72ed074ba",
+          "SSSP/l3/l3_boundary_index.cuh": "f2f3695602c81396858dcc38ee5b1048b6e1677d20a3353935450e8cccfcefa5",
+          "SSSP/l3/l3_bulk.cuh": "bc438a62dc5d0bf7fbc04ca83bf4c6e0ebce6c57222cbcd126007ad71d05c030",
+          "core/cu_delta_queue/cu_delta_queue.cuh": "0e2e8f09a8eae7d28a278daa02c361dcc870a000436a854dbed957b6df196f77",
+          "core/src/ml_queue.cu": "3e79b52c9feddc83ab7de37e46188bd36fef0bff203fb99ec7e81976bc00f869",
+          "core/include/common.h": "3d259320d46cb16b9add83940ee60b77229bca29f44c022e20b783ced315db4e",
+          "core/include/GPU_setup.h": "3d76b5e4b1e590486eee384c913cd81521e199d618f885f3bba611746be8e219"
+        },
+        "defines": {
+          "WORK_COUNT": "false",
+          "MLMQ_WORKER_THREADS": "512",
+          "L3_COOPERATIVE_COLLECT": "true",
+          "L3_DIRECT_RX": "true",
+          "L3_RETAIN_TX": "true",
+          "L3_WINDOW_MODE": "2",
+          "L3_WORKER_RECOVERY": "true",
+          "L3_TERM_WAIT_ACK": "true",
+          "L3_ACK_SCAN": "true",
+          "L3_ACK_WIDE_SCAN": "true",
+          "L3_BOUNDARY_INDEX": "true",
+          "L3_L2_FINAL_COUNTS": "true",
+          "L3_CHAIN_SHORTCUTS": "false",
+          "L3_IDLE_TOKEN_PROBE": "true",
+          "L3_IDLE_BACKOFF": "false",
+          "L3_WINDOW_MIN_CYCLES": "25000ull",
+          "L3_WINDOW_MAX_CYCLES": "25000ull"
+        },
+        "compact_candidates": false,
+        "contract_check": "PASS",
+        "macro_mismatches": {}
+      },
+      "latest_r96v2_compact": {
+        "name": "latest_r96v2_compact",
+        "command_path": "tmp/l3_30h_20260923/variant_compact_r96v2/dual_build/command.json",
+        "command_sha256": "75ebd2c7a414251ee370104b2f41b7520ddd7d2191ed720b5d18f497e056c7cb",
+        "source_archive": "tmp/l3_30h_20260923/variant_compact_r96v2/dual_build/source.tgz",
+        "source_archive_sha256": "439000360fe32c5e2ef39285f50aa84681b1295dfa3933b857f33baf725856c0",
+        "source_member_sha256": {
+          "SSSP/sssp.cuh": "7b12066c19363b7948afa2a1bbe12d4f74ac593b0f9e0164308d3bc7912b444c",
+          "SSSP/sssp_run.cu": "dd84dd6cc718f93c85e4e3502f54f9791ea78a7818d3257171dd7001659bf6f4",
+          "SSSP/graph_partition.h": "8ec376454af735a5257d8053a8bde3cfb9ceb108d9c7812ba30f39020d71463e",
+          "SSSP/csr_graph.h": "cbaf1b0195d0ca7be552bc8c15337ec51c37885b91e013c18c5a98b72ed074ba",
+          "SSSP/l3/l3_boundary_index.cuh": "f2f3695602c81396858dcc38ee5b1048b6e1677d20a3353935450e8cccfcefa5",
+          "SSSP/l3/l3_bulk.cuh": "bc438a62dc5d0bf7fbc04ca83bf4c6e0ebce6c57222cbcd126007ad71d05c030",
+          "core/cu_delta_queue/cu_delta_queue.cuh": "0e2e8f09a8eae7d28a278daa02c361dcc870a000436a854dbed957b6df196f77",
+          "core/src/ml_queue.cu": "3e79b52c9feddc83ab7de37e46188bd36fef0bff203fb99ec7e81976bc00f869",
+          "core/include/common.h": "3d259320d46cb16b9add83940ee60b77229bca29f44c022e20b783ced315db4e",
+          "core/include/GPU_setup.h": "3d76b5e4b1e590486eee384c913cd81521e199d618f885f3bba611746be8e219"
+        },
+        "defines": {
+          "WORK_COUNT": "false",
+          "MLMQ_WORKER_THREADS": "512",
+          "L3_COOPERATIVE_COLLECT": "true",
+          "L3_DIRECT_RX": "true",
+          "L3_RETAIN_TX": "true",
+          "L3_WINDOW_MODE": "2",
+          "L3_WORKER_RECOVERY": "true",
+          "L3_TERM_WAIT_ACK": "true",
+          "L3_ACK_SCAN": "true",
+          "L3_ACK_WIDE_SCAN": "true",
+          "L3_BOUNDARY_INDEX": "true",
+          "L3_L2_FINAL_COUNTS": "true",
+          "L3_CHAIN_SHORTCUTS": "false",
+          "L3_IDLE_TOKEN_PROBE": "true",
+          "L3_IDLE_BACKOFF": "false",
+          "L3_WINDOW_MIN_CYCLES": "25000ull",
+          "L3_WINDOW_MAX_CYCLES": "25000ull",
+          "L3_COMPACT_CANDIDATES": "true"
+        },
+        "compact_candidates": true,
+        "contract_check": "PASS",
+        "macro_mismatches": {}
+      }
+    }
+  },
+  "constants": {
+    "int32_min": -2147483648,
+    "int32_max": 2147483647,
+    "node_record_bytes": 8,
+    "worker_threads": 512,
+    "worker_warps_per_block": 16,
+    "a100_sms": 108,
+    "maximum_work_blocks": 107,
+    "ack_slots": 1712,
+    "bulk_inbox_slots": 2,
+    "retained_tx_records": 4096,
+    "retained_tx_shared_bytes": 32768,
+    "l2": {
+      "budget_bytes": 2147483647,
+      "record_bytes": 8,
+      "allocated_records": 268435455,
+      "allocated_block_counters": 524287,
+      "buckets": 16,
+      "per_bucket_records": 16776704,
+      "usable_ring_records": 268427264,
+      "unused_tail_records": 8191,
+      "explicit_device_bytes": 2149581132,
+      "bytes_data": 2147483640,
+      "bytes_block_write_done": 2097148,
+      "bytes_five_bucket_counter_arrays": 320,
+      "bytes_five_queue_scalar_counters": 20,
+      "bytes_ml_queue_run_begin": 4
+    }
+  },
+  "static_contracts": [
+    {
+      "component": "CSR and graph integer domain",
+      "status": "STATIC_PROVEN_FOR_AUDITED_INPUTS",
+      "proof": "CSR row, destination, edge counts, partition bounds, and graph sizes are int; every audited value is checked below INT32_MAX.",
+      "source": [
+        "SSSP/csr_graph.h:22,115-119",
+        "SSSP/graph_partition.h:107-165"
+      ]
+    },
+    {
+      "component": "distance arithmetic",
+      "status": "MIXED_SEE_PER_GRAPH",
+      "proof": "VALUE_TYPE is signed int and hot-path additions are unchecked. Unit-weight graphs have a sufficient n*max_weight bound; atmosmodm, rmat22, and USA G+ do not.",
+      "source": [
+        "core/include/common.h:11-19",
+        "SSSP/sssp_run.cu:2446,2621,4604"
+      ]
+    },
+    {
+      "component": "L2 allocation and addressing",
+      "status": "STATIC_ALLOCATION_BOUND_PROVEN_RUNTIME_PEAK_MIXED",
+      "proof": "The INT_MAX-byte request rounds down to 16 rings of 16,776,704 records; modulo addresses remain inside 268,435,455 allocated records. The implementation explicitly does not handle signed counter overflow and has no fullness guard.",
+      "source": [
+        "SSSP/sssp.cuh:6-7",
+        "core/cu_delta_queue/cu_delta_queue.cuh:83-165,430-487"
+      ]
+    },
+    {
+      "component": "candidate and bitmap hierarchy",
+      "status": "STATIC_PROVEN_FOR_CURRENT_N2_DOMAIN",
+      "proof": "Candidate/cache arrays have peer_vertices+1 entries; candidate IDs are 1..peer_vertices and mark/hint indexes are ceil-divided from 0-based peer IDs. Compact mode retains dense candidate allocations.",
+      "source": [
+        "SSSP/sssp_run.cu:331-394",
+        "SSSP/l3/l3_candidate.cuh:7-44",
+        "SSSP/l3/l3_boundary_index.cuh:23-33,149-174"
+      ]
+    },
+    {
+      "component": "boundary index",
+      "status": "STATIC_PROVEN_WITH_RUNTIME_EXACT_OR_STATIC_UPPER_BYTES",
+      "proof": "Only peer-local destinations in [0,peer_size) enter the index. Sparse storage is allocated only below half the dense word count; dense mode allocates no index buffer.",
+      "source": [
+        "SSSP/l3/l3_boundary_index.cuh:64-124"
+      ]
+    },
+    {
+      "component": "inbox and dense TX",
+      "status": "STATIC_PROVEN_FOR_AUDITED_PARTITION_SIZES",
+      "proof": "Each receiver owns two (local_vertices+1)-record slots. Published count is clamped to peer_vertices, which equals the receiver local size for n=2; slot offsets fit int for every audited partition.",
+      "source": [
+        "SSSP/sssp_run.cu:422-445",
+        "SSSP/l3/l3_bulk.cuh:433-506"
+      ]
+    },
+    {
+      "component": "retained TX journal",
+      "status": "STATIC_PROVEN_SHARED_MEMORY_BOUND",
+      "proof": "The retained journal is the same 32*128 shared entries (32,768 bytes for ID and distance arrays), not a second global allocation. Extraction clamps l3_cnt to 4,096 and leaves overflow marked for a later scan.",
+      "source": [
+        "SSSP/sssp_run.cu:9012-9015,9026-9028,9695-9697,9842-9848"
+      ]
+    },
+    {
+      "component": "query workspace",
+      "status": "STATIC_EXPLICIT_ALLOCATION_ACCOUNTED_RUNTIME_PEAK_NOT_LOGGED",
+      "proof": "Exactly one selected queue workspace per GPU allocates the L2 queue and reuses it across sources. WORK_COUNT=false removes the histogram/counter allocations; QUERY_WORKSPACE_DIAG is not enabled, so free-memory peak is NOT_RUN.",
+      "source": [
+        "SSSP/sssp_run.cu:1125-1224",
+        "core/src/ml_queue.cu:3-98"
+      ]
+    },
+    {
+      "component": "worker ACK slots",
+      "status": "STATIC_PROVEN_AND_LATEST_RUNTIME_VALIDATED",
+      "proof": "A100 allocates (108-1)*16=1,712 slots and runtime work blocks are clamped to at most 107. Latest logs report active_slots=capacity=1,712 on both GPUs.",
+      "source": [
+        "SSSP/sssp_run.cu:295-318,11099-11110"
+      ]
+    }
+  ],
+  "formal_runner_recommendation": {
+    "legacy_log_gate": {
+      "status": "RECOMMENDED_STRICT_SUFFICIENT_GATE",
+      "rule": "For every dual-GPU sample and GPU, parse the matching L2_CAPACITY and require L2_FINAL writes < per_bucket, plus reads == writes == completed.",
+      "proof": "Every physical bucket's cumulative writes are at most the aggregate writes across all buckets. If the aggregate is below one bucket's capacity, no bucket can execute even one modulo wrap.",
+      "failure_semantics": "aggregate writes >= per_bucket is NOT_PROVEN, not evidence that an overwrite occurred."
+    },
+    "preferred_exact_source_gate": {
+      "status": "RECOMMENDED_HOST_ONLY_DIAGNOSTIC",
+      "rule": "In report_final_l2_counts, compute max_bucket_writes from the already copied write_reserve array and emit per_bucket_capacity, counter_bits, and no_wrap=(max_bucket_writes <= q.total_size). Have the formal runner require no_wrap=1. Equality is safe: exactly capacity writes address indices 0..capacity-1 once.",
+      "hot_path_impact": "none; post-sync host reduction only",
+      "terminology": "Call this no_wrap, not universal no_overwrite: a future run may safely wrap after consumption, which needs a peak-outstanding diagnostic.",
+      "counter_scope": "write_total <= INT32_MAX proves the aggregate read_done/debug totals, not every signed counter in arbitrary runs. For a blanket counter claim, also bound/log read_ptr and first_pos; write_total <= INT32_MAX/BNUM is a simple conservative current-build first_pos gate."
+    },
+    "peak_outstanding_extension": {
+      "status": "NOT_RUN_OPTIONAL_FOR_WRAPPING_WORKLOADS",
+      "rule": "If max_bucket_writes exceeds capacity but the workload must still be accepted, use an isolated diagnostic build to record a conservative per-bucket maximum of write_reserve - bucket_read_done at reservation."
+    }
+  },
+  "graphs": [
+    {
+      "graph": "delaunay_n20",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/delaunay_n20.gr",
+      "sha256": "ad0cee15ab4bf410a1c431c09c36526ee414185a48061084e36324077bc50913",
+      "vertices": 1048576,
+      "edges": 6291372,
+      "partition_basis": "RUNTIME_LOG_VALIDATION",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 3146017
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 3145355
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "STATIC_PROVEN_FOR_ACCEPTED_RELAXATIONS",
+        "minimum_weight": 1,
+        "maximum_weight": 1,
+        "n_times_max_weight_bound": 1048576,
+        "int32_max": 2147483647,
+        "reason": "For nonnegative weights, every accepted improving label corresponds to a simple path; one additional relaxation is bounded by n*max_weight, which fits int32.",
+        "oracle": {
+          "graph": "delaunay_n20",
+          "source": 0,
+          "algorithm": "BFS",
+          "reached": 1048576,
+          "unreachable": 0,
+          "max_distance": 418,
+          "over_int32": 0,
+          "i64_sha256": "24380662bae2c84e500fbb4c45a115e978450b08ced220375e66c7039e08b349",
+          "i32_sha256": "6c48511572df3ae246db7f4302cef577ee207f0fc3ae7c65d6f67db2e116bbec",
+          "status": "PASS"
+        },
+        "graph": "delaunay_n20"
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_baseline_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "stage0_delaunay_n20_smoke",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 524288,
+              "local_edges": 3146017,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 12584068,
+                "csr_weight": 12584068,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 0,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2206348768
+              },
+              "total_explicit_requested_bytes": 2206348768,
+              "total_explicit_requested_gib": 2.054822,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.025927799,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 524288,
+              "local_edges": 3145355,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 12581420,
+                "csr_weight": 12581420,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 23016,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2206366488
+              },
+              "total_explicit_requested_bytes": 2206366488,
+              "total_explicit_requested_gib": 2.054839,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.025928008,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 524288,
+              "local_edges": 3146017,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 12584068,
+                "csr_weight": 12584068,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 32764,
+                "compact_lookup_and_reverse": 3145724,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2209527256
+              },
+              "total_explicit_requested_bytes": 2209527256,
+              "total_explicit_requested_gib": 2.057783,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.025965151,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 524288,
+              "local_edges": 3145355,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 12581420,
+                "csr_weight": 12581420,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 32764,
+                "compact_lookup_and_reverse": 3145724,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2209521960
+              },
+              "total_explicit_requested_bytes": 2209521960,
+              "total_explicit_requested_gib": 2.057778,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.025965089,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage0_delaunay_n20_smoke"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    },
+    {
+      "graph": "delaunay_n23",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/delaunay_n23.gr",
+      "sha256": "0631c968bacd8919d79f6ba75263da60cc4f77e8024364e92728d615e5160099",
+      "vertices": 8388608,
+      "edges": 50331568,
+      "partition_basis": "RUNTIME_LOG_VALIDATION",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 4194304,
+          "vertices": 4194304,
+          "edges": 25166898
+        },
+        {
+          "gpu": 1,
+          "begin": 4194304,
+          "end": 8388608,
+          "vertices": 4194304,
+          "edges": 25164670
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "STATIC_PROVEN_FOR_ACCEPTED_RELAXATIONS",
+        "minimum_weight": 1,
+        "maximum_weight": 1,
+        "n_times_max_weight_bound": 8388608,
+        "int32_max": 2147483647,
+        "reason": "For nonnegative weights, every accepted improving label corresponds to a simple path; one additional relaxation is bounded by n*max_weight, which fits int32.",
+        "oracle": {
+          "graph": "delaunay_n23",
+          "source": 0,
+          "algorithm": "BFS",
+          "reached": 8388608,
+          "unreachable": 0,
+          "max_distance": 1149,
+          "over_int32": 0,
+          "i64_sha256": "932d9f1d2b6ed28c3c93f57c6db308c9c2a05efd9a2d3ea23873a778ef423965",
+          "i32_sha256": "ab64a87fa2d99d6142e3eb4aa8f47a9932ea5e74cf2ab881016f1c715e72c7fe",
+          "status": "PASS"
+        },
+        "graph": "delaunay_n23"
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_baseline_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "stage0_delaunay_n23_baseline",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 4194304,
+              "local_edges": 25166898,
+              "peer_vertices": 4194304,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 16777220,
+                "csr_destination": 100667592,
+                "csr_weight": 100667592,
+                "authoritative_distance": 16777220,
+                "global_exit": 4,
+                "dirty_bitmap": 524288,
+                "dirty_hint": 16384,
+                "last_processed": 16777220,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 16777220,
+                "candidate_mark": 524288,
+                "candidate_hint": 16384,
+                "candidate_hint2": 512,
+                "peer_cache_dense": 16777220,
+                "bulk_send_list_dense": 33554440,
+                "bulk_inbox_two_slots": 67108880,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 67108872,
+                "boundary_word_index": 0,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2603663400
+              },
+              "total_explicit_requested_bytes": 2603663400,
+              "total_explicit_requested_gib": 2.424851,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.030596823,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 4194304,
+              "local_edges": 25164670,
+              "peer_vertices": 4194304,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 16777220,
+                "csr_destination": 100658680,
+                "csr_weight": 100658680,
+                "authoritative_distance": 16777220,
+                "global_exit": 4,
+                "dirty_bitmap": 524288,
+                "dirty_hint": 16384,
+                "last_processed": 16777220,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 16777220,
+                "candidate_mark": 524288,
+                "candidate_hint": 16384,
+                "candidate_hint2": 512,
+                "peer_cache_dense": 16777220,
+                "bulk_send_list_dense": 33554440,
+                "bulk_inbox_two_slots": 67108880,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 67108872,
+                "boundary_word_index": 178508,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2603824084
+              },
+              "total_explicit_requested_bytes": 2603824084,
+              "total_explicit_requested_gib": 2.425,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.030598711,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 4194304,
+              "local_edges": 25166898,
+              "peer_vertices": 4194304,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 16777220,
+                "csr_destination": 100667592,
+                "csr_weight": 100667592,
+                "authoritative_distance": 16777220,
+                "global_exit": 4,
+                "dirty_bitmap": 524288,
+                "dirty_hint": 16384,
+                "last_processed": 16777220,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 16777220,
+                "candidate_mark": 524288,
+                "candidate_hint": 16384,
+                "candidate_hint2": 512,
+                "peer_cache_dense": 16777220,
+                "bulk_send_list_dense": 33554440,
+                "bulk_inbox_two_slots": 67108880,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 67108872,
+                "boundary_word_index": 262140,
+                "compact_lookup_and_reverse": 25165820,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2629091360
+              },
+              "total_explicit_requested_bytes": 2629091360,
+              "total_explicit_requested_gib": 2.448532,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.030895638,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 4194304,
+              "local_edges": 25164670,
+              "peer_vertices": 4194304,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 16777220,
+                "csr_destination": 100658680,
+                "csr_weight": 100658680,
+                "authoritative_distance": 16777220,
+                "global_exit": 4,
+                "dirty_bitmap": 524288,
+                "dirty_hint": 16384,
+                "last_processed": 16777220,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 16777220,
+                "candidate_mark": 524288,
+                "candidate_hint": 16384,
+                "candidate_hint2": 512,
+                "peer_cache_dense": 16777220,
+                "bulk_send_list_dense": 33554440,
+                "bulk_inbox_two_slots": 67108880,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 67108872,
+                "boundary_word_index": 262140,
+                "compact_lookup_and_reverse": 25165820,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2629073536
+              },
+              "total_explicit_requested_bytes": 2629073536,
+              "total_explicit_requested_gib": 2.448516,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.030895429,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage0_delaunay_n23_baseline"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    },
+    {
+      "graph": "rgg_n_2_20_s0",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+      "sha256": "2617ea8de3091120c2233a5668bb5e7b04766369a5c780e7247ed061b12e5d70",
+      "vertices": 1048576,
+      "edges": 13783240,
+      "partition_basis": "RUNTIME_LOG_VALIDATION",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 6880533
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 6902707
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "STATIC_PROVEN_FOR_ACCEPTED_RELAXATIONS",
+        "minimum_weight": 1,
+        "maximum_weight": 1,
+        "n_times_max_weight_bound": 1048576,
+        "int32_max": 2147483647,
+        "reason": "For nonnegative weights, every accepted improving label corresponds to a simple path; one additional relaxation is bounded by n*max_weight, which fits int32.",
+        "oracle": {
+          "graph": "rgg_n_2_20_s0",
+          "source": 0,
+          "algorithm": "BFS",
+          "reached": 1048572,
+          "unreachable": 4,
+          "max_distance": 728,
+          "over_int32": 0,
+          "i64_sha256": "0522987429a95e7bd0065d1fbb324c8bf6794fac9536c722143a3207deb56667",
+          "i32_sha256": "c042e12636792c2aeaf6943b95cb9e10862615e218c5a87915169e2c57c894a9",
+          "status": "PASS"
+        },
+        "graph": "rgg_n_2_20_s0"
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_baseline_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "stage0_rgg_baseline",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 524288,
+              "local_edges": 6880533,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27522132,
+                "csr_weight": 27522132,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6184,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2236231080
+              },
+              "total_explicit_requested_bytes": 2236231080,
+              "total_explicit_requested_gib": 2.082652,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.02627896,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 524288,
+              "local_edges": 6902707,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27610828,
+                "csr_weight": 27610828,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6384,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2236408672
+              },
+              "total_explicit_requested_bytes": 2236408672,
+              "total_explicit_requested_gib": 2.082818,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026281047,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "latest_rgg_control_job38180",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 524288,
+              "local_edges": 6880533,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27522132,
+                "csr_weight": 27522132,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6184,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2236231080
+              },
+              "total_explicit_requested_bytes": 2236231080,
+              "total_explicit_requested_gib": 2.082652,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.02627896,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 524288,
+              "local_edges": 6902707,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27610828,
+                "csr_weight": 27610828,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6384,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2236408672
+              },
+              "total_explicit_requested_bytes": 2236408672,
+              "total_explicit_requested_gib": 2.082818,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026281047,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "latest_rgg_compact_job38180",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 524288,
+              "local_edges": 6880533,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27522132,
+                "csr_weight": 27522132,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6184,
+                "compact_lookup_and_reverse": 2106680,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2238337760
+              },
+              "total_explicit_requested_bytes": 2238337760,
+              "total_explicit_requested_gib": 2.084614,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026303717,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 524288,
+              "local_edges": 6902707,
+              "peer_vertices": 524288,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "components_bytes": {
+                "csr_row": 2097156,
+                "csr_destination": 27610828,
+                "csr_weight": 27610828,
+                "authoritative_distance": 2097156,
+                "global_exit": 4,
+                "dirty_bitmap": 65536,
+                "dirty_hint": 2048,
+                "last_processed": 2097156,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2097156,
+                "candidate_mark": 65536,
+                "candidate_hint": 2048,
+                "candidate_hint2": 64,
+                "peer_cache_dense": 2097156,
+                "bulk_send_list_dense": 4194312,
+                "bulk_inbox_two_slots": 8388624,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8388616,
+                "boundary_word_index": 6384,
+                "compact_lookup_and_reverse": 2106984,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2238515656
+              },
+              "total_explicit_requested_bytes": 2238515656,
+              "total_explicit_requested_gib": 2.08478,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026305807,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage0_rgg_baseline",
+        "latest_rgg_control_job38180",
+        "latest_rgg_compact_job38180"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    },
+    {
+      "graph": "nlpkkt80",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/nlpkkt80.gr",
+      "sha256": "66207f6d82ee925c3d6044a473c95528672a5260d57d79f21492cbd4f592772c",
+      "vertices": 1062400,
+      "edges": 28704672,
+      "partition_basis": "STATIC_FROM_AUDITED_GR_ROW_END",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 531200,
+          "vertices": 531200,
+          "edges": 14022475
+        },
+        {
+          "gpu": 1,
+          "begin": 531200,
+          "end": 1062400,
+          "vertices": 531200,
+          "edges": 14682197
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "REJECTED_NEGATIVE_WEIGHT_INPUT",
+        "negative_weight_count": 26618272,
+        "reason": "The current Dijkstra/SSSP acceptance contract rejects negative weights.",
+        "oracle": {
+          "graph": "nlpkkt80",
+          "source": 0,
+          "status": "NOT_RUN_REJECTED",
+          "reason": "26,618,272 negative int32 edge weights; incompatible with Dijkstra/SSSP acceptance contract"
+        }
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_control_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 531200,
+              "local_edges": 14022475,
+              "peer_vertices": 531200,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2124804,
+                "csr_destination": 56089900,
+                "csr_weight": 56089900,
+                "authoritative_distance": 2124804,
+                "global_exit": 4,
+                "dirty_bitmap": 66400,
+                "dirty_hint": 2076,
+                "last_processed": 2124804,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2124804,
+                "candidate_mark": 66400,
+                "candidate_hint": 2076,
+                "candidate_hint2": 68,
+                "peer_cache_dense": 2124804,
+                "bulk_send_list_dense": 4249608,
+                "bulk_inbox_two_slots": 8499216,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8499208,
+                "boundary_word_index": 33196,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2293810136
+              },
+              "total_explicit_requested_bytes": 2293810136,
+              "total_explicit_requested_gib": 2.136277,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026955597,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 531200,
+              "local_edges": 14682197,
+              "peer_vertices": 531200,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2124804,
+                "csr_destination": 58728788,
+                "csr_weight": 58728788,
+                "authoritative_distance": 2124804,
+                "global_exit": 4,
+                "dirty_bitmap": 66400,
+                "dirty_hint": 2076,
+                "last_processed": 2124804,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2124804,
+                "candidate_mark": 66400,
+                "candidate_hint": 2076,
+                "candidate_hint2": 68,
+                "peer_cache_dense": 2124804,
+                "bulk_send_list_dense": 4249608,
+                "bulk_inbox_two_slots": 8499216,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8499208,
+                "boundary_word_index": 33196,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2299087912
+              },
+              "total_explicit_requested_bytes": 2299087912,
+              "total_explicit_requested_gib": 2.141192,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.027017619,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 531200,
+              "local_edges": 14022475,
+              "peer_vertices": 531200,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2124804,
+                "csr_destination": 56089900,
+                "csr_weight": 56089900,
+                "authoritative_distance": 2124804,
+                "global_exit": 4,
+                "dirty_bitmap": 66400,
+                "dirty_hint": 2076,
+                "last_processed": 2124804,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2124804,
+                "candidate_mark": 66400,
+                "candidate_hint": 2076,
+                "candidate_hint2": 68,
+                "peer_cache_dense": 2124804,
+                "bulk_send_list_dense": 4249608,
+                "bulk_inbox_two_slots": 8499216,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8499208,
+                "boundary_word_index": 33196,
+                "compact_lookup_and_reverse": 3187196,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2296997332
+              },
+              "total_explicit_requested_bytes": 2296997332,
+              "total_explicit_requested_gib": 2.139245,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026993052,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 531200,
+              "local_edges": 14682197,
+              "peer_vertices": 531200,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2124804,
+                "csr_destination": 58728788,
+                "csr_weight": 58728788,
+                "authoritative_distance": 2124804,
+                "global_exit": 4,
+                "dirty_bitmap": 66400,
+                "dirty_hint": 2076,
+                "last_processed": 2124804,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2124804,
+                "candidate_mark": 66400,
+                "candidate_hint": 2076,
+                "candidate_hint2": 68,
+                "peer_cache_dense": 2124804,
+                "bulk_send_list_dense": 4249608,
+                "bulk_inbox_two_slots": 8499216,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 8499208,
+                "boundary_word_index": 33196,
+                "compact_lookup_and_reverse": 3187196,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2302275108
+              },
+              "total_explicit_requested_bytes": 2302275108,
+              "total_explicit_requested_gib": 2.144161,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.027055073,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [],
+      "gpu_execution_status": "NOT_RUN_REJECTED_NEGATIVE_WEIGHT_INPUT"
+    },
+    {
+      "graph": "atmosmodm",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+      "sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+      "vertices": 1489752,
+      "edges": 10319760,
+      "partition_basis": "RUNTIME_LOG_VALIDATION",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 744876,
+          "vertices": 744876,
+          "edges": 5159880
+        },
+        {
+          "gpu": 1,
+          "begin": 744876,
+          "end": 1489752,
+          "vertices": 744876,
+          "edges": 5159880
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "NOT_PROVEN_UNCHECKED_INT32_CANDIDATE_ADDITION",
+        "minimum_weight": 39601,
+        "maximum_weight": 3201404,
+        "n_times_max_weight_bound": 4769298011808,
+        "int32_max": 2147483647,
+        "reason": "The source performs signed int VALUE_TYPE additions without a checked/wide candidate-add diagnostic. An int64 oracle and correct final int32 distances do not prove every transient GPU addition stayed in range.",
+        "oracle": {
+          "graph": "atmosmodm",
+          "source": 0,
+          "algorithm": "DIJKSTRA",
+          "reached": 1489752,
+          "unreachable": 0,
+          "max_distance": 69715294,
+          "over_int32": 0,
+          "i64_sha256": "14a081a804e6f2b812b5e8d286463e73520abe03d73d01eab4c56b6bee1cd343",
+          "i32_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+          "status": "PASS"
+        },
+        "graph": "atmosmodm"
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_baseline_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "stage0_atmosmodm_baseline",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 744876,
+              "local_edges": 5159880,
+              "peer_vertices": 744876,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2979508,
+                "csr_destination": 20639520,
+                "csr_weight": 20639520,
+                "authoritative_distance": 2979508,
+                "global_exit": 4,
+                "dirty_bitmap": 93112,
+                "dirty_hint": 2912,
+                "last_processed": 2979508,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2979508,
+                "candidate_mark": 93112,
+                "candidate_hint": 2912,
+                "candidate_hint2": 92,
+                "peer_cache_dense": 2979508,
+                "bulk_send_list_dense": 5959016,
+                "bulk_inbox_two_slots": 11918032,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 11918024,
+                "boundary_word_index": 4904,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2235756764
+              },
+              "total_explicit_requested_bytes": 2235756764,
+              "total_explicit_requested_gib": 2.082211,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026273386,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 744876,
+              "local_edges": 5159880,
+              "peer_vertices": 744876,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 2979508,
+                "csr_destination": 20639520,
+                "csr_weight": 20639520,
+                "authoritative_distance": 2979508,
+                "global_exit": 4,
+                "dirty_bitmap": 93112,
+                "dirty_hint": 2912,
+                "last_processed": 2979508,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2979508,
+                "candidate_mark": 93112,
+                "candidate_hint": 2912,
+                "candidate_hint2": 92,
+                "peer_cache_dense": 2979508,
+                "bulk_send_list_dense": 5959016,
+                "bulk_inbox_two_slots": 11918032,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 11918024,
+                "boundary_word_index": 4904,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2235756764
+              },
+              "total_explicit_requested_bytes": 2235756764,
+              "total_explicit_requested_gib": 2.082211,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026273386,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 744876,
+              "local_edges": 5159880,
+              "peer_vertices": 744876,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2979508,
+                "csr_destination": 20639520,
+                "csr_weight": 20639520,
+                "authoritative_distance": 2979508,
+                "global_exit": 4,
+                "dirty_bitmap": 93112,
+                "dirty_hint": 2912,
+                "last_processed": 2979508,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2979508,
+                "candidate_mark": 93112,
+                "candidate_hint": 2912,
+                "candidate_hint2": 92,
+                "peer_cache_dense": 2979508,
+                "bulk_send_list_dense": 5959016,
+                "bulk_inbox_two_slots": 11918032,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 11918024,
+                "boundary_word_index": 46552,
+                "compact_lookup_and_reverse": 4469252,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2240267664
+              },
+              "total_explicit_requested_bytes": 2240267664,
+              "total_explicit_requested_gib": 2.086412,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026326396,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 744876,
+              "local_edges": 5159880,
+              "peer_vertices": 744876,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 2979508,
+                "csr_destination": 20639520,
+                "csr_weight": 20639520,
+                "authoritative_distance": 2979508,
+                "global_exit": 4,
+                "dirty_bitmap": 93112,
+                "dirty_hint": 2912,
+                "last_processed": 2979508,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 2979508,
+                "candidate_mark": 93112,
+                "candidate_hint": 2912,
+                "candidate_hint2": 92,
+                "peer_cache_dense": 2979508,
+                "bulk_send_list_dense": 5959016,
+                "bulk_inbox_two_slots": 11918032,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 11918024,
+                "boundary_word_index": 46552,
+                "compact_lookup_and_reverse": 4469252,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2240267664
+              },
+              "total_explicit_requested_bytes": 2240267664,
+              "total_explicit_requested_gib": 2.086412,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.026326396,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage0_atmosmodm_baseline"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    },
+    {
+      "graph": "rmat22",
+      "stage0_dataset": true,
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+      "sha256": "164e61cce40603749d8df44fd5bcff9445a0b4bd83f0045be11670a63234b994",
+      "vertices": 4194304,
+      "edges": 33226138,
+      "partition_basis": "RUNTIME_LOG_VALIDATION",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 2097152,
+          "vertices": 2097152,
+          "edges": 17116219
+        },
+        {
+          "gpu": 1,
+          "begin": 2097152,
+          "end": 4194304,
+          "vertices": 2097152,
+          "edges": 16109919
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "NOT_PROVEN_UNCHECKED_INT32_CANDIDATE_ADDITION",
+        "minimum_weight": 1,
+        "maximum_weight": 4194304,
+        "n_times_max_weight_bound": 17592186044416,
+        "int32_max": 2147483647,
+        "reason": "The source performs signed int VALUE_TYPE additions without a checked/wide candidate-add diagnostic. An int64 oracle and correct final int32 distances do not prove every transient GPU addition stayed in range.",
+        "oracle": {
+          "graph": "rmat22",
+          "source": 0,
+          "algorithm": "DIJKSTRA",
+          "reached": 3294472,
+          "unreachable": 899832,
+          "max_distance": 21601728,
+          "over_int32": 0,
+          "i64_sha256": "b8872c84f9d36939ed42f89d85324de9c22ed45a0d7717bca0c5f7585c8854f0",
+          "i32_sha256": "ef421f45303c022800cc317b672d1a7aeddb02df29d7450230e49a5113ccf60e",
+          "status": "PASS"
+        },
+        "graph": "rmat22"
+      },
+      "memory_cases": [
+        {
+          "name": "stage0_baseline_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "stage0_rmat22_baseline",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 2097152,
+              "local_edges": 17116219,
+              "peer_vertices": 2097152,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 8388612,
+                "csr_destination": 68464876,
+                "csr_weight": 68464876,
+                "authoritative_distance": 8388612,
+                "global_exit": 4,
+                "dirty_bitmap": 262144,
+                "dirty_hint": 8192,
+                "last_processed": 8388612,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 8388612,
+                "candidate_mark": 262144,
+                "candidate_hint": 8192,
+                "candidate_hint2": 256,
+                "peer_cache_dense": 8388612,
+                "bulk_send_list_dense": 16777224,
+                "bulk_inbox_two_slots": 33554448,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 33554440,
+                "boundary_word_index": 0,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2412887920
+              },
+              "total_explicit_requested_bytes": 2412887920,
+              "total_explicit_requested_gib": 2.247177,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.028354934,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 2097152,
+              "local_edges": 16109919,
+              "peer_vertices": 2097152,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 8388612,
+                "csr_destination": 64439676,
+                "csr_weight": 64439676,
+                "authoritative_distance": 8388612,
+                "global_exit": 4,
+                "dirty_bitmap": 262144,
+                "dirty_hint": 8192,
+                "last_processed": 8388612,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 8388612,
+                "candidate_mark": 262144,
+                "candidate_hint": 8192,
+                "candidate_hint2": 256,
+                "peer_cache_dense": 8388612,
+                "bulk_send_list_dense": 16777224,
+                "bulk_inbox_two_slots": 33554448,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 33554440,
+                "boundary_word_index": 0,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2404837520
+              },
+              "total_explicit_requested_bytes": 2404837520,
+              "total_explicit_requested_gib": 2.239679,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.02826033,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_static_upper_bound_not_run",
+          "evidence_class": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+          "runtime_log": null,
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 2097152,
+              "local_edges": 17116219,
+              "peer_vertices": 2097152,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 8388612,
+                "csr_destination": 68464876,
+                "csr_weight": 68464876,
+                "authoritative_distance": 8388612,
+                "global_exit": 4,
+                "dirty_bitmap": 262144,
+                "dirty_hint": 8192,
+                "last_processed": 8388612,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 8388612,
+                "candidate_mark": 262144,
+                "candidate_hint": 8192,
+                "candidate_hint2": 256,
+                "peer_cache_dense": 8388612,
+                "bulk_send_list_dense": 16777224,
+                "bulk_inbox_two_slots": 33554448,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 33554440,
+                "boundary_word_index": 131068,
+                "compact_lookup_and_reverse": 12582908,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2425601896
+              },
+              "total_explicit_requested_bytes": 2425601896,
+              "total_explicit_requested_gib": 2.259018,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.028504342,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 2097152,
+              "local_edges": 16109919,
+              "peer_vertices": 2097152,
+              "boundary_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND",
+              "compact_bytes_basis": "STATIC_CONSERVATIVE_UPPER_BOUND_NOT_RUN",
+              "components_bytes": {
+                "csr_row": 8388612,
+                "csr_destination": 64439676,
+                "csr_weight": 64439676,
+                "authoritative_distance": 8388612,
+                "global_exit": 4,
+                "dirty_bitmap": 262144,
+                "dirty_hint": 8192,
+                "last_processed": 8388612,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 8388612,
+                "candidate_mark": 262144,
+                "candidate_hint": 8192,
+                "candidate_hint2": 256,
+                "peer_cache_dense": 8388612,
+                "bulk_send_list_dense": 16777224,
+                "bulk_inbox_two_slots": 33554448,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 33554440,
+                "boundary_word_index": 131068,
+                "compact_lookup_and_reverse": 12582908,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 2417551496
+              },
+              "total_explicit_requested_bytes": 2417551496,
+              "total_explicit_requested_gib": 2.25152,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.028409738,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage0_rmat22_baseline"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    },
+    {
+      "graph": "usa_gplus",
+      "stage0_dataset": false,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "vertices": 23947347,
+      "edges": 66684784,
+      "partition_basis": "RUNTIME_LOG_VALIDATION_CUT60",
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 14368408,
+          "vertices": 14368408,
+          "edges": 40197322
+        },
+        {
+          "gpu": 1,
+          "begin": 14368408,
+          "end": 23947347,
+          "vertices": 9578939,
+          "edges": 26487462
+        }
+      ],
+      "all_graph_and_partition_int_fields_fit_int32": true,
+      "numeric": {
+        "status": "NOT_PROVEN_WEIGHT_RANGE_INCOMPLETE_AND_UNCHECKED_ADDITION",
+        "minimum_weight": null,
+        "maximum_weight": 533146,
+        "reason": "The consumed evidence does not contain a full minimum/negative-weight scan for this input, and the GPU source also performs unchecked signed int candidate additions.",
+        "oracle": {
+          "status": "RUNTIME_WIDE_ORACLE_CORRECT_FOR_RECORDED_QUERIES",
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+          "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+          "note": "No max-distance/checked transient-add manifest is available here."
+        }
+      },
+      "memory_cases": [
+        {
+          "name": "latest_r96v2_control_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "latest_usa_control_job38180",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 14368408,
+              "local_edges": 40197322,
+              "peer_vertices": 9578939,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 57473636,
+                "csr_destination": 160789288,
+                "csr_weight": 160789288,
+                "authoritative_distance": 57473636,
+                "global_exit": 4,
+                "dirty_bitmap": 1796052,
+                "dirty_hint": 56128,
+                "last_processed": 57473636,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 38315760,
+                "candidate_mark": 1197368,
+                "candidate_hint": 37420,
+                "candidate_hint2": 1172,
+                "peer_cache_dense": 38315760,
+                "bulk_send_list_dense": 76631520,
+                "bulk_inbox_two_slots": 229894544,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 191578784,
+                "boundary_word_index": 2800,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 3221414860
+              },
+              "total_explicit_requested_bytes": 3221414860,
+              "total_explicit_requested_gib": 3.000176,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.037856299,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 9578939,
+              "local_edges": 26487462,
+              "peer_vertices": 14368408,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "CONTROL_BUILD_DISABLED",
+              "components_bytes": {
+                "csr_row": 38315760,
+                "csr_destination": 105949848,
+                "csr_weight": 105949848,
+                "authoritative_distance": 38315760,
+                "global_exit": 4,
+                "dirty_bitmap": 1197368,
+                "dirty_hint": 37420,
+                "last_processed": 38315760,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 57473636,
+                "candidate_mark": 1796052,
+                "candidate_hint": 56128,
+                "candidate_hint2": 1756,
+                "peer_cache_dense": 57473636,
+                "bulk_send_list_dense": 114947272,
+                "bulk_inbox_two_slots": 153263040,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 191578784,
+                "boundary_word_index": 2648,
+                "compact_lookup_and_reverse": 0,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 3054262784
+              },
+              "total_explicit_requested_bytes": 3054262784,
+              "total_explicit_requested_gib": 2.844504,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.035892019,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        },
+        {
+          "name": "latest_r96v2_compact_exact_inputs",
+          "evidence_class": "STATIC_FORMULA_PLUS_RUNTIME_ALLOCATION_INPUTS",
+          "runtime_log": "latest_usa_compact_job38180",
+          "per_gpu": [
+            {
+              "gpu": 0,
+              "local_vertices": 14368408,
+              "local_edges": 40197322,
+              "peer_vertices": 9578939,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "components_bytes": {
+                "csr_row": 57473636,
+                "csr_destination": 160789288,
+                "csr_weight": 160789288,
+                "authoritative_distance": 57473636,
+                "global_exit": 4,
+                "dirty_bitmap": 1796052,
+                "dirty_hint": 56128,
+                "last_processed": 57473636,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 38315760,
+                "candidate_mark": 1197368,
+                "candidate_hint": 37420,
+                "candidate_hint2": 1172,
+                "peer_cache_dense": 38315760,
+                "bulk_send_list_dense": 76631520,
+                "bulk_inbox_two_slots": 229894544,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 191578784,
+                "boundary_word_index": 2800,
+                "compact_lookup_and_reverse": 38333288,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 3259748148
+              },
+              "total_explicit_requested_bytes": 3259748148,
+              "total_explicit_requested_gib": 3.035877,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.038306771,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            },
+            {
+              "gpu": 1,
+              "local_vertices": 9578939,
+              "local_edges": 26487462,
+              "peer_vertices": 14368408,
+              "boundary_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "compact_bytes_basis": "RUNTIME_EXACT_ALLOCATION_INPUT",
+              "components_bytes": {
+                "csr_row": 38315760,
+                "csr_destination": 105949848,
+                "csr_weight": 105949848,
+                "authoritative_distance": 38315760,
+                "global_exit": 4,
+                "dirty_bitmap": 1197368,
+                "dirty_hint": 37420,
+                "last_processed": 38315760,
+                "local_idle": 4,
+                "remote_effective_counter": 8,
+                "candidate_values_dense": 57473636,
+                "candidate_mark": 1796052,
+                "candidate_hint": 56128,
+                "candidate_hint2": 1756,
+                "peer_cache_dense": 57473636,
+                "bulk_send_list_dense": 114947272,
+                "bulk_inbox_two_slots": 153263040,
+                "bulk_inbox_metadata": 40,
+                "quiesce_flags": 8,
+                "termination_flags": 8,
+                "worker_ack_slots": 6848,
+                "phase_seed_flags_and_count": 16,
+                "seed_list_global_capacity": 191578784,
+                "boundary_word_index": 2648,
+                "compact_lookup_and_reverse": 57487388,
+                "persistent_l2_query_workspace": 2149581132,
+                "total_explicit_requested_bytes": 3111750172
+              },
+              "total_explicit_requested_bytes": 3111750172,
+              "total_explicit_requested_gib": 2.898043,
+              "a100_total_bytes": 85095874560,
+              "fraction_of_a100_total": 0.03656758,
+              "raw_request_fit_status": "STATIC_RAW_REQUEST_BOUND_PASS"
+            }
+          ],
+          "status": "STATIC_RAW_REQUEST_BOUND_PASS",
+          "scope_note": "Sum covers explicit cudaMalloc requests in the audited current path. CUDA context/module/allocator overhead and device symbols are not bounded; successful existing runs are separate runtime evidence."
+        }
+      ],
+      "runtime_logs": [
+        "stage1_usa_baseline",
+        "latest_usa_control_job38180",
+        "latest_usa_compact_job38180"
+      ],
+      "gpu_execution_status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES"
+    }
+  ],
+  "runtime_logs": {
+    "stage0_delaunay_n20_smoke": {
+      "label": "stage0_delaunay_n20_smoke",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/smoke_delaunay_n20_job38129/round000_1_dual_l3.log",
+      "sha256": "1ae854be51969171b970d6a2987e9d1d301c908327f495f9ceb08a5e6818156b",
+      "graph_vertices": 1048576,
+      "graph_edges": 6291372,
+      "maximum_weight_reported": 1,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 3146017
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 3145355
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 16384,
+          "boundary_words": 16384,
+          "indexed": false,
+          "allocated_bytes": 0,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 16384,
+          "boundary_words": 5754,
+          "indexed": true,
+          "allocated_bytes": 23016,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            2720876,
+            2418821,
+            2622033,
+            2686196
+          ],
+          "maximum_total_writes": 2720876,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            1163130,
+            1105629,
+            1153918,
+            1167480
+          ],
+          "maximum_total_writes": 1167480,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "stage0_delaunay_n23_baseline": {
+      "label": "stage0_delaunay_n23_baseline",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/baselines_job38131/delaunay_n23/round000_1_dual_l3.log",
+      "sha256": "c8ac91c1289f31f1705dc815df984ec717130ea0770cf7f088d324fbaf60ba10",
+      "graph_vertices": 8388608,
+      "graph_edges": 50331568,
+      "maximum_weight_reported": 1,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 4194304,
+          "vertices": 4194304,
+          "edges": 25166898
+        },
+        {
+          "gpu": 1,
+          "begin": 4194304,
+          "end": 8388608,
+          "vertices": 4194304,
+          "edges": 25164670
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 131072,
+          "boundary_words": 131072,
+          "indexed": false,
+          "allocated_bytes": 0,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 131072,
+          "boundary_words": 44627,
+          "indexed": true,
+          "allocated_bytes": 178508,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            31824761,
+            33754286,
+            37377164,
+            32256601
+          ],
+          "maximum_total_writes": 37377164,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "NOT_PROVEN_AGGREGATE_EXCEEDS_PER_BUCKET_CAPACITY",
+          "no_bucket_wrap_reason": "This is a legacy L2_FINAL row. Only the sum over 16 buckets is logged; neither per-bucket writes nor peak outstanding occupancy is logged."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            17957799,
+            18724023,
+            20283398,
+            18088133
+          ],
+          "maximum_total_writes": 20283398,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "NOT_PROVEN_AGGREGATE_EXCEEDS_PER_BUCKET_CAPACITY",
+          "no_bucket_wrap_reason": "This is a legacy L2_FINAL row. Only the sum over 16 buckets is logged; neither per-bucket writes nor peak outstanding occupancy is logged."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "stage0_rgg_baseline": {
+      "label": "stage0_rgg_baseline",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/baselines_job38131/rgg_n_2_20_s0/round000_1_dual_l3.log",
+      "sha256": "bf56de5a7e60001737e8627bf0cfdff8ba0934621636538cf88dd642bb51da9d",
+      "graph_vertices": 1048576,
+      "graph_edges": 13783240,
+      "maximum_weight_reported": 1,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 6880533
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 6902707
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 16384,
+          "boundary_words": 1546,
+          "indexed": true,
+          "allocated_bytes": 6184,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 16384,
+          "boundary_words": 1596,
+          "indexed": true,
+          "allocated_bytes": 6384,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            37173,
+            35423,
+            38106,
+            37090
+          ],
+          "maximum_total_writes": 38106,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            40844,
+            38364,
+            43326,
+            43189
+          ],
+          "maximum_total_writes": 43326,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "stage0_atmosmodm_baseline": {
+      "label": "stage0_atmosmodm_baseline",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/baselines_job38131/atmosmodm/round000_1_dual_l3.log",
+      "sha256": "6a55be57925d85fb3b85b4919a9e9c9ea7af5183239f94cb43b4aee5e0bb2a0b",
+      "graph_vertices": 1489752,
+      "graph_edges": 10319760,
+      "maximum_weight_reported": 3201404,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 744876,
+          "vertices": 744876,
+          "edges": 5159880
+        },
+        {
+          "gpu": 1,
+          "begin": 744876,
+          "end": 1489752,
+          "vertices": 744876,
+          "edges": 5159880
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 23278,
+          "boundary_words": 1226,
+          "indexed": true,
+          "allocated_bytes": 4904,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 23278,
+          "boundary_words": 1226,
+          "indexed": true,
+          "allocated_bytes": 4904,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            230574,
+            231439,
+            208011,
+            218913
+          ],
+          "maximum_total_writes": 231439,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            143356,
+            110579,
+            66629,
+            74682
+          ],
+          "maximum_total_writes": 143356,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "stage0_rmat22_baseline": {
+      "label": "stage0_rmat22_baseline",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/baselines_job38131/rmat22/round000_1_dual_l3.log",
+      "sha256": "771b42bd1c7ee349ed6ba9e0d6f867f20431f09d9aca85def7b0a24084eec6e0",
+      "graph_vertices": 4194304,
+      "graph_edges": 33226138,
+      "maximum_weight_reported": 4194304,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 2097152,
+          "vertices": 2097152,
+          "edges": 17116219
+        },
+        {
+          "gpu": 1,
+          "begin": 2097152,
+          "end": 4194304,
+          "vertices": 2097152,
+          "edges": 16109919
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 65536,
+          "boundary_words": 65536,
+          "indexed": false,
+          "allocated_bytes": 0,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 65536,
+          "boundary_words": 65536,
+          "indexed": false,
+          "allocated_bytes": 0,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            7692386,
+            7025099,
+            7553253,
+            6997910
+          ],
+          "maximum_total_writes": 7692386,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            5454574,
+            5354545,
+            5563233,
+            5371681
+          ],
+          "maximum_total_writes": 5563233,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "stage1_usa_baseline": {
+      "label": "stage1_usa_baseline",
+      "build": "stage0_baseline_control",
+      "path": "evidence/l3_30h_20260923/stage1/baselines_job38131/usa_gplus/round000_1_dual_l3.log",
+      "sha256": "626157ade28acc410780c616ec2f4d3ff95976319986da74954638e7fe9bc04c",
+      "graph_vertices": 23947347,
+      "graph_edges": 66684784,
+      "maximum_weight_reported": 533146,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 14368408,
+          "vertices": 14368408,
+          "edges": 40197322
+        },
+        {
+          "gpu": 1,
+          "begin": 14368408,
+          "end": 23947347,
+          "vertices": 9578939,
+          "edges": 26487462
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 299342,
+          "boundary_words": 700,
+          "indexed": true,
+          "allocated_bytes": 2800,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 449013,
+          "boundary_words": 662,
+          "indexed": true,
+          "allocated_bytes": 2648,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            7702837,
+            7545822,
+            7792660,
+            7817072
+          ],
+          "maximum_total_writes": 7817072,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            5883648,
+            5857846,
+            5810557,
+            5841725
+          ],
+          "maximum_total_writes": 5883648,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "NOT_RUN_IN_THIS_LOG",
+        "rows": {
+          "0": [],
+          "1": []
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "latest_rgg_control_job38180": {
+      "label": "latest_rgg_control_job38180",
+      "build": "latest_r96v2_control",
+      "path": "evidence/l3_30h_20260923/stage1/route_b2_compact_r96_job38180/control/rgg_n_2_20_s0_d32_b107_compact/round000_1_dual_l3.log",
+      "sha256": "b2073064bd906e8d00f9f864b34064f5ce30e16201b58017264c3f9c18f8fc2e",
+      "graph_vertices": 1048576,
+      "graph_edges": 13783240,
+      "maximum_weight_reported": 1,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 6880533
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 6902707
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 16384,
+          "boundary_words": 1546,
+          "indexed": true,
+          "allocated_bytes": 6184,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 16384,
+          "boundary_words": 1596,
+          "indexed": true,
+          "allocated_bytes": 6384,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            33617,
+            37713,
+            39125,
+            39814
+          ],
+          "maximum_total_writes": 39814,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            35281,
+            37588,
+            36021,
+            41234
+          ],
+          "maximum_total_writes": 41234,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "RUNTIME_VALIDATED",
+        "rows": {
+          "0": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ],
+          "1": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ]
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "latest_usa_control_job38180": {
+      "label": "latest_usa_control_job38180",
+      "build": "latest_r96v2_control",
+      "path": "evidence/l3_30h_20260923/stage1/route_b2_compact_r96_job38180/control/usa_gplus_s11973673_d400000_b107_compact/round000_1_dual_l3.log",
+      "sha256": "db683ee801960887d888bfe176c0521d089633470e086de206b18c97c778ff63",
+      "graph_vertices": 23947347,
+      "graph_edges": 66684784,
+      "maximum_weight_reported": 533146,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 14368408,
+          "vertices": 14368408,
+          "edges": 40197322
+        },
+        {
+          "gpu": 1,
+          "begin": 14368408,
+          "end": 23947347,
+          "vertices": 9578939,
+          "edges": 26487462
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 299342,
+          "boundary_words": 700,
+          "indexed": true,
+          "allocated_bytes": 2800,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 449013,
+          "boundary_words": 662,
+          "indexed": true,
+          "allocated_bytes": 2648,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {},
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            11257251,
+            11328528,
+            11401380,
+            12975796
+          ],
+          "maximum_total_writes": 12975796,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            8635198,
+            8547240,
+            8363593,
+            9308748
+          ],
+          "maximum_total_writes": 9308748,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "RUNTIME_VALIDATED",
+        "rows": {
+          "0": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ],
+          "1": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ]
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "latest_rgg_compact_job38180": {
+      "label": "latest_rgg_compact_job38180",
+      "build": "latest_r96v2_compact",
+      "path": "evidence/l3_30h_20260923/stage1/route_b2_compact_r96_job38180/compact/rgg_n_2_20_s0_d32_b107_compact/round000_1_dual_l3.log",
+      "sha256": "28ad3814f2827db87ebde2ffd9d3bee56663d6fd0c5b5900066f9ebc4117de04",
+      "graph_vertices": 1048576,
+      "graph_edges": 13783240,
+      "maximum_weight_reported": 1,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 524288,
+          "vertices": 524288,
+          "edges": 6880533
+        },
+        {
+          "gpu": 1,
+          "begin": 524288,
+          "end": 1048576,
+          "vertices": 524288,
+          "edges": 6902707
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 16384,
+          "boundary_words": 1546,
+          "indexed": true,
+          "allocated_bytes": 6184,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 16384,
+          "boundary_words": 1596,
+          "indexed": true,
+          "allocated_bytes": 6384,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {
+        "0": {
+          "peer_vertices": 524288,
+          "boundary_vertices": 2382,
+          "compact_selected": true,
+          "scan_words": 75,
+          "lookup_bytes": 2097152,
+          "reverse_bytes": 9528,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "peer_vertices": 524288,
+          "boundary_vertices": 2458,
+          "compact_selected": true,
+          "scan_words": 77,
+          "lookup_bytes": 2097152,
+          "reverse_bytes": 9832,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            36818,
+            38955,
+            35392,
+            38828
+          ],
+          "maximum_total_writes": 38955,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            38530,
+            40259,
+            44903,
+            38109
+          ],
+          "maximum_total_writes": 44903,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "RUNTIME_PROVEN_FROM_AGGREGATE_TOTAL",
+          "no_bucket_wrap_reason": "Each bucket writes no more than the all-bucket total, and the all-bucket total is below one bucket capacity."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "RUNTIME_VALIDATED",
+        "rows": {
+          "0": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ],
+          "1": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ]
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    },
+    "latest_usa_compact_job38180": {
+      "label": "latest_usa_compact_job38180",
+      "build": "latest_r96v2_compact",
+      "path": "evidence/l3_30h_20260923/stage1/route_b2_compact_r96_job38180/compact/usa_gplus_s11973673_d400000_b107_compact/round000_1_dual_l3.log",
+      "sha256": "29c4c6bd9f9352fb28738d2c8972c2f210f95930693f74bb55e1334cdebbb4f3",
+      "graph_vertices": 23947347,
+      "graph_edges": 66684784,
+      "maximum_weight_reported": 533146,
+      "partitions": [
+        {
+          "gpu": 0,
+          "begin": 0,
+          "end": 14368408,
+          "vertices": 14368408,
+          "edges": 40197322
+        },
+        {
+          "gpu": 1,
+          "begin": 14368408,
+          "end": 23947347,
+          "vertices": 9578939,
+          "edges": 26487462
+        }
+      ],
+      "boundary_index": {
+        "0": {
+          "dense_words": 299342,
+          "boundary_words": 700,
+          "indexed": true,
+          "allocated_bytes": 2800,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "dense_words": 449013,
+          "boundary_words": 662,
+          "indexed": true,
+          "allocated_bytes": 2648,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "compact_candidates": {
+        "0": {
+          "peer_vertices": 9578939,
+          "boundary_vertices": 4383,
+          "compact_selected": true,
+          "scan_words": 137,
+          "lookup_bytes": 38315756,
+          "reverse_bytes": 17532,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        },
+        "1": {
+          "peer_vertices": 14368408,
+          "boundary_vertices": 3439,
+          "compact_selected": true,
+          "scan_words": 108,
+          "lookup_bytes": 57473632,
+          "reverse_bytes": 13756,
+          "evidence_class": "RUNTIME_LOG_VALIDATION"
+        }
+      },
+      "l2_capacity_line_count": 2,
+      "l2_capacity_matches_archived_source_formula": true,
+      "l2_final_line_count": 8,
+      "l2_final_exact_no_wrap_schema_count": 0,
+      "l2_final_schema": "LEGACY",
+      "l2_final_schema_valid": true,
+      "l2_final_per_bucket_equality_asserted_before_each_print": true,
+      "l2": {
+        "0": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            11365970,
+            11226375,
+            11410699,
+            17820162
+          ],
+          "maximum_total_writes": 17820162,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "NOT_PROVEN_AGGREGATE_EXCEEDS_PER_BUCKET_CAPACITY",
+          "no_bucket_wrap_reason": "This is a legacy L2_FINAL row. Only the sum over 16 buckets is logged; neither per-bucket writes nor peak outstanding occupancy is logged."
+        },
+        "1": {
+          "query_count": 4,
+          "total_writes_per_query": [
+            11258797,
+            8348997,
+            8735686,
+            36406223
+          ],
+          "maximum_total_writes": 36406223,
+          "exact_no_wrap_schema_complete": false,
+          "exact_no_wrap_rows": [
+            null,
+            null,
+            null,
+            null
+          ],
+          "all_total_writes_below_int32_max": true,
+          "no_bucket_wrap_status": "NOT_PROVEN_AGGREGATE_EXCEEDS_PER_BUCKET_CAPACITY",
+          "no_bucket_wrap_reason": "This is a legacy L2_FINAL row. Only the sum over 16 buckets is logged; neither per-bucket writes nor peak outstanding occupancy is logged."
+        }
+      },
+      "peak_per_bucket_occupancy_logged": false,
+      "ack": {
+        "status": "RUNTIME_VALIDATED",
+        "rows": {
+          "0": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ],
+          "1": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "work_blocks": 107,
+              "warps_per_block": 16
+            }
+          ]
+        }
+      },
+      "wide_oracle_query_count": 4,
+      "wide_oracle_all_correct": true,
+      "correctness_line_count": 4,
+      "error_lines": [],
+      "status": "RUNTIME_VALIDATED_FOR_RECORDED_QUERIES",
+      "scope_note": "Successful recorded queries validate those executions only. They do not prove unlogged peak L2 occupancy, unchecked int32 additions, or arbitrary inputs."
+    }
+  },
+  "gates": {
+    "explicit_device_allocation_raw_request_fit": {
+      "status": "PASS",
+      "scope": "All reported exact cases and conservative NOT_RUN upper-bound cases fit the preflight A100 total bytes. CUDA runtime/module overhead is not statically bounded."
+    },
+    "index_ranges_for_current_n2_build": {
+      "status": "PASS",
+      "scope": "Audited graph/partition, candidate, bitmap, inbox, boundary, retained journal, and ACK indexes only."
+    },
+    "l2_ring_no_overwrite": {
+      "status": "NOT_PROVEN_FOR_ALL_RECORDED_RUNS",
+      "logs_requiring_per_bucket_peak_or_write_diagnostics": [
+        "stage0_delaunay_n23_baseline",
+        "latest_usa_compact_job38180"
+      ],
+      "reason": "Delaunay_n23 and latest compact USA have all-bucket totals above one bucket capacity; aggregate final conservation cannot establish peak per-bucket occupancy."
+    },
+    "signed_counter_overflow": {
+      "status": "RUNTIME_TOTALS_IN_RANGE_GENERAL_PROOF_ABSENT",
+      "reason": "Logged final totals are below INT32_MAX, but the queue source explicitly excludes counter-overflow handling and no max read_ptr/write_reserve diagnostic is logged."
+    },
+    "checked_int32_candidate_addition": {
+      "status": "NOT_PROVEN_FOR_ALL_ADMITTED_GRAPHS",
+      "graphs": [
+        "atmosmodm",
+        "rmat22",
+        "usa_gplus"
+      ],
+      "reason": "Correct final output and int64 oracle agreement do not prove every transient signed int addition avoided overflow."
+    },
+    "compact_stage0_execution": {
+      "status": "NOT_RUN_EXCEPT_RGG_AND_USA_GPLUS",
+      "reason": "Other stage0 compact rows are conservative static memory bounds only."
+    },
+    "overall_capacity_and_numeric_contract": {
+      "status": "NOT_PROVEN",
+      "blocking_items": [
+        "Per-bucket peak L2 occupancy/write totals are absent where aggregate totals exceed one bucket capacity.",
+        "Checked or wide transient candidate-add evidence is absent for atmosmodm, rmat22, and USA G+."
+      ],
+      "non_blocking_positive_evidence": [
+        "All explicit device allocation requests fit with large raw-request margin.",
+        "Current n=2 index formulas fit all audited graph and partition sizes.",
+        "Recorded valid runs end with per-bucket L2 conservation assertions and wide-oracle correctness."
+      ]
+    }
+  }
+}

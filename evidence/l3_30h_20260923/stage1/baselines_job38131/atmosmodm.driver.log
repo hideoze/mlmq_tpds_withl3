@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/atmosmodm/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 1.0741725349373177,
+    "S_solve_T1_over_T2": 0.8902772049995801,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.09128549999999969,
+        "mad_ms": 0.05540399999999934,
+        "median_ms": 9.940702,
+        "q1_ms": 9.8771185,
+        "q3_ms": 9.968404,
+        "samples_ms": [
+          9.940702,
+          9.813535,
+          9.996106
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.1001574999999999,
+        "mad_ms": 0.08835499999999996,
+        "median_ms": 5.638706,
+        "q1_ms": 5.582726,
+        "q3_ms": 5.6828835,
+        "samples_ms": [
+          5.638706,
+          5.526746,
+          5.727061
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.8375839999999997,
+        "mad_ms": 0.3137560000000015,
+        "median_ms": 9.254288,
+        "q1_ms": 9.09741,
+        "q3_ms": 9.934994,
+        "samples_ms": [
+          10.6157,
+          8.940532,
+          9.254288
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.28809549999999984,
+        "mad_ms": 0.28574000000000055,
+        "median_ms": 6.333652,
+        "q1_ms": 6.1884265,
+        "q3_ms": 6.476522,
+        "samples_ms": [
+          6.619392,
+          6.043201,
+          6.333652
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/atmosmodm/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 1.0741725349373177,
+      "S_solve_T1_over_T2": 0.8902772049995801,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.09128549999999969,
+          "mad_ms": 0.05540399999999934,
+          "median_ms": 9.940702,
+          "q1_ms": 9.8771185,
+          "q3_ms": 9.968404,
+          "samples_ms": [
+            9.940702,
+            9.813535,
+            9.996106
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.1001574999999999,
+          "mad_ms": 0.08835499999999996,
+          "median_ms": 5.638706,
+          "q1_ms": 5.582726,
+          "q3_ms": 5.6828835,
+          "samples_ms": [
+            5.638706,
+            5.526746,
+            5.727061
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.8375839999999997,
+          "mad_ms": 0.3137560000000015,
+          "median_ms": 9.254288,
+          "q1_ms": 9.09741,
+          "q3_ms": 9.934994,
+          "samples_ms": [
+            10.6157,
+            8.940532,
+            9.254288
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.28809549999999984,
+          "mad_ms": 0.28574000000000055,
+          "median_ms": 6.333652,
+          "q1_ms": 6.1884265,
+          "q3_ms": 6.476522,
+          "samples_ms": [
+            6.619392,
+            6.043201,
+            6.333652
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

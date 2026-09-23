@@ -754,7 +754,10 @@ public:
 #ifndef L3_SETTLE_CYCLES
 #define L3_SETTLE_CYCLES 10000000ull
 #endif
-#if (L3_LOCAL_SETTLE == true && (L3_WINDOW_MODE != 2 || L3_SETTLE_CYCLES < 25000))
+#ifndef L3_WINDOW_MIN_CYCLES
+#define L3_WINDOW_MIN_CYCLES 25000ull
+#endif
+#if (L3_LOCAL_SETTLE == true && (L3_WINDOW_MODE != 2 || L3_SETTLE_CYCLES < L3_WINDOW_MIN_CYCLES))
 #error "Local settle requires dynamic window mode and a bounded positive delay"
 #endif
 #if (L3_BATCH_ORDER == true && (L3_RETAIN_TX == false || (BULK_L3_BATCH & (BULK_L3_BATCH - 1)) != 0))
@@ -822,7 +825,7 @@ public:
 #if (L3_RX_FEEDBACK_TRACE == true && L3_RX_FEEDBACK_MODE == 0)
 #error "RX feedback trace requires feedback transport"
 #endif
-#if (L3_WINDOW_MODE < 0 || L3_WINDOW_MODE > 2 || L3_WINDOW_MAX_CYCLES < 25000)
+#if (L3_WINDOW_MODE < 0 || L3_WINDOW_MODE > 2 || L3_WINDOW_MIN_CYCLES == 0 || L3_WINDOW_MAX_CYCLES < L3_WINDOW_MIN_CYCLES)
 #error "Invalid L3 window configuration"
 #endif
 #if (L3_WINDOW_MODE != 0 && (L3_RETAIN_TX == false || L3_DIRECT_RX == false || L3_DYNAMIC == true))

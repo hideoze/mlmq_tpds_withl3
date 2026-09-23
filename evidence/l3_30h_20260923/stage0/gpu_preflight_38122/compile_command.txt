@@ -1,0 +1,1 @@
+nvcc /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/l3_30h_preflight.cu -O2 -gencode=arch=compute_80\,code=sm_80 -o /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/cuda_preflight 

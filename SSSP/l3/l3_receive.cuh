@@ -1,4 +1,5 @@
 #pragma once
+#include "l3_transport.cuh"
 #include "l3_priority_bootstrap.cuh"
 #include "l3_rx_lag.cuh"
 #include "l3_rx_l2_pull.cuh"
@@ -41,6 +42,8 @@ __device__ __forceinline__ int l3_receive_to_l2(
         claimed = bulk_inbox_claim_read(states, generations, epochs, slot, epoch);
     claimed = __shfl_sync(FULL_MASK, claimed, 0);
     if (!claimed) return 0;
+    const bool payload_visible = bulk_inbox_confirm_read_lane(states + slot);
+    if (!__all_sync(FULL_MASK, payload_visible)) return 0;
 #if (L3_PROGRESS_DIAG == true)
     const unsigned long long progress_receive_start = clock64();
     if (!lane) {
@@ -50,7 +53,8 @@ __device__ __forceinline__ int l3_receive_to_l2(
     }
 #endif
     int count = 0;
-    if (lane == 0) count = atomicAdd(counts + slot, 0);
+    if (lane == 0)
+        count = l3_atomic_load_relaxed<cuda::thread_scope_system>(counts + slot);
     count = __shfl_sync(FULL_MASK, count, 0);
     assert(count >= 0 && count <= size);
 #if (L3_RX_PRIORITY_BOOTSTRAP == true)

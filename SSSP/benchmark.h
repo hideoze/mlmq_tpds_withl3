@@ -45,8 +45,17 @@ struct mlmq_benchmark {
     }
     void finish() {
         if (!enabled) return;
-        std::lock_guard<std::mutex> lock(mutex);
-        if (++finished == participants) end = mlmq_bench_ms();
+        std::unique_lock<std::mutex> lock(mutex);
+        if (++finished == participants) {
+            end = mlmq_bench_ms();
+            cv.notify_all();
+        } else {
+            // The solve timer ends when the last GPU synchronizes.  Keep every
+            // participant here until that happens so post-solve evidence (for
+            // example final L2 counters) is read only after both devices have
+            // completed the query.
+            cv.wait(lock, [this] { return finished == participants; });
+        }
     }
     void require(bool ok, const char *message) const {
         if (enabled && !ok) {

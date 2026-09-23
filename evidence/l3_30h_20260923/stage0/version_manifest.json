@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-09-23T16:01:39+08:00",
+  "worktree": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+  "branch": "l3-30h-performance-20260923",
+  "initial_worktree_clean": true,
+  "initial_head_before_plan_fast_forward": "9dd132dac5028de1fd29bb9b6be0b07d83005ffc",
+  "execution_plan_commit": "be4f6b20903f67ad5cfa1254f1508adab9b56b45",
+  "runtime_parent_commit": "9dd132dac5028de1fd29bb9b6be0b07d83005ffc",
+  "runtime_last_change_commit": "07df3ad6c813882f157d0ba1cdcfb1ca125f27d0",
+  "plan": {
+    "path": "L3_30h_performance_plan.md",
+    "sha256": "6c949d7861894ed488f5bea0916b2ec9225d54bb8dc82ee211d788618474a6aa",
+    "note": "be4f6b2 adds the plan only; runtime code remains the 07df3ad reverted synchronization version"
+  },
+  "toolchain": {
+    "login_host": "ada-709",
+    "kernel": "Linux 6.8.0-138-generic x86_64",
+    "nvcc": "CUDA 12.4 V12.4.131",
+    "gxx": "g++ 13.3.0",
+    "python": "3.12.3"
+  },
+  "slurm": {
+    "partition": "a100",
+    "node": "ada-A100",
+    "first_immediate_request": {
+      "job": "38108",
+      "result": "NOT_RUN",
+      "reason": "two GPUs unavailable while job 38101 held one A100"
+    },
+    "first_two_gpu_allocation": {
+      "job": "38119",
+      "slurm_start_time": "2026-09-23T15:43:29+08:00",
+      "script_start_time": "2026-09-23T15:43:30+08:00",
+      "result": "SCRIPT_FAILED_AFTER_CUDA_PREFLIGHT",
+      "reason": "NVSHMEM filesystem probe returned nonzero under pipefail; GPU/P2P checks themselves passed"
+    },
+    "thirty_hour_window_start": "2026-09-23T15:43:29+08:00",
+    "corrected_preflight": {
+      "job": "38122",
+      "start_time": "2026-09-23T15:45:39+08:00",
+      "result": "PASS",
+      "visible_gpu_count": 2,
+      "gpu_model": "NVIDIA A100 80GB PCIe",
+      "p2p": "NV12, bidirectional CUDA access, native atomics supported",
+      "compute_apps_before": 0
+    }
+  },
+  "nvshmem": {
+    "status": "NOT_AVAILABLE",
+    "mpirun": "/usr/bin/mpirun",
+    "nvshmem_header_or_library_detected": false,
+    "decision": "route C is not started unless the installed dependency state changes"
+  },
+  "base_pair_build_used_for_stage1": {
+    "directory": "tmp/l3_30h_20260923/build_base_v2",
+    "dual_sha256": "c47d7100c329139abddc105048fc9bed4b9f759804378716adb43b661a391911",
+    "single_sha256": "fd09a5742c2805349c44c8180662106a0ed03db7e8c18a9868a086a6861009fa",
+    "dual_rc": 0,
+    "single_rc": 0,
+    "single_is_dual_n1": false,
+    "single_adapter": "explicit validated MLMQ_WORK_BLOCKS in copied no-L3 staging source"
+  },
+  "evidence_scope": "Current work is exploratory on a dirty implementation branch until a frozen clean commit is built and rerun. Historical job 38082 remains separate."
+}

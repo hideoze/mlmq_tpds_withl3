@@ -1,0 +1,127 @@
+/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr
+Graph name: /mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr
+nGPU: 2
+sources: 1
+delta override: 400000
+nnodes=23947347, nedges=66684784.
+Host memory for graph: 691 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+Maximum degree: 14
+ADAPTIVE-Q: cross_ratio=0.0146% < 0.0700% -> L1V_L2DQ
+----------Graph information----------
+number of vertices 23947347 number of edges 66684784
+average nnz 2.66 maximum nnz 14.00 deviation nnz 1.30
+average weight 2758.08 maximum weight 533146.00 deviation weight 5461.81 
+-------------------------------------
+CPU done!
+CPU total work count 66684784
+CPU sequential time 3303.47 ms
+GPU0 partition: [0, 14368408) v_local=14368408 nedges=40197322
+GPU1 partition: [14368408, 23947347) v_local=9578939 nedges=26487462
+L3_BOUNDARY_INDEX gpu=0 dense_words=299342 boundary_words=700 indexed=1 build_ms=41.658394
+L3_BOUNDARY_INDEX gpu=1 dense_words=449013 boundary_words=662 indexed=1 build_ms=26.382580
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=449.771016 reference_ms=3303.466064 initialization_other_ms=1566.092208 setup_wall_ms=5319.329288
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L3_CONFIG gpu=1 work_blocks=107 delta=400000 window_mode=2 window_min=25000 window_max=25000 idle_backoff=0 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_ACK gpu=1 active_slots=1070 capacity=1070 work_blocks=107 warps_per_block=10
+L3_WORKER_GEOMETRY gpu=1 threads=352 warps=10 blocks=107 resident=1 ack_slots=1070 shm=43008
+L3_CONFIG gpu=0 work_blocks=107 delta=400000 window_mode=2 window_min=25000 window_max=25000 idle_backoff=0 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_ACK gpu=0 active_slots=1070 capacity=1070 work_blocks=107 warps_per_block=10
+L3_WORKER_GEOMETRY gpu=0 threads=352 warps=10 blocks=107 resident=1 ack_slots=1070 shm=43008
+L2_FINAL gpu=1 buckets=16 reads=13858807 writes=13858807 completed=13858807
+L2_FINAL gpu=0 buckets=16 reads=14829772 writes=14829772 completed=14829772
+L3_WAIT_REASON gpu=1 reason=0 count=0
+L3_WAIT_REASON gpu=1 reason=1 count=0
+L3_WAIT_REASON gpu=1 reason=2 count=0
+L3_WAIT_REASON gpu=1 reason=3 count=0
+L3_WAIT_REASON gpu=1 reason=4 count=0
+L3_WAIT_REASON gpu=1 reason=5 count=0
+L3_WAIT_REASON gpu=1 reason=6 count=0
+L3_WAIT_REASON gpu=1 reason=7 count=0
+L3_WAIT_REASON gpu=1 reason=8 count=0
+L3_WAIT_REASON gpu=1 reason=9 count=0
+L3_WAIT_REASON gpu=1 reason=10 count=0
+L3_WAIT_REASON gpu=1 reason=11 count=0
+L3_WAIT_REASON gpu=1 reason=12 count=0
+L3_WAIT_REASON gpu=1 reason=13 count=0
+L3_WAIT_REASON gpu=1 reason=14 count=0
+L3_WAIT_REASON gpu=1 reason=15 count=129
+L3_WAIT_REASON gpu=1 reason=16 count=0
+L3_WAIT_REASON gpu=1 reason=17 count=0
+L3_WAIT gpu=1 slot=0 span=312297408 last_work=268342548 c0=42658480 c1=13997564 c2=23077286 c3=169420162 c4=63143916 c5=0
+L3_WAIT gpu=1 slot=8 span=312291936 last_work=267048537 c0=47638285 c1=14941529 c2=26131827 c3=160435607 c4=63144688 c5=0
+L3_WAIT gpu=1 slot=16 span=312220513 last_work=268236194 c0=48089801 c1=15910631 c2=25452005 c3=159644502 c4=63123574 c5=0
+L3_WAIT gpu=1 slot=24 span=312307787 last_work=267833298 c0=43393841 c1=13535068 c2=22832680 c3=169320762 c4=63225436 c5=0
+L3_WAIT gpu=1 slot=32 span=312290846 last_work=267458534 c0=47750543 c1=15701931 c2=28088365 c3=157622862 c4=63127145 c5=0
+L3_WAIT gpu=1 slot=40 span=312295845 last_work=266874181 c0=44192317 c1=13798528 c2=23272580 c3=167808113 c4=63224307 c5=0
+L3_WAIT gpu=1 slot=48 span=312303493 last_work=267960849 c0=43935178 c1=14682304 c2=23899270 c3=166555129 c4=63231612 c5=0
+L3_WAIT gpu=1 slot=56 span=312229142 last_work=268588506 c0=47246907 c1=14828398 c2=26932815 c3=160083005 c4=63138017 c5=0
+L3_WAIT gpu=1 slot=64 span=312307495 last_work=265998424 c0=43773460 c1=13909364 c2=21925234 c3=169485405 c4=63214032 c5=0
+L3_WAIT gpu=1 slot=72 span=312291096 last_work=268363048 c0=47321028 c1=14428322 c2=26082165 c3=161331034 c4=63128547 c5=0
+L3_WAIT gpu=1 slot=80 span=312293176 last_work=268310804 c0=43168323 c1=13253124 c2=22690978 c3=169952862 c4=63227889 c5=0
+L3_WAIT gpu=1 slot=88 span=312302452 last_work=267869421 c0=42919972 c1=14088582 c2=22605293 c3=169454948 c4=63233657 c5=0
+L3_WAIT gpu=1 slot=96 span=312302246 last_work=267816217 c0=43281558 c1=14269649 c2=23469177 c3=168057235 c4=63224627 c5=0
+L3_WAIT gpu=1 slot=104 span=312291066 last_work=267331503 c0=47112563 c1=14504375 c2=26439968 c3=161088345 c4=63145815 c5=0
+L3_WAIT gpu=1 slot=256 span=312287738 last_work=0 c0=249114366 c1=53192950 c2=9980422 c3=0 c4=0 c5=0
+L3_WAIT gpu=1 slot=257 span=312286985 last_work=0 c0=301131351 c1=188270 c2=10967364 c3=0 c4=0 c5=0
+L3_WAIT_REASON gpu=0 reason=0 count=0
+L3_WAIT_REASON gpu=0 reason=1 count=0
+L3_WAIT_REASON gpu=0 reason=2 count=0
+L3_WAIT_REASON gpu=0 reason=3 count=0
+L3_WAIT_REASON gpu=0 reason=4 count=0
+L3_WAIT_REASON gpu=0 reason=5 count=0
+L3_WAIT_REASON gpu=0 reason=6 count=0
+L3_WAIT_REASON gpu=0 reason=7 count=0
+L3_WAIT_REASON gpu=0 reason=8 count=0
+L3_WAIT_REASON gpu=0 reason=9 count=0
+L3_WAIT_REASON gpu=0 reason=10 count=0
+L3_WAIT_REASON gpu=0 reason=11 count=0
+L3_WAIT_REASON gpu=0 reason=12 count=0
+L3_WAIT_REASON gpu=0 reason=13 count=0
+L3_WAIT_REASON gpu=0 reason=14 count=0
+L3_WAIT_REASON gpu=0 reason=15 count=20
+L3_WAIT_REASON gpu=0 reason=16 count=0
+L3_WAIT_REASON gpu=0 reason=17 count=0
+L3_WAIT gpu=0 slot=0 span=311594562 last_work=302336735 c0=75021778 c1=47479882 c2=31234453 c3=150919003 c4=6939446 c5=0
+L3_WAIT gpu=0 slot=8 span=309361989 last_work=299321414 c0=74888261 c1=46016381 c2=32200105 c3=149350534 c4=6906708 c5=0
+L3_WAIT gpu=0 slot=16 span=312051277 last_work=302653249 c0=72893548 c1=42310231 c2=30475306 c3=159442881 c4=6929311 c5=0
+L3_WAIT gpu=0 slot=24 span=312112730 last_work=302026051 c0=73232190 c1=43784917 c2=31519861 c3=156648118 c4=6927644 c5=0
+L3_WAIT gpu=0 slot=32 span=312114152 last_work=302511394 c0=74931565 c1=46571474 c2=32384292 c3=151297144 c4=6929677 c5=0
+L3_WAIT gpu=0 slot=40 span=311301968 last_work=302613295 c0=74602164 c1=46143228 c2=32097265 c3=151532893 c4=6926418 c5=0
+L3_WAIT gpu=0 slot=48 span=312049950 last_work=301631402 c0=74516904 c1=45670533 c2=31672435 c3=153261070 c4=6929008 c5=0
+L3_WAIT gpu=0 slot=56 span=312051921 last_work=304182367 c0=73982612 c1=44044587 c2=30760602 c3=156337081 c4=6927039 c5=0
+L3_WAIT gpu=0 slot=64 span=312111855 last_work=301770111 c0=74486330 c1=44285018 c2=30592714 c3=155820886 c4=6926907 c5=0
+L3_WAIT gpu=0 slot=72 span=312113730 last_work=302636974 c0=74144010 c1=45537767 c2=31492618 c3=154011769 c4=6927566 c5=0
+L3_WAIT gpu=0 slot=80 span=311298162 last_work=301757137 c0=75972063 c1=48005876 c2=31479482 c3=148917302 c4=6923439 c5=0
+L3_WAIT gpu=0 slot=88 span=312049944 last_work=302604958 c0=73568261 c1=43834741 c2=31825365 c3=155892252 c4=6929325 c5=0
+L3_WAIT gpu=0 slot=96 span=311591804 last_work=300695167 c0=74664913 c1=47276755 c2=31269824 c3=151437540 c4=6942772 c5=0
+L3_WAIT gpu=0 slot=104 span=309366399 last_work=300165208 c0=75226727 c1=46891118 c2=31204138 c3=149151349 c4=6893067 c5=0
+L3_WAIT gpu=0 slot=256 span=312041737 last_work=0 c0=305109108 c1=5345187 c2=1587442 c3=0 c4=0 c5=0
+L3_WAIT gpu=0 slot=257 span=312041458 last_work=0 c0=309606495 c1=285603 c2=2149360 c3=0 c4=0 c5=0
+L3_WORK gpu=1 warps=1070 called_warps=1070 popped=154623633 expanded=148271422 edges=421878273 calls=10450895 owner_dst_edges=421853104 cross_owner_dst_edges=25169 empty_reads=3973394 idle_iters=1221874 busy_iters=10450895 active_p10=0.515832 active_p50=0.536192 active_p90=0.546866 first_p10=0.087481 first_p50=0.088993 first_p90=0.089500
+L3_SOURCE_EXPAND gpu=1 unique=9578939 repeated=138692483 repeated_edges=395390811
+L3_WORK gpu=0 warps=1070 called_warps=1070 popped=192365879 expanded=185715767 edges=534636380 calls=14888189 owner_dst_edges=534457814 cross_owner_dst_edges=178566 empty_reads=16130034 idle_iters=137584 busy_iters=14888189 active_p10=0.479277 active_p50=0.493582 active_p90=0.507542 first_p10=0.001335 first_p50=0.002741 first_p90=0.003526
+L3_SOURCE_EXPAND gpu=0 unique=14368408 repeated=171347359 repeated_edges=494439058
+GPU multi-GPU wall time 230.38 ms
+gpu
+3885704 3889069 3889665 3887147 3889909 3891006 3891660 3888157 3888872 3892869 3894621 3893646 3893843 3889024 3884747 3893318 3892607 3895480 3894442 3894667 3890133 3887462 3883751 3896038 3894488 3889248 3893240 3896477 3899421 3893918 
+cpu
+3885704 3889069 3889665 3887147 3889909 3891006 3891660 3888157 3888872 3892869 3894621 3893646 3893843 3889024 3884747 3893318 3892607 3895480 3894442 3894667 3890133 3887462 3883751 3896038 3894488 3889248 3893240 3896477 3899421 3893918 
+WIDE_ORACLE vertices=23947347 correct=1
+mlmq sssp correct!
+BENCH algorithm=MLMQ gpu_count=2 source=11973673 repeat=0 warmup=0 queue=L1SLF_L2DQ solve_ms=223.677024 collection_ms=50.228271 query_wall_ms=280.609012 prepare_ms=6.205393 post_solve_ms=0.498290 correct=1
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=6.154602

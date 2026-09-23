@@ -1,0 +1,99 @@
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_compact/rgg_n_2_20_s0_d32_b107_compact/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": null,
+    "S_solve_T1_over_T2": null,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.3578669999999988,
+        "mad_ms": 0.15396999999999927,
+        "median_ms": 12.686769,
+        "q1_ms": 12.609784000000001,
+        "q3_ms": 12.967651,
+        "samples_ms": [
+          12.532799,
+          12.686769,
+          13.248533
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.5299075000000002,
+        "mad_ms": 0.17518100000000025,
+        "median_ms": 8.655365,
+        "q1_ms": 8.567774499999999,
+        "q3_ms": 9.097681999999999,
+        "samples_ms": [
+          8.655365,
+          8.480184,
+          9.539999
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 0,
+      "reason": "one or more runs/samples invalid",
+      "valid": false
+    },
+    "target": 1.2,
+    "target_met": null,
+    "valid": false
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": false,
+  "records_file": "tmp/l3_30h_20260923/route_b2_compact/rgg_n_2_20_s0_d32_b107_compact/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": null,
+      "S_solve_T1_over_T2": null,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.3578669999999988,
+          "mad_ms": 0.15396999999999927,
+          "median_ms": 12.686769,
+          "q1_ms": 12.609784000000001,
+          "q3_ms": 12.967651,
+          "samples_ms": [
+            12.532799,
+            12.686769,
+            13.248533
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.5299075000000002,
+          "mad_ms": 0.17518100000000025,
+          "median_ms": 8.655365,
+          "q1_ms": 8.567774499999999,
+          "q3_ms": 9.097681999999999,
+          "samples_ms": [
+            8.655365,
+            8.480184,
+            9.539999
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 0,
+        "reason": "nonzero return code; contract: expected at least 4 WIDE_ORACLE lines, got 0; dual contract lines remain after the final BENCH row; expected 4 dual BENCH contract groups, got 0",
+        "valid": false
+      },
+      "round": 0,
+      "valid": false
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": null
+}

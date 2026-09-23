@@ -1,0 +1,113 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/dual_build/mlmq",
+    "-i",
+    "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "configuration": "dual_l3",
+  "effective_contract": {
+    "errors": [],
+    "expected_l3_config_lines": 8,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [
+      [
+        0,
+        0,
+        744876
+      ],
+      [
+        1,
+        744876,
+        1489752
+      ]
+    ],
+    "l3_config_lines": 8,
+    "no_l3_config_lines": 0,
+    "no_l3_launch_lines": 0,
+    "oracle_lines": 4,
+    "partitions": [
+      [
+        0,
+        0,
+        744876
+      ],
+      [
+        1,
+        744876,
+        1489752
+      ]
+    ]
+  },
+  "finished_utc": "2026-09-23T08:02:26.203373+00:00",
+  "host_elapsed_seconds": 1.1217500049970113,
+  "prefix": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/atmosmodm/round000_1_dual_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 2,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "1.055021",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.087616",
+      "prepare_ms": "6.864103",
+      "query_wall_ms": "16.648663",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "8.641893",
+      "source": "0",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.405472",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.046418",
+      "prepare_ms": "3.544389",
+      "query_wall_ms": "10.615700",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "6.619392",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.412121",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.044008",
+      "prepare_ms": "2.441181",
+      "query_wall_ms": "8.940532",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "6.043201",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.450483",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.044723",
+      "prepare_ms": "2.425400",
+      "query_wall_ms": "9.254288",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "6.333652",
+      "source": "0",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 1,
+  "started_utc": "2026-09-23T08:02:23.788514+00:00",
+  "valid": true
+}

@@ -1,0 +1,83 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/variant_backoff_25k/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "1",
+    "-d",
+    "400000"
+  ],
+  "configuration": "single_no_l3",
+  "effective_contract": {
+    "errors": [],
+    "expected_l3_config_lines": 1,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [],
+    "l3_config_lines": 0,
+    "no_l3_config_lines": 1,
+    "no_l3_launch_lines": 4,
+    "oracle_lines": 5,
+    "partitions": []
+  },
+  "finished_utc": "2026-09-23T08:24:31.156535+00:00",
+  "host_elapsed_seconds": 5.973791191005148,
+  "prefix": "tmp/l3_30h_20260923/route_a_backoff_25k/usa_gplus_s0_d400000_b107/round000_0_single_no_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 1,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "157.072661",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "76.257348",
+      "source": "11973673",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "155.908508",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "76.362665",
+      "source": "11973673",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "166.255994",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "85.970663",
+      "source": "11973673",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "155.831103",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "76.800978",
+      "source": "11973673",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 0,
+  "started_utc": "2026-09-23T08:24:23.933800+00:00",
+  "valid": true
+}

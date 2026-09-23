@@ -1,0 +1,6 @@
+case	rc	graph	source	delta	cut_percent	blocks
+usa_gplus	0	/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr	11973673	200000	60	107
+delaunay_n23	0	/a100-data1/Dingzhong/mlmq/data/sssp-int/delaunay_n23.gr	0	64	50	107
+rgg_n_2_20_s0	0	/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr	0	64	50	107
+atmosmodm	0	/a100-data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr	0	200000	50	107
+rmat22	0	/a100-data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr	0	200000	50	107

@@ -1,0 +1,83 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "1",
+    "-d",
+    "100000"
+  ],
+  "configuration": "single_no_l3",
+  "effective_contract": {
+    "errors": [],
+    "expected_l3_config_lines": 1,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [],
+    "l3_config_lines": 0,
+    "no_l3_config_lines": 1,
+    "no_l3_launch_lines": 4,
+    "oracle_lines": 5,
+    "partitions": []
+  },
+  "finished_utc": "2026-09-23T08:08:34.004516+00:00",
+  "host_elapsed_seconds": 5.947874947014498,
+  "prefix": "tmp/l3_30h_20260923/delta_sweep/usa_gplus_d100k_b107/round000_0_single_no_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 1,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "161.506346",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "80.906414",
+      "source": "11973673",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "161.494528",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "81.850346",
+      "source": "11973673",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "160.222935",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "80.638026",
+      "source": "11973673",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "159.834757",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "80.481583",
+      "source": "11973673",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 0,
+  "started_utc": "2026-09-23T08:08:26.815568+00:00",
+  "valid": true
+}

@@ -1,0 +1,84 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/variant_control_25k/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/layouts/usa_layer_split/reordered_original.gr",
+    "-n",
+    "1",
+    "-d",
+    "400000"
+  ],
+  "configuration": "single_no_l3",
+  "effective_contract": {
+    "dual_contract": null,
+    "errors": [],
+    "expected_l3_config_lines": 0,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [],
+    "l3_config_lines": 0,
+    "no_l3_config_lines": 1,
+    "no_l3_launch_lines": 4,
+    "oracle_lines": 5,
+    "partitions": []
+  },
+  "finished_utc": "2026-09-23T08:43:24.155546+00:00",
+  "host_elapsed_seconds": 5.778050232998794,
+  "prefix": "tmp/l3_30h_20260923/route_b1_usa_gonly/usa_layer_split_original_s0_d400000_cut50_b107/round000_0_single_no_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 1,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "187.142772",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "105.484267",
+      "source": "0",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "180.490662",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "98.352761",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "180.461281",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "98.430122",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "179.238513",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "98.224588",
+      "source": "0",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 0,
+  "started_utc": "2026-09-23T08:43:17.115838+00:00",
+  "valid": true
+}

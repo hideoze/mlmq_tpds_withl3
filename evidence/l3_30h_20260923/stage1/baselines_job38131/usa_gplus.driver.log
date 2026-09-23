@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/usa_gplus/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 1.972593053892314,
+    "S_solve_T1_over_T2": 1.0832863330925142,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.8970134999999857,
+        "mad_ms": 0.8090660000000014,
+        "median_ms": 153.200686,
+        "q1_ms": 152.7082055,
+        "q3_ms": 153.60521899999998,
+        "samples_ms": [
+          152.215725,
+          153.200686,
+          154.009752
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.5423940000000016,
+        "mad_ms": 0.31583600000000445,
+        "median_ms": 74.819361,
+        "q1_ms": 74.66144299999999,
+        "q3_ms": 75.203837,
+        "samples_ms": [
+          74.819361,
+          74.503525,
+          75.588313
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 1.4071159999999878,
+        "mad_ms": 0.5774219999999985,
+        "median_ms": 77.664618,
+        "q1_ms": 77.37590700000001,
+        "q3_ms": 78.783023,
+        "samples_ms": [
+          77.087196,
+          79.901428,
+          77.664618
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 1.7743284999999958,
+        "mad_ms": 0.6941750000000013,
+        "median_ms": 69.067022,
+        "q1_ms": 68.7199345,
+        "q3_ms": 70.49426299999999,
+        "samples_ms": [
+          69.067022,
+          71.921504,
+          68.372847
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/usa_gplus/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 1.972593053892314,
+      "S_solve_T1_over_T2": 1.0832863330925142,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.8970134999999857,
+          "mad_ms": 0.8090660000000014,
+          "median_ms": 153.200686,
+          "q1_ms": 152.7082055,
+          "q3_ms": 153.60521899999998,
+          "samples_ms": [
+            152.215725,
+            153.200686,
+            154.009752
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.5423940000000016,
+          "mad_ms": 0.31583600000000445,
+          "median_ms": 74.819361,
+          "q1_ms": 74.66144299999999,
+          "q3_ms": 75.203837,
+          "samples_ms": [
+            74.819361,
+            74.503525,
+            75.588313
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 1.4071159999999878,
+          "mad_ms": 0.5774219999999985,
+          "median_ms": 77.664618,
+          "q1_ms": 77.37590700000001,
+          "q3_ms": 78.783023,
+          "samples_ms": [
+            77.087196,
+            79.901428,
+            77.664618
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 1.7743284999999958,
+          "mad_ms": 0.6941750000000013,
+          "median_ms": 69.067022,
+          "q1_ms": 68.7199345,
+          "q3_ms": 70.49426299999999,
+          "samples_ms": [
+            69.067022,
+            71.921504,
+            68.372847
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

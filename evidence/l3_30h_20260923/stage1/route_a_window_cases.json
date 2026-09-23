@@ -1,0 +1,20 @@
+[
+  {
+    "name": "usa_gplus_s11973673_d400000_b107",
+    "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "source": 11973673,
+    "delta": 400000,
+    "cut_percent": 60,
+    "blocks": 107
+  },
+  {
+    "name": "rgg_n_2_20_s0_d32_b107",
+    "graph": "/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+    "oracle": "tmp/l3_30h_20260923/oracles/rgg_n_2_20_s0_s0.i32",
+    "source": 0,
+    "delta": 32,
+    "cut_percent": 50,
+    "blocks": 107
+  }
+]

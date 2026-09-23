@@ -1,0 +1,6 @@
+CUDA_DEVICE_COUNT count=2
+CUDA_DEVICE id=0 name=NVIDIA A100 80GB PCIe capability=8.0 sm=108 total_bytes=85095874560 free_bytes=84652523520
+CUDA_DEVICE id=1 name=NVIDIA A100 80GB PCIe capability=8.0 sm=108 total_bytes=85095874560 free_bytes=84652523520
+CUDA_P2P source=0 target=1 access=1 rank=0 native_atomics=1
+CUDA_P2P source=1 target=0 access=1 rank=0 native_atomics=1
+CUDA_PREFLIGHT PASS

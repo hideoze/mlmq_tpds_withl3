@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "slurm_job": "38122",
+  "host": "ada-A100",
+  "cuda_visible_devices": "0,1",
+  "start_time": "2026-09-23T15:45:40+08:00",
+  "head": "be4f6b20903f67ad5cfa1254f1508adab9b56b45",
+  "branch": "l3-30h-performance-20260923",
+  "plan_sha256": "6c949d7861894ed488f5bea0916b2ec9225d54bb8dc82ee211d788618474a6aa",
+  "nvshmem_detected": false,
+  "gpu_preflight": "PASS",
+  "exactly_two_visible_gpus": true,
+  "gpu_apps_before": []
+}

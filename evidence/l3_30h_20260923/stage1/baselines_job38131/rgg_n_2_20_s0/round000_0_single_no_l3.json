@@ -1,0 +1,83 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/single_build/mlmq",
+    "-i",
+    "/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+    "-n",
+    "1",
+    "-d",
+    "64"
+  ],
+  "configuration": "single_no_l3",
+  "effective_contract": {
+    "errors": [],
+    "expected_l3_config_lines": 1,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [],
+    "l3_config_lines": 0,
+    "no_l3_config_lines": 1,
+    "no_l3_launch_lines": 4,
+    "oracle_lines": 5,
+    "partitions": []
+  },
+  "finished_utc": "2026-09-23T08:02:16.763756+00:00",
+  "host_elapsed_seconds": 0.9361739319865592,
+  "prefix": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/rgg_n_2_20_s0/round000_0_single_no_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 1,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "12.873740",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "8.573332",
+      "source": "0",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "15.543841",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "11.829472",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "12.681822",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "9.005817",
+      "source": "0",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "12.168441",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "8.505530",
+      "source": "0",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 0,
+  "started_utc": "2026-09-23T08:02:14.522935+00:00",
+  "valid": true
+}

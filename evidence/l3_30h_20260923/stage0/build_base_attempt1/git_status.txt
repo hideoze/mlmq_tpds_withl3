@@ -1,0 +1,10 @@
+?? evidence/l3_30h_20260923/
+?? evidence/l3_latest_rerun_38082/
+?? scripts/multigpu/audit_gr_dataset.py
+?? scripts/multigpu/build_l3_30h_pair.sh
+?? scripts/multigpu/export_l3_latest_rerun.py
+?? scripts/multigpu/gr_oracle.cpp
+?? scripts/multigpu/l3_30h_preflight.cu
+?? scripts/multigpu/prepare_l3_30h_single.py
+?? scripts/multigpu/run_l3_30h.py
+?? scripts/multigpu/run_l3_30h_preflight.sh

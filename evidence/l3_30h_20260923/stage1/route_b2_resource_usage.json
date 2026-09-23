@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scope": "exploratory job 38180 control-r96 versus compact-r96",
+  "tool": "/usr/local/cuda/bin/cuobjdump --dump-resource-usage",
+  "active_template": "L1SLF queue plus L2 delta queue",
+  "records": [
+    {
+      "variant": "control-r96",
+      "dual_binary_sha256": "017ac2dd27f07c289b88691bcfe87756b24e32e29f14ea01e13a21c0da3b3967",
+      "manager": {
+        "registers": 80,
+        "stack_bytes": 88
+      },
+      "worker": {
+        "registers": 84,
+        "stack_bytes": 80
+      }
+    },
+    {
+      "variant": "compact-r96",
+      "dual_binary_sha256": "67dc1412e382a70cc1a100e5abd1f906cbecc2b20db4695a9b157e8d9c724460",
+      "manager": {
+        "registers": 80,
+        "stack_bytes": 96
+      },
+      "worker": {
+        "registers": 96,
+        "stack_bytes": 80
+      }
+    }
+  ],
+  "shared_single_binary_sha256": "fd09a5742c2805349c44c8180662106a0ed03db7e8c18a9868a086a6861009fa",
+  "interpretation": "The compact prototype reaches the 96-register cap and increases manager stack usage; its small timing improvement must not be attributed to storage reduction alone.",
+  "raw_binary_location": "ignored tmp/l3_30h_20260923; binaries are intentionally not committed"
+}
+

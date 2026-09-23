@@ -1,0 +1,38 @@
+[
+  {
+    "name": "usa_gplus_d100k_b107",
+    "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "source": 11973673,
+    "delta": 100000,
+    "cut_percent": 60,
+    "blocks": 107
+  },
+  {
+    "name": "usa_gplus_d400k_b107",
+    "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "source": 11973673,
+    "delta": 400000,
+    "cut_percent": 60,
+    "blocks": 107
+  },
+  {
+    "name": "atmosmodm_d100k_b107",
+    "graph": "/a100-data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+    "oracle": "tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+    "source": 0,
+    "delta": 100000,
+    "cut_percent": 50,
+    "blocks": 107
+  },
+  {
+    "name": "atmosmodm_d400k_b107",
+    "graph": "/a100-data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+    "oracle": "tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+    "source": 0,
+    "delta": 400000,
+    "cut_percent": 50,
+    "blocks": 107
+  }
+]

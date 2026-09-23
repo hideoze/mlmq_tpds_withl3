@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/rgg_delta_sweep/rgg_n_2_20_s0_d128_b107/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.9745192852377083,
+    "S_solve_T1_over_T2": 0.9017009954789299,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 2.046808499999999,
+        "mad_ms": 0.07633500000000026,
+        "median_ms": 14.433572,
+        "q1_ms": 14.3954045,
+        "q3_ms": 16.442213,
+        "samples_ms": [
+          14.357237,
+          18.450854,
+          14.433572
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 2.9775820000000017,
+        "mad_ms": 1.9903999999999993,
+        "median_ms": 10.77517,
+        "q1_ms": 9.779969999999999,
+        "q3_ms": 12.757552,
+        "samples_ms": [
+          8.78477,
+          14.739934,
+          10.77517
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.779693,
+        "mad_ms": 0.4415249999999986,
+        "median_ms": 14.810966,
+        "q1_ms": 14.2520355,
+        "q3_ms": 15.0317285,
+        "samples_ms": [
+          15.252491,
+          13.693105,
+          14.810966
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.6405120000000011,
+        "mad_ms": 0.16811299999999996,
+        "median_ms": 11.949826,
+        "q1_ms": 11.3933705,
+        "q3_ms": 12.0338825,
+        "samples_ms": [
+          12.117939,
+          10.836915,
+          11.949826
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "tmp/l3_30h_20260923/rgg_delta_sweep/rgg_n_2_20_s0_d128_b107/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.9745192852377083,
+      "S_solve_T1_over_T2": 0.9017009954789299,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 2.046808499999999,
+          "mad_ms": 0.07633500000000026,
+          "median_ms": 14.433572,
+          "q1_ms": 14.3954045,
+          "q3_ms": 16.442213,
+          "samples_ms": [
+            14.357237,
+            18.450854,
+            14.433572
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 2.9775820000000017,
+          "mad_ms": 1.9903999999999993,
+          "median_ms": 10.77517,
+          "q1_ms": 9.779969999999999,
+          "q3_ms": 12.757552,
+          "samples_ms": [
+            8.78477,
+            14.739934,
+            10.77517
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.779693,
+          "mad_ms": 0.4415249999999986,
+          "median_ms": 14.810966,
+          "q1_ms": 14.2520355,
+          "q3_ms": 15.0317285,
+          "samples_ms": [
+            15.252491,
+            13.693105,
+            14.810966
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.6405120000000011,
+          "mad_ms": 0.16811299999999996,
+          "median_ms": 11.949826,
+          "q1_ms": 11.3933705,
+          "q3_ms": 12.0338825,
+          "samples_ms": [
+            12.117939,
+            10.836915,
+            11.949826
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

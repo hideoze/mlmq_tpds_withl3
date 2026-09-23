@@ -1,0 +1,153 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_compact_r96v2/usa_gplus_s11973673_d400000_b107_compact/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 2.0922212919877166,
+    "S_solve_T1_over_T2": 1.163925738663769,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 1.1067239999999856,
+        "mad_ms": 0.16773200000000088,
+        "median_ms": 153.670775,
+        "q1_ms": 153.586909,
+        "q3_ms": 154.69363299999998,
+        "samples_ms": [
+          155.716491,
+          153.503043,
+          153.670775
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 1.1545425000000051,
+        "mad_ms": 0.4703829999999982,
+        "median_ms": 75.40216,
+        "q1_ms": 75.1669685,
+        "q3_ms": 76.321511,
+        "samples_ms": [
+          77.240862,
+          75.40216,
+          74.931777
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 45.23164650000001,
+        "mad_ms": 0.8553429999999906,
+        "median_ms": 73.448624,
+        "q1_ms": 73.02095249999999,
+        "q3_ms": 118.252599,
+        "samples_ms": [
+          72.593281,
+          73.448624,
+          163.056574
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 43.67006550000001,
+        "mad_ms": 0.8946690000000075,
+        "median_ms": 64.782621,
+        "q1_ms": 64.3352865,
+        "q3_ms": 108.005352,
+        "samples_ms": [
+          63.887952,
+          64.782621,
+          151.228083
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": true,
+  "records_file": "tmp/l3_30h_20260923/route_b2_compact_r96v2/usa_gplus_s11973673_d400000_b107_compact/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 2.0922212919877166,
+      "S_solve_T1_over_T2": 1.163925738663769,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 1.1067239999999856,
+          "mad_ms": 0.16773200000000088,
+          "median_ms": 153.670775,
+          "q1_ms": 153.586909,
+          "q3_ms": 154.69363299999998,
+          "samples_ms": [
+            155.716491,
+            153.503043,
+            153.670775
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 1.1545425000000051,
+          "mad_ms": 0.4703829999999982,
+          "median_ms": 75.40216,
+          "q1_ms": 75.1669685,
+          "q3_ms": 76.321511,
+          "samples_ms": [
+            77.240862,
+            75.40216,
+            74.931777
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 45.23164650000001,
+          "mad_ms": 0.8553429999999906,
+          "median_ms": 73.448624,
+          "q1_ms": 73.02095249999999,
+          "q3_ms": 118.252599,
+          "samples_ms": [
+            72.593281,
+            73.448624,
+            163.056574
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 43.67006550000001,
+          "mad_ms": 0.8946690000000075,
+          "median_ms": 64.782621,
+          "q1_ms": 64.3352865,
+          "q3_ms": 108.005352,
+          "samples_ms": [
+            63.887952,
+            64.782621,
+            151.228083
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": false
+}

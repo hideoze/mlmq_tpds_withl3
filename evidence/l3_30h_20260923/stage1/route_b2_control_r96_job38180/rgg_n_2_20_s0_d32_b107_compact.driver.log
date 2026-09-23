@@ -1,0 +1,153 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_control_r96v2/rgg_n_2_20_s0_d32_b107_compact/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.9424868445941186,
+    "S_solve_T1_over_T2": 0.8376329790682248,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.651485000000001,
+        "mad_ms": 0.06111300000000064,
+        "median_ms": 12.401863,
+        "q1_ms": 12.3713065,
+        "q3_ms": 13.0227915,
+        "samples_ms": [
+          13.64372,
+          12.401863,
+          12.34075
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.6388894999999994,
+        "mad_ms": 0.06131099999999989,
+        "median_ms": 8.721809,
+        "q1_ms": 8.6911535,
+        "q3_ms": 9.330043,
+        "samples_ms": [
+          9.938277,
+          8.721809,
+          8.660498
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.738668999999998,
+        "mad_ms": 0.6458969999999997,
+        "median_ms": 13.158659,
+        "q1_ms": 12.742938500000001,
+        "q3_ms": 13.481607499999999,
+        "samples_ms": [
+          13.804556,
+          12.327218,
+          13.158659
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.713671999999999,
+        "mad_ms": 0.6157690000000002,
+        "median_ms": 10.412447,
+        "q1_ms": 10.006659500000001,
+        "q3_ms": 10.7203315,
+        "samples_ms": [
+          11.028216,
+          9.600872,
+          10.412447
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": true,
+  "records_file": "tmp/l3_30h_20260923/route_b2_control_r96v2/rgg_n_2_20_s0_d32_b107_compact/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.9424868445941186,
+      "S_solve_T1_over_T2": 0.8376329790682248,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.651485000000001,
+          "mad_ms": 0.06111300000000064,
+          "median_ms": 12.401863,
+          "q1_ms": 12.3713065,
+          "q3_ms": 13.0227915,
+          "samples_ms": [
+            13.64372,
+            12.401863,
+            12.34075
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.6388894999999994,
+          "mad_ms": 0.06131099999999989,
+          "median_ms": 8.721809,
+          "q1_ms": 8.6911535,
+          "q3_ms": 9.330043,
+          "samples_ms": [
+            9.938277,
+            8.721809,
+            8.660498
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.738668999999998,
+          "mad_ms": 0.6458969999999997,
+          "median_ms": 13.158659,
+          "q1_ms": 12.742938500000001,
+          "q3_ms": 13.481607499999999,
+          "samples_ms": [
+            13.804556,
+            12.327218,
+            13.158659
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.713671999999999,
+          "mad_ms": 0.6157690000000002,
+          "median_ms": 10.412447,
+          "q1_ms": 10.006659500000001,
+          "q3_ms": 10.7203315,
+          "samples_ms": [
+            11.028216,
+            9.600872,
+            10.412447
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": false
+}

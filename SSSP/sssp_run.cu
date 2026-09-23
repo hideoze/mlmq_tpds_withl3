@@ -49,7 +49,9 @@ __device__ VALUE_TYPE *g_l3_completed_rows=nullptr;
 __device__ __forceinline__ bool l3_ack_scan_token_live(int *req, int token,
                                                     volatile int *stop, int lane) {
     int live=0;
-    if(!lane) live=atomicAdd(req,0)==token && *stop==0;
+    if(!lane) live=l3_atomic_load_acquire<cuda::thread_scope_device>(req)==token &&
+                   l3_atomic_load_acquire<cuda::thread_scope_device>(
+                       const_cast<int *>(stop))==0;
     return __shfl_sync(FULL_MASK,live,0)!=0;
 }
 #endif
@@ -1797,7 +1799,8 @@ static void l3_live_snapshot_watchdog(int gpu_id, const gpu_ctx &ctx,
 #if (TIMELINE64 == true)
 __device__ __forceinline__ void timeline_idle_write(int *idle_ptr, int value)
 {
-    int old = atomicExch(idle_ptr, value);
+    int old = l3_atomic_exchange_acq_rel<cuda::thread_scope_system>(
+        idle_ptr, value);
     if (old == value)
         return;
     if (value != 0)
@@ -1812,13 +1815,15 @@ __device__ __forceinline__ void timeline_idle_write(int *idle_ptr, int value)
     }
 }
 #else
-#define timeline_idle_write(idle_ptr, value) atomicExch((idle_ptr), (value))
+#define timeline_idle_write(idle_ptr, value) \
+    l3_atomic_store_release<cuda::thread_scope_system>((idle_ptr), (value))
 #endif
 
 #if (TIMELINE64 == true)
 __device__ __forceinline__ void timeline_idle_write_reason(int *idle_ptr, int value, unsigned reason)
 {
-    int old = atomicExch(idle_ptr, value);
+    int old = l3_atomic_exchange_acq_rel<cuda::thread_scope_system>(
+        idle_ptr, value);
     if (old == value)
         return;
     if (value != 0)
@@ -1835,7 +1840,8 @@ __device__ __forceinline__ void timeline_idle_write_reason(int *idle_ptr, int va
     }
 }
 #else
-#define timeline_idle_write_reason(idle_ptr, value, reason) atomicExch((idle_ptr), (value))
+#define timeline_idle_write_reason(idle_ptr, value, reason) \
+    l3_atomic_store_release<cuda::thread_scope_system>((idle_ptr), (value))
 #endif
 
 #if (GLOBAL_ROUND_PROFILE == true)
@@ -2216,7 +2222,8 @@ __device__ __forceinline__ void relax_dst(
                 {
                     VALUE_TYPE g_old = atomicMin(&ghost_node_data[g2], new_dist);
                     if (new_dist < g_old)
-                        atomicOr(&ghost_mark[g2 >> 5], 1u << (g2 & 31));
+                        l3_device_mark_publish(
+                            &ghost_mark[g2 >> 5], 1u << (g2 & 31));
                 }
             }
 #endif
@@ -2952,7 +2959,7 @@ VALUE_TYPE *last_processed
     // Local manager
     if (tid >= THREAD_NUM_PER_BLOCK)
     {
-        while (*global_exit == 0)
+        while (l3_atomic_load_acquire<cuda::thread_scope_device>(global_exit) == 0)
         {
             mlmq.update_local_info(lane_id);
             __threadfence();
@@ -3135,8 +3142,8 @@ unsigned debug_time[3];
 #if (L3_MULTI_PRODUCER == true)
         const bool loan_producer_warp=wid==0 && bid<4096;
         if(global_wid==0 && n_gpu>1 && l3_tile_loan_enabled && !lane_id &&
-           ((bulk_quiesce_req && atomicAdd(bulk_quiesce_req,0)) ||
-            (l3_term_req && atomicAdd(l3_term_req,0)))) {
+           ((bulk_quiesce_req && l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req)) ||
+            (l3_term_req && l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req)))) {
             if(!l3_gate_close(l3_channel.loan_gate,l3_channel.loan_epoch) ||
                !l3_gate_close(l3_channel.peer_loan_gate,l3_channel.loan_epoch)) asm("trap;");
         }
@@ -3297,7 +3304,7 @@ unsigned debug_time[3];
                 printf("BULK_WORK g%d tick=%llu q=%d lq=%d in=%d fly=%d req=%d\\n",
                        v_begin, wt, mlmq.get_global_queue_size(),
                        mlmq.get_local_queue_size(wid), node_in_num, on_the_fly_num,
-                       bulk_quiesce_req ? atomicAdd(bulk_quiesce_req, 0) : -1);
+                       bulk_quiesce_req ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) : -1);
         }
 #endif
 #if (SEED_BARRIER == true)
@@ -3659,7 +3666,7 @@ unsigned debug_time[3];
                 int allowed=1;
                 if(!lane_id) {
                     horizon=atomicAdd(g_l3_admission+2,0);
-                    force=l3_term_req && atomicAdd(l3_term_req,0)!=0;
+                    force=l3_term_req && l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req)!=0;
                     bool was_armed=admission.armed;
                     allowed=admission.allow(clock64(),minimum,horizon,force);
                     if(!allowed && !was_armed)++deferred_batches;
@@ -3882,7 +3889,7 @@ unsigned debug_time[3];
         // ack 后不再调用 read/process，直到 manager 完成本轮 inbox 发布并清 request。
 #if (BULK_DIAG == true)
         int bulk_req_now = (bulk_quiesce_req != NULL)
-                         ? atomicAdd(bulk_quiesce_req, 0) : 0;
+                         ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) : 0;
         int bulk_lq_now = mlmq.get_local_queue_size(wid);
         if (bulk_req_now == 0)
             bulk_quiesce_diag_seen = false;
@@ -3909,7 +3916,7 @@ unsigned debug_time[3];
 #endif
 #if (GLOBAL_ROUND_ASYNC == true)
         int bulk_req_token_now = (bulk_quiesce_req != NULL)
-                               ? atomicAdd(bulk_quiesce_req, 0) : 0;
+                               ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) : 0;
 #endif
         bool bulk_frontier_is_empty = true;
 #if (BULK_FRONTIER_ENABLED == true)
@@ -3925,7 +3932,7 @@ unsigned debug_time[3];
 #if (GLOBAL_ROUND_ASYNC == true)
              && bulk_req_token_now != 0
 #else
-             && atomicAdd(bulk_quiesce_req, 0) != 0
+             && l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) != 0
 #endif
              && node_in_num == 0 && on_the_fly_num == 0
              && mlmq.get_local_queue_size(wid) == 0
@@ -3961,12 +3968,12 @@ unsigned debug_time[3];
             int req_token = bulk_req_token_now;
             if (req_token != bulk_quiesce_seen)
             {
-                if (!lane_id) atomicAdd(bulk_quiesce_ack, 1);
+                if (!lane_id) l3_atomic_fetch_add_acq_rel<cuda::thread_scope_device>(bulk_quiesce_ack, 1);
                 __syncwarp();
                 bulk_quiesce_seen = req_token;
             }
-            while (atomicAdd(bulk_quiesce_req, 0) == req_token
-                   && *global_exit == 0)
+            while (l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) == req_token
+                   && l3_atomic_load_acquire<cuda::thread_scope_device>(global_exit) == 0)
             {
                 mlmq.update_local_info(lane_id);
                 __threadfence();
@@ -3975,11 +3982,11 @@ unsigned debug_time[3];
 #else
             if (!bulk_quiesced)
             {
-                if (!lane_id) atomicAdd(bulk_quiesce_ack, 1);
+                if (!lane_id) l3_atomic_fetch_add_acq_rel<cuda::thread_scope_device>(bulk_quiesce_ack, 1);
                 __syncwarp();
                 bulk_quiesced = true;
             }
-            while (atomicAdd(bulk_quiesce_req, 0) != 0 && *global_exit == 0)
+            while (l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) != 0 && l3_atomic_load_acquire<cuda::thread_scope_device>(global_exit) == 0)
             {
                 mlmq.update_local_info(lane_id);
                 __threadfence();
@@ -4008,7 +4015,7 @@ unsigned debug_time[3];
 #endif
            )
         {
-            int term_req_now = atomicAdd(l3_term_req, 0);
+            int term_req_now = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
             if (term_req_now == 0)
             {
                 l3_term_seen = 0;
@@ -4032,8 +4039,7 @@ unsigned debug_time[3];
                     if (l3_term_seen != term_req_now)
                     {
                         if (!lane_id)
-                            atomicExch(l3_term_ack_slots + global_wid,
-                                       term_req_now);
+                            l3_atomic_store_release<cuda::thread_scope_device>(l3_term_ack_slots + global_wid, term_req_now);
                         l3_term_seen = term_req_now;
                     }
                     __syncwarp();
@@ -4044,7 +4050,7 @@ unsigned debug_time[3];
 #if (L3_ACK_SCAN == true)
                            l3_ack_scan_token_live(l3_term_req,term_req_now,global_exit,lane_id)
 #else
-                           atomicAdd(l3_term_req, 0) == term_req_now && *global_exit == 0
+                           l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) == term_req_now && l3_atomic_load_acquire<cuda::thread_scope_device>(global_exit) == 0
 #endif
                            )
                     {
@@ -4170,8 +4176,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (nd < last_processed[j])
 #endif
         {
-            atomicOr(&dirty_bitmap[(j - 1) >> 5], 1u << ((j - 1) & 31));
-            atomicOr(&dirty_hint[(j - 1) >> 10], 1u << (((j - 1) >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[(j - 1) >> 5], 1u << ((j - 1) & 31));
+            l3_system_mark_publish(&dirty_hint[(j - 1) >> 10], 1u << (((j - 1) >> 5) & 31));
             found = true;
         }
     }
@@ -4187,8 +4193,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (nx < lp4.x)
 #endif
         {
-            atomicOr(&dirty_bitmap[(j0 - 1) >> 5], 1u << ((j0 - 1) & 31));
-            atomicOr(&dirty_hint[(j0 - 1) >> 10], 1u << (((j0 - 1) >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[(j0 - 1) >> 5], 1u << ((j0 - 1) & 31));
+            l3_system_mark_publish(&dirty_hint[(j0 - 1) >> 10], 1u << (((j0 - 1) >> 5) & 31));
             found = true;
         }
 #if (L3_COMPLETED_ROWS == true)
@@ -4197,8 +4203,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (ny < lp4.y)
 #endif
         {
-            atomicOr(&dirty_bitmap[j0 >> 5], 1u << (j0 & 31));
-            atomicOr(&dirty_hint[j0 >> 10], 1u << ((j0 >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[j0 >> 5], 1u << (j0 & 31));
+            l3_system_mark_publish(&dirty_hint[j0 >> 10], 1u << ((j0 >> 5) & 31));
             found = true;
         }
 #if (L3_COMPLETED_ROWS == true)
@@ -4207,8 +4213,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (nz < lp4.z)
 #endif
         {
-            atomicOr(&dirty_bitmap[(j0 + 1) >> 5], 1u << ((j0 + 1) & 31));
-            atomicOr(&dirty_hint[(j0 + 1) >> 10], 1u << (((j0 + 1) >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[(j0 + 1) >> 5], 1u << ((j0 + 1) & 31));
+            l3_system_mark_publish(&dirty_hint[(j0 + 1) >> 10], 1u << (((j0 + 1) >> 5) & 31));
             found = true;
         }
 #if (L3_COMPLETED_ROWS == true)
@@ -4217,8 +4223,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (nw < lp4.w)
 #endif
         {
-            atomicOr(&dirty_bitmap[(j0 + 2) >> 5], 1u << ((j0 + 2) & 31));
-            atomicOr(&dirty_hint[(j0 + 2) >> 10], 1u << (((j0 + 2) >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[(j0 + 2) >> 5], 1u << ((j0 + 2) & 31));
+            l3_system_mark_publish(&dirty_hint[(j0 + 2) >> 10], 1u << (((j0 + 2) >> 5) & 31));
             found = true;
         }
     }
@@ -4233,8 +4239,8 @@ __device__ __forceinline__ bool backstop_scan_range(
         if (nd < last_processed[j])
 #endif
         {
-            atomicOr(&dirty_bitmap[(j - 1) >> 5], 1u << ((j - 1) & 31));
-            atomicOr(&dirty_hint[(j - 1) >> 10], 1u << (((j - 1) >> 5) & 31));
+            l3_system_mark_publish(&dirty_bitmap[(j - 1) >> 5], 1u << ((j - 1) & 31));
+            l3_system_mark_publish(&dirty_hint[(j - 1) >> 10], 1u << (((j - 1) >> 5) & 31));
             found = true;
         }
     }
@@ -4411,7 +4417,7 @@ __device__ ASYNC_RX_COLLECT_ATTR void collect_dirty_slice(
         // c_beg/c_end 为 32 倍数（块对齐），hint word 索引即 c>>5
         for (int hb = (c_beg >> 5); hb < (c_end >> 5); hb++)
         {
-            unsigned hv = *(volatile unsigned *)&dirty_hint[hb];
+            unsigned hv = l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_hint[hb]);
             if (!hv) continue;
             bool block_cleared = true;      // 块内所有 dirty word 均已消费（或本就为空）
             bool cap_hit = false;           // 容量触顶 → 跳过保守清零
@@ -4420,10 +4426,9 @@ __device__ ASYNC_RX_COLLECT_ATTR void collect_dirty_slice(
             for (; w < w0 + 32 && !cap_hit; w++)
             {
                 if (w >= dwords) break;     // 对齐上取整可能越界，clamp
-                int val = *(volatile int *)&dirty_bitmap[w];
+                int val = l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_bitmap[w]);
                 if (!val) continue;
-                int old = atomicCAS(&dirty_bitmap[w], val, 0);
-                if (old != val) continue;
+                if (!l3_system_mark_claim(&dirty_bitmap[w], (unsigned)val)) continue;
                 block_cleared = false;
                 for (int b = 0; b < 32; b++)
                 {
@@ -4431,7 +4436,7 @@ __device__ ASYNC_RX_COLLECT_ATTR void collect_dirty_slice(
                     if (out_num >= max_per_lane)
                     {
                         // 容量触顶：回填当前 word 剩余 bit（b..31），保 dirty/hint 置位，下轮继续
-                        atomicOr(&dirty_bitmap[w], val & ~((1u << b) - 1));
+                        l3_system_mark_publish(&dirty_bitmap[w], val & ~((1u << b) - 1));
                         cap_hit = true;
                         break;
                     }
@@ -4457,7 +4462,7 @@ __device__ ASYNC_RX_COLLECT_ATTR void collect_dirty_slice(
                     }
                     else
                     {
-                        atomicOr(&dirty_bitmap[w], 1u << b);
+                        l3_system_mark_publish(&dirty_bitmap[w], 1u << b);
                     }
                 }
             }
@@ -4470,19 +4475,19 @@ __device__ ASYNC_RX_COLLECT_ATTR void collect_dirty_slice(
                 for (w = w0; w < w0 + 32; w++)
                 {
                     if (w >= dwords) break;
-                    if (*(volatile unsigned *)&dirty_bitmap[w] != 0) { all_zero = false; break; }
+                    if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0) { all_zero = false; break; }
                 }
                 if (all_zero)
                 {
-                    atomicCAS(&dirty_hint[hb], hv, 0);
+                    l3_atomic_compare_exchange_acq_rel<cuda::thread_scope_system>(&dirty_hint[hb], hv, 0u);
                     bool dirty_again = false;
                     for (w = w0; w < w0 + 32; w++)
                     {
                         if (w >= dwords) break;
-                        if (*(volatile unsigned *)&dirty_bitmap[w] != 0) { dirty_again = true; break; }
+                        if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0) { dirty_again = true; break; }
                     }
                     if (dirty_again)
-                        atomicOr(&dirty_hint[hb], hv);
+                        l3_system_mark_publish(&dirty_hint[hb], hv);
                 }
             }
         }
@@ -4507,16 +4512,15 @@ __device__ __forceinline__ void collect_dirty_slice_nohint(
         for (int w = c_beg; w < c_end && !cap_hit; w++)
         {
             if (w >= dwords) break;
-            int val = *(volatile int *)&dirty_bitmap[w];
+            int val = l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_bitmap[w]);
             if (!val) continue;
-            int old = atomicCAS(&dirty_bitmap[w], val, 0);
-            if (old != val) continue;
+            if (!l3_system_mark_claim(&dirty_bitmap[w], (unsigned)val)) continue;
             for (int b = 0; b < 32; b++)
             {
                 if (!(val & (1u << b))) continue;
                 if (out_num >= max_per_lane)
                 {
-                    atomicOr(&dirty_bitmap[w], val & ~((1u << b) - 1));
+                    l3_system_mark_publish(&dirty_bitmap[w], val & ~((1u << b) - 1));
                     cap_hit = true;
                     break;
                 }
@@ -4531,8 +4535,8 @@ __device__ __forceinline__ void collect_dirty_slice_nohint(
                 else
                 {
                     // restore：L3 flush 在途未落位，下轮再试（同步置 hint，保正常路径可见）
-                    atomicOr(&dirty_bitmap[w], 1u << b);
-                    atomicOr(&dirty_hint[w >> 5], 1u << (w & 31));
+                    l3_system_mark_publish(&dirty_bitmap[w], 1u << b);
+                    l3_system_mark_publish(&dirty_hint[w >> 5], 1u << (w & 31));
                 }
             }
         }
@@ -4619,8 +4623,8 @@ __device__ __forceinline__ int inject_bf_relax(
 #endif
                     // 队列感知：改进者置 dirty（本卡），work 侧 last_processed 正常
                     int j = dst_v - 1 - v_begin;      // 局部 0-based
-                    atomicOr(&dirty_bitmap[j >> 5], 1u << (j & 31));
-                    atomicOr(&dirty_hint[j >> 10], 1u << ((j >> 5) & 31));
+                    l3_system_mark_publish(&dirty_bitmap[j >> 5], 1u << (j & 31));
+                    l3_system_mark_publish(&dirty_hint[j >> 10], 1u << ((j >> 5) & 31));
                     n_set++;
                     // 输出到 bf_out（下一层 BF 输入）：共享槽 atomicAdd 分配
                     int slot = atomicAdd(bf_slot_ptr, 1);
@@ -4703,8 +4707,8 @@ __device__ __forceinline__ int ghost_bf_relax(
                             atomicAdd(&g_hist[dst_v - v_begin], 1u);
 #endif
                             int j = dst_v - 1 - v_begin;
-                            atomicOr(&dirty_bitmap[j >> 5], 1u << (j & 31));
-                            atomicOr(&dirty_hint[j >> 10], 1u << ((j >> 5) & 31));
+                            l3_system_mark_publish(&dirty_bitmap[j >> 5], 1u << (j & 31));
+                            l3_system_mark_publish(&dirty_hint[j >> 10], 1u << ((j >> 5) & 31));
                         }
                     }
                 }
@@ -4726,7 +4730,7 @@ __device__ __forceinline__ int ghost_bf_relax(
                                 if (nd < rc_old)
                                 {
                                     int r0 = dst_v - 1 - peer_v_begin;   // 局部 0-based
-                                    atomicOr(&remote_mark[r0 >> 5], 1u << (r0 & 31));
+                                    l3_device_mark_publish(&remote_mark[r0 >> 5], 1u << (r0 & 31));
                                     if (mark_hint != NULL)
                                         atomicOr(&mark_hint[r0 >> 10], 1u << ((r0 >> 5) & 31));
                                     if (mark_hint2 != NULL)
@@ -4799,22 +4803,21 @@ __device__ __forceinline__ void seed_phase2_publish_warp(
     // warp 内 32 个 lane 分别处理该块的 32 个 mark_hint word。
     for (int h2 = pub_id; h2 < mark_hint2_words; h2 += pub_warp_num)
     {
-        unsigned hv2 = *(volatile unsigned *)&mark_hint2[h2];
+        unsigned hv2 = l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint2[h2]);
         if (!hv2) continue;
 
         const int h0 = h2 * WARP_SIZE;
         for (int h = h0 + lane_id; h < h0 + WARP_SIZE && h < mark_hint_words; h += WARP_SIZE)
         {
-            unsigned hv = *(volatile unsigned *)&mark_hint[h];
+            unsigned hv = l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]);
             if (!hv) continue;
 
             const int w0 = h * WARP_SIZE;
             for (int w = w0; w < w0 + WARP_SIZE && w < mark_words; w++)
             {
-                unsigned mv = *(volatile unsigned *)&remote_mark[w];
+                unsigned mv = l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]);
                 if (!mv) continue;
-                unsigned old = atomicCAS(&remote_mark[w], mv, 0);
-                if (old != mv) continue;
+                if (!l3_device_mark_claim(&remote_mark[w], mv)) continue;
                 published = true;
 
                 for (int b = 0; b < WARP_SIZE; b++)
@@ -4828,7 +4831,7 @@ __device__ __forceinline__ void seed_phase2_publish_warp(
                     {
                         // mark 先于候选被取走的竞争情况：恢复候选信号和两级 hint。
                         unsigned bit = 1u << b;
-                        atomicOr(&remote_mark[w], bit);
+                        l3_device_mark_publish(&remote_mark[w], bit);
                         atomicOr(&mark_hint[h], 1u << (w & 31));
                         atomicOr(&mark_hint2[h2], 1u << (h & 31));
                         continue;
@@ -4856,7 +4859,7 @@ __device__ __forceinline__ void seed_phase2_publish_warp(
             // 并发置位会改变 hint 值，CAS 失败则保留下轮扫描入口。
             bool h_empty = true;
             for (int w = w0; w < w0 + WARP_SIZE && w < mark_words; w++)
-                if (*(volatile unsigned *)&remote_mark[w] != 0) { h_empty = false; break; }
+                if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]) != 0) { h_empty = false; break; }
             if (h_empty)
                 atomicCAS(&mark_hint[h], hv, 0);
         }
@@ -4866,7 +4869,7 @@ __device__ __forceinline__ void seed_phase2_publish_warp(
         {
             bool h2_empty = true;
             for (int h = h0; h < h0 + WARP_SIZE && h < mark_hint_words; h++)
-                if (*(volatile unsigned *)&mark_hint[h] != 0) { h2_empty = false; break; }
+                if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]) != 0) { h2_empty = false; break; }
             if (h2_empty)
                 atomicCAS(&mark_hint2[h2], hv2, 0);
         }
@@ -5416,7 +5419,8 @@ __device__ __forceinline__ bool global_round_publish_dense(
     {
         int mark_words = (peer_v_local + 31) / 32;
         for (int w = lane_id; w < mark_words; w += WARP_SIZE)
-            atomicExch(&remote_mark[w], 0u);
+            l3_atomic_exchange_acq_rel<cuda::thread_scope_device>(
+                &remote_mark[w], 0u);
     }
     if (mark_hint != NULL)
     {
@@ -5440,19 +5444,21 @@ __device__ __forceinline__ bool global_round_publish_dense(
 
     __syncwarp();
     __threadfence_system();
+    __syncwarp();
     if (!lane_id)
-        atomicExch(peer_inbox_count + slot, count);
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(peer_inbox_count + slot, count);
     __threadfence_system();
     if (!lane_id)
-        atomicExch(peer_inbox_epoch + slot, epoch);
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(peer_inbox_epoch + slot, epoch);
     __threadfence_system();
     if (!lane_id)
-        atomicExch(peer_inbox_state + slot, BULK_SLOT_READY);
+        l3_atomic_store_release<cuda::thread_scope_system>(peer_inbox_state + slot, BULK_SLOT_READY);
     __threadfence_system();
     if (!lane_id)
     {
         atomicExch((int *)send_count, count);
-        atomicExch((int *)publish_done, epoch);
+        l3_atomic_store_release<cuda::thread_scope_block>(
+            (int *)publish_done, epoch);
     }
     __syncwarp();
     return true;
@@ -5528,7 +5534,7 @@ __device__ __forceinline__ bool global_round_publish_collected_multi(
         || copy_done == NULL || publish_done == NULL)
         return false;
 
-    while (atomicAdd((int *)worker_done, 0) < worker_total)
+    while (l3_atomic_load_acquire<cuda::thread_scope_block>((int *)worker_done) < worker_total)
         __threadfence();
 
     int slot = bulk_inbox_slot(epoch);
@@ -5547,13 +5553,13 @@ __device__ __forceinline__ bool global_round_publish_collected_multi(
         {
             atomicExch(copy_done, 0);
             __threadfence();
-            atomicExch((int *)copy_start, epoch);
+            l3_atomic_store_release<cuda::thread_scope_block>((int *)copy_start, epoch);
         }
     }
 
     // worker 0 发布 copy_start 后，所有 worker 才能读取 send_list。worker_done
     // 的递增位于每个 worker 的 __threadfence 之后，保证候选条目已可见。
-    while (atomicAdd((int *)copy_start, 0) < epoch)
+    while (l3_atomic_load_acquire<cuda::thread_scope_block>((int *)copy_start) < epoch)
         __threadfence();
     __threadfence();
 
@@ -5570,26 +5576,27 @@ __device__ __forceinline__ bool global_round_publish_collected_multi(
     __threadfence_system();
 
     if (!lane_id)
-        atomicAdd(copy_done, 1);
-    while (atomicAdd(copy_done, 0) < worker_total)
+        l3_atomic_fetch_add_acq_rel<cuda::thread_scope_block>(copy_done, 1);
+    while (l3_atomic_load_acquire<cuda::thread_scope_block>(copy_done) < worker_total)
         __threadfence();
 
     if (worker_id == 0)
     {
         __threadfence_system();
         if (!lane_id)
-            atomicExch(peer_inbox_count + slot, cnt);
+            l3_atomic_store_relaxed<cuda::thread_scope_system>(peer_inbox_count + slot, cnt);
         __threadfence_system();
         if (!lane_id)
-            atomicExch(peer_inbox_epoch + slot, epoch);
+            l3_atomic_store_relaxed<cuda::thread_scope_system>(peer_inbox_epoch + slot, epoch);
         __threadfence_system();
         if (!lane_id)
-            atomicExch(peer_inbox_state + slot, BULK_SLOT_READY);
+            l3_atomic_store_release<cuda::thread_scope_system>(peer_inbox_state + slot, BULK_SLOT_READY);
         __threadfence_system();
         if (!lane_id)
         {
             atomicExch(send_count, cnt);
-            atomicExch((int *)publish_done, epoch);
+            l3_atomic_store_release<cuda::thread_scope_block>(
+                (int *)publish_done, epoch);
         }
     }
     __syncwarp();
@@ -5623,7 +5630,8 @@ __device__ __forceinline__ bool global_round_multi_pack_worker(
     int global_stride = worker_total * WARP_SIZE;
     for (int w = global_lane; w < mark_words; w += global_stride)
     {
-        unsigned mv = atomicExch(&remote_mark[w], 0u);
+        unsigned mv = l3_atomic_exchange_acq_rel<cuda::thread_scope_device>(
+            &remote_mark[w], 0u);
         if (!mv) continue;
         for (int b = 0; b < WARP_SIZE; b++)
         {
@@ -5640,7 +5648,8 @@ __device__ __forceinline__ bool global_round_multi_pack_worker(
             if (peer_node_data != NULL && epoch > 1)
             {
                 VALUE_TYPE peer_dist =
-                    *((volatile VALUE_TYPE *)&peer_node_data[lidx]);
+                    l3_atomic_load_relaxed<cuda::thread_scope_system>(
+                        &peer_node_data[lidx]);
                 if (nd >= peer_dist)
                     continue;
             }
@@ -5667,7 +5676,7 @@ __device__ __forceinline__ bool global_round_multi_pack_worker(
     __syncwarp();
     __threadfence();
     if (!lane_id)
-        atomicAdd((int *)worker_done, 1);
+        l3_atomic_fetch_add_acq_rel<cuda::thread_scope_block>((int *)worker_done, 1);
 
     bool published = global_round_publish_collected_multi(
         epoch, worker_id, worker_total, lane_id, peer_v_local,
@@ -5676,7 +5685,8 @@ __device__ __forceinline__ bool global_round_multi_pack_worker(
         send_count, worker_done, copy_start, copy_done,
         publish_done);
     if (!published && !lane_id)
-        atomicExch((int *)publish_done, epoch);
+        l3_atomic_store_release<cuda::thread_scope_block>(
+            (int *)publish_done, epoch);
     return published;
 }
 #endif
@@ -5846,7 +5856,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_PROGRESS_DIAG == true)
         g_l3_progress.start = clock64();
 #endif
-        manager_end = 0;
+        l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 0);
         l3_busy = 0;
         seed_pub_busy = 0;
         inj_pending = 0;
@@ -5864,29 +5874,30 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         s_peer_eff_base = 0;
         s_eff_quiet = 0;
 #if (BULK_ROUND == true)
-        bulk_pack_req = 0;
-        bulk_publish_done = 0;
-        bulk_pack_worker_done = 0;
-        bulk_pack_copy_start = 0;
-        bulk_pack_copy_done = 0;
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_req, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_publish_done, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_worker_done, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_copy_start, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_copy_done, 0);
         bulk_send_count = 0;
         bulk_apply_count = 0;
         for (int i = 0; i < INJECT_WARP_NUM; i++)
-            l3_term_inject_ack[i] = 0;
-        l3_term_tx_ack = 0;
-        l3_drain_requested = 0;
-        bulk_inject_ack = 0;
+            l3_atomic_store_release<cuda::thread_scope_block>(
+                l3_term_inject_ack + i, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>(&l3_term_tx_ack, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>(&l3_drain_requested, 0);
+        l3_atomic_store_release<cuda::thread_scope_block>(&bulk_inject_ack, 0);
 #if (GLOBAL_ROUND_PARALLEL_APPLY == true)
         global_apply_req = 0;
         global_apply_done = 0;
 #endif
-        bulk_tx_epoch_published = 0;
+        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, 0);
 #if (BULK_FRONTIER_ENABLED == true)
         bulk_frontier_append_base = 0;
         bulk_frontier_append_count = 0;
 #endif
-        if (bulk_quiesce_req != NULL) atomicExch(bulk_quiesce_req, 0);
-        if (bulk_quiesce_ack != NULL) atomicExch(bulk_quiesce_ack, 0);
+        if (bulk_quiesce_req != NULL) l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+        if (bulk_quiesce_ack != NULL) l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
 #endif
         while (!*(mlmq.run_begin))
         { __threadfence(); }
@@ -6003,7 +6014,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             bool gr_inbox_profiled = false;
 #endif
 
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
 #if (GLOBAL_ROUND_PROFILE == true)
                 if (!lane_id && global_active_round == 0 && !gr_local_wait_active)
@@ -6030,7 +6041,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         for (int w = lane_id; w < dwords; w += WARP_SIZE)
                         {
-                            if (*(volatile unsigned *)&dirty_bitmap[w] != 0)
+                            if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0)
                                 d_lane_empty = false;
                         }
                         unsigned dmask = __ballot_sync(FULL_MASK, d_lane_empty);
@@ -6059,9 +6070,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         gr_pack_profiled = false;
                         gr_inbox_profiled = false;
 #endif
-                        atomicExch(bulk_quiesce_ack, 0);
-                        atomicExch(&bulk_inject_ack, 0);
-                        atomicExch(bulk_quiesce_req, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_block>(&bulk_inject_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 1);
                         timeline_idle_write_reason(local_idle, 0, 20);
                     }
                     __threadfence_system();
@@ -6070,8 +6081,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 }
 
                 // work warp 和 injection warp 都到安全点后，才允许 L3 full pack。
-                int work_ack = atomicAdd(bulk_quiesce_ack, 0);
-                int inject_ack = atomicAdd(&bulk_inject_ack, 0);
+                int work_ack = l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_ack);
+                int inject_ack = l3_atomic_load_acquire<cuda::thread_scope_block>(&bulk_inject_ack);
                 int pending = atomicAdd(&inj_pending, 0);
                 if (!global_pack_armed)
                 {
@@ -6097,13 +6108,13 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                                  gr_quiesce_start, TIMELINE_CLOCK());
 #endif
                         bulk_send_count = 0;
-                        bulk_publish_done = 0;
-                        bulk_pack_worker_done = 0;
-                        bulk_pack_copy_start = 0;
-                        bulk_pack_copy_done = 0;
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_publish_done, 0);
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_worker_done, 0);
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_copy_start, 0);
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_copy_done, 0);
                         // L3 warp 只在此时看到新的 round id；此前即使 remote_mark
                         // 非空也不能消费，因 work/injection 可能仍在收尾。
-                        bulk_pack_req = global_active_round;
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_req, global_active_round);
 #if (GLOBAL_ROUND_PROFILE == true)
                         gr_pack_start = TIMELINE_CLOCK();
 #endif
@@ -6114,7 +6125,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     continue;
                 }
 
-                if (atomicAdd((int *)&bulk_publish_done, 0) < global_active_round)
+                if (l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_publish_done) < global_active_round)
                 {
                     __threadfence();
                     continue;
@@ -6145,8 +6156,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         printf("GLOBAL_ROUND_PROTOCOL_ERROR g%d expected=%d got=%d rx=%d\\n",
                                v_begin, global_active_round, ready, bulk_rx_epoch);
-                        manager_end = 1;
-                        *global_exit = 1;
+                        l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                     }
                     __syncwarp();
                     continue;
@@ -6167,7 +6178,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 int rx_slot = bulk_inbox_slot(global_active_round);
                 int rx_count = 0;
                 if (!lane_id)
-                    rx_count = atomicAdd(bulk_inbox_count + rx_slot, 0);
+                    rx_count = l3_atomic_load_relaxed<cuda::thread_scope_system>(bulk_inbox_count + rx_slot);
                 rx_count = __shfl_sync(FULL_MASK, rx_count, 0);
                 if (rx_count < 0) rx_count = 0;
                 if (rx_count > v_local)
@@ -6203,9 +6214,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (local_id < 1 || local_id > v_local)
                         continue;
                     int r0 = local_id - 1;
-                    atomicOr(&dirty_bitmap[r0 >> 5], 1u << (r0 & 31));
-                    atomicOr(&dirty_hint[r0 >> 10],
-                             1u << ((r0 >> 5) & 31));
+                    l3_system_mark_publish(&dirty_bitmap[r0 >> 5], 1u << (r0 & 31));
+                    l3_system_mark_publish(&dirty_hint[r0 >> 10],
+                                           1u << ((r0 >> 5) & 31));
                 }
                 __syncwarp();
 #endif
@@ -6225,14 +6236,13 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 __syncwarp();
                 bool direct_rx_activity = (rx_count > 0 || rx_improved > 0);
                 if (!lane_id)
-                    atomicExch(
+                    l3_atomic_store_release<cuda::thread_scope_system>(
                         bulk_inbox_ack + rx_slot,
                         global_active_round |
                         (direct_rx_activity
                              ? GLOBAL_ROUND_DIRECT_ACK_ACTIVITY : 0));
-                __threadfence_system();
                 if (!lane_id)
-                    atomicExch(bulk_inbox_state + rx_slot, BULK_SLOT_DONE);
+                    l3_atomic_store_release<cuda::thread_scope_system>(bulk_inbox_state + rx_slot, BULK_SLOT_DONE);
                 __threadfence_system();
 
                 // 两张卡都先回写“我已消费你发来的 marker”，再等待对端回写
@@ -6243,7 +6253,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 while (true)
                 {
                     if (!lane_id)
-                        peer_ack_raw = atomicAdd(peer_bulk_inbox_ack + rx_slot, 0);
+                        peer_ack_raw = l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + rx_slot);
                     peer_ack_raw = __shfl_sync(FULL_MASK, peer_ack_raw, 0);
                     int peer_ack_epoch =
                         peer_ack_raw & GLOBAL_ROUND_DIRECT_ACK_EPOCH_MASK;
@@ -6269,8 +6279,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (!lane_id)
                         printf("GLOBAL_ROUND_PROTOCOL_ERROR g%d claim round=%d rx=%d\\n",
                                v_begin, global_active_round, bulk_rx_epoch);
-                    manager_end = 1;
-                    *global_exit = 1;
+                    l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                    l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                     __syncwarp();
                     continue;
                 }
@@ -6372,9 +6382,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #endif
                 if (!lane_id)
                 {
-                    atomicExch(bulk_quiesce_req, 0);
-                    atomicExch(bulk_quiesce_ack, 0);
-                    atomicExch(&bulk_inject_ack, 0);
+                    l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                    l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
+                    l3_atomic_store_release<cuda::thread_scope_block>(&bulk_inject_ack, 0);
                     timeline_idle_write_reason(local_idle, round_nonempty ? 0 : 1,
                                                 round_nonempty ? 21 : 22);
                 }
@@ -6410,8 +6420,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (!lane_id)
                     {
                         timeline_idle_write(local_idle, 1);
-                        manager_end = 1;
-                        *global_exit = 1;
+                        l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                         atomicExch(&g_t_term, TIMELINE_CLOCK());
                     }
                     __syncwarp();
@@ -6439,7 +6449,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             unsigned bulk_diag_iter = 0;
 #endif
 
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
 #if (BULK_DIAG == true)
                 bulk_diag_iter++;
@@ -6450,18 +6460,18 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                      bulk_inbox_epoch, bulk_inbox_state,
                                      bulk_inbox_generation, bulk_rx_epoch) : -1;
                     int in_ack = (bulk_inbox_ack != NULL)
-                               ? atomicAdd(bulk_inbox_ack + bulk_inbox_slot(bulk_rx_epoch + 1), 0) : -1;
+                               ? l3_atomic_load_acquire<cuda::thread_scope_system>(bulk_inbox_ack + bulk_inbox_slot(bulk_rx_epoch + 1)) : -1;
                     int qsz = mlmq.get_global_queue_size();
                     int fhead = (bulk_frontier_head != NULL) ? atomicAdd(bulk_frontier_head, 0) : -1;
                     int ftail = (bulk_frontier_tail != NULL) ? atomicAdd(bulk_frontier_tail, 0) : -1;
                     printf("BULK g%d it=%u epoch=%d active=%d rx=%d in=%d/%d q=%d req=%d wack=%d/%d pack=%d done=%d send=%d idle=%d peer=%d frontier=%d/%d\\n",
                            v_begin, bulk_diag_iter, bulk_epoch, bulk_active_epoch, bulk_rx_epoch,
                            in_epoch, in_ack, qsz,
-                           bulk_quiesce_req ? atomicAdd(bulk_quiesce_req, 0) : -1,
-                           bulk_quiesce_ack ? atomicAdd(bulk_quiesce_ack, 0) : -1,
-                           bulk_work_warp_total, atomicAdd((int *)&bulk_pack_req, 0),
-                           atomicAdd((int *)&bulk_publish_done, 0), atomicAdd(&bulk_send_count, 0),
-                           atomicAdd(local_idle, 0), peer_local_idle ? atomicAdd(peer_local_idle, 0) : -1,
+                           bulk_quiesce_req ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) : -1,
+                           bulk_quiesce_ack ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_ack) : -1,
+                           bulk_work_warp_total, l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req),
+                           l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_publish_done), atomicAdd(&bulk_send_count, 0),
+                           l3_atomic_load_acquire<cuda::thread_scope_system>(local_idle), peer_local_idle ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) : -1,
                            fhead, ftail);
                 }
                 if (bulk_diag_iter >= 5000000u)
@@ -6470,8 +6480,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         printf("BULK_DIAG_ABORT g%d active=%d epoch=%d rx=%d\\n",
                                v_begin, bulk_active_epoch, bulk_epoch, bulk_rx_epoch);
-                        manager_end = 1;
-                        *global_exit = 1;
+                        l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                     }
                     __syncwarp();
                     continue;
@@ -6526,8 +6536,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             if (!lane_id) timeline_idle_write_reason(local_idle, 0, 1);
                             if (!lane_id)
                             {
-                                atomicExch(bulk_quiesce_req, 0);
-                                atomicExch(bulk_quiesce_ack, 0);
+                                l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                                l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
                             }
                             __threadfence_system();
                             __syncwarp();
@@ -6542,10 +6552,10 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                     bulk_inbox_epoch, bulk_inbox_state,
                                     bulk_inbox_generation, bulk_rx_epoch) : 0;
                     int peer_idle_1 = (peer_local_idle != NULL)
-                                    ? atomicAdd(peer_local_idle, 0) : 0;
+                                    ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) : 0;
                     __threadfence_system();
                     int peer_idle_2 = (peer_local_idle != NULL)
-                                    ? atomicAdd(peer_local_idle, 0) : 0;
+                                    ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) : 0;
                     int q_now = mlmq.get_global_queue_size();
                     int inj_now = atomicAdd(&inj_pending, 0);
                     bool local_empty_now = (q_now == 0 && inj_now == 0 && node_in_num == 0);
@@ -6559,13 +6569,13 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bool bulk_outbox_empty = true;
                     if (peer_bulk_inbox_ack != NULL)
                     {
-                        int published = atomicAdd((int *)&bulk_tx_epoch_published, 0);
+                        int published = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published);
                         if (published > 0)
                         {
                             int published_slot = bulk_inbox_slot(published);
                             __threadfence_system();
                             bulk_outbox_empty =
-                                (atomicAdd(peer_bulk_inbox_ack + published_slot, 0) >= published);
+                                (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + published_slot) >= published);
                         }
                     }
                     if (!pending && peer_idle_1 == 1 && peer_idle_2 == 1
@@ -6578,7 +6588,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                    v_begin, bulk_epoch, bulk_rx_epoch, pending,
                                    peer_idle_1, peer_idle_2, q_now, inj_now,
                                    (int)bulk_outbox_empty, bulk_idle_stable,
-                                   atomicAdd(bulk_quiesce_req, 0));
+                                   l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req));
 #endif
                         if (bulk_idle_stable < 2)
                         {
@@ -6587,8 +6597,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         }
                         if (!lane_id)
                         {
-                            manager_end = 1;
-                            *global_exit = 1;
+                            l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                            l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                             atomicExch(&g_t_term, TIMELINE_CLOCK());
                         }
                         __syncwarp();
@@ -6603,8 +6613,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             if (!lane_id)
                             {
                                 timeline_idle_write_reason(local_idle, 0, 10);
-                                atomicExch(bulk_quiesce_req, 0);
-                                atomicExch(bulk_quiesce_ack, 0);
+                                l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                                l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
                             }
                         }
                     }
@@ -6616,7 +6626,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 // 后才消费 inbox 和启动 L3 打包，确保 remote_mark 在整个打包期间冻结。
                 if (bulk_active_epoch != 0)
                 {
-                    int ack = (bulk_quiesce_ack != NULL) ? atomicAdd(bulk_quiesce_ack, 0) : 0;
+                    int ack = (bulk_quiesce_ack != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_ack) : 0;
                     bool frontier_empty_now = true;
 #if (BULK_FRONTIER == true)
                     frontier_empty_now = bulk_frontier_empty(
@@ -6659,18 +6669,18 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     }
 
                     // 现在 work 已静止且 inbox 已消费，才允许 L3 warp 打包发布。
-                    if (atomicAdd((int *)&bulk_pack_req, 0) == 0)
+                    if (l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req) == 0)
                     {
                         if (!lane_id)
                         {
                             bulk_send_count = 0;
-                            bulk_publish_done = 0;
-                            bulk_pack_req = bulk_active_epoch;
+                            l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_publish_done, 0);
+                            l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_req, bulk_active_epoch);
                         }
                         __syncwarp();
                     }
 
-                    if (atomicAdd((int *)&bulk_publish_done, 0) < bulk_active_epoch)
+                    if (l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_publish_done) < bulk_active_epoch)
                     {
                         // L3 可能正在等待 peer 对上一 epoch 的 ack。frontier 模式下
                         // work warp 仍被 quiesce request 挡住，不能在这里继续消费后续
@@ -6706,7 +6716,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bulk_frontier_reset_done = false;
 #endif
                     if (!lane_id)
-                        bulk_pack_req = 0;
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_pack_req, 0);
                     __syncwarp();
 
                     // 发布后再次检查本地 L2/injection 状态。接收 epoch 可能刚刚
@@ -6724,8 +6734,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         if (!lane_id)
                         {
                             timeline_idle_write_reason(local_idle, 0, 2);
-                            atomicExch(bulk_quiesce_req, 0);
-                            atomicExch(bulk_quiesce_ack, 0);
+                            l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                            l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
                         }
                     }
                     else
@@ -6741,7 +6751,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         printf("BULK_ROUND_DONE g%d epoch=%d sent=%d rximp=%d nonempty=%d postq=%d postinj=%d idle=%d req=%d\\n",
                                v_begin, bulk_epoch, sent, rx_improved,
                                (int)round_nonempty, post_q, post_inj, (int)bulk_local_idle,
-                               atomicAdd(bulk_quiesce_req, 0));
+                               l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req));
 #endif
                     __threadfence_system();
                     __syncwarp();
@@ -6759,8 +6769,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bulk_round_rx_improved = 0;
                     if (!lane_id)
                     {
-                        atomicExch(bulk_quiesce_ack, 0);
-                        atomicExch(bulk_quiesce_req, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 1);
                     }
                     __threadfence_system();
                     __syncwarp();
@@ -6787,7 +6797,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 // 假阴而漏掉一个本地待注入顶点，直接进入 epoch 会造成提前终止。
                 bool dirty_empty = true;
                 for (int w = lane_id; w < dwords; w += WARP_SIZE)
-                    if (*(volatile unsigned *)&dirty_bitmap[w] != 0) dirty_empty = false;
+                    if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0) dirty_empty = false;
                 unsigned dirty_mask = __ballot_sync(FULL_MASK, dirty_empty);
                 if (dirty_mask != FULL_MASK)
                 {
@@ -6801,8 +6811,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 bulk_round_rx_improved = 0;
                 if (!lane_id)
                 {
-                    atomicExch(bulk_quiesce_ack, 0);
-                    atomicExch(bulk_quiesce_req, 1);
+                    l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
+                    l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 1);
                 }
                 __threadfence_system();
                 __syncwarp();
@@ -6829,10 +6839,11 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_WAIT_DIAG == true)
         l3_wait_clock manager_wait(!lane_id);
 #endif
-        while (!manager_end)
+        while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
         {
 #if (L3_WAIT_DIAG == true)
-            if(!lane_id) manager_wait.tick(*(volatile int*)l3_term_state);
+            if(!lane_id) manager_wait.tick(
+                l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state));
 #endif
 #if (L3_LIVE_SNAPSHOT == true)
             atomicAdd(&g_l3_live_state.manager_lane_iter[lane_id], 1ull);
@@ -6929,10 +6940,10 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 }
                 else
                 {
-                    int count = atomicAdd(bulk_inbox_count + active_slot, 0);
+                    int count = l3_atomic_load_relaxed<cuda::thread_scope_system>(bulk_inbox_count + active_slot);
                     int head = atomicAdd(bulk_inbox_read_head + active_slot, 0);
                     int inflight = atomicAdd(bulk_inbox_inflight + active_slot, 0);
-                    int epoch = atomicAdd(bulk_inbox_epoch + active_slot, 0);
+                    int epoch = l3_atomic_load_relaxed<cuda::thread_scope_system>(bulk_inbox_epoch + active_slot);
                     if (head >= count)
                     {
                         bool closing = false;
@@ -7000,8 +7011,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     printf("L3_TERM_INBOX_BRANCH g%d req=%d state=%d rx=%d\n",
                            v_begin,
-                           (l3_term_req != NULL) ? atomicAdd(l3_term_req, 0) : -1,
-                           (l3_term_state != NULL) ? atomicAdd(l3_term_state, 0) : -1,
+                           (l3_term_req != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) : -1,
+                           (l3_term_state != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state) : -1,
                            bulk_rx_epoch);
                     diag_inbox_seen = true;
                 }
@@ -7014,7 +7025,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 // 形成 manager/work 互等。
                 int inbox_term_req_now = 0;
                 if (!lane_id && l3_term_req != NULL)
-                    inbox_term_req_now = atomicAdd(l3_term_req, 0);
+                    inbox_term_req_now = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 inbox_term_req_now = __shfl_sync(
                     FULL_MASK, inbox_term_req_now, 0);
                 if (inbox_term_req_now != 0)
@@ -7024,8 +7035,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_PROGRESS_DIAG == true)
                         ++g_l3_progress.term_inbox_cancel;
 #endif
-                        atomicExch(l3_term_state, L3_TERM_ACTIVE);
-                        atomicExch(l3_term_req, 0);
+                        l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_ACTIVE));
+                        l3_atomic_store_release<cuda::thread_scope_device>(l3_term_req, 0);
                         timeline_idle_write_reason(local_idle, 0, 42);
 #if (HANG_DIAG == true)
                         printf("L3_TERM_INBOX_CANCEL g%d rx=%d\n",
@@ -7043,12 +7054,12 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 // manager 可能因 L2 队列满而等待，而 work 又在等待 probe
                 // 解除。先撤销 probe，让 work 恢复后再消费该 inbox。
                 if (bulk_quiesce_req != NULL
-                    && atomicAdd(bulk_quiesce_req, 0) != 0)
+                    && l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) != 0)
                 {
                     if (!lane_id)
                     {
-                        atomicExch(bulk_quiesce_req, 0);
-                        atomicExch(bulk_quiesce_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
                         timeline_idle_write_reason(local_idle, 0, 42);
 #if (BULK_DIAG == true)
                         printf("ASYNC_RX_CANCEL_PROBE g%d rx=%d\\n",
@@ -7135,17 +7146,17 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             if (!lane_id && (diag_iter % BULK_DIAG_K) == 0)
             {
                 int req_diag = (bulk_quiesce_req != NULL)
-                             ? atomicAdd(bulk_quiesce_req, 0) : -1;
+                             ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) : -1;
                 int ack_diag = (bulk_quiesce_ack != NULL)
-                             ? atomicAdd(bulk_quiesce_ack, 0) : -1;
+                             ? l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_ack) : -1;
                 printf("ASYNC_TERM_DIAG g%d it=%u req=%d ack=%d/%d q=%d idle=%d peer=%d rx=%d out=%d\\n",
                        v_begin, diag_iter, req_diag, ack_diag,
                        bulk_work_warp_total,
                        (int)mlmq.get_global_queue_size(),
-                       (int)atomicAdd(local_idle, 0),
-                       peer_local_idle ? atomicAdd(peer_local_idle, 0) : -1,
+                       (int)l3_atomic_load_acquire<cuda::thread_scope_system>(local_idle),
+                       peer_local_idle ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) : -1,
                        bulk_rx_epoch,
-                       (int)atomicAdd((int *)&bulk_tx_epoch_published, 0));
+                       (int)l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published));
             }
 #endif
             // 1. 扫描脏位图取改进顶点（不消费 L2：L2 活由 work warps 消费）
@@ -7207,13 +7218,13 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_STICKY_READY == true || L3_TERM_WAIT_ACK == true)
                 // A frozen worker cannot consume newly visible L2 work.
                 // Release the request before the early busy-path return.
-                if (!lane_id && l3_term_req && atomicAdd(l3_term_req, 0) != 0) {
+                if (!lane_id && l3_term_req && l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) != 0) {
 #if (L3_TERM_WAIT_ACK == true && L3_PROGRESS_DIAG == true)
                     ++g_l3_progress.term_cancels;
                     ++g_l3_progress.term_invalid;
 #endif
-                    atomicExch(l3_term_state, L3_TERM_ACTIVE);
-                    atomicExch(l3_term_req, 0);
+                    l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_ACTIVE));
+                    l3_atomic_store_release<cuda::thread_scope_device>(l3_term_req, 0);
                     __threadfence_system();
                 }
 #endif
@@ -7232,10 +7243,10 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             {
                 if (!lane_id)
                 {
-                    if (l3_term_req && atomicAdd(l3_term_req, 0) != 0)
+                    if (l3_term_req && l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) != 0)
                     {
-                        atomicExch(l3_term_state, L3_TERM_ACTIVE);
-                        atomicExch(l3_term_req, 0);
+                        l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_ACTIVE));
+                        l3_atomic_store_release<cuda::thread_scope_device>(l3_term_req, 0);
                     }
                     timeline_idle_write_reason(local_idle, 0, 43);
                 }
@@ -7261,7 +7272,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (wait_round % 4 != 0)
                     {
                         bool w_done = is_src_w
-                            ? (peer_local_idle != NULL && atomicAdd(peer_local_idle, 0) == 1)
+                            ? (peer_local_idle != NULL && l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) == 1)
                             : (*(volatile int *)seed_ready != 0);
                         if (!w_done) { __threadfence(); continue; }
                     }
@@ -7321,7 +7332,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (!g_t_idle) atomicExch(&g_t_idle, TIMELINE_CLOCK());
                     __threadfence_system();
                     bool peer_done = (peer_local_idle != NULL)
-                                  && (atomicAdd(peer_local_idle, 0) == 1);
+                                  && (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) == 1);
                     peer_idle_s = peer_done ? 1 : 0;
                 }
                 __syncwarp();
@@ -7329,8 +7340,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     if (!lane_id)
                     {
-                        manager_end = 1;
-                        *global_exit = 1;
+                        l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                        l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                         atomicExch(&g_t_term, TIMELINE_CLOCK());
                     }
                 }
@@ -7417,12 +7428,12 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     int hwords = (dwords + 31) / 32;
                     for (int w = lane_id; w < hwords; w += 32)
-                        if (*(volatile unsigned *)&dirty_hint[w] != 0) { dirty_empty = false; break; }
+                        if (l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_hint[w]) != 0) { dirty_empty = false; break; }
                 }
                 else
                 {
                     for (int w = lane_id; w < dwords; w += 32)
-                        if (*(volatile unsigned *)&dirty_bitmap[w] != 0) { dirty_empty = false; break; }
+                        if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0) { dirty_empty = false; break; }
                 }
 #else
                 // SEED_BARRIER: dirty_hint 快速 + 关键轮全扫——ph==2（seed_ready 前）全扫、
@@ -7435,12 +7446,12 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     int hwords = (dwords + 31) / 32;
                     for (int w = lane_id; w < hwords; w += 32)
-                        if (*(volatile unsigned *)&dirty_hint[w] != 0) { dirty_empty = false; break; }
+                        if (l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_hint[w]) != 0) { dirty_empty = false; break; }
                 }
                 else
                 {
                     for (int w = lane_id; w < dwords; w += 32)
-                        if (*(volatile unsigned *)&dirty_bitmap[w] != 0) { dirty_empty = false; break; }
+                        if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0) { dirty_empty = false; break; }
                 }
 #endif
             }
@@ -7449,7 +7460,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             // 仍由注入 warp 消费。inbox ACK 只说明 manager 完成 atomicMin，
             // 不能说明 work warp 已经领取并处理这些顶点。
             for (int w = lane_id; w < dwords; w += WARP_SIZE)
-                if (*(volatile unsigned *)&dirty_bitmap[w] != 0)
+                if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w]) != 0)
                     dirty_empty = false;
             // 普通终止轮只检查 ready_hint，允许 hint 假阳性；pre_ready
             // 路径会再做 ready bitmap 权威全扫。
@@ -7483,7 +7494,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_ACK_SCAN == true)
             if(n_gpu > 1 && backstop_round % BACKSTOP_K == 0) {
                 int token=0;
-                if(!lane_id && l3_term_req) token=atomicAdd(l3_term_req,0);
+                if(!lane_id && l3_term_req) token=l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 token=__shfl_sync(FULL_MASK,token,0);
                 // A pending termination request already mandates a complete
                 // local scan after all producer ACKs, before READY. Do not
@@ -7512,7 +7523,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 const unsigned long long periodic_started = clock64();
 #if (L3_ACK_SCAN == true)
                 if(!lane_id) {
-                    const int token=l3_term_req ? atomicAdd(l3_term_req,0) : 0;
+                    const int token=l3_term_req ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) : 0;
                     if(!token) ++g_l3_progress.periodic_active;
                     else if(token==ack_scan_checked_token) ++g_l3_progress.periodic_certified;
                     else ++g_l3_progress.periodic_uncertified;
@@ -7522,7 +7533,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_BOUNDED_RECOVERY == true)
                 int recovery_term_req = 0;
                 if (!lane_id && l3_term_req != NULL)
-                    recovery_term_req = atomicAdd(l3_term_req, 0);
+                    recovery_term_req = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 recovery_term_req = __shfl_sync(FULL_MASK, recovery_term_req, 0);
                 if (recovery_term_req == 0) {
                     const auto slice = recovery_cursor.take(v_local, RECOVERY_VERTEX_BUDGET);
@@ -7610,7 +7621,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     int mh2_words = (((mark_words + 31) / 32) + 31) / 32;
                     bool hint2_nonempty = false;
                     for (int w = lane_id; w < mh2_words; w += 32)
-                        if (*(volatile unsigned *)&mark_hint2[w] != 0) { hint2_nonempty = true; break; }
+                        if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint2[w]) != 0) { hint2_nonempty = true; break; }
                     // mark_hint2 is only a sparse wake-up summary.  It may retain
                     // stale positive bits after the authoritative remote_mark word
                     // has been consumed.  A positive summary must therefore be
@@ -7639,7 +7650,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     l3_live_manager_lane_state(lane_id, 401, (int)l2_empty);
 #endif
                     for (int w = lane_id; w < mh2_words; w += 32)
-                        if (*(volatile unsigned *)&mark_hint2[w] != 0) { hint2_nonempty = true; break; }
+                        if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint2[w]) != 0) { hint2_nonempty = true; break; }
 #if (L3_LIVE_SNAPSHOT == true)
                     l3_live_manager_lane_state(lane_id, 402, (int)l2_empty);
 #endif
@@ -7693,7 +7704,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             {
                 int ghost_words = (ghost_num + 31) / 32;
                 for (int w = lane_id; w < ghost_words; w += 32)
-                    if (*(volatile unsigned *)&ghost_mark[w] != 0) ghost_mark_empty = false;
+                    if (l3_atomic_load_acquire<cuda::thread_scope_device>(&ghost_mark[w]) != 0) ghost_mark_empty = false;
             }
             __syncwarp();
             unsigned gm_mask = __ballot_sync(FULL_MASK, ghost_mark_empty);
@@ -7743,7 +7754,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         int published_slot = bulk_inbox_slot(published);
                         bulk_outbox_empty =
-                            (atomicAdd(peer_bulk_inbox_ack + published_slot, 0)
+                            (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + published_slot)
                              >= published);
                     }
                 }
@@ -7806,7 +7817,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             // 而注入 warp不会再响应新的 backstop 请求，形成协议内死锁。
             int l3_term_probe_req = 0;
             if (!lane_id && l3_term_req != NULL)
-                l3_term_probe_req = atomicAdd(l3_term_req, 0);
+                l3_term_probe_req = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
             l3_term_probe_req = __shfl_sync(
                 FULL_MASK, l3_term_probe_req, 0);
             bool l3_term_probe_free = (l3_term_probe_req == 0);
@@ -7836,7 +7847,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     int mkw = (peer_v_local + 31) / 32;
                     bool m_ok = true;
                     for (int w = lane_id; w < mkw; w += 32)
-                        if (*(volatile unsigned *)&remote_mark[w]) { m_ok = false; break; }
+                        if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w])) { m_ok = false; break; }
                     __syncwarp();
                     unsigned mm = __ballot_sync(FULL_MASK, m_ok);
                     if (mm != FULL_MASK) all_mark_empty = false;
@@ -7885,7 +7896,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         // phase1→2 全扫确认（hint 快速路径的精确性兜底；仅候选轮执行）
                         bool d_ok = true;
                         for (int w = lane_id; w < dwords; w += 32)
-                            if (*(volatile unsigned *)&dirty_bitmap[w]) { d_ok = false; break; }
+                            if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w])) { d_ok = false; break; }
                         __syncwarp();
                         unsigned dm2 = __ballot_sync(FULL_MASK, d_ok);
                         if (dm2 == FULL_MASK && !lane_id)
@@ -7910,12 +7921,12 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         // phase2→3 全扫确认（dirty/mark hint 快速路径的精确性兜底；仅候选轮）
                         bool d_ok = true, m_ok = true;
                         for (int w = lane_id; w < dwords; w += 32)
-                            if (*(volatile unsigned *)&dirty_bitmap[w]) { d_ok = false; break; }
+                            if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w])) { d_ok = false; break; }
                         if (remote_mark != NULL && need_mark)
                         {
                             int mkw = (peer_v_local + 31) / 32;
                             for (int w = lane_id; w < mkw; w += 32)
-                                if (*(volatile unsigned *)&remote_mark[w]) { m_ok = false; break; }
+                                if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w])) { m_ok = false; break; }
                         }
                         __syncwarp();
                         unsigned dmm = __ballot_sync(FULL_MASK, d_ok && m_ok);
@@ -8007,11 +8018,11 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             if (!lane_id)
             {
                 if (bulk_quiesce_req != NULL)
-                    async_req_token = atomicAdd(bulk_quiesce_req, 0);
+                    async_req_token = l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req);
                 if (bulk_quiesce_ack != NULL)
-                    async_work_ack = atomicAdd(bulk_quiesce_ack, 0);
+                    async_work_ack = l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_ack);
                 if (peer_local_idle != NULL)
-                    async_peer_idle_1 = atomicAdd(peer_local_idle, 0);
+                    async_peer_idle_1 = l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle);
             }
             async_req_token = __shfl_sync(FULL_MASK, async_req_token, 0);
             async_work_ack = __shfl_sync(FULL_MASK, async_work_ack, 0);
@@ -8019,7 +8030,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             __threadfence_system();
             int async_peer_idle_2 = 1;
             if (!lane_id && peer_local_idle != NULL)
-                async_peer_idle_2 = atomicAdd(peer_local_idle, 0);
+                async_peer_idle_2 = l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle);
             async_peer_idle_2 = __shfl_sync(
                 FULL_MASK, async_peer_idle_2, 0);
             if (n_gpu > 1 && bulk_quiesce_req != NULL
@@ -8037,8 +8048,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         ++async_quiesce_token;
                         if (async_quiesce_token == 0)
                             ++async_quiesce_token;
-                        atomicExch(bulk_quiesce_ack, 0);
-                        atomicExch(bulk_quiesce_req, async_quiesce_token);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, async_quiesce_token);
                         timeline_idle_write_reason(local_idle, 0, 40);
 #if (BULK_DIAG == true)
                         printf("ASYNC_TERM_REQ g%d token=%d peer=%d/%d ack=0 q=%d\\n",
@@ -8056,8 +8067,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     if (!lane_id)
                     {
-                        atomicExch(bulk_quiesce_req, 0);
-                        atomicExch(bulk_quiesce_ack, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_req, 0);
+                        l3_atomic_store_release<cuda::thread_scope_device>(bulk_quiesce_ack, 0);
                         timeline_idle_write_reason(local_idle, 0, 41);
 #if (BULK_DIAG == true)
                         printf("ASYNC_TERM_CANCEL g%d token=%d peer=%d/%d q=%d dirty=%d mark=%d\\n",
@@ -8114,15 +8125,17 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #endif
                 if (!lane_id)
                 {
-                    term_state_now = atomicAdd(l3_term_state, 0);
-                    term_req_now = atomicAdd(l3_term_req, 0);
+                    term_state_now = l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state);
+                    term_req_now = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 }
                 term_state_now = __shfl_sync(
                     FULL_MASK, term_state_now, 0);
                 term_req_now = __shfl_sync(FULL_MASK, term_req_now, 0);
 #if (L3_FEEDBACK_DRAIN == true)
                 int drain_pending = 0;
-                if (!lane_id) drain_pending = atomicAdd(&l3_drain_requested, 0);
+                if (!lane_id)
+                    drain_pending = l3_atomic_load_acquire<cuda::thread_scope_block>(
+                        &l3_drain_requested);
                 drain_pending = __shfl_sync(FULL_MASK, drain_pending, 0);
                 // Let TX service the request before trying to freeze it again.
                 term_local_candidate = term_local_candidate && !drain_pending;
@@ -8135,7 +8148,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                            v_begin, term_req_now, term_state_now,
                            (int)term_local_candidate,
                            (peer_l3_term_state != NULL)
-                               ? atomicAdd(peer_l3_term_state, 0) : -1,
+                               ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state) : -1,
                            (int)bulk_outbox_empty);
                     diag_term_seen = true;
                 }
@@ -8152,8 +8165,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             ++g_l3_progress.term_requests;
 #endif
                             if (l3_term_token <= 0) l3_term_token = 1;
-                            atomicExch(l3_term_state, L3_TERM_QUIESCING);
-                            atomicExch(l3_term_req, l3_term_token);
+                            l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_QUIESCING));
+                            l3_atomic_store_release<cuda::thread_scope_device>(l3_term_req, l3_term_token);
 #if (L3_EVENT_RING == true)
                             l3_event_push(L3_EVENT_TERM_REQUEST,
                                           l3_term_token,
@@ -8175,7 +8188,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         for (int i = lane_id; i < bulk_work_warp_total; i += WARP_SIZE)
                         {
-                            if (atomicAdd(l3_term_ack_slots + i, 0) != term_req_now)
+                            if (l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_ack_slots + i) != term_req_now)
                             {
                                 work_ack_ok = false;
                                 break;
@@ -8188,7 +8201,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bool inject_ack_ok = (term_req_now != 0);
                     for (int i = lane_id; i < INJECT_WARP_NUM; i += WARP_SIZE)
                     {
-                        if (l3_term_inject_ack[i] != term_req_now)
+                        if (l3_atomic_load_acquire<cuda::thread_scope_block>(l3_term_inject_ack + i) != term_req_now)
                         {
                             inject_ack_ok = false;
                             break;
@@ -8198,7 +8211,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bool all_inject_ack = (inject_ack_mask == FULL_MASK);
 
                     int tx_ack = 0;
-                    if (!lane_id) tx_ack = atomicAdd(&l3_term_tx_ack, 0);
+                    if (!lane_id) tx_ack = l3_atomic_load_acquire<cuda::thread_scope_block>(&l3_term_tx_ack);
                     tx_ack = __shfl_sync(FULL_MASK, tx_ack, 0);
                     bool all_tx_ack = term_req_now != 0 && tx_ack == term_req_now;
 
@@ -8216,18 +8229,18 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         term_local_candidate = term_local_candidate && exact_mark_empty;
 #if (L3_FEEDBACK_DRAIN == true)
                         if (!lane_id && !exact_mark_empty)
-                            atomicExch(&l3_drain_requested, 1);
+                            l3_atomic_store_release<cuda::thread_scope_block>(&l3_drain_requested, 1);
 #endif
                         // Earlier busy/outbox snapshots may precede TX's last
                         // claim/publication. Read the published epoch AFTER its
                         // ACK; it cannot change until this request is cancelled.
                         int tx_drained = 1;
                         if (!lane_id) {
-                            int published = atomicAdd((int *)&bulk_tx_epoch_published, 0);
+                            int published = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published);
                             tx_drained = atomicAdd(&l3_busy, 0) == 0;
                             if (published > 0)
                                 tx_drained = tx_drained && peer_bulk_inbox_ack != NULL
-                                    && atomicAdd(peer_bulk_inbox_ack + bulk_inbox_slot(published), 0) >= published;
+                                    && l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + bulk_inbox_slot(published)) >= published;
                         }
                         tx_drained = __shfl_sync(FULL_MASK, tx_drained, 0);
 #if (L3_WAIT_DIAG == true)
@@ -8239,7 +8252,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 
                     int peer_state_now = L3_TERM_ACTIVE;
                     if (!lane_id)
-                        peer_state_now = atomicAdd(peer_l3_term_state, 0);
+                        peer_state_now = l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state);
                     peer_state_now = __shfl_sync(FULL_MASK, peer_state_now, 0);
 
 #if (L3_ACK_SCAN == true)
@@ -8336,8 +8349,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             else
                                 ++g_l3_progress.term_peer_cancel;
 #endif
-                            atomicExch(l3_term_state, L3_TERM_ACTIVE);
-                            atomicExch(l3_term_req, 0);
+                            l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_ACTIVE));
+                            l3_atomic_store_release<cuda::thread_scope_device>(l3_term_req, 0);
 #if (L3_EVENT_RING == true)
                             l3_event_push(L3_EVENT_TERM_CANCEL,
                                           term_req_now,
@@ -8356,7 +8369,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         if (!lane_id)
                         {
-                            atomicExch(l3_term_state, L3_TERM_READY);
+                            l3_atomic_store_release<cuda::thread_scope_system>(l3_term_state, static_cast<int>(L3_TERM_READY));
 #if (L3_EVENT_RING == true)
                             l3_event_push(L3_EVENT_TERM_READY,
                                           term_req_now,
@@ -8375,7 +8388,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         int peer_ready = L3_TERM_ACTIVE;
                         if (!lane_id)
-                            peer_ready = atomicAdd(peer_l3_term_state, 0);
+                            peer_ready = l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state);
                         peer_ready = __shfl_sync(FULL_MASK, peer_ready, 0);
                         if (peer_ready == L3_TERM_READY)
                         {
@@ -8386,18 +8399,18 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                               term_req_now,
                                               peer_ready,
                                               bulk_rx_epoch,
-                                              atomicAdd((int *)&bulk_tx_epoch_published, 0));
+                                              l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published));
 #endif
 #if (HANG_DIAG == true)
                                 printf("L3_TERM_HANDSHAKE_EXIT g%d req=%d state=%d peerstate=%d\n",
                                        v_begin,
-                                       (l3_term_req != NULL) ? atomicAdd(l3_term_req, 0) : -1,
-                                       (l3_term_state != NULL) ? atomicAdd(l3_term_state, 0) : -1,
+                                       (l3_term_req != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) : -1,
+                                       (l3_term_state != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state) : -1,
                                        (peer_l3_term_state != NULL)
-                                           ? atomicAdd(peer_l3_term_state, 0) : -1);
+                                           ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state) : -1);
 #endif
-                                manager_end = 1;
-                                *global_exit = 1;
+                                l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                                l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                                 atomicExch(&g_t_term, TIMELINE_CLOCK());
                             }
                             __syncwarp();
@@ -8443,7 +8456,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     __threadfence_system();
                     // n=1 时 peer_local_idle 为 NULL，视为 peer 已空闲（单卡无需握手）
                     // 跨卡读用原子读（绕过 L2 缓存，V0.2 验证原子可见）
-                    peer_idle_s = (peer_local_idle == NULL) || (atomicAdd(peer_local_idle, 0) == 1);
+                    peer_idle_s = (peer_local_idle == NULL) || (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) == 1);
                 }
                 __syncwarp();
                 // E2 二次确认：peer 已 idle -> 其最终 flush（atomicMin+置 dirty）必已可见。
@@ -8475,14 +8488,14 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         if (!lane_id) p_confirm_cnt++;
 #endif
                         for (int w = lane_id; w < dwords; w += 32)
-                            if (*(volatile unsigned *)&dirty_bitmap[w]) c_ok = false;
+                            if (l3_atomic_load_acquire<cuda::thread_scope_system>(&dirty_bitmap[w])) c_ok = false;
 #if (ASYNC_FB == true)
                         // B 开销优化: 二次确认加 mark 全扫（快速路径 hint 假阴的终止兜底）
                         if (remote_mark != NULL)
                         {
                             int mark_words = (peer_v_local + 31) / 32;
                             for (int w = lane_id; w < mark_words; w += 32)
-                                if (*(volatile unsigned *)&remote_mark[w]) c_ok = false;
+                                if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w])) c_ok = false;
                         }
 #endif
                         if (backstop_collaborative(node_data, last_processed, dirty_bitmap, dirty_hint,
@@ -8511,10 +8524,10 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (HANG_DIAG == true)
                             printf("L3_TERM_LEGACY_EXIT g%d req=%d state=%d peerstate=%d\n",
                                    v_begin,
-                                   (l3_term_req != NULL) ? atomicAdd(l3_term_req, 0) : -1,
-                                   (l3_term_state != NULL) ? atomicAdd(l3_term_state, 0) : -1,
+                                   (l3_term_req != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) : -1,
+                                   (l3_term_state != NULL) ? l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state) : -1,
                                    (peer_l3_term_state != NULL)
-                                       ? atomicAdd(peer_l3_term_state, 0) : -1);
+                                       ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state) : -1);
 #endif
 #if (SEED_BARRIER == true && ASYNC_FB == true)
                             // 终检: peer 已 idle 后，双方有效改进计数仍等于 quiet 基准
@@ -8526,8 +8539,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             if (eff_final)
 #endif
                             {
-                                manager_end = 1;
-                                *global_exit = 1;
+                                l3_atomic_store_release<cuda::thread_scope_block>(&manager_end, 1);
+                                l3_atomic_store_release<cuda::thread_scope_device>(global_exit, 1);
                                 atomicExch(&g_t_term, TIMELINE_CLOCK());
                             }
                         }
@@ -8551,7 +8564,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         bool actual_mark_empty = true;
                         int actual_mark_words = (peer_v_local + 31) / 32;
                         for (int w = lane_id; w < actual_mark_words; w += WARP_SIZE)
-                            if (*(volatile unsigned *)&remote_mark[w] != 0)
+                            if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]) != 0)
                                 actual_mark_empty = false;
                         __syncwarp();
                         unsigned actual_mark_mask = __ballot_sync(FULL_MASK, actual_mark_empty);
@@ -8603,51 +8616,51 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 int hd_sid = (seed_inject_done != NULL) ? *(volatile int *)seed_inject_done : -1;
                 int hd_dirty = 0, hd_mark = 0;
                 int hd_term_req = (l3_term_req != NULL)
-                                ? atomicAdd(l3_term_req, 0) : -1;
+                                ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) : -1;
                 int hd_term_state = (l3_term_state != NULL)
-                                  ? atomicAdd(l3_term_state, 0) : -1;
+                                  ? l3_atomic_load_acquire<cuda::thread_scope_system>(l3_term_state) : -1;
                 int hd_peer_term_state = (peer_l3_term_state != NULL)
-                                       ? atomicAdd(peer_l3_term_state, 0) : -1;
+                                       ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_l3_term_state) : -1;
                 int hd_term_ack0 = (l3_term_ack_slots != NULL)
-                                 ? atomicAdd(l3_term_ack_slots, 0) : -1;
+                                 ? l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_ack_slots) : -1;
                 int hd_inject_ack0 = (INJECT_WARP_NUM > 0)
-                                   ? l3_term_inject_ack[0] : -1;
+                                   ? l3_atomic_load_acquire<cuda::thread_scope_block>(l3_term_inject_ack) : -1;
                 int hd_rx_slot = bulk_inbox_slot(bulk_rx_epoch + 1);
-                int hd_tx = atomicAdd((int *)&bulk_tx_epoch_published, 0);
+                int hd_tx = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published);
                 int hd_tx_slot = bulk_inbox_slot(hd_tx > 0 ? hd_tx : 1);
                 int hd_tx_next = hd_tx + 1;
                 int hd_tx_next_slot = bulk_inbox_slot(hd_tx_next);
                 int hd_in_state = (bulk_inbox_state != NULL)
-                                ? atomicAdd(bulk_inbox_state + hd_rx_slot, 0) : -1;
+                                ? l3_atomic_load_acquire<cuda::thread_scope_system>(bulk_inbox_state + hd_rx_slot) : -1;
                 int hd_in_gen = (bulk_inbox_generation != NULL)
-                              ? atomicAdd(bulk_inbox_generation + hd_rx_slot, 0) : -1;
+                              ? l3_atomic_load_relaxed<cuda::thread_scope_system>(bulk_inbox_generation + hd_rx_slot) : -1;
                 int hd_in_epoch = (bulk_inbox_epoch != NULL)
-                                ? atomicAdd(bulk_inbox_epoch + hd_rx_slot, 0) : -1;
+                                ? l3_atomic_load_relaxed<cuda::thread_scope_system>(bulk_inbox_epoch + hd_rx_slot) : -1;
                 int hd_in_ack = (bulk_inbox_ack != NULL)
-                              ? atomicAdd(bulk_inbox_ack + hd_rx_slot, 0) : -1;
+                              ? l3_atomic_load_acquire<cuda::thread_scope_system>(bulk_inbox_ack + hd_rx_slot) : -1;
                 int hd_out_state = (peer_bulk_inbox_state != NULL)
-                                 ? atomicAdd(peer_bulk_inbox_state + hd_tx_slot, 0) : -1;
+                                 ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_state + hd_tx_slot) : -1;
                 int hd_out_gen = (peer_bulk_inbox_generation != NULL)
-                               ? atomicAdd(peer_bulk_inbox_generation + hd_tx_slot, 0) : -1;
+                               ? l3_atomic_load_relaxed<cuda::thread_scope_system>(peer_bulk_inbox_generation + hd_tx_slot) : -1;
                 int hd_out_ack = (peer_bulk_inbox_ack != NULL)
-                               ? atomicAdd(peer_bulk_inbox_ack + hd_tx_slot, 0) : -1;
+                               ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + hd_tx_slot) : -1;
                 int hd_next_state = (peer_bulk_inbox_state != NULL)
-                                  ? atomicAdd(peer_bulk_inbox_state + hd_tx_next_slot, 0) : -1;
+                                  ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_state + hd_tx_next_slot) : -1;
                 int hd_next_gen = (peer_bulk_inbox_generation != NULL)
-                                ? atomicAdd(peer_bulk_inbox_generation + hd_tx_next_slot, 0) : -1;
+                                ? l3_atomic_load_relaxed<cuda::thread_scope_system>(peer_bulk_inbox_generation + hd_tx_next_slot) : -1;
                 int hd_next_ack = (peer_bulk_inbox_ack != NULL)
-                                ? atomicAdd(peer_bulk_inbox_ack + hd_tx_next_slot, 0) : -1;
+                                ? l3_atomic_load_acquire<cuda::thread_scope_system>(peer_bulk_inbox_ack + hd_tx_next_slot) : -1;
                 for (int h = lane_id; h < hwords; h += 32)
-                    if (*(volatile unsigned *)&dirty_hint[h] != 0) { hd_dirty = 1; break; }
+                    if (l3_atomic_load_relaxed<cuda::thread_scope_system>(&dirty_hint[h]) != 0) { hd_dirty = 1; break; }
                 if (remote_mark != NULL && mark_hint != NULL)
                 {
                     int mhw = ((peer_v_local + 31) / 32 + 31) / 32;
                     for (int h = lane_id; h < mhw; h += 32)
-                        if (*(volatile unsigned *)&mark_hint[h] != 0) { hd_mark = 1; break; }
+                        if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]) != 0) { hd_mark = 1; break; }
                 }
                 printf("g%d w0 it=%u q=%d l3=%d idle=%d ph=%d sr=%d sid=%d dirty=%d mark=%d inj=%d rx=%d/%d/%d/%d out=%d s=%d/%d ack=%d next=%d/%d/%d term=%d/%d peerterm=%d ack0=%d iack0=%d\n",
                        v_begin, diag_iter, (int)mlmq.get_global_queue_size(), *(volatile int *)&l3_busy,
-                       *(volatile int *)local_idle, hd_ph, hd_sr, hd_sid, hd_dirty, hd_mark,
+                       l3_atomic_load_acquire<cuda::thread_scope_system>(local_idle), hd_ph, hd_sr, hd_sid, hd_dirty, hd_mark,
                        *(volatile int *)&inj_pending, bulk_rx_epoch, hd_in_state,
                        hd_in_gen, hd_in_epoch, hd_tx, hd_out_state, hd_out_gen, hd_out_ack,
                        hd_next_state, hd_next_gen, hd_next_ack, hd_term_req,
@@ -8714,7 +8727,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (GLOBAL_ROUND_MULTI_PACK == true)
         int pack_seen = 0;
 #endif
-        while (!manager_end)
+        while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
         {
 #if (L3_RECOVERY_MODE == 2)
             if (l3_recovery_service(recovery_cursor, 1 + vec_id,
@@ -8723,7 +8736,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     &bs_req, &bs_done, &bs_found)) continue;
 #endif
 #if (GLOBAL_ROUND_MULTI_PACK == true)
-            int pack_req = atomicAdd((int *)&bulk_pack_req, 0);
+            int pack_req = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req);
             if (pack_req > pack_seen)
             {
                 bool packed = global_round_multi_pack_worker(
@@ -8740,7 +8753,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                     pack_seen = pack_req;
                     if (vec_id == 0 && !lane_id)
-                        atomicExch((int *)&bulk_tx_epoch_published, pack_req);
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, pack_req);
                 }
                 continue;
             }
@@ -8795,7 +8808,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             // rx_epoch+1 领取，跳过一个 epoch 会让后续消息永远不可见。
             int async_frozen_bank = -1;
             int async_pending_epoch = 0;
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
                 if (async_frozen_bank < 0)
                 {
@@ -8840,7 +8853,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     async_frozen_bank = old_bank;
                     async_pending_epoch = async_tx_epoch + 1;
                     if (!lane_id)
-                        atomicExch((int *)&bulk_publish_done, 0);
+                        l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_publish_done, 0);
                     __threadfence_system();
                     __syncwarp();
                 }
@@ -8869,7 +8882,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 if (!lane_id)
                 {
                     async_tx_epoch = async_pending_epoch;
-                    atomicExch((int *)&bulk_tx_epoch_published, async_tx_epoch);
+                    l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, async_tx_epoch);
                     timeline_idle_write_reason(local_idle, 0, 30);
                     // bulk_pack_publish_warp 已在 FROZEN bank 上完成 mark/cand
                     // 清空；发布成功后才允许复用该 bank。
@@ -8899,9 +8912,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         if (n_gpu > 1)
         {
             int handled_round = 0;
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
-                int req = atomicAdd((int *)&bulk_pack_req, 0);
+                int req = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req);
                 if (req > handled_round)
                 {
                     global_round_multi_pack_worker(
@@ -8929,9 +8942,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         if (n_gpu > 1)
         {
             int handled_round = 0;
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
-                int req = atomicAdd((int *)&bulk_pack_req, 0);
+                int req = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req);
                 if (req > handled_round)
                 {
 #if (GLOBAL_ROUND_DENSE_EXCHANGE == true)
@@ -8959,7 +8972,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         handled_round = req;
                         if (!lane_id)
-                            atomicExch((int *)&bulk_tx_epoch_published, req);
+                            l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, req);
 #if (GLOBAL_ROUND_DIAG == true)
                         if (!lane_id)
                             printf("GLOBAL_ROUND_PUBLISH g%d round=%d count=%d\\n",
@@ -8978,9 +8991,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         if (n_gpu > 1)
         {
             int handled_epoch = 0;
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
-                int req = atomicAdd((int *)&bulk_pack_req, 0);
+                int req = l3_atomic_load_acquire<cuda::thread_scope_block>((int *)&bulk_pack_req);
                 if (req > handled_epoch)
                 {
                     bool published = bulk_pack_publish_warp(
@@ -8997,7 +9010,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     {
                         handled_epoch = req;
                         if (!lane_id)
-                            atomicExch((int *)&bulk_tx_epoch_published, req);
+                            l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, req);
                     }
                 }
                 else
@@ -9019,7 +9032,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         if (remote_cand == NULL)
         {
             // n=1 退化：无发送侧候选，空转等待终止（不阻塞 warp0 终止判定）
-            while (!manager_end) { __threadfence(); }
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0) { __threadfence(); }
         }
         else
         {
@@ -9097,7 +9110,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_WAIT_DIAG == true)
             l3_wait_clock tx_wait(!lane_id);
 #endif
-            while (!manager_end)
+            while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
             {
 #if (L3_WAIT_DIAG == true)
                 tx_wait.tick(0);
@@ -9128,7 +9141,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #endif
                         retained_count = 0;
                         if (!lane_id) {
-                            atomicExch((int *)&bulk_tx_epoch_published, bulk_tx_epoch);
+                            l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, bulk_tx_epoch);
                             l3_busy = 0;
                         }
                         __syncwarp();
@@ -9145,14 +9158,14 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 // Safe point: any retained journal is published above; no new
                 // mark can be claimed while this exact termination token lives.
                 int tx_term_req = 0;
-                if (!lane_id && l3_term_req) tx_term_req = atomicAdd(l3_term_req, 0);
+                if (!lane_id && l3_term_req) tx_term_req = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 tx_term_req = __shfl_sync(FULL_MASK, tx_term_req, 0);
                 if (tx_term_req != 0) {
 #if (L3_WAIT_DIAG == true)
                     tx_wait.tick(2);
 #endif
                     __threadfence_block();
-                    if (!lane_id) atomicExch(&l3_term_tx_ack, tx_term_req);
+                    if (!lane_id) l3_atomic_store_release<cuda::thread_scope_block>(&l3_term_tx_ack, tx_term_req);
                     __syncwarp();
                     continue;
                 }
@@ -9229,7 +9242,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 unsigned long long event_snapshot = 0; // lane0, before extraction
 #endif
 #if (L3_FEEDBACK_DRAIN == true)
-                if (!lane_id) feedback_scan = atomicExch(&l3_drain_requested, 0);
+                if (!lane_id)
+                    feedback_scan = l3_atomic_exchange_acq_rel<cuda::thread_scope_block>(
+                        &l3_drain_requested, 0);
                 feedback_scan = __shfl_sync(FULL_MASK, feedback_scan, 0);
 #endif
                 if (!lane_id) {
@@ -9240,7 +9255,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     // No peer-idle shortcut: avoid eagerly exporting every
                     // transient boundary improvement while this owner works.
                     const bool local_empty = mlmq.get_global_queue_size() == 0;
-                    unsigned long long limit = local_empty ? 25000ull
+                    unsigned long long limit = local_empty ? L3_WINDOW_MIN_CYCLES
                         : new_event ? L3_SETTLE_CYCLES : L3_WINDOW_MAX_CYCLES;
                     window_scan = window.allow(clock64(), false, false, limit);
 #else
@@ -9255,7 +9270,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         window_scan = event_full || (has_hint &&
                             (decision == l3_window_state::SCAN ||
                              mlmq.get_global_queue_size() == 0 ||
-                             (peer_local_idle && atomicAdd(peer_local_idle, 0) != 0)));
+                             (peer_local_idle && l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) != 0)));
                         if (!window_scan && !feedback_scan && decision == l3_window_state::SCAN) {
                             window.deferred(decision_now);
 #if (L3_DIAGNOSTICS == true)
@@ -9268,7 +9283,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (decision == l3_window_state::PROBE) {
                         const bool new_event = atomicAdd(&g_bulk_mark_signal, 0ull) != window.signal;
                         window_scan = new_event && (mlmq.get_global_queue_size() == 0
-                            || (peer_local_idle && atomicAdd(peer_local_idle, 0) != 0));
+                            || (peer_local_idle && l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) != 0));
                     }
 #endif
 #endif
@@ -9302,9 +9317,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         if (!lane_id)
                         {
                             peer_idle_now = (peer_local_idle != NULL)
-                                          && (atomicAdd(peer_local_idle, 0) != 0);
+                                          && (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) != 0);
                             local_idle_now = (local_idle != NULL)
-                                           && (atomicAdd(local_idle, 0) != 0);
+                                           && (l3_atomic_load_acquire<cuda::thread_scope_system>(local_idle) != 0);
                         }
                         peer_idle_now = __shfl_sync(FULL_MASK, peer_idle_now, 0);
                         local_idle_now = __shfl_sync(FULL_MASK, local_idle_now, 0);
@@ -9344,9 +9359,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (!lane_id)
                     {
                         peer_idle_now = (peer_local_idle != NULL)
-                                      && (atomicAdd(peer_local_idle, 0) != 0);
+                                      && (l3_atomic_load_acquire<cuda::thread_scope_system>(peer_local_idle) != 0);
                         local_idle_now = (local_idle != NULL)
-                                       && (atomicAdd(local_idle, 0) != 0);
+                                       && (l3_atomic_load_acquire<cuda::thread_scope_system>(local_idle) != 0);
                     }
                     peer_idle_now = __shfl_sync(FULL_MASK, peer_idle_now, 0);
                     local_idle_now = __shfl_sync(FULL_MASK, local_idle_now, 0);
@@ -9444,10 +9459,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     for (int wi = lane_id; wi < scan_words && collected < L3_BATCH; wi += 32)
                     {
                         const int w=l3_scan_word(wi);
-                        int mv = *(volatile unsigned *)&remote_mark[w];
+                        int mv = l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]);
                         if (!mv) continue;
-                        int old = atomicCAS(&remote_mark[w], mv, 0);
-                        if (old != mv) continue;          // 竞争，下轮再试
+                        if (!l3_device_mark_claim(&remote_mark[w], (unsigned)mv)) continue;
                         unsigned done_bits = 0;
                         for (int b = 0; b < 32 && collected < L3_BATCH; b++)
                         {
@@ -9468,7 +9482,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             else
                             {
                                 atomicMin(&remote_cand[lidx], nd);
-                                atomicOr(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
+                                l3_device_mark_publish(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
                             }
                             done_bits |= (1u << b);
                             collected++;
@@ -9477,7 +9491,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         {
                             unsigned leftover = mv & ~done_bits;
                             if (leftover)
-                                atomicOr(&remote_mark[w], leftover);
+                                l3_device_mark_publish(&remote_mark[w], leftover);
                         }
                     }
                 }
@@ -9488,7 +9502,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 {
                 for (int h = lane_id; h < mh_words && collected < L3_BATCH; h += 32)
                 {
-                    unsigned hv = *(volatile unsigned *)&mark_hint[h];
+                    unsigned hv = l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]);
                     if (!hv) continue;
                     bool block_cleared = true;      // 块内所有 mark word 均已消费（或本就为空）
                     bool cap_hit = false;           // 容量触顶 → 跳过保守清零
@@ -9496,10 +9510,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     for (int w = w0; w < w0 + 32 && !cap_hit; w++)
                     {
                         if (w >= mark_words) break; // 对齐上取整可能越界，clamp
-                        int mv = *(volatile unsigned *)&remote_mark[w];
+                        int mv = l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]);
                         if (!mv) continue;
-                        int old = atomicCAS(&remote_mark[w], mv, 0);
-                        if (old != mv) continue;          // 竞争，下轮再试
+                        if (!l3_device_mark_claim(&remote_mark[w], (unsigned)mv)) continue;
                         block_cleared = false;
                         // 已处理 bit 掩码（用于回填未处理 bit，防 collected 达上限丢失）
                         unsigned done_bits = 0;
@@ -9525,7 +9538,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             {
                                 // 缓冲满：写回候选并重置 mark（下轮处理，不丢失）
                                 atomicMin(&remote_cand[lidx], nd);
-                                atomicOr(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
+                                l3_device_mark_publish(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
                                 // E4: 回填路径1 显式补 mark_hint（§18.3 补充点，消除对 block_cleared 语义依赖）
                                 atomicOr(&mark_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
                                 // P1: 回填路径1 显式补 mark_hint2
@@ -9540,7 +9553,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             unsigned leftover = mv & ~done_bits;
                             if (leftover)
                             {
-                                atomicOr(&remote_mark[w], leftover);
+                                l3_device_mark_publish(&remote_mark[w], leftover);
                                 // E4: 回填路径2 显式补 mark_hint
                                 atomicOr(&mark_hint[w >> 5], 1u << (w & 31));
                                 // P1: 回填路径2 显式补 mark_hint2
@@ -9557,7 +9570,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         for (int w = w0; w < w0 + 32; w++)
                         {
                             if (w >= mark_words) break;
-                            if (*(volatile unsigned *)&remote_mark[w] != 0) { all_zero = false; break; }
+                            if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]) != 0) { all_zero = false; break; }
                         }
                         if (all_zero)
                         {
@@ -9574,12 +9587,12 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                 unsigned h2_old = atomicAdd(h2_ptr, 0u);
                                 if (h2_old & h2_bit)
                                 {
-                                    if (*(volatile unsigned *)&mark_hint[h] == 0)
+                                    if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]) == 0)
                                     {
                                         unsigned h2_prev = atomicCAS(
                                             h2_ptr, h2_old, h2_old & ~h2_bit);
                                         if (h2_prev == h2_old
-                                            && *(volatile unsigned *)&mark_hint[h] != 0)
+                                            && l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]) != 0)
                                             atomicOr(h2_ptr, h2_bit);
                                     }
                                 }
@@ -9596,7 +9609,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 //   复扫 mark_hint 块全 0 才 CAS 0（假阳保留到下轮，仅多扫，无正确性影响）。
                 for (int h2 = lane_id; h2 < mh2_words && collected < L3_BATCH; h2 += 32)
                 {
-                    unsigned hv2 = *(volatile unsigned *)&mark_hint2[h2];
+                    unsigned hv2 = l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint2[h2]);
                     if (!hv2) continue;
 #if (WORK_COUNT == true)
                     atomicAdd(&g_h2_hit, 1ull);
@@ -9606,7 +9619,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     for (int h = h0; h < h0 + 32 && !cap_hit2 && collected < L3_BATCH; h++)
                     {
                         if (h >= mh_words) break;
-                        unsigned hv = *(volatile unsigned *)&mark_hint[h];
+                        unsigned hv = l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]);
                         if (!hv) continue;
                         bool block_cleared = true;
                         bool cap_hit = false;
@@ -9614,7 +9627,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         for (int w = w0; w < w0 + 32 && !cap_hit; w++)
                         {
                             if (w >= mark_words) break;
-                            int mv = *(volatile unsigned *)&remote_mark[w];
+                            int mv = l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]);
 #if (WORK_COUNT == true)
                             atomicAdd(&g_w_scan, 1ull);
 #endif
@@ -9622,8 +9635,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (WORK_COUNT == true)
                             atomicAdd(&g_w_hit, 1ull);
 #endif
-                            int old = atomicCAS(&remote_mark[w], mv, 0);
-                            if (old != mv) continue;
+                            if (!l3_device_mark_claim(&remote_mark[w], (unsigned)mv)) continue;
                             block_cleared = false;
                             unsigned done_bits = 0;
                             for (int b = 0; b < 32 && collected < L3_BATCH; b++)
@@ -9645,7 +9657,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                 else
                                 {
                                     atomicMin(&remote_cand[lidx], nd);
-                                    atomicOr(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
+                                    l3_device_mark_publish(&remote_mark[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
                                     atomicOr(&mark_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
                                     atomicOr(&mark_hint2[(lidx - 1) >> 15], 1u << (((lidx - 1) >> 10) & 31));
                                 }
@@ -9657,7 +9669,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                 unsigned leftover = mv & ~done_bits;
                                 if (leftover)
                                 {
-                                    atomicOr(&remote_mark[w], leftover);
+                                    l3_device_mark_publish(&remote_mark[w], leftover);
                                     atomicOr(&mark_hint[w >> 5], 1u << (w & 31));
                                     atomicOr(&mark_hint2[w >> 10], 1u << ((w >> 5) & 31));
                                 }
@@ -9670,7 +9682,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                             for (int w = w0; w < w0 + 32; w++)
                             {
                                 if (w >= mark_words) break;
-                                if (*(volatile unsigned *)&remote_mark[w] != 0) { all_zero = false; break; }
+                                if (l3_atomic_load_acquire<cuda::thread_scope_device>(&remote_mark[w]) != 0) { all_zero = false; break; }
                             }
                             if (all_zero)
                                 atomicCAS(&mark_hint[h], hv, 0);
@@ -9684,7 +9696,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         for (int h = h0; h < h0 + 32; h++)
                         {
                             if (h >= mh_words) break;
-                            if (*(volatile unsigned *)&mark_hint[h] != 0) { all_zero2 = false; break; }
+                            if (l3_atomic_load_relaxed<cuda::thread_scope_device>(&mark_hint[h]) != 0) { all_zero2 = false; break; }
                         }
                         if (all_zero2)
                             atomicCAS(&mark_hint2[h2], hv2, 0);
@@ -9782,7 +9794,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         __syncwarp();
 #endif
                         if (!lane_id)
-                            atomicExch((int *)local_idle, 0);
+                            l3_atomic_store_release<cuda::thread_scope_system>((int *)local_idle, 0);
                         __syncwarp();
                         int next_tx_epoch = bulk_tx_epoch + 1;
                         bool published = false;
@@ -9825,7 +9837,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
 #if (L3_LIVE_SNAPSHOT == true)
                                 l3_live_l3_state(4, bulk_tx_epoch, cnt);
 #endif
-                                atomicExch((int *)&bulk_tx_epoch_published, bulk_tx_epoch);
+                                l3_atomic_store_release<cuda::thread_scope_block>((int *)&bulk_tx_epoch_published, bulk_tx_epoch);
 #if (L3_EVENT_RING == true)
                                 l3_event_push(L3_EVENT_TX_PUBLISHED,
                                               bulk_tx_epoch, cnt, l3_eff,
@@ -9879,7 +9891,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         for (int i = lane_id; i < cnt; i += 32)
                         {
                             int lidx = l3_lidx[i];
-                            atomicMin(&peer_node_data[lidx], l3_nd[i]);
+                            l3_atomic_min_system(&peer_node_data[lidx], l3_nd[i]);
                             // B 开销优化: 对称预填充——灌值候选同时写本卡 peer 镜像，
                             //   使 gpu0 phase3 的 work 松弛 gpu1 顶点时被过滤（P2 成立图
                             //   消除 gpu0→gpu1 方向的无效跨卡候选）
@@ -9901,14 +9913,14 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         for (int i = lane_id; i < cnt; i += 32)
                         {
                             int lidx = l3_lidx[i];
-                            VALUE_TYPE old = atomicMin(&peer_node_data[lidx], l3_nd[i]);
+                            VALUE_TYPE old = l3_atomic_min_system(&peer_node_data[lidx], l3_nd[i]);
                             if (l3_nd[i] < old)
                             {
                                 atomicAdd(&l3_eff, 1);   // B 开销优化: 真实改进计数（自适应）
                                 atomicAdd(&g_remote_effective, 1ull);
                                 if (remote_eff != NULL) atomicAdd(remote_eff, 1ull);
-                                atomicOr(&peer_dirty_bitmap[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
-                                atomicOr(&peer_dirty_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
+                                l3_system_mark_publish(&peer_dirty_bitmap[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
+                                l3_system_mark_publish(&peer_dirty_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
                             }
                         }
                         __syncwarp();
@@ -9943,14 +9955,14 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     for (int i = lane_id; i < cnt; i += 32)
                     {
                         int lidx = l3_lidx[i];
-                        VALUE_TYPE old = atomicMin(&peer_node_data[lidx], l3_nd[i]);
+                        VALUE_TYPE old = l3_atomic_min_system(&peer_node_data[lidx], l3_nd[i]);
                         if (l3_nd[i] < old)
                         {
                             atomicAdd(&g_remote_effective, 1ull);
-                            atomicOr(&peer_dirty_bitmap[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
+                            l3_system_mark_publish(&peer_dirty_bitmap[(lidx - 1) >> 5], 1u << ((lidx - 1) & 31));
                             // E3: 同置 peer dirty_hint（每 32 个 dirty word 一个 hint bit）
                             //   dirty word = (lidx-1)>>5, hint word = word>>5 = (lidx-1)>>10, hint bit = word&31
-                            atomicOr(&peer_dirty_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
+                            l3_system_mark_publish(&peer_dirty_hint[(lidx - 1) >> 10], 1u << (((lidx - 1) >> 5) & 31));
                         }
                     }
                     __syncwarp();
@@ -10127,7 +10139,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
         bool global_round_inj_quiesced = false;
 #endif
 
-        while (!manager_end)
+        while (l3_atomic_load_acquire<cuda::thread_scope_block>(&manager_end) == 0)
         {
 #if (L3_LIVE_SNAPSHOT == true)
             if (!lane_id)
@@ -10152,7 +10164,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             // 的窗口启动 full pack，而该 warp 随后才把旧 dirty 写入 L2。
             if (n_gpu > 1 && bulk_quiesce_req != NULL)
             {
-                int gr_req = atomicAdd(bulk_quiesce_req, 0);
+                int gr_req = l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req);
                 if (gr_req == 0)
                 {
                     global_round_inj_quiesced = false;
@@ -10165,7 +10177,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                 else if (node_in_num == 0)
                 {
                     if (!lane_id)
-                        atomicAdd(&bulk_inject_ack, 1);
+                        l3_atomic_fetch_add_acq_rel<cuda::thread_scope_block>(&bulk_inject_ack, 1);
                     __syncwarp();
                     global_round_inj_quiesced = true;
                     __threadfence();
@@ -10181,7 +10193,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
      GLOBAL_ROUND == false && GLOBAL_ROUND_ASYNC == false && SEED_BARRIER == false)
             if (n_gpu > 1 && l3_term_req != NULL)
             {
-                int term_req_now = atomicAdd(l3_term_req, 0);
+                int term_req_now = l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req);
                 if (term_req_now == 0)
                     l3_term_inject_seen = 0;
                 bool term_inject_ready =
@@ -10193,8 +10205,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (l3_term_inject_seen != term_req_now)
                     {
                         if (!lane_id)
-                            atomicExch(l3_term_inject_ack + inj_id,
-                                       term_req_now);
+                            l3_atomic_store_release<cuda::thread_scope_block>(l3_term_inject_ack + inj_id, term_req_now);
                         l3_term_inject_seen = term_req_now;
                     }
                     __syncwarp();
@@ -10202,8 +10213,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     if (!lane_id)
                         l3_live_inject_state(inj_id, 2);
 #endif
-                    while (atomicAdd(l3_term_req, 0) == term_req_now
-                           && *global_exit == 0)
+                    while (l3_atomic_load_acquire<cuda::thread_scope_device>(l3_term_req) == term_req_now
+                           && l3_atomic_load_acquire<cuda::thread_scope_device>(global_exit) == 0)
                     {
                         __threadfence();
                     }
@@ -10215,7 +10226,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
             // work 静止请求期间，注入 warp 先完成当前 node_in；随后停止扫描 dirty，
             // 防止 manager 已开始打包时又产生本地注入/远程 mark 竞争。
             if (n_gpu > 1 && bulk_quiesce_req != NULL
-                && atomicAdd(bulk_quiesce_req, 0) != 0 && node_in_num == 0
+                && l3_atomic_load_acquire<cuda::thread_scope_device>(bulk_quiesce_req) != 0 && node_in_num == 0
                 // 终止二次确认可能同时发起 backstop_collaborative。
                 // bs_req 的响应优先于 quiesce：否则注入 warp 会在这里空转，
                 // 而 warp0 永远等不到 bs_done，形成异步终止互锁。
@@ -10327,7 +10338,7 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                     bool gmark_empty = true;
                     int ghost_words = (ghost_num + 31) / 32;
                     for (int w = lane_id; w < ghost_words; w += 32)
-                        if (*(volatile unsigned *)&ghost_mark[w]) gmark_empty = false;
+                        if (l3_atomic_load_acquire<cuda::thread_scope_device>(&ghost_mark[w])) gmark_empty = false;
                     __syncwarp();
                     unsigned gme = __ballot_sync(FULL_MASK, gmark_empty);
                     if (gme != FULL_MASK)
@@ -10339,10 +10350,9 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                         __syncwarp();
                         for (int w = lane_id; w < ghost_words; w += 32)
                         {
-                            unsigned val = *(volatile unsigned *)&ghost_mark[w];
+                            unsigned val = l3_atomic_load_acquire<cuda::thread_scope_device>(&ghost_mark[w]);
                             if (!val) continue;
-                            unsigned old = atomicCAS(&ghost_mark[w], val, 0);
-                            if (old != val) continue;
+                            if (!l3_device_mark_claim(&ghost_mark[w], val)) continue;
                             for (int b = 0; b < 32; b++)
                             {
                                 if (!(val & (1u << b))) continue;
@@ -10352,7 +10362,8 @@ __global__ void __launch_bounds__(768) manage_block_kernel(int m, int nnz, int *
                                 if (slot < GHOST_BF_CAP)
                                     g_buf[slot] = gi;
                                 else
-                                    atomicOr(&ghost_mark[gi >> 5], 1u << (gi & 31));  // 容量超限回填
+                                    l3_device_mark_publish(
+                                        &ghost_mark[gi >> 5], 1u << (gi & 31));
                             }
                         }
                         __syncwarp();
@@ -10907,22 +10918,51 @@ template <typename E>
 static void report_final_l2_counts(const l2_delta_queue<E> &q, int gpu)
 {
     std::vector<int> reads(q.bucketNum), writes(q.bucketNum);
-    int completed = 0;
+    int completed = 0, guarded_writes = 0, overflow_detected = 0;
     g_benchmark.require(cudaMemcpy(reads.data(), q.bucket_read_done,
         sizeof(int)*q.bucketNum, cudaMemcpyDeviceToHost)==cudaSuccess, "L2 final reads");
     g_benchmark.require(cudaMemcpy(writes.data(), q.write_reserve,
         sizeof(int)*q.bucketNum, cudaMemcpyDeviceToHost)==cudaSuccess, "L2 final writes");
     g_benchmark.require(cudaMemcpy(&completed, q.read_done,
         sizeof(int), cudaMemcpyDeviceToHost)==cudaSuccess, "L2 final completion");
+    g_benchmark.require(cudaMemcpy(&guarded_writes, q.debug_write_done,
+        sizeof(int), cudaMemcpyDeviceToHost)==cudaSuccess, "L2 guarded writes");
+    g_benchmark.require(cudaMemcpy(&overflow_detected, q.counter_overflow,
+        sizeof(int), cudaMemcpyDeviceToHost)==cudaSuccess, "L2 overflow flag");
+#if (DQ_COUNTER_OVERFLOW_GUARD == true)
+    constexpr int overflow_guard = 1;
+#else
+    constexpr int overflow_guard = 0;
+#endif
+    g_benchmark.require(overflow_guard==1,
+                        "L2 final evidence requires overflow guard");
+    g_benchmark.require(overflow_detected==0,
+                        "L2 cumulative counter overflow detected");
     long long read_total=0, write_total=0;
+    const long long total_capacity =
+        static_cast<long long>(q.bucketNum) * q.total_size;
+    g_benchmark.require(total_capacity<=INT_MAX,
+                        "L2 aggregate capacity exceeds counter range");
+    int max_bucket_writes=0;
     for (int b=0; b<q.bucketNum; ++b) {
         g_benchmark.require(reads[b]>=0 && writes[b]>=0 && reads[b]==writes[b],
                             "L2 final per-bucket drain");
+        g_benchmark.require(writes[b]<=q.total_size,
+                            "L2 final per-bucket no-wrap bound");
         read_total+=reads[b]; write_total+=writes[b];
+        max_bucket_writes=std::max(max_bucket_writes,writes[b]);
     }
+    g_benchmark.require(write_total<=INT_MAX, "L2 final total counter range");
+    g_benchmark.require(guarded_writes==write_total,
+                        "L2 guarded write conservation");
     g_benchmark.require(completed==write_total, "L2 final completion conservation");
-    printf("L2_FINAL gpu=%d buckets=%d reads=%lld writes=%lld completed=%d\n",
-           gpu,q.bucketNum,read_total,write_total,completed);
+    printf("L2_FINAL gpu=%d buckets=%d reads=%lld writes=%lld completed=%d "
+           "guarded_writes=%d max_bucket_writes=%d per_bucket_capacity=%d "
+           "total_capacity=%lld counter_bits=%zu overflow_guard=%d "
+           "overflow_detected=%d no_wrap=1\n",
+           gpu,q.bucketNum,read_total,write_total,completed,guarded_writes,
+           max_bucket_writes,q.total_size,total_capacity,8*sizeof(int),
+           overflow_guard,overflow_detected);
 }
 #endif
 
@@ -11119,8 +11159,12 @@ void kernel_adaptive(int gpu_id, int src, mlmq_setup setup)
                gpu_id, L3_LOCAL_YIELD_BATCHES, int(L3_LOCAL_YIELD_DIAG));
 #endif
         if (g_benchmark.enabled)
-            printf("L3_CONFIG gpu=%d work_blocks=%d delta=%d worker_recovery=%d term_wait_ack=%d rx_priority_bootstrap=%d rx_express=%d rx_express_enabled=%d rx_express_slots=%d rx_express_batch=%d rx_l2_pull=%d rx_l2_pull_claim=%d rx_l2_pull_enabled=%d\n",
-                   gpu_id, work_block_num, setup.s_l2_delta,
+            printf("L3_CONFIG gpu=%d work_blocks=%d delta=%d queue_type=%d window_mode=%d window_min=%llu window_max=%llu idle_backoff=%d worker_recovery=%d term_wait_ack=%d rx_priority_bootstrap=%d rx_express=%d rx_express_enabled=%d rx_express_slots=%d rx_express_batch=%d rx_l2_pull=%d rx_l2_pull_claim=%d rx_l2_pull_enabled=%d\n",
+                   gpu_id, work_block_num, setup.s_l2_delta, int(setup.type),
+                   int(L3_WINDOW_MODE),
+                   static_cast<unsigned long long>(L3_WINDOW_MIN_CYCLES),
+                   static_cast<unsigned long long>(L3_WINDOW_MAX_CYCLES),
+                   int(L3_IDLE_BACKOFF),
                    int(L3_WORKER_RECOVERY), int(L3_TERM_WAIT_ACK),
                    int(L3_RX_PRIORITY_BOOTSTRAP), int(L3_RX_EXPRESS),
                    rx_express_enabled,
@@ -11145,6 +11189,13 @@ void kernel_adaptive(int gpu_id, int src, mlmq_setup setup)
         // warp 分配: 0=终止+backstop+注入slice0, 1..manage_warp_num()=L2 manager,
         //   manage_warp_num()+1=L3 flush, 其后 INJECT_WARP_NUM 个=注入 warp
         int manage_thread_num = WARP_SIZE * (1 + mlmq.manage_warp_num() + 1 + INJECT_WARP_NUM);
+        const int active_work_warps = work_block_num * WARP_NUM_PER_BLOCK;
+        g_benchmark.require(active_work_warps <= gctx[gpu_id].l3_term_ack_capacity,
+            "worker geometry ACK capacity");
+        if (g_benchmark.enabled)
+            printf("L3_WORKER_ACK gpu=%d active_slots=%d capacity=%d work_blocks=%d warps_per_block=%d\n",
+                   gpu_id, active_work_warps, gctx[gpu_id].l3_term_ack_capacity,
+                   work_block_num, WARP_NUM_PER_BLOCK);
 #if (MLMQ_WORKER_THREADS == 384 || MLMQ_WORKER_THREADS == 320)
         int resident_blocks = 0;
         g_benchmark.require(cudaOccupancyMaxActiveBlocksPerMultiprocessor(
@@ -11152,8 +11203,6 @@ void kernel_adaptive(int gpu_id, int src, mlmq_setup setup)
             ALIGN_THREAD_PER_BLOCK + WARP_SIZE, total_shm_size) == cudaSuccess,
             "worker geometry occupancy query");
         g_benchmark.require(resident_blocks == 1, "worker geometry requires one resident block per SM");
-        g_benchmark.require(work_block_num * WARP_NUM_PER_BLOCK <= gctx[gpu_id].l3_term_ack_capacity,
-            "worker geometry ACK capacity");
         printf("L3_WORKER_GEOMETRY gpu=%d threads=%d warps=%d blocks=%d resident=%d ack_slots=%d shm=%d\n",
             gpu_id, ALIGN_THREAD_PER_BLOCK + WARP_SIZE, WARP_NUM_PER_BLOCK,
             work_block_num, resident_blocks, gctx[gpu_id].l3_term_ack_capacity, total_shm_size);
@@ -11201,7 +11250,7 @@ void kernel_adaptive(int gpu_id, int src, mlmq_setup setup)
             rx_express_enabled,
 #endif
 #if (BULK_ROUND == true)
-            work_block_num * WARP_NUM_PER_BLOCK,
+            active_work_warps,
 #endif
 #if (MANAGE_PROFILE == true)
             mgmt_profile);

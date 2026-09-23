@@ -1,0 +1,48 @@
+/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr
+Graph name: /mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr
+nGPU: 2
+sources: 1
+delta override: 32
+nnodes=1048576, nedges=13783240.
+Host memory for graph: 113 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+gpu1 kernel launch error: too many resources requested for launch (701)
+MLMQ BENCH failure: worker launch
+Maximum degree: 36
+----------Graph information----------
+number of vertices 1048576 number of edges 13783240
+average nnz 13.14 maximum nnz 36.00 deviation nnz 3.63
+average weight 1.00 maximum weight 1.00 deviation weight 0.00 
+-------------------------------------
+CPU done!
+CPU total work count 13783234
+CPU sequential time 134.80 ms
+GPU0 partition: [0, 524288) v_local=524288 nedges=6880533
+GPU1 partition: [524288, 1048576) v_local=524288 nedges=6902707
+L3_COMPACT_CANDIDATES gpu=0 peer_vertices=524288 boundary_vertices=2382 compact=1 words=75
+L3_BOUNDARY_INDEX gpu=0 dense_words=16384 boundary_words=1546 indexed=1 build_ms=7.706999
+L3_COMPACT_CANDIDATES gpu=1 peer_vertices=524288 boundary_vertices=2458 compact=1 words=77
+L3_BOUNDARY_INDEX gpu=1 dense_words=16384 boundary_words=1596 indexed=1 build_ms=6.691015
+GPU begin!
+BENCH_SETUP algorithm=MLMQ input_ms=61.069671 reference_ms=134.804001 initialization_other_ms=495.993529 setup_wall_ms=691.867201
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+L3_CONFIG gpu=1 work_blocks=107 delta=32 window_mode=2 window_min=25000 window_max=25000 idle_backoff=0 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_ACK gpu=1 active_slots=1712 capacity=1712 work_blocks=107 warps_per_block=16
+L3_CONFIG gpu=0 work_blocks=107 delta=32 window_mode=2 window_min=25000 window_max=25000 idle_backoff=0 worker_recovery=1 term_wait_ack=1 rx_priority_bootstrap=0 rx_express=0 rx_express_enabled=0 rx_express_slots=64 rx_express_batch=32 rx_l2_pull=0 rx_l2_pull_claim=0 rx_l2_pull_enabled=0
+L3_WORKER_ACK gpu=0 active_slots=1712 capacity=1712 work_blocks=107 warps_per_block=16
+gpu0 manage launch error: driver shutting down (4)
+MLMQ BENCH failure: manager launch
+
+RUN_RC=2
+HOST_ELAPSED_SECONDS=1.131616

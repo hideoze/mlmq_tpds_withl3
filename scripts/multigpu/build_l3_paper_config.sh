@@ -31,12 +31,16 @@ cmd=("$ROOT/SSSP/main.cu" "$ROOT/SSSP/csr_graph.cu" "$ROOT/SSSP/sssp_run.cu"
     -DL3_DIRECT_RX=true
     -DL3_RETAIN_TX=true
     -DL3_WINDOW_MODE=2
+    -DL3_WINDOW_MIN_CYCLES=25000ull
+    -DL3_WINDOW_MAX_CYCLES=25000ull
+    -DL3_IDLE_BACKOFF=false
     -DL3_WORKER_RECOVERY=true
     -DL3_TERM_WAIT_ACK=true
     -DL3_ACK_SCAN=true
     -DL3_ACK_WIDE_SCAN=true
     -DL3_BOUNDARY_INDEX=true
     -DL3_L2_FINAL_COUNTS=true
+    -DDQ_COUNTER_OVERFLOW_GUARD=true
     -DL3_CHAIN_SHORTCUTS=false
     -DL3_IDLE_TOKEN_PROBE=true
     -O3 -m64 -gencode=arch=compute_80,code=sm_80 -rdc=true

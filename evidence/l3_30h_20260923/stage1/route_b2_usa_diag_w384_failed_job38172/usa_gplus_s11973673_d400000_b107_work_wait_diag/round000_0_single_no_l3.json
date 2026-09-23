@@ -1,0 +1,48 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/variant_diag_work_wait_w384/single_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "1",
+    "-d",
+    "400000"
+  ],
+  "configuration": "single_no_l3",
+  "effective_contract": {
+    "dual_contract": null,
+    "errors": [],
+    "expected_l3_config_lines": 0,
+    "expected_oracle_lines": 1,
+    "expected_partitions": [],
+    "l3_config_lines": 0,
+    "no_l3_config_lines": 1,
+    "no_l3_launch_lines": 1,
+    "oracle_lines": 2,
+    "partitions": []
+  },
+  "finished_utc": "2026-09-23T08:50:43.134528+00:00",
+  "host_elapsed_seconds": 5.289156297018053,
+  "prefix": "tmp/l3_30h_20260923/route_b2_usa_diag_w384/usa_gplus_s11973673_d400000_b107_work_wait_diag/round000_0_single_no_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 1,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "baseline": "original_no_l3",
+      "correct": "1",
+      "gpu_count": "1",
+      "query_wall_ms": "157.800571",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "76.721832",
+      "source": "11973673",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 0,
+  "started_utc": "2026-09-23T08:50:36.621396+00:00",
+  "valid": true
+}

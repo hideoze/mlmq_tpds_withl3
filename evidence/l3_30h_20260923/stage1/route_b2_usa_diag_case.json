@@ -1,0 +1,19 @@
+[
+  {
+    "name": "usa_gplus_s11973673_d400000_b107_work_wait_diag",
+    "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "source": 11973673,
+    "delta": 400000,
+    "cut_percent": 60,
+    "blocks": 107,
+    "expected_window_mode": 2,
+    "expected_window_min": 25000,
+    "expected_window_max": 25000,
+    "expected_idle_backoff": false,
+    "warmups": 0,
+    "repeats": 1,
+    "rounds": 1,
+    "timeout": 300
+  }
+]

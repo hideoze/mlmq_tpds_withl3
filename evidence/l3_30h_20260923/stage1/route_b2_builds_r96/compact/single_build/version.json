@@ -1,0 +1,23 @@
+{
+  "boost_include_dir": "/a100-data/wyh/boost_1_87_0",
+  "branch": "l3-30h-performance-20260923",
+  "created_utc": "2026-09-23T07:56:41.668958+00:00",
+  "describe": "be4f6b2",
+  "dual_builder": "scripts/multigpu/build_l3_paper_config.sh",
+  "dual_builder_sha256": "634906cc7ba5e4b56f391a94d55fe3ec24e296293fa36f8f707caf6e28a60e63",
+  "git_status_porcelain": [
+    "?? evidence/l3_30h_20260923/",
+    "?? evidence/l3_latest_rerun_38082/",
+    "?? scripts/multigpu/audit_gr_dataset.py",
+    "?? scripts/multigpu/build_l3_30h_pair.sh",
+    "?? scripts/multigpu/export_l3_latest_rerun.py",
+    "?? scripts/multigpu/gr_oracle.cpp",
+    "?? scripts/multigpu/l3_30h_preflight.cu",
+    "?? scripts/multigpu/prepare_l3_30h_single.py",
+    "?? scripts/multigpu/run_l3_30h.py",
+    "?? scripts/multigpu/run_l3_30h_preflight.sh"
+  ],
+  "head": "be4f6b20903f67ad5cfa1254f1508adab9b56b45",
+  "nvcc": "nvcc",
+  "repository_root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3"
+}

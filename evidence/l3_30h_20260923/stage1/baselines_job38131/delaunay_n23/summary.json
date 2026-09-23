@@ -1,0 +1,149 @@
+{
+  "all_samples_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/delaunay_n23/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.005549066354145916,
+    "S_solve_T1_over_T2": 0.0017323642614605608,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.7592094999999972,
+        "mad_ms": 0.496499,
+        "median_ms": 40.842962,
+        "q1_ms": 40.332002,
+        "q3_ms": 41.0912115,
+        "samples_ms": [
+          40.842962,
+          39.821042,
+          41.339461
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.7596305000000001,
+        "mad_ms": 0.605834999999999,
+        "median_ms": 12.740569,
+        "q1_ms": 12.283856,
+        "q3_ms": 13.0434865,
+        "samples_ms": [
+          12.740569,
+          11.827143,
+          13.346404
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 429.21449200000006,
+        "mad_ms": 82.34729100000004,
+        "median_ms": 7360.33044,
+        "q1_ms": 7319.1567945,
+        "q3_ms": 7748.3712865,
+        "samples_ms": [
+          7277.983149,
+          8136.412133,
+          7360.33044
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 429.2397949999995,
+        "mad_ms": 82.86754100000053,
+        "median_ms": 7354.439989,
+        "q1_ms": 7313.006218500001,
+        "q3_ms": 7742.2460135,
+        "samples_ms": [
+          7271.572448,
+          8130.052038,
+          7354.439989
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/delaunay_n23/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.005549066354145916,
+      "S_solve_T1_over_T2": 0.0017323642614605608,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.7592094999999972,
+          "mad_ms": 0.496499,
+          "median_ms": 40.842962,
+          "q1_ms": 40.332002,
+          "q3_ms": 41.0912115,
+          "samples_ms": [
+            40.842962,
+            39.821042,
+            41.339461
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.7596305000000001,
+          "mad_ms": 0.605834999999999,
+          "median_ms": 12.740569,
+          "q1_ms": 12.283856,
+          "q3_ms": 13.0434865,
+          "samples_ms": [
+            12.740569,
+            11.827143,
+            13.346404
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 429.21449200000006,
+          "mad_ms": 82.34729100000004,
+          "median_ms": 7360.33044,
+          "q1_ms": 7319.1567945,
+          "q3_ms": 7748.3712865,
+          "samples_ms": [
+            7277.983149,
+            8136.412133,
+            7360.33044
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 429.2397949999995,
+          "mad_ms": 82.86754100000053,
+          "median_ms": 7354.439989,
+          "q1_ms": 7313.006218500001,
+          "q3_ms": 7742.2460135,
+          "samples_ms": [
+            7271.572448,
+            8130.052038,
+            7354.439989
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

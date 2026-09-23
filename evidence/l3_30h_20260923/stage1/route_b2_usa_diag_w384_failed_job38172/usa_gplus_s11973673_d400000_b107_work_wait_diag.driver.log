@@ -1,0 +1,93 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=False rc=2 reason=nonzero return code; contract: expected at least 1 WIDE_ORACLE lines, got 0; dual contract lines remain after the final BENCH row; expected 1 dual BENCH contract groups, got 0
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_usa_diag_w384/usa_gplus_s11973673_d400000_b107_work_wait_diag/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": null,
+    "S_solve_T1_over_T2": null,
+    "T1": {
+      "expected_formal_samples": 1,
+      "formal_sample_count": 1,
+      "query_wall": {
+        "count": 1,
+        "iqr_ms": 0.0,
+        "mad_ms": 0.0,
+        "median_ms": 157.800571,
+        "q1_ms": 157.800571,
+        "q3_ms": 157.800571,
+        "samples_ms": [
+          157.800571
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 1,
+        "iqr_ms": 0.0,
+        "mad_ms": 0.0,
+        "median_ms": 76.721832,
+        "q1_ms": 76.721832,
+        "q3_ms": 76.721832,
+        "samples_ms": [
+          76.721832
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 1,
+      "formal_sample_count": 0,
+      "reason": "one or more runs/samples invalid",
+      "valid": false
+    },
+    "target": 1.2,
+    "target_met": null,
+    "valid": false
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": false,
+  "records_file": "tmp/l3_30h_20260923/route_b2_usa_diag_w384/usa_gplus_s11973673_d400000_b107_work_wait_diag/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": null,
+      "S_solve_T1_over_T2": null,
+      "T1": {
+        "expected_formal_samples": 1,
+        "formal_sample_count": 1,
+        "query_wall": {
+          "count": 1,
+          "iqr_ms": 0.0,
+          "mad_ms": 0.0,
+          "median_ms": 157.800571,
+          "q1_ms": 157.800571,
+          "q3_ms": 157.800571,
+          "samples_ms": [
+            157.800571
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 1,
+          "iqr_ms": 0.0,
+          "mad_ms": 0.0,
+          "median_ms": 76.721832,
+          "q1_ms": 76.721832,
+          "q3_ms": 76.721832,
+          "samples_ms": [
+            76.721832
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 1,
+        "formal_sample_count": 0,
+        "reason": "nonzero return code; contract: expected at least 1 WIDE_ORACLE lines, got 0; dual contract lines remain after the final BENCH row; expected 1 dual BENCH contract groups, got 0",
+        "valid": false
+      },
+      "round": 0,
+      "valid": false
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": null
+}

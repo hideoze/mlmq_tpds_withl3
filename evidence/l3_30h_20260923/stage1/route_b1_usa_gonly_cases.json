@@ -1,0 +1,20 @@
+[
+  {
+    "name": "usa_landmark_original_s11973673_d400000_cut60_b107",
+    "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/landmark206_matrix/USA/landmark.gr",
+    "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "source": 11973673,
+    "delta": 400000,
+    "cut_percent": 60,
+    "blocks": 107
+  },
+  {
+    "name": "usa_layer_split_original_s0_d400000_cut50_b107",
+    "graph": "tmp/l3_30h_20260923/layouts/usa_layer_split/reordered_original.gr",
+    "oracle": "tmp/l3_30h_20260923/layouts/usa_layer_split/oracle.i32",
+    "source": 0,
+    "delta": 400000,
+    "cut_percent": 50,
+    "blocks": 107
+  }
+]

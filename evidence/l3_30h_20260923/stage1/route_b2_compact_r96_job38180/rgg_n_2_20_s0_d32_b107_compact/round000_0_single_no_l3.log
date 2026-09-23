@@ -1,0 +1,57 @@
+/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr
+Graph name: /mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr
+nnodes=1048576, nedges=13783240.
+Host memory for graph: 113 MB
+	  1%
+	 10%
+	 20%
+	 30%
+	 40%
+	 50%
+	 60%
+	 70%
+	 80%
+	 90%
+	100%
+Maximum degree: 36
+----------Graph information----------
+number of vertices 1048576 number of edges 13783240
+average nnz 13.14 maximum nnz 36.00 deviation nnz 3.63
+average weight 1.00 maximum weight 1.00 deviation weight 0.00 
+-------------------------------------
+CPU done!
+CPU total work count 13783234
+CPU sequential time 136.32 ms
+GPU begin!
+NO_L3_CONFIG workers=512 delta=32 queue=L1SLF_L2DQ
+L2_CAPACITY budget=2147483647 record_bytes=8 buckets=16 per_bucket=16776704 allocated_records=268435455 counter_bits=32
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+NO_L3_LAUNCH work_blocks=107 delta=32 repeat=0
+Elapse time: 8.52 ms
+WIDE_ORACLE vertices=1048576 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=0 repeat=0 warmup=1 queue=L1SLF_L2DQ solve_ms=8.506032 query_wall_ms=12.901060 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+NO_L3_LAUNCH work_blocks=107 delta=32 repeat=1
+Elapse time: 14.23 ms
+WIDE_ORACLE vertices=1048576 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=0 repeat=1 warmup=0 queue=L1SLF_L2DQ solve_ms=14.227463 query_wall_ms=17.965067 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+NO_L3_LAUNCH work_blocks=107 delta=32 repeat=2
+Elapse time: 9.16 ms
+WIDE_ORACLE vertices=1048576 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=0 repeat=2 warmup=0 queue=L1SLF_L2DQ solve_ms=9.152400 query_wall_ms=12.856894 correct=1
+shm_size 68608 qshm_size 19456 nshm_size 16384 rshm_size 32768
+NO_L3_LAUNCH work_blocks=107 delta=32 repeat=3
+Elapse time: 9.27 ms
+WIDE_ORACLE vertices=1048576 correct=1
+BENCH algorithm=MLMQ baseline=original_no_l3 gpu_count=1 source=0 repeat=3 warmup=0 queue=L1SLF_L2DQ solve_ms=9.266393 query_wall_ms=12.962604 correct=1
+GPU done!
+gpu
+0 51 90 88 74 218 203 141 191 176 94 214 209 31 215 166 188 182 1 69 82 20 197 15 48 30 87 15 17 81 
+cpu
+0 51 90 88 74 218 203 141 191 176 94 214 209 31 215 166 188 182 1 69 82 20 197 15 48 30 87 15 17 81 
+WIDE_ORACLE vertices=1048576 correct=1
+mlmq sssp correct!
+
+RUN_RC=0
+HOST_ELAPSED_SECONDS=0.916509

@@ -1,0 +1,17 @@
+0afe3f6e6b829f7586115f68a9c192d3910833ddfaf24d44ff7ef10618a9480c  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/allocation.env
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/apps_before.csv
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/compile.log
+0e9cece8f5096c62661e2a759d20d78f533a22086c49027bc12a1480da1cdc89  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/compile_command.txt
+c092f9605d6466c715805d08ebc03c77c868655ba80ffb54f44e9d79983e138f  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/cuda_preflight
+0e5f7cd268ff66ed602e9694ad7007776cec0b9b08f225d2ddbe8bf58bbc543c  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/cuda_preflight.log
+f98320e656e3b2ba8b444ddef6770a051f8644fceae9a4c7151655f4e84a59bf  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/dataset_paths.log
+a7ca3aa1d44ce7dadd35592218d405b88ddcef70669dc0b2e02f48cbaba4c522  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/end_time.txt
+2d3fe89e0ffe79e915c965b366c79f8ff9bb0b0e8f60891617e25cf2d6534ecd  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/gpu_list.log
+40da95c087f79f4c09b459b51a0b4396fd67d7c18845a351c0593c6fca631876  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/gpus.csv
+9df23021fb97144fd73195a800ce2afb3dbb0319f1f4bf7ad2cf650a0641eea1  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/manifest.json
+4cee3ff19a1cc7a240aa2e6546d570ccb2fcdbabed204c66d72b9bb8ab0fdf0a  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/nvcc_version.log
+3440da8e46c75cc2f192fde873479bc90dcd5f0543a3c5d670f656678cf05077  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/nvidia_smi.log
+9e2d3f9be2cea63fb7154c92f92536c2f691bb72c0b1fb0e7d15dffe8a5b16da  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/nvshmem_probe.log
+5ccca16f9bb570a49eec6c7ed0663190e9ee9726aabd498a56b59ac59072395e  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/slurm_job.txt
+ae21046873987278cd6bbc1bbd2f0afc0e9423331c0525a7adc896a136c25c48  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/start_time.txt
+cfb667c1a2b237ca10b58300339e73a439e81bdc5270bfaf05e0bd9ecc6e5030  /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/preflight_v2/topology.log

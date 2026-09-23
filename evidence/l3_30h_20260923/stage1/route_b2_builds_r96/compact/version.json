@@ -1,0 +1,39 @@
+{
+  "created_utc": "2026-09-23T09:02:40.393937+00:00",
+  "head": "be4f6b20903f67ad5cfa1254f1508adab9b56b45",
+  "branch": "l3-30h-performance-20260923",
+  "git_status": [
+    " M SSSP/l3/l3_window.h",
+    " M SSSP/sssp.cuh",
+    " M SSSP/sssp_run.cu",
+    "?? L3_30h_performance_report.md",
+    "?? evidence/l3_30h_20260923/",
+    "?? evidence/l3_latest_rerun_38082/",
+    "?? scripts/multigpu/audit_gr_dataset.py",
+    "?? scripts/multigpu/build_l3_30h_dual_variant.sh",
+    "?? scripts/multigpu/build_l3_30h_pair.sh",
+    "?? scripts/multigpu/export_l3_latest_rerun.py",
+    "?? scripts/multigpu/gr_oracle.cpp",
+    "?? scripts/multigpu/l3_30h_preflight.cu",
+    "?? scripts/multigpu/prepare_l3_30h_single.py",
+    "?? scripts/multigpu/run_l3_30h.py",
+    "?? scripts/multigpu/run_l3_30h_preflight.sh",
+    "?? scripts/multigpu/run_l3_30h_stage1_baselines.sh",
+    "?? scripts/multigpu/run_l3_30h_sweep.py",
+    "?? scripts/multigpu/test_l3_window.cpp",
+    "?? scripts/multigpu/verify_gr_reorder.cpp"
+  ],
+  "base_pair": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2",
+  "single_reused_sha256": "fd09a5742c2805349c44c8180662106a0ed03db7e8c18a9868a086a6861009fa",
+  "variant": {
+    "idle_backoff": false,
+    "window_mode": 2,
+    "window_min_cycles": 25000,
+    "window_max_cycles": 25000,
+    "variant_mode": "compact",
+    "diagnostics": "none",
+    "compact_candidates": true,
+    "worker_threads": 512,
+    "max_registers": 96
+  }
+}

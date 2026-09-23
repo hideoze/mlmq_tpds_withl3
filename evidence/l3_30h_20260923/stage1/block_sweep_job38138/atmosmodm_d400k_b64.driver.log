@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/block_sweep/atmosmodm_d400k_b64/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 1.1327177908828394,
+    "S_solve_T1_over_T2": 0.9335524744695548,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.290894999999999,
+        "mad_ms": 0.1690699999999996,
+        "median_ms": 10.432921,
+        "q1_ms": 10.348386000000001,
+        "q3_ms": 10.639281,
+        "samples_ms": [
+          10.432921,
+          10.263851,
+          10.845641
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.29877100000000034,
+        "mad_ms": 0.14067399999999974,
+        "median_ms": 5.816958,
+        "q1_ms": 5.746620999999999,
+        "q3_ms": 6.045392,
+        "samples_ms": [
+          5.816958,
+          5.676284,
+          6.273826
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.0967179999999992,
+        "mad_ms": 0.07312100000000044,
+        "median_ms": 9.210521,
+        "q1_ms": 9.1739605,
+        "q3_ms": 9.270678499999999,
+        "samples_ms": [
+          9.330836,
+          9.210521,
+          9.1374
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.04105100000000039,
+        "mad_ms": 0.039060000000000095,
+        "median_ms": 6.230992,
+        "q1_ms": 6.209471,
+        "q3_ms": 6.250522,
+        "samples_ms": [
+          6.230992,
+          6.18795,
+          6.270052
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "tmp/l3_30h_20260923/block_sweep/atmosmodm_d400k_b64/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 1.1327177908828394,
+      "S_solve_T1_over_T2": 0.9335524744695548,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.290894999999999,
+          "mad_ms": 0.1690699999999996,
+          "median_ms": 10.432921,
+          "q1_ms": 10.348386000000001,
+          "q3_ms": 10.639281,
+          "samples_ms": [
+            10.432921,
+            10.263851,
+            10.845641
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.29877100000000034,
+          "mad_ms": 0.14067399999999974,
+          "median_ms": 5.816958,
+          "q1_ms": 5.746620999999999,
+          "q3_ms": 6.045392,
+          "samples_ms": [
+            5.816958,
+            5.676284,
+            6.273826
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.0967179999999992,
+          "mad_ms": 0.07312100000000044,
+          "median_ms": 9.210521,
+          "q1_ms": 9.1739605,
+          "q3_ms": 9.270678499999999,
+          "samples_ms": [
+            9.330836,
+            9.210521,
+            9.1374
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.04105100000000039,
+          "mad_ms": 0.039060000000000095,
+          "median_ms": 6.230992,
+          "q1_ms": 6.209471,
+          "q3_ms": 6.250522,
+          "samples_ms": [
+            6.230992,
+            6.18795,
+            6.270052
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

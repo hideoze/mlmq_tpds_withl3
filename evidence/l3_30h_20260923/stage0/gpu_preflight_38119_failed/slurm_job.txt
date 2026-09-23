@@ -1,0 +1,28 @@
+JobId=38119 JobName=bash
+   UserId=Dingzhong(1084) GroupId=users(100) MCS_label=N/A
+   Priority=1 Nice=0 Account=(null) QOS=(null)
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=0 Reboot=0 ExitCode=0:0
+   RunTime=00:00:01 TimeLimit=UNLIMITED TimeMin=N/A
+   SubmitTime=2026-09-23T15:43:29 EligibleTime=2026-09-23T15:43:29
+   AccrueTime=Unknown
+   StartTime=2026-09-23T15:43:29 EndTime=Unknown Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-23T15:43:29 Scheduler=Main
+   Partition=a100 AllocNode:Sid=0.0.0.0:1800161
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=ada-A100
+   BatchHost=ada-A100
+   NumNodes=1 NumCPUs=2 NumTasks=1 CPUs/Task=2 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=2,mem=32G,node=1,billing=2
+   AllocTRES=cpu=2,mem=32G,node=1,billing=2
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=2 MinMemoryNode=32G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=bash
+   WorkDir=/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3
+   Power=
+   TresPerNode=gres/gpu:a100:2
+   TresPerTask=cpu:2
+   
+

@@ -1,0 +1,153 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_b2_compact_r96v2/rgg_n_2_20_s0_d32_b107_compact/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 1.030802804651772,
+    "S_solve_T1_over_T2": 0.9427007526127911,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 2.5540865000000004,
+        "mad_ms": 0.10571000000000019,
+        "median_ms": 12.962604,
+        "q1_ms": 12.909749000000001,
+        "q3_ms": 15.463835500000002,
+        "samples_ms": [
+          17.965067,
+          12.856894,
+          12.962604
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 2.5375315,
+        "mad_ms": 0.11399300000000068,
+        "median_ms": 9.266393,
+        "q1_ms": 9.2093965,
+        "q3_ms": 11.746928,
+        "samples_ms": [
+          14.227463,
+          9.1524,
+          9.266393
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 1.025538000000001,
+        "mad_ms": 0.2676079999999992,
+        "median_ms": 12.575251,
+        "q1_ms": 12.441447,
+        "q3_ms": 13.466985000000001,
+        "samples_ms": [
+          14.358719,
+          12.307643,
+          12.575251
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.9726800000000004,
+        "mad_ms": 0.272983,
+        "median_ms": 9.829623,
+        "q1_ms": 9.6931315,
+        "q3_ms": 10.6658115,
+        "samples_ms": [
+          11.502,
+          9.55664,
+          9.829623
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": true,
+  "records_file": "tmp/l3_30h_20260923/route_b2_compact_r96v2/rgg_n_2_20_s0_d32_b107_compact/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 1.030802804651772,
+      "S_solve_T1_over_T2": 0.9427007526127911,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 2.5540865000000004,
+          "mad_ms": 0.10571000000000019,
+          "median_ms": 12.962604,
+          "q1_ms": 12.909749000000001,
+          "q3_ms": 15.463835500000002,
+          "samples_ms": [
+            17.965067,
+            12.856894,
+            12.962604
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 2.5375315,
+          "mad_ms": 0.11399300000000068,
+          "median_ms": 9.266393,
+          "q1_ms": 9.2093965,
+          "q3_ms": 11.746928,
+          "samples_ms": [
+            14.227463,
+            9.1524,
+            9.266393
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 1.025538000000001,
+          "mad_ms": 0.2676079999999992,
+          "median_ms": 12.575251,
+          "q1_ms": 12.441447,
+          "q3_ms": 13.466985000000001,
+          "samples_ms": [
+            14.358719,
+            12.307643,
+            12.575251
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.9726800000000004,
+          "mad_ms": 0.272983,
+          "median_ms": 9.829623,
+          "q1_ms": 9.6931315,
+          "q3_ms": 10.6658115,
+          "samples_ms": [
+            11.502,
+            9.55664,
+            9.829623
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": false
+}

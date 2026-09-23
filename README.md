@@ -31,10 +31,21 @@ The L3 build script records the exact `nvcc` argument vector, build log,
 return code, and binary SHA256 in the new output directory. It uses the frozen
 paper macros (`MLMQ_WORKER_THREADS=512`, cooperative collect, direct RX,
 retained TX, window mode 2, worker recovery, ACK wait/scan, boundary index,
-final L2 counts, and `L3_CHAIN_SHORTCUTS=false`) and `sm_80`; it does not rely
-on `SSSP/Makefile`, which is a default build without those paper macros.
+fixed 25,000-cycle window bounds, guarded authoritative per-bucket DQ write
+reservations, final L2 counts, and `L3_CHAIN_SHORTCUTS=false`) and `sm_80`; it
+does not rely on `SSSP/Makefile`, which is a default build without those paper
+macros.
 `BOOST_INCLUDE_DIR` may override the recorded default path
 `/a100-data/wyh/boost_1_87_0` when compiling on another installation.
+
+For the 30-hour final acceptance path, invoke
+`scripts/multigpu/run_l3_30h.py --sampling formal` from a clean committed
+checkout and a two-A100 Slurm allocation. Formal mode accepts only the
+committed `evidence/l3_30h_20260923/final/formal_input_contract.json`, builds
+both the independent no-L3 single-GPU binary and the L3 dual-GPU binary fresh
+from that exact HEAD, and writes all build and sampling artifacts outside the
+repository. The runner deliberately reports measurement validity separately
+from whether the numerical 1.20x target was met.
 
 For the paired eight-graph rebuild and measurement, retain the independent
 single-GPU baseline source at `tmp/nol3_213_preload/source.tgz`. Use a new

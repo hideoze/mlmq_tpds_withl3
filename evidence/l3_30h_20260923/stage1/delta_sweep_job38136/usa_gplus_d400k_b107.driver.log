@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/delta_sweep/usa_gplus_d400k_b107/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 2.1298162351523664,
+    "S_solve_T1_over_T2": 1.1879494016910561,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 4.319184499999977,
+        "mad_ms": 1.0896079999999984,
+        "median_ms": 155.712047,
+        "q1_ms": 155.167243,
+        "q3_ms": 159.4864275,
+        "samples_ms": [
+          154.622439,
+          155.712047,
+          163.260808
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 4.960863999999987,
+        "mad_ms": 0.5540529999999961,
+        "median_ms": 75.977491,
+        "q1_ms": 75.70046450000001,
+        "q3_ms": 80.6613285,
+        "samples_ms": [
+          75.423438,
+          75.977491,
+          85.345166
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.5853070000000002,
+        "mad_ms": 0.4345050000000015,
+        "median_ms": 73.110555,
+        "q1_ms": 72.8933025,
+        "q3_ms": 73.4786095,
+        "samples_ms": [
+          73.110555,
+          73.846664,
+          72.67605
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.5039330000000035,
+        "mad_ms": 0.16641800000000018,
+        "median_ms": 63.956841,
+        "q1_ms": 63.873632,
+        "q3_ms": 64.377565,
+        "samples_ms": [
+          63.790423,
+          64.798289,
+          63.956841
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "tmp/l3_30h_20260923/delta_sweep/usa_gplus_d400k_b107/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 2.1298162351523664,
+      "S_solve_T1_over_T2": 1.1879494016910561,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 4.319184499999977,
+          "mad_ms": 1.0896079999999984,
+          "median_ms": 155.712047,
+          "q1_ms": 155.167243,
+          "q3_ms": 159.4864275,
+          "samples_ms": [
+            154.622439,
+            155.712047,
+            163.260808
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 4.960863999999987,
+          "mad_ms": 0.5540529999999961,
+          "median_ms": 75.977491,
+          "q1_ms": 75.70046450000001,
+          "q3_ms": 80.6613285,
+          "samples_ms": [
+            75.423438,
+            75.977491,
+            85.345166
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.5853070000000002,
+          "mad_ms": 0.4345050000000015,
+          "median_ms": 73.110555,
+          "q1_ms": 72.8933025,
+          "q3_ms": 73.4786095,
+          "samples_ms": [
+            73.110555,
+            73.846664,
+            72.67605
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.5039330000000035,
+          "mad_ms": 0.16641800000000018,
+          "median_ms": 63.956841,
+          "q1_ms": 63.873632,
+          "q3_ms": 64.377565,
+          "samples_ms": [
+            63.790423,
+            64.798289,
+            63.956841
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

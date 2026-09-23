@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "generator": "scripts/multigpu/gr_oracle.cpp",
+  "arithmetic": "int64 with checked candidate addition",
+  "unreachable_i64": 9223372036854775807,
+  "unreachable_i32": 2147483647,
+  "storage_note": "Oracle binaries are retained under tmp/l3_30h_20260923/oracles and are not committed; hashes and complete logs are recorded here.",
+  "records": [
+    {
+      "graph": "delaunay_n20",
+      "source": 0,
+      "algorithm": "BFS",
+      "reached": 1048576,
+      "unreachable": 0,
+      "max_distance": 418,
+      "over_int32": 0,
+      "i64_sha256": "24380662bae2c84e500fbb4c45a115e978450b08ced220375e66c7039e08b349",
+      "i32_sha256": "6c48511572df3ae246db7f4302cef577ee207f0fc3ae7c65d6f67db2e116bbec",
+      "status": "PASS"
+    },
+    {
+      "graph": "delaunay_n23",
+      "source": 0,
+      "algorithm": "BFS",
+      "reached": 8388608,
+      "unreachable": 0,
+      "max_distance": 1149,
+      "over_int32": 0,
+      "i64_sha256": "932d9f1d2b6ed28c3c93f57c6db308c9c2a05efd9a2d3ea23873a778ef423965",
+      "i32_sha256": "ab64a87fa2d99d6142e3eb4aa8f47a9932ea5e74cf2ab881016f1c715e72c7fe",
+      "status": "PASS"
+    },
+    {
+      "graph": "rgg_n_2_20_s0",
+      "source": 0,
+      "algorithm": "BFS",
+      "reached": 1048572,
+      "unreachable": 4,
+      "max_distance": 728,
+      "over_int32": 0,
+      "i64_sha256": "0522987429a95e7bd0065d1fbb324c8bf6794fac9536c722143a3207deb56667",
+      "i32_sha256": "c042e12636792c2aeaf6943b95cb9e10862615e218c5a87915169e2c57c894a9",
+      "status": "PASS"
+    },
+    {
+      "graph": "atmosmodm",
+      "source": 0,
+      "algorithm": "DIJKSTRA",
+      "reached": 1489752,
+      "unreachable": 0,
+      "max_distance": 69715294,
+      "over_int32": 0,
+      "i64_sha256": "14a081a804e6f2b812b5e8d286463e73520abe03d73d01eab4c56b6bee1cd343",
+      "i32_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+      "status": "PASS"
+    },
+    {
+      "graph": "rmat22",
+      "source": 0,
+      "algorithm": "DIJKSTRA",
+      "reached": 3294472,
+      "unreachable": 899832,
+      "max_distance": 21601728,
+      "over_int32": 0,
+      "i64_sha256": "b8872c84f9d36939ed42f89d85324de9c22ed45a0d7717bca0c5f7585c8854f0",
+      "i32_sha256": "ef421f45303c022800cc317b672d1a7aeddb02df29d7450230e49a5113ccf60e",
+      "status": "PASS"
+    },
+    {
+      "graph": "nlpkkt80",
+      "source": 0,
+      "status": "NOT_RUN_REJECTED",
+      "reason": "26,618,272 negative int32 edge weights; incompatible with Dijkstra/SSSP acceptance contract"
+    }
+  ]
+}

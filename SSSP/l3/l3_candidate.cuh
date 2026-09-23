@@ -1,5 +1,7 @@
 #pragma once
 
+#include "l3_sync.cuh"
+
 // Candidate-side L3 primitive.  This helper owns only the local aggregation
 // and event publication; it never performs a peer-memory write or waits for a
 // transport operation.  remote_cand/remote_mark remain the authoritative
@@ -28,7 +30,7 @@ __device__ __forceinline__ bool l3_record_candidate(
         return false;
 
     const unsigned bit = 1u << (r0 & 31);
-    const unsigned old_mark = atomicOr(&remote_mark[r0 >> 5], bit);
+    const unsigned old_mark = l3_device_mark_publish(&remote_mark[r0 >> 5], bit);
     if (mark_hint != NULL)
         atomicOr(&mark_hint[r0 >> 10], 1u << ((r0 >> 5) & 31));
     if (mark_hint2 != NULL)
@@ -41,6 +43,6 @@ __device__ __forceinline__ bool l3_record_candidate(
     if (mark_signal != NULL)
         atomicAdd(mark_signal, 1ull);
     if (local_idle != NULL)
-        atomicExch(local_idle, 0);
+        l3_atomic_store_release<cuda::thread_scope_system>(local_idle, 0);
     return true;
 }

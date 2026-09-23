@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "formal": false,
+  "reason_not_formal": "transform stdout/command log was not retained and all performance samples are exploratory",
+  "tools": {
+    "reorder_gr_binary_sha256": "6e6dec83e3914ddc74e385cf0424ec44cc96d081e0a1c438fa935e201e97e27d",
+    "verify_gr_reorder_binary_sha256": "b510df165d7ed17c23827da616b5b76c5cd75117577f8cc07a83befe58672b06",
+    "verify_gr_reorder_source_sha256": "4cc68c54fd1e96c4797fa14b19e7388f4673b84d6c8845d9a044ea7eb036ebbc"
+  },
+  "verification_contract": "full perm/invperm bijection and inverse, every CSR row degree, every destination mapping in original row order, every payload byte, optional mapped int32 oracle",
+  "rgg": {
+    "original_sha256": "2617ea8de3091120c2233a5668bb5e7b04766369a5c780e7247ed061b12e5d70",
+    "vertices": 1048576,
+    "directed_edges": 13783240,
+    "layouts": [
+      {
+        "name": "bfs-root-0",
+        "graph_sha256": "6a0a9ab09b0359e737fdf9aeeccc9f4320cd306eced9a1e68ee19dfe734bb63f",
+        "perm_sha256": "cf2d0294e45db31bc879d4aa3d00924d643bf41a3cda62eeeaa5e11f967d874f",
+        "invperm_sha256": "4664a9b60946e820ee29e9fe0a4b279d2c287dc2700fa10c1eb4f2c593f87e87",
+        "oracle_i32_sha256": "a49e03b59056b8cff454db7739acc92a8ddd43dd74e5580dffe5e66218c411d6",
+        "cut_percent": 50,
+        "cross_edges": 15580,
+        "full_verifier": "PASS"
+      },
+      {
+        "name": "layer-split-root-0",
+        "graph_sha256": "2f3d174cc5852e75e287467e7c53a10ebad8c84a36509c079f83c5ca0f34e2ee",
+        "perm_sha256": "5e52f2346d25cf55024fa14b19e7388f4673b84d6c8845d9a044ea7eb036ebbc",
+        "invperm_sha256": "f05f2199106b83b1e9618a44f16a3ba8d2074eaafa549739096c46daa50ff22d",
+        "cut_percent": 50,
+        "cross_edges": 199778,
+        "full_verifier": "PASS"
+      }
+    ],
+    "original_cross_edges": 17822
+  },
+  "usa_original_graph": {
+    "layouts": [
+      {
+        "name": "bfs-root-0",
+        "graph_sha256": "6bb6be097abc0cac505cb93893e54c58bff566fe380cfd4eb522ad6fa2309dca",
+        "perm_sha256": "567f2a06fe4b6e04fee45c9b3ddac2c5649c974fff43e9d9cab28fabaaa49bd2",
+        "invperm_sha256": "1c064aea0db4eeae4a7a5f6901c59984d61744902c15065deb2a7a2683e6e475",
+        "cut_percent": 60,
+        "cross_edges": 15512,
+        "static_decision": "REJECT: more cross edges than the current landmark layout"
+      },
+      {
+        "name": "layer-split-root-0",
+        "graph_sha256": "ab8a797a1d42a110f3ec6a229162e483fa0539cad23b3c5ad1d4dfc240ece668",
+        "perm_sha256": "6e1e7fc88339989abdc02afe886dac6eddd99cfe989987d7fab9bc35379d7bc9",
+        "invperm_sha256": "b73de0e7c5fcf2cae700377e0ff504db76aff7bfd0c6f4512c203b9903b0190e",
+        "oracle_i32_sha256": "9f0458b1a635cdbbcc60b003e9cc27e98bd76249b9511b3adf4b1531d7eadd88",
+        "cut_percent": 50,
+        "cross_edges": 320056,
+        "full_verifier": "PASS",
+        "performance_decision": "REJECT"
+      }
+    ],
+    "current_landmark_layout_cross_edges_at_cut60": 9760
+  },
+  "artifact_location": "large generated layouts remain under ignored tmp/l3_30h_20260923/layouts and are identified here by SHA256"
+}

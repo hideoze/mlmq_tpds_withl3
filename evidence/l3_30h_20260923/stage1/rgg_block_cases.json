@@ -1,0 +1,20 @@
+[
+  {
+    "name": "rgg_n_2_20_s0_d32_b80",
+    "graph": "/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+    "oracle": "tmp/l3_30h_20260923/oracles/rgg_n_2_20_s0_s0.i32",
+    "source": 0,
+    "delta": 32,
+    "cut_percent": 50,
+    "blocks": 80
+  },
+  {
+    "name": "rgg_n_2_20_s0_d32_b64",
+    "graph": "/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+    "oracle": "tmp/l3_30h_20260923/oracles/rgg_n_2_20_s0_s0.i32",
+    "source": 0,
+    "delta": 32,
+    "cut_percent": 50,
+    "blocks": 64
+  }
+]

@@ -1,0 +1,149 @@
+{
+  "all_samples_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/rmat22/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.01085912635325895,
+    "S_solve_T1_over_T2": 0.004987684377669757,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.13377749999999722,
+        "mad_ms": 0.12118199999999746,
+        "median_ms": 16.421365,
+        "q1_ms": 16.348178500000003,
+        "q3_ms": 16.481956,
+        "samples_ms": [
+          16.542547,
+          16.274992,
+          16.421365
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.0983925000000001,
+        "mad_ms": 0.06379799999999936,
+        "median_ms": 7.520888,
+        "q1_ms": 7.4543945,
+        "q3_ms": 7.552787,
+        "samples_ms": [
+          7.584686,
+          7.387901,
+          7.520888
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 85.3538410000001,
+        "mad_ms": 79.38264100000015,
+        "median_ms": 1512.217877,
+        "q1_ms": 1472.5265565,
+        "q3_ms": 1557.8803975,
+        "samples_ms": [
+          1432.835236,
+          1603.542918,
+          1512.217877
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 85.22616900000003,
+        "mad_ms": 79.74453100000005,
+        "median_ms": 1507.891725,
+        "q1_ms": 1468.0194594999998,
+        "q3_ms": 1553.2456284999998,
+        "samples_ms": [
+          1428.147194,
+          1598.599532,
+          1507.891725
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/stage1_baselines/rmat22/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.01085912635325895,
+      "S_solve_T1_over_T2": 0.004987684377669757,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.13377749999999722,
+          "mad_ms": 0.12118199999999746,
+          "median_ms": 16.421365,
+          "q1_ms": 16.348178500000003,
+          "q3_ms": 16.481956,
+          "samples_ms": [
+            16.542547,
+            16.274992,
+            16.421365
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.0983925000000001,
+          "mad_ms": 0.06379799999999936,
+          "median_ms": 7.520888,
+          "q1_ms": 7.4543945,
+          "q3_ms": 7.552787,
+          "samples_ms": [
+            7.584686,
+            7.387901,
+            7.520888
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 85.3538410000001,
+          "mad_ms": 79.38264100000015,
+          "median_ms": 1512.217877,
+          "q1_ms": 1472.5265565,
+          "q3_ms": 1557.8803975,
+          "samples_ms": [
+            1432.835236,
+            1603.542918,
+            1512.217877
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 85.22616900000003,
+          "mad_ms": 79.74453100000005,
+          "median_ms": 1507.891725,
+          "q1_ms": 1468.0194594999998,
+          "q3_ms": 1553.2456284999998,
+          "samples_ms": [
+            1428.147194,
+            1598.599532,
+            1507.891725
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

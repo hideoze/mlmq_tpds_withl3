@@ -1,0 +1,18 @@
+[
+  {
+    "algorithm": "MLMQ",
+    "baseline": "original_no_l3",
+    "configuration": "single_no_l3",
+    "correct": "1",
+    "gpu_count": "1",
+    "query_wall_ms": "157.800571",
+    "queue": "L1SLF_L2DQ",
+    "repeat": "0",
+    "round": 0,
+    "run_valid": true,
+    "sequence_in_round": 0,
+    "solve_ms": "76.721832",
+    "source": "11973673",
+    "warmup": "0"
+  }
+]

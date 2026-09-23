@@ -1,8 +1,74 @@
 #include "common.h"
+#include <cuda/atomic>
 #include <cub/cub.cuh>
 #define MEM_BLOCK_SIZE 512
 
 #define DQ_READ_MIN 1
+
+__device__ __forceinline__ int dq_counter_load_relaxed(const int *word)
+{
+    cuda::atomic_ref<int, cuda::thread_scope_device> ref(
+        *const_cast<int *>(word));
+    return ref.load(cuda::memory_order_relaxed);
+}
+
+__device__ __forceinline__ int dq_counter_load_acquire(const int *word)
+{
+    cuda::atomic_ref<int, cuda::thread_scope_device> ref(
+        *const_cast<int *>(word));
+    return ref.load(cuda::memory_order_acquire);
+}
+
+__device__ __forceinline__ void dq_counter_store_relaxed(int *word, int value)
+{
+    cuda::atomic_ref<int, cuda::thread_scope_device> ref(*word);
+    ref.store(value, cuda::memory_order_relaxed);
+}
+
+__device__ __forceinline__ void dq_counter_store_release(int *word, int value)
+{
+    cuda::atomic_ref<int, cuda::thread_scope_device> ref(*word);
+    ref.store(value, cuda::memory_order_release);
+}
+
+__device__ __forceinline__ int dq_counter_fetch_add_release(int *word, int value)
+{
+    cuda::atomic_ref<int, cuda::thread_scope_device> ref(*word);
+    return ref.fetch_add(value, cuda::memory_order_release);
+}
+
+// The historical queue uses signed 32-bit cumulative counters.  Formal runs
+// guard the authoritative per-bucket write reservation: a capacity-crossing
+// reservation is detected at the atomic RMW and fail-stopped before that
+// caller can use the returned slot.  Downstream read/completion counters are
+// bounded by unique write reservations; the host audit additionally requires
+// total capacity <= INT_MAX and exact conservation.  The check is part of the
+// measured implementation, not a post-hoc claim.
+#ifndef DQ_COUNTER_OVERFLOW_GUARD
+#define DQ_COUNTER_OVERFLOW_GUARD false
+#endif
+
+#if (DQ_COUNTER_OVERFLOW_GUARD == true)
+__device__ __forceinline__ int dq_write_reserve_guarded(
+    int *word, int value, int limit, int *overflow)
+{
+    // Keep the successful fast path identical to the historical atomicAdd.
+    // A failing run is invalid and is stopped before this caller computes an
+    // address from the wrapped/out-of-capacity reservation.
+    const int observed = atomicAdd(word, value);
+    // All successful increments are nonnegative.  This int-only fast check is
+    // equivalent to wide `observed + value <= limit` without evaluating an
+    // overflowing signed addition.
+    if (observed < 0 || value < 0 || value > limit
+        || observed > limit - value)
+    {
+        atomicExch(overflow, 1);
+        __threadfence_system();
+        asm volatile("trap;");
+    }
+    return observed;
+}
+#endif
 
 // L3_READ_GATE: dual-GPU read gate for the delta queue.  A warp with no
 // pending claim skips the blind batchSize claim when all claimed slots
@@ -80,7 +146,9 @@ struct l2_delta_queue
 {
 // public:
 
-    // Not considered: When read_pos / write_reserve / write_done overflow.
+    // Historical default does not guard cumulative counter overflow.  Formal
+    // builds enable DQ_COUNTER_OVERFLOW_GUARD for authoritative per-bucket
+    // write reservations and couple it to the final conservation audit.
     eletype *data;
 
     // the number of finished writing operations in each memory block
@@ -94,6 +162,9 @@ struct l2_delta_queue
     int *last_read_warp;
 
     int *debug_write_done;
+
+    // Sticky evidence for guarded authoritative per-bucket write reservations.
+    int *counter_overflow;
 
     // total number of read elements done
     int *read_done;
@@ -154,6 +225,8 @@ struct l2_delta_queue
         cudaMemset(run_begin, 0, sizeof(int));
         cudaMalloc(&debug_write_done, sizeof(int));
         cudaMemset(debug_write_done, 0, sizeof(int));
+        cudaMalloc(&counter_overflow, sizeof(int));
+        cudaMemset(counter_overflow, 0, sizeof(int));
 
         int read_size_host = batchSize;
         cudaMalloc(&read_size, sizeof(int));
@@ -190,6 +263,7 @@ struct l2_delta_queue
         cudaMemset(first_pos, 0, sizeof(int));
         cudaMemset(run_begin, 0, sizeof(int));
         cudaMemset(debug_write_done, 0, sizeof(int));
+        cudaMemset(counter_overflow, 0, sizeof(int));
 
         int read_size_host = batchSize;
         cudaMemcpy(read_size, &read_size_host, sizeof(int), cudaMemcpyHostToDevice);
@@ -244,9 +318,9 @@ struct l2_delta_queue
         bool inside = false, outside = false;
         long long writes = 0;
         for (int b = 0; b < bucketNum; ++b) {
-            const int w = ((volatile int *)write_reserve)[b];
-            const int pub = ((volatile int *)read_pos)[b];
-            const int claimed = ((volatile int *)read_ptr)[b];
+            const int w = dq_counter_load_relaxed(write_reserve + b);
+            const int pub = dq_counter_load_acquire(read_pos + b);
+            const int claimed = dq_counter_load_relaxed(read_ptr + b);
             const int mine = ((volatile int *)local_ptr)[b];
             const int visible = ((volatile int *)local_pos)[b];
             writes += w;
@@ -262,7 +336,7 @@ struct l2_delta_queue
                 outside |= offset >= bucket_max;
             }
         }
-        d.unfinished += writes > *((volatile int *)read_done);
+        d.unfinished += writes > dq_counter_load_acquire(read_done);
         d.local_lag += lag; d.own_ready += ready;
         d.unpublished_wait += unpublished; d.speculative_wait += speculative;
         d.unreserved_inside += inside; d.unreserved_outside += outside;
@@ -293,7 +367,10 @@ struct l2_delta_queue
 
         read_num = 0;
 
-        int first_pos_old = *first_pos;
+        int first_pos_old = 0;
+        if (!lane_id)
+            first_pos_old = dq_counter_load_acquire(first_pos);
+        first_pos_old = __shfl_sync(FULL_MASK, first_pos_old, 0);
         int i = 0;
         while (i < bucket_max && read_num < DQ_READ_MIN)
         {
@@ -313,7 +390,8 @@ struct l2_delta_queue
             // the existing checks would immediately discard.
 #if (L3_READ_GATE == true)
             if (local_read_ptr[vec_id] == -1
-                && read_ptr[vec_id] >= local_read_pos[vec_id])
+                && dq_counter_load_relaxed(read_ptr + vec_id)
+                    >= local_read_pos[vec_id])
             {
                 i++;
                 continue;
@@ -350,7 +428,8 @@ struct l2_delta_queue
                 if (!lane_id)
                 {
                     local_read_ptr[vec_id] += bucket_read_num;
-                    if (local_read_ptr[vec_id] == write_reserve[vec_id])
+                    if (local_read_ptr[vec_id]
+                        == dq_counter_load_relaxed(write_reserve + vec_id))
                         last_read_warp[vec_id] = bid * WARP_NUM_PER_BLOCK + wid;
 
                     atomicAdd(&bucket_read_done[vec_id], bucket_read_num);
@@ -359,7 +438,12 @@ struct l2_delta_queue
                     {
                         // assume l2_batch_size <= MEM_BLOCK_SIZE
                         if (local_dst_read_ptr[vec_id] % MEM_BLOCK_SIZE == 0)
-                            block_write_done[get_block_addr(((local_dst_read_ptr[vec_id] - 1) / MEM_BLOCK_SIZE) % total_block_size, vec_id)] = 0;
+                            dq_counter_store_relaxed(
+                                block_write_done + get_block_addr(
+                                    ((local_dst_read_ptr[vec_id] - 1) / MEM_BLOCK_SIZE)
+                                        % total_block_size,
+                                    vec_id),
+                                0);
                         local_read_ptr[vec_id] = -1;
                     }
                 }
@@ -429,7 +513,10 @@ struct l2_delta_queue
 
     __device__ write_status write(eletype* node_out, int &write_num, int bid, int wid, int lane_id, unsigned *debug_time)
     {
-        volatile int first_pos_old = *first_pos;
+        int first_pos_old = 0;
+        if (!lane_id)
+            first_pos_old = dq_counter_load_acquire(first_pos);
+        first_pos_old = __shfl_sync(FULL_MASK, first_pos_old, 0);
         VALUE_TYPE base = first_pos_old * delta;
         for (int i = 0; i < write_num; i+=WARP_SIZE)
         {
@@ -460,7 +547,13 @@ struct l2_delta_queue
             int current_reserve;
             if (out_pos < write_num && lane_id == leader_lane)
             {
+#if (DQ_COUNTER_OVERFLOW_GUARD == true)
+                current_reserve = dq_write_reserve_guarded(
+                    &write_reserve[dst_bucket_id], write_bucket_num,
+                    total_size, counter_overflow);
+#else
                 current_reserve = atomicAdd(&write_reserve[dst_bucket_id], write_bucket_num);
+#endif
                     //printf("dst_bucket_id %d after current_reserve %d write_reserve[dst_bucket_id] %d write_bucket_num %d data %d %d\n", dst_bucket_id,
                     //current_reserve, write_reserve[dst_bucket_id], write_bucket_num, node_out[out_pos].id, node_out[out_pos].dist);
             }
@@ -483,7 +576,8 @@ struct l2_delta_queue
             __syncwarp();
             if (out_pos < write_num && lane_id == block_leader_lane)
             {
-                atomicAdd(&block_write_done[block_idx], block_write_num);
+                dq_counter_fetch_add_release(
+                    &block_write_done[block_idx], block_write_num);
                 atomicAdd(debug_write_done, block_write_num);
             }
             __syncwarp();
@@ -495,30 +589,40 @@ struct l2_delta_queue
     // update read_pos in bucket[manager_id]
     __device__ void manager_run(int manager_id, int lane_id)
     {
-        int old_write_reserve = write_reserve[manager_id];
+        int old_write_reserve = 0;
+        int old_read_pos = 0;
+        if (!lane_id) {
+            old_write_reserve = dq_counter_load_relaxed(
+                write_reserve + manager_id);
+            old_read_pos = dq_counter_load_acquire(read_pos + manager_id);
+        }
+        old_write_reserve = __shfl_sync(FULL_MASK, old_write_reserve, 0);
+        old_read_pos = __shfl_sync(FULL_MASK, old_read_pos, 0);
 #if (DQ_QUEUE_DIAG == true)
         if (!lane_id)
         {
             atomicAdd(&g_dq_queue_diag.manager_calls, 1ull);
-            if (old_write_reserve > read_pos[manager_id])
+            if (old_write_reserve > old_read_pos)
                 atomicAdd(&g_dq_queue_diag.manager_pending, 1ull);
         }
 #endif
 #if (BULK_DIAG == true)
         __device__ extern unsigned long long g_bulk_dq_prints;
-        if (lane_id == 0 && old_write_reserve > read_pos[manager_id])
+        if (lane_id == 0 && old_write_reserve > old_read_pos)
         {
             unsigned long long p = atomicAdd(&g_bulk_dq_prints, 1ull);
             if (p < 32)
                 printf("BULK_DQ id=%d first=%d rpos=%d rptr=%d bdone=%d wres=%d lread=%d read_done=%d q=%d\\n",
-                       manager_id, *first_pos, read_pos[manager_id], read_ptr[manager_id],
-                       bucket_read_done[manager_id], write_reserve[manager_id],
-                       last_read_warp[manager_id], *read_done, get_queue_size());
+                       manager_id, dq_counter_load_acquire(first_pos), old_read_pos,
+                       dq_counter_load_relaxed(read_ptr + manager_id),
+                       dq_counter_load_relaxed(bucket_read_done + manager_id),
+                       old_write_reserve, last_read_warp[manager_id],
+                       dq_counter_load_acquire(read_done), get_queue_size());
         }
 #endif
-        if (old_write_reserve > read_pos[manager_id])
+        if (old_write_reserve > old_read_pos)
         {
-            int start_block_idx = read_pos[manager_id] / MEM_BLOCK_SIZE;
+            int start_block_idx = old_read_pos / MEM_BLOCK_SIZE;
             int end_block_idx = old_write_reserve / MEM_BLOCK_SIZE;
 
             int nofull_block_lane = 0;
@@ -528,7 +632,9 @@ struct l2_delta_queue
             for (; i < end_block_idx + 1; i += WARP_SIZE)
             {
                 int block_idx = i + lane_id;
-                int current_write_done = block_write_done[get_block_addr(block_idx % total_block_size, manager_id)];
+                int current_write_done = dq_counter_load_acquire(
+                    block_write_done +
+                    get_block_addr(block_idx % total_block_size, manager_id));
                 bool block_valid = i < end_block_idx;
                 bool block_nofull = true;
 
@@ -552,29 +658,31 @@ struct l2_delta_queue
             {
                 if (nofull_block_write_done + bucket_addr == old_write_reserve)
                 {
-                    if (read_pos[manager_id] < old_write_reserve)
-                        read_pos[manager_id] = old_write_reserve;
+                    if (old_read_pos < old_write_reserve && !lane_id)
+                        dq_counter_store_release(read_pos + manager_id,
+                                                 old_write_reserve);
                 }
                 else
                 {
-                    if (read_pos[manager_id] < bucket_addr)
-                        read_pos[manager_id] = bucket_addr;
+                    if (old_read_pos < bucket_addr && !lane_id)
+                        dq_counter_store_release(read_pos + manager_id,
+                                                 bucket_addr);
                 }
             }
             else
             {
-                if (read_pos[manager_id] < bucket_addr)
-                    read_pos[manager_id] = bucket_addr;
+                if (old_read_pos < bucket_addr && !lane_id)
+                    dq_counter_store_release(read_pos + manager_id, bucket_addr);
             }
             __syncwarp();
-            __threadfence();
         }
     }
 
     // use read_ptr
     __device__ __forceinline__ int get_bucket_size(int dst_bucket_id)
     {
-        return write_reserve[dst_bucket_id] - bucket_read_done[dst_bucket_id];
+        return dq_counter_load_relaxed(write_reserve + dst_bucket_id)
+            - dq_counter_load_relaxed(bucket_read_done + dst_bucket_id);
     }
 
     __device__ int get_total_size()
@@ -582,7 +690,8 @@ struct l2_delta_queue
         int total_read_size = 0;
         for (int i = 0; i < bucketNum; i++)
         {
-            total_read_size += write_reserve[i] - bucket_read_done[i];
+            total_read_size += dq_counter_load_relaxed(write_reserve + i)
+                - dq_counter_load_relaxed(bucket_read_done + i);
         }
         return total_read_size;
     }
@@ -593,10 +702,9 @@ struct l2_delta_queue
         int total_read_size = 0;
         for (int i = 0; i < bucketNum; i++)
         {
-            total_read_size += write_reserve[i];
+            total_read_size += dq_counter_load_relaxed(write_reserve + i);
         }
-        // volatile read_done: 防编译器 LICM 缓存，终止检测需读到 work 的 update_done
-        return total_read_size - *((volatile int *)read_done);
+        return total_read_size - dq_counter_load_acquire(read_done);
     }
 
     // Published-but-unreserved upper bound for all buckets.  The bucket
@@ -607,7 +715,8 @@ struct l2_delta_queue
         int total_available = 0;
         for (int i = 0; i < bucketNum; i++)
         {
-            const int available = read_pos[i] - read_ptr[i];
+            const int available = dq_counter_load_acquire(read_pos + i)
+                - dq_counter_load_relaxed(read_ptr + i);
             if (available > 0)
                 total_available += available;
         }
@@ -616,7 +725,7 @@ struct l2_delta_queue
 
     __device__ void update_done(int on_the_fly_num)
     {
-        atomicAdd(read_done, on_the_fly_num);
+        dq_counter_fetch_add_release(read_done, on_the_fly_num);
     }
 
     __device__ void update_local_info(int lane_id)
@@ -627,7 +736,7 @@ struct l2_delta_queue
 
         for (int i = lane_id; i < bucketNum; i += WARP_SIZE)
         {
-            local_read_pos[i] = read_pos[i];
+            local_read_pos[i] = dq_counter_load_acquire(read_pos + i);
         }
 
         __syncwarp();

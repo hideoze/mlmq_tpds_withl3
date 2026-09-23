@@ -1,0 +1,125 @@
+{
+  "all_processes_valid": true,
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+    "--sampling",
+    "exploratory",
+    "--dual-binary",
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/dual_build/mlmq",
+    "--single-binary",
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/single_build/mlmq",
+    "--graph",
+    "/a100-data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+    "--oracle",
+    "tmp/l3_30h_20260923/oracles/rgg_n_2_20_s0_s0.i32",
+    "--source",
+    "0",
+    "--delta",
+    "32",
+    "--cut-percent",
+    "50",
+    "--blocks",
+    "80",
+    "--warmups",
+    "1",
+    "--repeats",
+    "3",
+    "--rounds",
+    "1",
+    "--timeout",
+    "300",
+    "--out",
+    "tmp/l3_30h_20260923/rgg_block_sweep/rgg_n_2_20_s0_d32_b80"
+  ],
+  "completed_utc": "2026-09-23T08:15:00.417327+00:00",
+  "configuration": {
+    "blocks": 80,
+    "blocks_scope": "same requested value; independently logged by T1 and T2",
+    "cut_percent": 50,
+    "delta": 32,
+    "final_audit": "failure",
+    "formal_repeats_per_process": 3,
+    "gpu_contract": {
+      "dual_l3": 2,
+      "fallback_allowed": false,
+      "single_no_l3": 1
+    },
+    "queue": "L1SLF_L2DQ",
+    "rounds": 1,
+    "sampling": "exploratory",
+    "source": 0,
+    "target_speedup": 1.2,
+    "timeout_seconds": 300,
+    "timing_formula": "S = median(all T1 solve_ms) / median(all T2 solve_ms)",
+    "warmups_per_process": 1
+  },
+  "created_utc": "2026-09-23T08:14:53.262694+00:00",
+  "git": {
+    "head": {
+      "output": "be4f6b20903f67ad5cfa1254f1508adab9b56b45",
+      "rc": 0
+    },
+    "status": {
+      "output": " M SSSP/l3/l3_window.h\n M SSSP/sssp.cuh\n M SSSP/sssp_run.cu\n?? L3_30h_performance_report.md\n?? evidence/l3_30h_20260923/\n?? evidence/l3_latest_rerun_38082/\n?? scripts/multigpu/audit_gr_dataset.py\n?? scripts/multigpu/build_l3_30h_pair.sh\n?? scripts/multigpu/export_l3_latest_rerun.py\n?? scripts/multigpu/gr_oracle.cpp\n?? scripts/multigpu/l3_30h_preflight.cu\n?? scripts/multigpu/prepare_l3_30h_single.py\n?? scripts/multigpu/run_l3_30h.py\n?? scripts/multigpu/run_l3_30h_preflight.sh\n?? scripts/multigpu/run_l3_30h_stage1_baselines.sh\n?? scripts/multigpu/run_l3_30h_sweep.py",
+      "rc": 0
+    }
+  },
+  "host": "ada-A100",
+  "inputs": {
+    "dual_binary": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/dual_build/mlmq",
+      "sha256": "c47d7100c329139abddc105048fc9bed4b9f759804378716adb43b661a391911"
+    },
+    "graph": {
+      "header": {
+        "edge_size": 4,
+        "edges": 13783240,
+        "version": 1,
+        "vertices": 1048576
+      },
+      "path": "/mnt/a100/data1/Dingzhong/mlmq/data/rgg_n_2_20_s0.gr",
+      "sha256": "2617ea8de3091120c2233a5668bb5e7b04766369a5c780e7247ed061b12e5d70"
+    },
+    "oracle": {
+      "bytes": 4194304,
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/rgg_n_2_20_s0_s0.i32",
+      "sha256": "c042e12636792c2aeaf6943b95cb9e10862615e218c5a87915169e2c57c894a9"
+    },
+    "runner": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+      "sha256": "d337ca9c75f283bb0d975c3760f61ef29ef65892ecc19d4df34d4ae90bd93768"
+    },
+    "single_binary": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/build_base_v2/single_build/mlmq",
+      "sha256": "fd09a5742c2805349c44c8180662106a0ed03db7e8c18a9868a086a6861009fa"
+    }
+  },
+  "preflight": {
+    "allocation": {
+      "CUDA_VISIBLE_DEVICES": {
+        "count": 2,
+        "value": "0,1"
+      },
+      "SLURM_GPUS_ON_NODE": {
+        "count": 2,
+        "value": "2"
+      },
+      "SLURM_STEP_GPUS": {
+        "count": 2,
+        "value": "0,1"
+      }
+    },
+    "compute_apps_before": [],
+    "snapshot_bytes": 2146,
+    "topology_bytes": 642,
+    "visible_gpu_count": 2,
+    "visible_gpus": [
+      "0, GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3, NVIDIA A100 80GB PCIe",
+      "1, GPU-5a40464a-79b5-7559-27c4-49b0a63b164a, NVIDIA A100 80GB PCIe"
+    ]
+  },
+  "process_count": 2,
+  "slurm_job_id": "38140",
+  "status": "complete",
+  "summary": "tmp/l3_30h_20260923/rgg_block_sweep/rgg_n_2_20_s0_d32_b80/summary.json"
+}

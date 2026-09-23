@@ -1,0 +1,71 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/variant_compact_candidates/dual_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "2",
+    "-d",
+    "400000"
+  ],
+  "configuration": "dual_l3",
+  "effective_contract": {
+    "dual_contract": {
+      "errors": [
+        "dual contract lines remain after the final BENCH row",
+        "expected 4 dual BENCH contract groups, got 0"
+      ],
+      "expected_samples": 4,
+      "l2_final_present": false,
+      "observed_samples": 0,
+      "samples": [],
+      "valid": false
+    },
+    "errors": [
+      "expected at least 4 WIDE_ORACLE lines, got 0",
+      "dual contract lines remain after the final BENCH row",
+      "expected 4 dual BENCH contract groups, got 0"
+    ],
+    "expected_l3_config_lines": 8,
+    "expected_oracle_lines": 4,
+    "expected_partitions": [
+      [
+        0,
+        0,
+        14368408
+      ],
+      [
+        1,
+        14368408,
+        23947347
+      ]
+    ],
+    "l3_config_lines": 2,
+    "no_l3_config_lines": 0,
+    "no_l3_launch_lines": 0,
+    "oracle_lines": 0,
+    "partitions": [
+      [
+        0,
+        0,
+        14368408
+      ],
+      [
+        1,
+        14368408,
+        23947347
+      ]
+    ]
+  },
+  "finished_utc": "2026-09-23T08:58:27.395757+00:00",
+  "host_elapsed_seconds": 5.80013162700925,
+  "prefix": "tmp/l3_30h_20260923/route_b2_compact/usa_gplus_s11973673_d400000_b107_compact/round000_1_dual_l3",
+  "rc": 2,
+  "reason": "nonzero return code; contract: expected at least 4 WIDE_ORACLE lines, got 0; dual contract lines remain after the final BENCH row; expected 4 dual BENCH contract groups, got 0",
+  "requested_gpu_count": 2,
+  "round": 0,
+  "samples": [],
+  "sequence_in_round": 1,
+  "started_utc": "2026-09-23T08:58:20.324571+00:00",
+  "valid": false
+}

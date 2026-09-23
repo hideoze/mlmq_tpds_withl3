@@ -1,0 +1,151 @@
+round=0 sequence=0 config=single_no_l3 gpu_count=1 valid=True rc=0 reason=ok
+round=0 sequence=1 config=dual_l3 gpu_count=2 valid=True rc=0 reason=ok
+{
+  "all_samples_file": "tmp/l3_30h_20260923/route_a_backoff_25k/rgg_n_2_20_s0_d32_b107/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.9997021752603742,
+    "S_solve_T1_over_T2": 0.9035630841121496,
+    "T1": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.2731995000000005,
+        "mad_ms": 0.14684700000000106,
+        "median_ms": 12.805732,
+        "q1_ms": 12.7323085,
+        "q3_ms": 13.005508,
+        "samples_ms": [
+          12.805732,
+          12.658885,
+          13.205284
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.27671250000000036,
+        "mad_ms": 0.11777800000000127,
+        "median_ms": 9.080303,
+        "q1_ms": 9.021414,
+        "q3_ms": 9.2981265,
+        "samples_ms": [
+          9.080303,
+          8.962525,
+          9.51595
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 3,
+      "formal_sample_count": 3,
+      "query_wall": {
+        "count": 3,
+        "iqr_ms": 0.6758040000000012,
+        "mad_ms": 0.09971700000000006,
+        "median_ms": 12.809547,
+        "q1_ms": 12.7596885,
+        "q3_ms": 13.4354925,
+        "samples_ms": [
+          12.70983,
+          12.809547,
+          14.061438
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 3,
+        "iqr_ms": 0.7053269999999987,
+        "mad_ms": 0.1452410000000004,
+        "median_ms": 10.04944,
+        "q1_ms": 9.976819500000001,
+        "q3_ms": 10.6821465,
+        "samples_ms": [
+          9.904199,
+          10.04944,
+          11.314853
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formula": "S = median(T1) / median(T2)",
+  "records_file": "tmp/l3_30h_20260923/route_a_backoff_25k/rgg_n_2_20_s0_d32_b107/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.9997021752603742,
+      "S_solve_T1_over_T2": 0.9035630841121496,
+      "T1": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.2731995000000005,
+          "mad_ms": 0.14684700000000106,
+          "median_ms": 12.805732,
+          "q1_ms": 12.7323085,
+          "q3_ms": 13.005508,
+          "samples_ms": [
+            12.805732,
+            12.658885,
+            13.205284
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.27671250000000036,
+          "mad_ms": 0.11777800000000127,
+          "median_ms": 9.080303,
+          "q1_ms": 9.021414,
+          "q3_ms": 9.2981265,
+          "samples_ms": [
+            9.080303,
+            8.962525,
+            9.51595
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 3,
+        "formal_sample_count": 3,
+        "query_wall": {
+          "count": 3,
+          "iqr_ms": 0.6758040000000012,
+          "mad_ms": 0.09971700000000006,
+          "median_ms": 12.809547,
+          "q1_ms": 12.7596885,
+          "q3_ms": 13.4354925,
+          "samples_ms": [
+            12.70983,
+            12.809547,
+            14.061438
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 3,
+          "iqr_ms": 0.7053269999999987,
+          "mad_ms": 0.1452410000000004,
+          "median_ms": 10.04944,
+          "q1_ms": 9.976819500000001,
+          "q3_ms": 10.6821465,
+          "samples_ms": [
+            9.904199,
+            10.04944,
+            11.314853
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory"
+}

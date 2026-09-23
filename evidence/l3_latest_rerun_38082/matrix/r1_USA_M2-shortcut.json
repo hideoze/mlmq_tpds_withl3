@@ -1,0 +1,101 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/dual_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "69.955140",
+      "collection_ms": "45.640615",
+      "query_wall_ms": "123.584536",
+      "prepare_ms": "7.909738",
+      "post_solve_ms": "0.079009",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "74.903087",
+      "collection_ms": "6.536644",
+      "query_wall_ms": "84.441992",
+      "prepare_ms": "2.931915",
+      "post_solve_ms": "0.070325",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "2",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "67.701092",
+      "collection_ms": "7.104113",
+      "query_wall_ms": "77.991310",
+      "prepare_ms": "3.122770",
+      "post_solve_ms": "0.063319",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "3",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "68.237771",
+      "collection_ms": "6.986835",
+      "query_wall_ms": "78.078932",
+      "prepare_ms": "2.796239",
+      "post_solve_ms": "0.058058",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "4",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "71.863144",
+      "collection_ms": "6.451248",
+      "query_wall_ms": "81.113333",
+      "prepare_ms": "2.740474",
+      "post_solve_ms": "0.058438",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "5",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "71.064717",
+      "collection_ms": "6.613554",
+      "query_wall_ms": "80.509267",
+      "prepare_ms": "2.767091",
+      "post_solve_ms": "0.063889",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 7.060105569980806
+}
