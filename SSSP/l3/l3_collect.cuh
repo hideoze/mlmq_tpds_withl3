@@ -71,7 +71,7 @@ __device__ __forceinline__ int l3_collect_cooperative(
             int count_before = count;
 #endif
             unsigned bits = word < words ? atomicAdd(mark + word, 0u) : 0;
-            if (bits && atomicCAS(mark + word, bits, 0u) != bits) bits = 0;
+            if (bits && !l3_device_mark_claim(mark + word, bits)) bits = 0;
             // Selection happens only after claiming. Both mappings consume the
             // exact same owned bits, with an unchanged whole-block reservation.
 #if (L3_ADAPTIVE_WORDS == true || L3_MAPPING_DIAG == true)

@@ -23,7 +23,9 @@ for r in records:
         assert s['repeat']==str(i) and s['warmup']==str(int(i==0)) and s['queue']=='L1SLF_L2DQ'
         assert math.isfinite(float(s['solve_ms'])) and float(s['solve_ms'])>0
     formal+=sum(s['warmup']=='0' for s in samples);wide+=len(fields(raw,'WIDE_ORACLE'));l2+=len(fields(raw,'L2_FINAL'))
-    capacities=fields(raw,'L2_CAPACITY');assert len(capacities)==n
+    # Each GPU logs capacity for two queue instances: expect two records per
+    # single-GPU process and four for a dual-GPU process.
+    capacities=fields(raw,'L2_CAPACITY');assert len(capacities)==2*n
     for c in capacities:
         assert int(c['record_bytes'])==8 and int(c['buckets'])==16 and int(c['per_bucket'])==16776704
         assert int(c['per_bucket'])*int(c['buckets'])<=int(c['allocated_records'])

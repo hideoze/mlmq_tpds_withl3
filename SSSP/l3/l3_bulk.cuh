@@ -1,6 +1,8 @@
 #pragma once
 
 #include "l3_metrics.cuh"
+#include "l3_transport.cuh"
+#include "l3_sync.cuh"
 
 // L3-06: 通用 BULK pack/apply/batch orchestration。槽位 generation/ACK 原语
 // 由 l3_transport.cuh 提供；这里集中候选批次的消费、打包、发布和回挂。
@@ -51,10 +53,13 @@ __device__ __forceinline__ int bulk_consume_inbox(
     claimed = __shfl_sync(FULL_MASK, claimed, 0);
     if (!claimed)
         return 0;
+    const bool payload_visible = bulk_inbox_confirm_read_lane(inbox_state + slot);
+    if (!__all_sync(FULL_MASK, payload_visible))
+        return 0;
 
     NODE_TYPE *slot_inbox = inbox + slot * (v_local + 1);
     int *slot_count = inbox_count + slot;
-    int cnt = atomicAdd(slot_count, 0);
+    int cnt = l3_atomic_load_relaxed<cuda::thread_scope_system>(slot_count);
     if (cnt < 0) cnt = 0;
     if (cnt > v_local) cnt = v_local;
 #if (L3_EVENT_RING == true)
@@ -109,8 +114,9 @@ __device__ __forceinline__ int bulk_consume_inbox(
                         lane_improved++;
                     }
 #else
-                    atomicOr(&dirty_bitmap[j >> 5], 1u << (j & 31));
-                    atomicOr(&dirty_hint[j >> 10], 1u << ((j >> 5) & 31));
+                    l3_system_mark_publish(&dirty_bitmap[j >> 5], 1u << (j & 31));
+                    l3_system_mark_publish(&dirty_hint[j >> 10],
+                                           1u << ((j >> 5) & 31));
                     lane_improved++;
 #endif
                 }
@@ -228,7 +234,8 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
     int mark_words = (peer_v_local + 31) / 32;
     for (int w = lane_id; w < mark_words; w += WARP_SIZE)
     {
-        unsigned mv = atomicExch(&remote_mark[w], 0u);
+        unsigned mv = l3_atomic_exchange_acq_rel<cuda::thread_scope_device>(
+            &remote_mark[w], 0u);
         if (!mv) continue;
         for (int b = 0; b < WARP_SIZE; b++)
         {
@@ -285,7 +292,9 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
             if (lidx < 1 || lidx > peer_v_local)
                 continue;
             VALUE_TYPE candidate = item.get_data();
-            VALUE_TYPE peer_dist = *((volatile VALUE_TYPE *)&peer_node_data[lidx]);
+            VALUE_TYPE peer_dist =
+                l3_atomic_load_relaxed<cuda::thread_scope_system>(
+                    &peer_node_data[lidx]);
             if (candidate >= peer_dist)
                 continue;
             int out = atomicAdd(send_count, 1);
@@ -317,7 +326,7 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
         if (lidx < 1 || lidx > peer_v_local)
             continue;
         VALUE_TYPE nd = item.get_data();
-        VALUE_TYPE old = atomicMin(&peer_node_data[lidx], nd);
+        VALUE_TYPE old = l3_atomic_min_system(&peer_node_data[lidx], nd);
 #if (GLOBAL_ROUND_DIRECT_TRACE == true)
         if (item.id == 193 && nd < old)
         {
@@ -338,9 +347,9 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
             if (out < peer_v_local)
                 slot_inbox[out] = item;
 #endif
-            atomicOr(&peer_dirty_bitmap[r0 >> 5], 1u << (r0 & 31));
-            atomicOr(&peer_dirty_hint[r0 >> 10],
-                     1u << ((r0 >> 5) & 31));
+            l3_system_mark_publish(&peer_dirty_bitmap[r0 >> 5], 1u << (r0 & 31));
+            l3_system_mark_publish(&peer_dirty_hint[r0 >> 10],
+                                   1u << ((r0 >> 5) & 31));
         }
     }
     __syncwarp();
@@ -351,19 +360,19 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
     publish_count = __shfl_sync(FULL_MASK, publish_count, 0);
 #endif
     __threadfence_system();
+    __syncwarp();
     if (!lane_id)
-        atomicExch(slot_count, publish_count);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_count, publish_count);
     if (!lane_id)
-        atomicExch(slot_epoch, epoch);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_epoch, epoch);
     if (!lane_id)
-        atomicExch(peer_inbox_state + slot, BULK_SLOT_READY);
-    __threadfence_system();
+        l3_atomic_store_release<cuda::thread_scope_system>(
+            peer_inbox_state + slot, BULK_SLOT_READY);
     if (!lane_id)
     {
         atomicExch((int *)send_count, publish_count);
-        atomicExch((int *)publish_done, epoch);
+        l3_atomic_store_release<cuda::thread_scope_block>(
+            (int *)publish_done, epoch);
     }
     __syncwarp();
     return true;
@@ -375,17 +384,17 @@ __device__ __forceinline__ bool bulk_pack_publish_warp(
     }
     __syncwarp();
     __threadfence_system();
+    __syncwarp();
     if (!lane_id)
-        atomicExch(slot_count, cnt);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_count, cnt);
     if (!lane_id)
-        atomicExch(slot_epoch, epoch);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_epoch, epoch);
     if (!lane_id)
-        atomicExch(peer_inbox_state + slot, BULK_SLOT_READY);
-    __threadfence_system();
+        l3_atomic_store_release<cuda::thread_scope_system>(
+            peer_inbox_state + slot, BULK_SLOT_READY);
     if (!lane_id)
-        atomicExch((int *)publish_done, epoch);
+        l3_atomic_store_release<cuda::thread_scope_block>(
+            (int *)publish_done, epoch);
 #if (BULK_DIAG == true)
     if (!lane_id)
         printf("BULK_PUB_DONE epoch=%d cnt=%d\\n", epoch, cnt);
@@ -421,7 +430,7 @@ __device__ __forceinline__ void bulk_requeue_l3_batch(
             continue;
         atomicMin(&remote_cand[lidx], l3_nd[i]);
         int r0 = lidx - 1;
-        atomicOr(&remote_mark[r0 >> 5], 1u << (r0 & 31));
+        l3_device_mark_publish(&remote_mark[r0 >> 5], 1u << (r0 & 31));
         if (mark_hint != NULL)
             atomicOr(&mark_hint[r0 >> 10], 1u << ((r0 >> 5) & 31));
         if (mark_hint2 != NULL)
@@ -492,16 +501,15 @@ __device__ __forceinline__ bool bulk_publish_l3_batch(
     }
     __syncwarp();
     __threadfence_system();
+    __syncwarp();
 
     if (!lane_id)
-        atomicExch(slot_count, count);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_count, count);
     if (!lane_id)
-        atomicExch(slot_epoch, tx_epoch);
-    __threadfence_system();
+        l3_atomic_store_relaxed<cuda::thread_scope_system>(slot_epoch, tx_epoch);
     if (!lane_id)
-        atomicExch(peer_inbox_state + slot, BULK_SLOT_READY);
-    __threadfence_system();
+        l3_atomic_store_release<cuda::thread_scope_system>(
+            peer_inbox_state + slot, BULK_SLOT_READY);
     __syncwarp();
     return true;
 }

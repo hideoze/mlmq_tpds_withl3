@@ -34,11 +34,13 @@ __global__ void candidate_schedule(int*c,unsigned*m,unsigned*h,unsigned*h2,int*g
     }else{
         wait_gate(g,1);
         if(mode==0){gate(g,2);wait_gate(g,3);}
-        unsigned bits=atomicAdd(m,0u);assert(bits==1 && atomicCAS(m,bits,0u)==bits);
+        unsigned bits=l3_atomic_load_acquire<cuda::thread_scope_device>(m);
+        assert(bits==1 && l3_device_mark_claim(m,bits));
         if(mode==1){gate(g,2);wait_gate(g,3);}
         out[0]=atomicExch(c+1,DIST_MAX);
         if(mode==2){gate(g,2);wait_gate(g,3);}
-        unsigned later=atomicExch(m,0u);out[1]=later?atomicExch(c+1,DIST_MAX):DIST_MAX;
+        unsigned later=l3_atomic_exchange_acq_rel<cuda::thread_scope_device>(m,0u);
+        out[1]=later?atomicExch(c+1,DIST_MAX):DIST_MAX;
         out[2]=min(out[0],out[1]);
     }
 }
@@ -54,10 +56,12 @@ __global__ void candidate_race(int*c,unsigned*m,unsigned*h,unsigned*h2,int*done,
             int count=l3_collect_cooperative(c,m,h,h2,c,1024,1024,ids,values,lane);
             for(int i=lane;i<count;i+=32)atomicMin(seen+ids[i]-1,values[i]);
             // Same authoritative mark fallback as TX: claim first, exchange second.
-            unsigned bits=atomicAdd(m+lane,0u);if(bits && atomicCAS(m+lane,bits,0u)!=bits)bits=0;
+            unsigned bits=l3_atomic_load_relaxed<cuda::thread_scope_device>(m+lane);
+            if(bits && !l3_device_mark_claim(m+lane,bits))bits=0;
             while(bits){int b=__ffs(bits)-1;bits&=bits-1;int id=lane*32+b;int value=atomicExch(c+id+1,DIST_MAX);atomicMin(seen+id,value);}
             __syncwarp();
-            bool drained=atomicAdd(done,0)==8 && atomicAdd(m+lane,0u)==0;
+            bool drained=atomicAdd(done,0)==8
+                && l3_atomic_load_acquire<cuda::thread_scope_device>(m+lane)==0;
             if(__all_sync(FULL_MASK,drained)){if(!lane)stats[0]=pass+1;return;}
         }assert(false);
     }
@@ -67,9 +71,13 @@ struct ReceiverQueue {
     int *states,*acks,*generations,*distances,*checks;
     __device__ write_status write_through(node_struct *p,int&n,int b,int w,int lane,unsigned*debug){
         if(!lane){
-            int reading=(atomicAdd(states,0)==BULK_SLOT_READING)+(atomicAdd(states+1,0)==BULK_SLOT_READING);
+            int reading=(l3_atomic_load_acquire<cuda::thread_scope_system>(states)==BULK_SLOT_READING)
+                +(l3_atomic_load_acquire<cuda::thread_scope_system>(states+1)==BULK_SLOT_READING);
             assert(reading==1);assert(distances[p[0].id]==p[0].dist);
-            for(int slot=0;slot<2;++slot)if(atomicAdd(states+slot,0)==BULK_SLOT_READING)assert(atomicAdd(acks+slot,0)<atomicAdd(generations+slot,0));
+            for(int slot=0;slot<2;++slot)
+                if(l3_atomic_load_acquire<cuda::thread_scope_system>(states+slot)==BULK_SLOT_READING)
+                    assert(l3_atomic_load_relaxed<cuda::thread_scope_system>(acks+slot)
+                        < l3_atomic_load_relaxed<cuda::thread_scope_system>(generations+slot));
             // RX has applied D and still owns READING before the real DQ commit.
             atomicAdd(checks,1);__nanosleep(1000);
         }__syncwarp();return q2.write(p,n,b,w,lane,debug);

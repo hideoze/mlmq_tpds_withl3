@@ -45,7 +45,11 @@ env.update(MLMQ_BENCH='1',MLMQ_WORK_BLOCKS='107',BENCH_DELTA='200000',BENCH_QUEU
 # Fixed G+ constructed with source 0; changing source must not rebuild the graph.
 rc,raw=command('sequential_reset',[BASE/'dual_diagnostic_build/mlmq','-i',OUT/'s0.gr','-n','2','-d','200000'],env)
 rows=parse_bench(raw)
-reset_ok=rc==0 and [int(r['source']) for r in rows]==[0,1030,2050,0] and all(r['correct']=='1' and r['gpu_count']=='2' for r in rows) and raw.count('WIDE_ORACLE ')==4 and raw.count('CAPACITY_QUERY ')==8
+# The dual-GPU diagnostic prints one WIDE_ORACLE line per GPU per query.
+reset_ok=(rc==0 and [int(r['source']) for r in rows]==[0,1030,2050,0]
+          and all(r['correct']=='1' and r['gpu_count']=='2' for r in rows)
+          and raw.count('WIDE_ORACLE ')==2*len(rows)
+          and raw.count('CAPACITY_QUERY ')==8)
 if not reset_ok:problems.append(dict(test='sequential_reset',rc=rc))
 print('RESET_TEST',reset_ok,flush=True)
 if not reset_ok:

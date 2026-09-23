@@ -1,5 +1,7 @@
 #pragma once
 
+#include "l3_sync.cuh"
+
 // G3 direct owner-commit experiment.
 //
 // The existing tile-loan slot owns the source credit and the generation
@@ -30,7 +32,7 @@ __device__ __forceinline__ bool l3_owner_commit_remote_relax(
         return false;
 
     const VALUE_TYPE old_dist =
-        atomicMin(&channel.peer_node_data[peer_lidx], new_dist);
+        l3_atomic_min_system(&channel.peer_node_data[peer_lidx], new_dist);
 
     // The cache is only an advisory lower-bound filter for the ordinary
     // candidate path.  Recording a value that was actually committed cannot
@@ -43,10 +45,10 @@ __device__ __forceinline__ bool l3_owner_commit_remote_relax(
         return false;
 
     const int peer_zero = peer_lidx - 1;
-    atomicOr(&channel.peer_dirty_bitmap[peer_zero >> 5],
-             1u << (peer_zero & 31));
-    atomicOr(&channel.peer_dirty_hint[peer_zero >> 10],
-             1u << ((peer_zero >> 5) & 31));
+    l3_system_mark_publish(&channel.peer_dirty_bitmap[peer_zero >> 5],
+                           1u << (peer_zero & 31));
+    l3_system_mark_publish(&channel.peer_dirty_hint[peer_zero >> 10],
+                           1u << ((peer_zero >> 5) & 31));
     return true;
 }
 
@@ -166,8 +168,8 @@ __device__ __forceinline__ bool l3_owner_commit_service_incoming(
             // The ordinary owner path expands from the authoritative distance,
             // not necessarily the queue record's snapshot.  Reading the peer
             // distance here preserves that property for a leased source.
-            source_dist = *((volatile VALUE_TYPE *)&
-                                channel.peer_node_data[local0 + 1]);
+            source_dist = l3_atomic_load_acquire<cuda::thread_scope_system>(
+                &channel.peer_node_data[local0 + 1]);
         }
 
         int max_degree = degree;

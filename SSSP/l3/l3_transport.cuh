@@ -1,5 +1,7 @@
 #pragma once
 
+#include "l3_sync.cuh"
+
 // L3 transport contract and shared BULK slot ownership primitives. 具体
 // pack/apply 编排仍在 sssp_run.cu，先将 generation/ACK 状态机集中于此。
 enum l3_transport_kind
@@ -43,9 +45,9 @@ __device__ __forceinline__ bool bulk_inbox_try_acquire_write(
         return false;
 
     const int previous_epoch = epoch - BULK_INBOX_SLOTS;
-    int state = atomicAdd(slot_state + slot, 0);
-    int generation = atomicAdd(slot_generation + slot, 0);
-    int ack = atomicAdd(slot_ack + slot, 0);
+    int state = l3_atomic_load_acquire<cuda::thread_scope_system>(slot_state + slot);
+    int generation = l3_atomic_load_relaxed<cuda::thread_scope_system>(slot_generation + slot);
+    int ack = l3_atomic_load_acquire<cuda::thread_scope_system>(slot_ack + slot);
 
     bool reusable = (state == BULK_SLOT_FREE);
     if (previous_epoch >= 1)
@@ -55,15 +57,16 @@ __device__ __forceinline__ bool bulk_inbox_try_acquire_write(
     if (!reusable)
         return false;
 
-    if (state == BULK_SLOT_DONE)
-        atomicExch(slot_state + slot, BULK_SLOT_FREE);
-    __threadfence_system();
-    if (atomicExch(slot_state + slot, BULK_SLOT_WRITING)
-        != BULK_SLOT_FREE)
+    if (state == BULK_SLOT_DONE
+        && !l3_atomic_compare_exchange_acq_rel<cuda::thread_scope_system>(
+            slot_state + slot, BULK_SLOT_DONE, BULK_SLOT_FREE))
+        return false;
+    if (!l3_atomic_compare_exchange_acq_rel<cuda::thread_scope_system>(
+            slot_state + slot, BULK_SLOT_FREE, BULK_SLOT_WRITING))
         return false;
 
-    *((volatile int *)(slot_generation + slot)) = epoch;
-    __threadfence_system();
+    l3_atomic_store_relaxed<cuda::thread_scope_system>(
+        slot_generation + slot, epoch);
     return true;
 }
 
@@ -73,9 +76,9 @@ __device__ __forceinline__ bool bulk_inbox_claim_read(
 {
     if (slot_state == NULL || slot_generation == NULL || slot_epoch == NULL)
         return false;
-    int state = atomicAdd(slot_state + slot, 0);
-    int generation = atomicAdd(slot_generation + slot, 0);
-    int published = atomicAdd(slot_epoch + slot, 0);
+    int state = l3_atomic_load_acquire<cuda::thread_scope_system>(slot_state + slot);
+    int generation = l3_atomic_load_relaxed<cuda::thread_scope_system>(slot_generation + slot);
+    int published = l3_atomic_load_relaxed<cuda::thread_scope_system>(slot_epoch + slot);
     if (state != BULK_SLOT_READY || generation != expected_epoch
         || published != expected_epoch)
         return false;
@@ -85,33 +88,42 @@ __device__ __forceinline__ bool bulk_inbox_claim_read(
     if (atomicCAS(&g_l3_fault_claim_retry, 0u, 1u) == 0u)
         return false;
 #endif
-    return atomicCAS(slot_state + slot, BULK_SLOT_READY, BULK_SLOT_READING)
-           == BULK_SLOT_READY;
+    return l3_atomic_compare_exchange_acq_rel<cuda::thread_scope_system>(
+        slot_state + slot, BULK_SLOT_READY, BULK_SLOT_READING);
+}
+
+// After lane 0 claims READY -> READING, every lane that will read payload
+// performs an acquire load of the new state. This carries READY's publication
+// through the claim RMW to all payload-reading lanes.
+__device__ __forceinline__ bool bulk_inbox_confirm_read_lane(int *slot_state)
+{
+    return slot_state != NULL
+        && l3_atomic_load_acquire<cuda::thread_scope_system>(slot_state)
+               == BULK_SLOT_READING;
 }
 
 __device__ __forceinline__ void bulk_inbox_finish_read(
     int *slot_state, int *slot_ack, int slot, int epoch)
 {
-    __threadfence_system();
 #if (L3_FAULT_INJECT_ACK_DELAY == true)
     bool delay_ack = false;
     if (slot_ack != NULL
         && atomicCAS(&g_l3_fault_ack_delay, 0u, 1u) == 0u)
     {
         // pending 先于 DONE 发布；manager 下一轮只在看到 DONE 后重发 ACK。
-        atomicExch(&g_l3_fault_ack_pending, epoch);
+        l3_atomic_store_release<cuda::thread_scope_device>(
+            &g_l3_fault_ack_pending, epoch);
         delay_ack = true;
     }
     if (slot_ack != NULL && !delay_ack)
-        atomicExch(slot_ack + slot, epoch);
+        l3_atomic_store_release<cuda::thread_scope_system>(slot_ack + slot, epoch);
 #else
     if (slot_ack != NULL)
-        atomicExch(slot_ack + slot, epoch);
+        l3_atomic_store_release<cuda::thread_scope_system>(slot_ack + slot, epoch);
 #endif
-    __threadfence_system();
     if (slot_state != NULL)
-        atomicExch(slot_state + slot, BULK_SLOT_DONE);
-    __threadfence_system();
+        l3_atomic_store_release<cuda::thread_scope_system>(
+            slot_state + slot, BULK_SLOT_DONE);
 }
 
 #if (L3_FAULT_INJECT_ACK_DELAY == true)
@@ -123,16 +135,17 @@ __device__ __forceinline__ bool bulk_inbox_retry_delayed_ack(
 {
     if (slot_state == NULL || slot_ack == NULL)
         return false;
-    int epoch = atomicAdd(&g_l3_fault_ack_pending, 0);
+    int epoch = l3_atomic_load_acquire<cuda::thread_scope_device>(
+        &g_l3_fault_ack_pending);
     if (epoch <= 0)
         return false;
     int slot = bulk_inbox_slot(epoch);
-    if (atomicAdd(slot_state + slot, 0) != BULK_SLOT_DONE)
+    if (l3_atomic_load_acquire<cuda::thread_scope_system>(slot_state + slot)
+        != BULK_SLOT_DONE)
         return false;
-    __threadfence_system();
-    atomicExch(slot_ack + slot, epoch);
-    __threadfence_system();
-    atomicCAS(&g_l3_fault_ack_pending, epoch, 0);
+    l3_atomic_store_release<cuda::thread_scope_system>(slot_ack + slot, epoch);
+    l3_atomic_compare_exchange_acq_rel<cuda::thread_scope_device>(
+        &g_l3_fault_ack_pending, epoch, 0);
     return true;
 }
 #endif
@@ -153,12 +166,16 @@ __device__ __forceinline__ int bulk_inbox_ready_epoch(
     {
         int next = rx_epoch + 1;
         int slot = bulk_inbox_slot(next);
-        int observed_ready = atomicAdd(inbox_epoch + slot, 0);
-        int state = atomicAdd(inbox_state + slot, 0);
-        int generation = atomicAdd(inbox_generation + slot, 0);
-        if (observed_ready == next && generation == next
-            && state == BULK_SLOT_READY)
-            ready = observed_ready;
+        int state = l3_atomic_load_acquire<cuda::thread_scope_system>(
+            inbox_state + slot);
+        if (state == BULK_SLOT_READY) {
+            int generation = l3_atomic_load_relaxed<cuda::thread_scope_system>(
+                inbox_generation + slot);
+            int observed_ready = l3_atomic_load_relaxed<cuda::thread_scope_system>(
+                inbox_epoch + slot);
+            if (observed_ready == next && generation == next)
+                ready = observed_ready;
+        }
     }
     ready = __shfl_sync(active_mask, ready, active_leader);
 #if (L3_FAULT_INJECT_READY_DELAY == true)
