@@ -24,14 +24,24 @@
 #define node_size 32
 // The batch size of l2 queue: {8, 16, 32}
 // The batch size of l1 queue is dependent on node_size
+#ifndef l2_batch_size
 #define l2_batch_size 8
+#endif
 // delta value, related to edge weights
 #define mlmq_delta 2e5
 // L2 delta queue
 // Number of delta queue buckets
+#ifndef BNUM
 #define BNUM 16
+#endif
 // Number of buckets can concurrently read data from
+#ifndef BUCKET_MAX
 #define BUCKET_MAX 4
+#endif
+#if (l2_batch_size != 8 && l2_batch_size != 16 && l2_batch_size != 32) || \
+    BNUM <= 0 || BUCKET_MAX <= 0 || BUCKET_MAX > BNUM
+#error "Invalid L2 delta-queue bucket geometry"
+#endif
 //------------------------------------------------------//
 
 // Do not change following parameters
@@ -154,4 +164,3 @@ struct mlmq_mdata
         return EXIT_FAILURE;                                                   \
     }                                                                          \
 }
-

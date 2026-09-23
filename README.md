@@ -32,7 +32,8 @@ return code, and binary SHA256 in the new output directory. It uses the frozen
 paper macros (`MLMQ_WORKER_THREADS=512`, cooperative collect, direct RX,
 retained TX, window mode 2, worker recovery, ACK wait/scan, boundary index,
 fixed 25,000-cycle window bounds, guarded authoritative per-bucket DQ write
-reservations, final L2 counts, and `L3_CHAIN_SHORTCUTS=false`) and `sm_80`; it
+reservations, final L2 counts, `BNUM=8`, `BUCKET_MAX=4`,
+`l2_batch_size=8`, and `L3_CHAIN_SHORTCUTS=false`) and `sm_80`; it
 does not rely on `SSSP/Makefile`, which is a default build without those paper
 macros.
 `BOOST_INCLUDE_DIR` may override the recorded default path
@@ -45,7 +46,10 @@ committed `evidence/l3_30h_20260923/final/formal_input_contract.json`, builds
 both the independent no-L3 single-GPU binary and the L3 dual-GPU binary fresh
 from that exact HEAD, and writes all build and sampling artifacts outside the
 repository. The runner deliberately reports measurement validity separately
-from whether the numerical 1.20x target was met.
+from whether the numerical 1.20x target was met. It requires both binaries to
+use the same frozen L2 geometry and checks the exact runtime capacity tuple:
+a 2,147,483,647-byte budget, 268,435,455 allocated records
+(2,147,483,640 data bytes), eight buckets, and 33,553,920 records per bucket.
 
 For the paired eight-graph rebuild and measurement, retain the independent
 single-GPU baseline source at `tmp/nol3_213_preload/source.tgz`. Use a new

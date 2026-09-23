@@ -2,18 +2,34 @@
 
 ## 当前结论
 
-当前已完成阶段 0、阶段 1、Route A、Route B1 与 Route B2 的探索和止损，进入
-**最终源码冻结与定向验证（计划 21--24 h 段）**。Route C 因作业 38122 的
-`PATH`、`/usr` 与 `/opt` 探针未找到可用 NVSHMEM 安装而按止损条件停止；这不是
-机器范围的“绝对未安装”声明。compact-candidate 只有小幅探索信号且仍低于目标，
-不进入最终候选；最终候选是 USA、delta=400000、blocks=107、W512、固定
-25000-cycle 的 control 配置。
+当前已完成阶段 0、阶段 1、Route A、Route B1 与 Route B2，并已进入正式验收；
+但前两次 clean-SHA Job A 均未形成可接受结果，因此当前回到最终候选重冻结。
+Route C 因作业 38122 的固定搜索范围内未找到可用 NVSHMEM 安装而按止损条件停止；
+这不是机器范围的“绝对未安装”声明。compact-candidate 只有小幅探索信号且仍低于
+目标，不进入当前重冻结候选；该候选仍是 USA、delta=400000、blocks=107、
+W512、固定 25000-cycle 的 control 配置，但 L2 几何改为 BNUM=8。
+
+`c0bc9ca` / Job 38227 的 dual/single pair 编译成功，但在任何 GPU 采样前，
+source provenance gate 将 tar 中 Git 不跟踪的目录权限和普通文件非执行权限差异
+误判为源码差异，工作流停止。比较边界修正为 Git 的路径、类型、内容及可执行位
+语义后，`7cd563c` / Job 38238 通过了源码与构建来源门。Job 38238 的 round 0
+完成 single/dual 各 1 次预热和 5 次正式正确样本；round 1 的 dual 进程完成预热
+后，第二个查询在两张 GPU 上均出现 `CUDA error 719: unspecified launch failure`，
+进程 `rc=2`。因此整批 `measurement_valid=false`、`target_met=null`；round 0 的
+`73.053410 / 65.569749 = 1.114133` 只是失败批次诊断值，不能作为正式性能结论。
+
+静态源码与正式二进制 SASS 证据高置信指向逐桶 DQ no-wrap guard：累计
+`write_reserve` 越过物理逐桶容量时会执行 device `trap`。队列地址虽取模，但
+当前协议没有证明安全复用所需的连续 retire frontier 或 generation。失败进程的
+预热查询中，GPU1 单桶写入已达到 `9,105,045 / 16,776,704`；后续查询可能因
+工作量重尾波动越过上限。CUDA 719 与该活跃显式 trap 一致，但因没有取得 trap
+PC，此处只称“高置信定位”，不称指令级最终证实。
 
 30 小时 GPU 窗口从 Slurm 首次实际授予两张 A100 的
 `2026-09-23 15:43:29 +08:00` 起算。下文 Stage 1 性能数均是
 dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1 次预热 + 3 次
 正式）；它们可以用于淘汰或选候选，不能替代恢复同步后的 clean-SHA 两轮反序
-正式结果。
+正式结果。Job 38227 和 38238 的失败目录均原样保留，后续不得覆盖。
 
 ## 阶段状态
 
@@ -29,9 +45,9 @@ dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1
 | Route A | 已完成并止损 | blocks、backoff、固定短窗口均未形成可冻结净收益 |
 | Route B1 | 已完成并止损 | RGG BFS 有小幅改善；USA layer-split 严重退化；重排未达到 1.20 |
 | Route B2 | 已完成并止损 | work/wait 诊断完成；compact-candidate 有小幅信号但仍未达到 1.20，最终拒绝 |
-| 同步/容量实现收口 | 已实现，待正式验证 | 恢复 `567e47f` 默认 BULK 活跃路径同步合同；固定 25k；加入生产计数 overflow guard 与双卡完成 barrier；dirty 双 A100 smoke 通过 |
-| clean-SHA 定向验证 | 未开始 | 预冻结 dual/single 实际 NVCC pair 已编译，46/46 CPU 合同单测通过；必须先提交 clean SHA，不采信 dirty 产物 |
-| 正式验收 | 未开始 | clean-SHA、两轮反序、独立作业确认、附加源点和八图回归仍待执行 |
+| 同步/容量实现收口 | BNUM=8 候选已实现，待 clean-SHA 验证 | BNUM=16 正式运行暴露高置信 no-wrap 容量 trap；保留 fail-stop，将 dual/single 同步改为 BNUM=8 |
+| clean-SHA 定向验证 | 已启动但未通过 | Job 38227 在采样前被 archive mode 误报挡住；Job 38238 在 round 1 dual 查询发生 CUDA 719；BNUM=8 dirty 探针与双构建通过 |
+| 正式验收 | 未完成 | Job 38238 只执行到 `01_primary`；Job A 的 final/numeric/附加源点/八图步骤及 Job B 均为 `NOT_RUN`；尚无 BNUM=8 clean-SHA 两轮有效结果 |
 
 ## 38082 历史批次
 
@@ -138,9 +154,9 @@ SLF+delta 工作核从 84 个寄存器推至 96 个并增加栈开销。两图�
 `evidence/l3_30h_20260923/stage1/route_b2_compact_r96_job38180/`；未归档大二进制
 与 source tarball。
 
-## 最终冻结候选与同步边界
+## 第一次冻结失败、容量定位与 BNUM=8 重冻结
 
-最终候选恢复提交 `567e47f` 的完整同步修复，并只叠加本轮固定窗口参数化、有效
+第一次 clean-SHA 候选恢复提交 `567e47f` 的完整同步修复，并只叠加本轮固定窗口参数化、有效
 配置日志和查询后容量门禁。默认 BULK 活跃路径的 candidate/mark、payload/READY、
 RX/L2/ACK、DQ publication、retained/requeue、worker recovery 与终止链已经逐项
 静态审计；字段、发布点、观察点和作用域记录在
@@ -148,20 +164,37 @@ RX/L2/ACK、DQ publication、retained/requeue、worker recovery 与终止链已�
 `SEED_BARRIER`、tile-loan、owner-commit 或其他实验分支。
 
 正式构建对每个逐桶权威 DQ `write_reserve` RMW 启用
-`DQ_COUNTER_OVERFLOW_GUARD`：原子操作返回的旧值与 int64 新值必须在该桶
-容量/`INT_MAX` 内，否则置 sticky flag 并 fail-stop。后续 read/completion 计数由
-唯一写预留上界约束，并由 `total_capacity <= INT_MAX` 和终态精确守恒交叉验证；
-independent single 使用相同共享-core guard。`mlmq_benchmark::finish` 在计时终点后
-作为两卡 host barrier；两卡都完成 `cudaDeviceSynchronize` 后才读取 `L2_FINAL`。
-最终门强制逐桶 drain、guarded writes/总读写/完成守恒、容量交叉、32 位配置、
-`overflow_detected=0` 和 `no_wrap=1`。这些检查不会被移出证据边界；并发发布测试仍
-不能由终态守恒替代。
+`DQ_COUNTER_OVERFLOW_GUARD`。其当前语义是“累计写预留不得发生物理环绕”，
+不只是 32 位整数 overflow：旧值与 int64 新值必须不超过逐桶 `total_size`，否则
+置 sticky flag 并 fail-stop。由于当前队列没有连续 retire frontier/generation，
+不能把门槛简单放宽到 `INT_MAX` 后宣称 modulo 槽位可安全复用。后续
+read/completion 计数仍由唯一成功预留约束，并由终态精确守恒交叉验证；independent
+single 使用相同共享-core guard。
 
-预冻结脏树上的 W512 双 A100 smoke（delaunay_n20）已 `rc=0`，两卡
-`WIDE_ORACLE correct=1`、`FINAL_AUDIT` 零 mismatch/residual，且新 `L2_FINAL`
-合同均为 guard=1、detected=0、no-wrap=1。当前正式 dual 工作核的编译资源
-为 78 寄存器/72-byte stack，W512 可启动。这只是预冻结工程门，不是
-clean-SHA 验收或性能证据。
+当前重冻结候选将 dual 和 independent single 同时固定为 `BNUM=8`、
+`BUCKET_MAX=4`、`l2_batch_size=8`。2,147,483,647-byte 预算对应 268,435,455
+条八字节记录；每桶容量由 BNUM=16 的 16,776,704 增至 33,553,920，总可用桶区
+为 268,431,360，剩余 4,095 条记录不属于任何桶。该改动不是纯容量扩大：manager
+warp 数从 16 降到 8，共享元数据、可见 delta 桶跨度、远距离项 clamp 和工作顺序
+均改变。因此它是新算法配置，旧 BNUM=16 时间不能复用。
+
+dirty 预冻结探针 Job 38254 运行 3 个全新双卡进程、每进程 1 次预热 + 5 次记录
+查询，共 18 次查询全部 `rc=0`、`WIDE_ORACLE correct=1`、L2 读写/完成/guarded
+write 守恒，且 `overflow_detected=0`、`no_wrap=1`；观测最大单桶写入为
+`3,316,286 / 33,553,920`（9.88%）。此前 Job 38251 及随后一次未取得 job ID
+的直接重试均因计算节点不可见登录节点 `/tmp` 中的二进制而以 `rc=127` 结束，
+算法没有执行，也不计入上述 18 次查询。dirty dual/single pair 均实际编入三项
+几何宏并编译成功；57/57 CPU 合同测试通过。这些
+仅是重冻结工程门，不是 clean-SHA 验收或正式性能证据。Job 38254 的紧凑摘要、
+日志哈希和原始保留路径记录在
+`evidence/l3_30h_20260923/final/bnum8_exploratory_probe.json`。
+
+`mlmq_benchmark::finish` 在计时终点后作为两卡 host barrier；两卡都完成
+`cudaDeviceSynchronize` 后才读取 `L2_FINAL`。最终门强制逐桶 drain、guarded
+writes/总读写/完成守恒、精确 `INT_MAX`-byte budget BNUM=8 容量元组、32 位配置、
+`overflow_detected=0` 和 `no_wrap=1`。canonical compile argv 另强制 BNUM、
+BUCKET_MAX 和 batch，正式 input contract 同时冻结这些字段。并发发布测试仍不能
+由终态守恒替代。
 
 ## 工程口径
 
@@ -179,10 +212,10 @@ clean-SHA 验收或性能证据。
 
 ## 下一步
 
-1. 将已恢复同步、固定 25k 且带精确容量门禁的 control 候选提交为 clean SHA，
-   从该 SHA 独立构建 single/dual pair。
-2. 在最终 SHA 上运行 candidate 交错、满槽重试、延迟 ACK、RX 提交边界、DQ
-   publication、capacity full/overflow、顺序换源/reset 和最终完成检查。
-3. 即使探索值低于 1.20，也按任务书采集两轮反序、每轮 1+5 的正式配对样本，
-   给出达标或未达标结论；不得把探索最好值或 query-wall 比值冒充正式通过。
-4. 正式候选完成后再运行附加源点和八图正确性回归；未执行项明确标 NOT_RUN。
+1. 以已经通过 57/57 合同测试和 dual/single 双构建检查的 BNUM=8 候选形成新的
+   clean SHA；从此停止修改算法配置。
+2. 在该 SHA 的新空目录重跑完整 Job A；任何 CUDA 错误、样本缺失或容量门失败都
+   使整批无效，不能用 Job 38238 的 round 0 补样。
+3. Job A 全部步骤成功后，在不同 Slurm job 中运行同一 SHA 的独立 Job B。
+4. 再汇总固定附加源点、八图 G/G+ 回归、失败尝试、图表和论文回填；未完成项
+   保持 `NOT_RUN`，探索值与正式结果分开。

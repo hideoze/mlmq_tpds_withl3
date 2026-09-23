@@ -351,6 +351,9 @@ single_cmd=(
     -o "$SINGLE_BUILD/mlmq"
     -DWORK_COUNT=false
     -DMLMQ_WORKER_THREADS=512
+    -DBNUM=8
+    -DBUCKET_MAX=4
+    -Dl2_batch_size=8
     -DDQ_COUNTER_OVERFLOW_GUARD=true
     -O3 -m64 -gencode=arch=compute_80,code=sm_80 -rdc=true
     -lcuda -lcudart -w

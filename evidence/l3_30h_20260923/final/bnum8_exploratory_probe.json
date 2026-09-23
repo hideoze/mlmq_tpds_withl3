@@ -1,0 +1,45 @@
+{
+  "binary_sha256": "1d44080174334691731106bbaa1db24ce7e40a6973767ddca04373c26882f1f2",
+  "capacity_rows": 6,
+  "command_sha256": "ba839dda297569e2d7847beb763cbac92e9df83bb53c649ed8c53f590873e9b0",
+  "formal_solve_max_ms": 124.565733,
+  "formal_solve_median_ms": 65.181137,
+  "formal_solve_min_ms": 64.077199,
+  "git_head_before_dirty_changes": "7cd563caaac7749521f833187ebd0b1f959b3388",
+  "l2_final_rows": 36,
+  "compressed_log_sha256": {
+    "process_1.log.gz": "743b3c382aaa7658062e69fe83bb8a6a5340de121fbc10ba78b697003d282d0f",
+    "process_2.log.gz": "50228d2df5fafb01ef0a4d140b4370479d2c304a19ce49cedabbf19afc012efa",
+    "process_3.log.gz": "8d70b5672a61bb2cb27a953082ed8bea7b9afb639620acd69f0265d35b8e0e15"
+  },
+  "uncompressed_log_sha256": {
+    "process_1.log": "460252adc66809baef08f5ec616526388e3fd4a4bcae7eedb1b4de32b8304ea9",
+    "process_2.log": "8e95e45ac85bb06c4ba6c81c0f867aad3a8f889a4630628535a17daefa1f7676",
+    "process_3.log": "141531e6a2122d85eb759a37f6e458b991dc1bca41a630289ee830da233e76e2"
+  },
+  "max_bucket_fraction": 0.09883453259708552,
+  "max_bucket_writes": 3316286,
+  "measurement_status": "EXPLORATORY_DIRTY_NOT_FORMAL_PERFORMANCE_EVIDENCE",
+  "no_wrap_all_queries": true,
+  "oracle_pass_count": 18,
+  "per_bucket_capacity": 33553920,
+  "pre_algorithm_launch_failures": [
+    {
+      "cause": "compute node could not see the login-node /tmp binary",
+      "rc": 127,
+      "slurm_job_id": "38251"
+    },
+    {
+      "cause": "compute node could not see the login-node /tmp binary",
+      "rc": 127,
+      "slurm_job_id": null
+    }
+  ],
+  "process_count": 3,
+  "query_count": 18,
+  "raw_log_directory": "evidence/l3_30h_20260923/final/bnum8_probe_job38254",
+  "slurm_job_id": "38254",
+  "terminal_conservation_all_queries": true,
+  "timed_query_count": 15,
+  "warmup_count": 3
+}

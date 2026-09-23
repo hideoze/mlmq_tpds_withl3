@@ -29,6 +29,9 @@ import sys
 import time
 
 from run_l3_30h import (
+    FORMAL_L2_BATCH_SIZE,
+    FORMAL_L2_BUCKET_MAX,
+    FORMAL_L2_BUCKETS,
     FORMAL_TOOL_PATH,
     QUEUE_TYPE_IDS,
     _git_head_file,
@@ -647,6 +650,9 @@ def main():
         "graph_integrity_before": graph_integrity_before,
         "configuration": {
             "blocks": args.blocks, "delta": args.delta, "queue": args.queue,
+            "l2_buckets": FORMAL_L2_BUCKETS,
+            "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+            "l2_batch_size": FORMAL_L2_BATCH_SIZE,
             "window_mode": args.window_mode, "window_min": args.window_min,
             "window_max": args.window_max, "idle_backoff": args.idle_backoff,
             "warmups": 0, "repeats_per_graph": 1,

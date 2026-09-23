@@ -58,6 +58,22 @@ QUEUE_TYPE_IDS = {"L1V_L2DQ": 0, "L1SLF_L2DQ": 19}
 FORMAL_INPUT_CONTRACT = Path(
     "evidence/l3_30h_20260923/final/formal_input_contract.json")
 FORMAL_BUILD_TIMEOUT_SECONDS = 3600
+FORMAL_L2_BUCKETS = 8
+FORMAL_L2_BUCKET_MAX = 4
+FORMAL_L2_BATCH_SIZE = 8
+FORMAL_L2_BUDGET_BYTES = 2147483647
+FORMAL_L2_RECORD_BYTES = 8
+FORMAL_L2_ALLOCATED_RECORDS = 268435455
+FORMAL_L2_PER_BUCKET_CAPACITY = 33553920
+FORMAL_L2_TOTAL_CAPACITY = 268431360
+FORMAL_L2_COUNTER_BITS = 32
+if (FORMAL_L2_ALLOCATED_RECORDS !=
+        FORMAL_L2_BUDGET_BYTES // FORMAL_L2_RECORD_BYTES or
+        FORMAL_L2_PER_BUCKET_CAPACITY !=
+        FORMAL_L2_ALLOCATED_RECORDS // FORMAL_L2_BUCKETS // 512 * 512 or
+        FORMAL_L2_TOTAL_CAPACITY !=
+        FORMAL_L2_BUCKETS * FORMAL_L2_PER_BUCKET_CAPACITY):
+    raise RuntimeError("frozen L2 capacity constants are internally inconsistent")
 FORMAL_TOOL_PATH = "/usr/local/cuda/bin:/usr/bin:/bin"
 GIT_EXECUTABLE = "/usr/bin/git"
 NVIDIA_SMI_EXECUTABLE = "/usr/bin/nvidia-smi"
@@ -613,6 +629,61 @@ def parse_integer_log_line(line, prefix, expected_fields):
     return values, errors
 
 
+def frozen_l2_capacity():
+    return {
+        "budget": FORMAL_L2_BUDGET_BYTES,
+        "record_bytes": FORMAL_L2_RECORD_BYTES,
+        "buckets": FORMAL_L2_BUCKETS,
+        "per_bucket": FORMAL_L2_PER_BUCKET_CAPACITY,
+        "allocated_records": FORMAL_L2_ALLOCATED_RECORDS,
+        "counter_bits": FORMAL_L2_COUNTER_BITS,
+    }
+
+
+def parse_l2_capacity_contract(raw, expected_rows, *, require_frozen):
+    """Validate process-level L2 allocation logs, including formal geometry."""
+    errors = []
+    rows = []
+    for line in raw.splitlines():
+        if not line.startswith("L2_CAPACITY "):
+            continue
+        values, line_errors = parse_integer_log_line(
+            line, "L2_CAPACITY", L2_CAPACITY_FIELDS)
+        errors.extend(line_errors)
+        rows.append(None if line_errors else values)
+
+    if len(rows) != expected_rows:
+        errors.append(
+            f"expected {expected_rows} process-level L2_CAPACITY lines, "
+            f"got {len(rows)}")
+    valid_rows = [row for row in rows if row is not None]
+    if len(valid_rows) > 1 and any(
+            row != valid_rows[0] for row in valid_rows[1:]):
+        errors.append("the GPUs reported different L2_CAPACITY values")
+
+    for row in valid_rows:
+        expected_records = (row["budget"] // row["record_bytes"]
+                            if row["record_bytes"] > 0 else -1)
+        expected_per_bucket = (
+            expected_records // row["buckets"] // 512 * 512
+            if row["buckets"] > 0 else -1)
+        if (row["budget"] <= 0 or row["record_bytes"] <= 0 or
+                row["buckets"] <= 0 or row["per_bucket"] <= 0 or
+                row["allocated_records"] != expected_records or
+                row["per_bucket"] != expected_per_bucket or
+                row["counter_bits"] != 32):
+            errors.append(
+                "L2_CAPACITY differs from the exact allocation formula "
+                f"budget/record/buckets with 512-record blocks: {row}")
+        if require_frozen and row != frozen_l2_capacity():
+            errors.append(
+                "formal L2_CAPACITY differs from the frozen exact "
+                f"configuration: actual={row} "
+                f"expected={frozen_l2_capacity()}")
+
+    return {"valid": not errors, "rows": rows, "errors": errors}
+
+
 def parse_oracle_contract(raw, expected_samples, expected_vertices):
     """Require one successful WIDE_ORACLE immediately before every BENCH."""
     pattern = re.compile(r"^WIDE_ORACLE vertices=(\d+) correct=(\d+)$")
@@ -666,7 +737,6 @@ def parse_dual_contract(raw, expected_samples, blocks, delta, queue_type,
     errors = []
     samples = []
     pending = {"l3_config": [], "worker_ack": [], "l2_final": []}
-    capacity_rows = []
     l2_present = any(line.startswith("L2_FINAL ")
                      for line in raw.splitlines())
     capacity_present = any(line.startswith("L2_CAPACITY ")
@@ -684,11 +754,6 @@ def parse_dual_contract(raw, expected_samples, blocks, delta, queue_type,
             add_line(line, "L3_WORKER_ACK", L3_WORKER_ACK_FIELDS, "worker_ack")
         elif line.startswith("L2_FINAL "):
             add_line(line, "L2_FINAL", L2_FINAL_FIELDS, "l2_final")
-        elif line.startswith("L2_CAPACITY "):
-            values, line_errors = parse_integer_log_line(
-                line, "L2_CAPACITY", L2_CAPACITY_FIELDS)
-            errors.extend(line_errors)
-            capacity_rows.append(None if line_errors else values)
         elif line.startswith("BENCH ") and "algorithm=MLMQ" in line:
             samples.append(pending)
             pending = {"l3_config": [], "worker_ack": [], "l2_final": []}
@@ -701,27 +766,11 @@ def parse_dual_contract(raw, expected_samples, blocks, delta, queue_type,
             f"got {len(samples)}")
 
     check_capacity = require_l2_final or l2_present or capacity_present
+    capacity_contract = parse_l2_capacity_contract(
+        raw, 2 if check_capacity else 0, require_frozen=require_l2_final)
+    errors.extend(capacity_contract["errors"])
+    capacity_rows = capacity_contract["rows"]
     valid_capacity = [row for row in capacity_rows if row is not None]
-    if check_capacity and len(capacity_rows) != 2:
-        errors.append(
-            f"expected two process-level L2_CAPACITY lines, got {len(capacity_rows)}")
-    if len(valid_capacity) == 2:
-        if valid_capacity[0] != valid_capacity[1]:
-            errors.append("the two GPUs reported different L2_CAPACITY values")
-        capacity = valid_capacity[0]
-        expected_records = capacity["budget"] // capacity["record_bytes"] \
-            if capacity["record_bytes"] > 0 else -1
-        expected_per_bucket = (
-            expected_records // capacity["buckets"] // 512 * 512
-            if capacity["buckets"] > 0 else -1)
-        if (capacity["budget"] <= 0 or capacity["record_bytes"] <= 0 or
-                capacity["buckets"] <= 0 or capacity["per_bucket"] <= 0 or
-                capacity["allocated_records"] != expected_records or
-                capacity["per_bucket"] != expected_per_bucket or
-                capacity["counter_bits"] != 32):
-            errors.append(
-                "L2_CAPACITY differs from the exact allocation formula "
-                f"budget/record/buckets with 512-record blocks: {capacity}")
 
     expected_window = {
         "window_mode": expected_window_mode,
@@ -878,6 +927,7 @@ def verify_effective_contract(record, log_path, gpu_count, args, graph_header):
     no_l3_launches = [tuple(map(int, match.groups()))
                       for match in no_l3_launch_pattern.finditer(raw)]
     dual_contract = None
+    single_capacity_contract = None
     if gpu_count == 2:
         expected_configs = gpu_count * expected_process_samples
         dual_contract = parse_dual_contract(
@@ -904,6 +954,12 @@ def verify_effective_contract(record, log_path, gpu_count, args, graph_header):
         elif any(blocks != args.blocks or delta != args.delta or repeat != index
                  for index, (blocks, delta, repeat) in enumerate(no_l3_launches)):
             errors.append("logged no-L3 blocks/delta/repeat differs from requested values")
+        capacity_present = any(
+            line.startswith("L2_CAPACITY ") for line in raw.splitlines())
+        if args.sampling == "formal" or capacity_present:
+            single_capacity_contract = parse_l2_capacity_contract(
+                raw, 1, require_frozen=args.sampling == "formal")
+            errors.extend(single_capacity_contract["errors"])
 
     partition_pattern = re.compile(
         r"GPU(\d+) partition: \[(\d+), (\d+)\)")
@@ -930,6 +986,7 @@ def verify_effective_contract(record, log_path, gpu_count, args, graph_header):
         "no_l3_launch_lines": len(no_l3_launches),
         "expected_l3_config_lines": expected_configs,
         "dual_contract": dual_contract,
+        "single_capacity_contract": single_capacity_contract,
         "partitions": partitions,
         "expected_partitions": expected_partitions,
         "errors": errors,
@@ -1027,6 +1084,9 @@ def expected_pair_commands(pair, repo_root, pair_version):
         "-o", str(pair / "dual_build/mlmq"),
         "-DWORK_COUNT=false",
         "-DMLMQ_WORKER_THREADS=512",
+        f"-DBNUM={FORMAL_L2_BUCKETS}",
+        f"-DBUCKET_MAX={FORMAL_L2_BUCKET_MAX}",
+        f"-Dl2_batch_size={FORMAL_L2_BATCH_SIZE}",
         "-DL3_COOPERATIVE_COLLECT=true",
         "-DL3_DIRECT_RX=true",
         "-DL3_RETAIN_TX=true",
@@ -1055,6 +1115,9 @@ def expected_pair_commands(pair, repo_root, pair_version):
         str(single_source / "SSSP/sssp_run.cu"),
         "-o", str(pair / "single_build/mlmq"),
         "-DWORK_COUNT=false", "-DMLMQ_WORKER_THREADS=512",
+        f"-DBNUM={FORMAL_L2_BUCKETS}",
+        f"-DBUCKET_MAX={FORMAL_L2_BUCKET_MAX}",
+        f"-Dl2_batch_size={FORMAL_L2_BATCH_SIZE}",
         "-DDQ_COUNTER_OVERFLOW_GUARD=true",
         "-O3", "-m64", "-gencode=arch=compute_80,code=sm_80", "-rdc=true",
         "-lcuda", "-lcudart", "-w",
@@ -1386,6 +1449,15 @@ def validate_formal_input_contract(repo_root, contract_path, args, paths,
         "delta": args.delta,
         "cut_percent": args.cut_percent,
         "blocks": args.blocks,
+        "l2_buckets": FORMAL_L2_BUCKETS,
+        "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+        "l2_batch_size": FORMAL_L2_BATCH_SIZE,
+        "l2_budget_bytes": FORMAL_L2_BUDGET_BYTES,
+        "l2_record_bytes": FORMAL_L2_RECORD_BYTES,
+        "l2_allocated_records": FORMAL_L2_ALLOCATED_RECORDS,
+        "l2_per_bucket_capacity": FORMAL_L2_PER_BUCKET_CAPACITY,
+        "l2_total_capacity": FORMAL_L2_TOTAL_CAPACITY,
+        "l2_counter_bits": FORMAL_L2_COUNTER_BITS,
         "queue": args.queue,
         "final_audit": args.final_audit,
         "warmups_per_process": args.warmups,
@@ -1613,6 +1685,17 @@ def main():
             "cut_percent": args.cut_percent,
             "blocks": args.blocks,
             "blocks_scope": "same requested value; independently logged by T1 and T2",
+            "l2_geometry": {
+                "buckets": FORMAL_L2_BUCKETS,
+                "bucket_max": FORMAL_L2_BUCKET_MAX,
+                "batch_size": FORMAL_L2_BATCH_SIZE,
+                "budget_bytes": FORMAL_L2_BUDGET_BYTES,
+                "record_bytes": FORMAL_L2_RECORD_BYTES,
+                "allocated_records": FORMAL_L2_ALLOCATED_RECORDS,
+                "per_bucket_capacity": FORMAL_L2_PER_BUCKET_CAPACITY,
+                "total_capacity": FORMAL_L2_TOTAL_CAPACITY,
+                "counter_bits": FORMAL_L2_COUNTER_BITS,
+            },
             "warmups_per_process": args.warmups,
             "formal_repeats_per_process": args.repeats,
             "rounds": args.rounds,

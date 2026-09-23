@@ -21,8 +21,12 @@ def integer_line(prefix, fields, values):
 
 def capacity():
     return (
-        "L2_CAPACITY budget=8388608 record_bytes=8 buckets=1024 "
-        "per_bucket=1024 allocated_records=1048576 counter_bits=32"
+        f"L2_CAPACITY budget={runner.FORMAL_L2_BUDGET_BYTES} "
+        f"record_bytes={runner.FORMAL_L2_RECORD_BYTES} "
+        f"buckets={runner.FORMAL_L2_BUCKETS} "
+        f"per_bucket={runner.FORMAL_L2_PER_BUCKET_CAPACITY} "
+        f"allocated_records={runner.FORMAL_L2_ALLOCATED_RECORDS} "
+        f"counter_bits={runner.FORMAL_L2_COUNTER_BITS}"
     )
 
 
@@ -47,11 +51,15 @@ def ack(gpu):
     return integer_line("L3_WORKER_ACK", runner.L3_WORKER_ACK_FIELDS, values)
 
 
-def l2(gpu, *, total_capacity=1048576):
+def l2(gpu, *, total_capacity=None):
+    if total_capacity is None:
+        total_capacity = runner.FORMAL_L2_TOTAL_CAPACITY
     values = {
-        "gpu": gpu, "buckets": 1024, "reads": 11, "writes": 11,
+        "gpu": gpu, "buckets": runner.FORMAL_L2_BUCKETS,
+        "reads": 11, "writes": 11,
         "completed": 11, "guarded_writes": 11, "max_bucket_writes": 3,
-        "per_bucket_capacity": 1024, "total_capacity": total_capacity,
+        "per_bucket_capacity": runner.FORMAL_L2_PER_BUCKET_CAPACITY,
+        "total_capacity": total_capacity,
         "counter_bits": 32, "overflow_guard": 1, "overflow_detected": 0,
         "no_wrap": 1,
     }
@@ -68,6 +76,7 @@ def bench(gpus, source, repeat):
 
 def valid_log(gpus, *, source=7, vertices=1000, bad_total=False,
               rx_express=0):
+    total_capacity = runner.FORMAL_L2_TOTAL_CAPACITY
     rows = [capacity()] * gpus
     if gpus == 2:
         rows += ["GPU0 partition: [0, 600)", "GPU1 partition: [600, 1000)"]
@@ -78,8 +87,8 @@ def valid_log(gpus, *, source=7, vertices=1000, bad_total=False,
             for gpu in (0, 1):
                 rows += [
                     l3(gpu, rx_express=rx_express), ack(gpu),
-                    l2(gpu, total_capacity=1048575 if bad_total and gpu == 1
-                       else 1048576),
+                    l2(gpu, total_capacity=(total_capacity - 1)
+                       if bad_total and gpu == 1 else total_capacity),
                 ]
             rows.append(
                 "FINAL_AUDIT mismatches=0 residual_edges=0 cross_residual_edges=0"
@@ -123,6 +132,15 @@ class RawEvidenceTests(unittest.TestCase):
         self.assertFalse(result["valid"])
         self.assertTrue(any("RX config" in error
                             for error in result["errors"]), result["errors"])
+
+    def test_single_wrong_capacity_is_rejected(self):
+        raw = valid_log(1).replace(
+            f"buckets={runner.FORMAL_L2_BUCKETS}", "buckets=16", 1)
+        result = self.parse(raw, 1)
+        self.assertFalse(result["valid"])
+        self.assertTrue(any(
+            "frozen exact configuration" in error
+            for error in result["errors"]), result["errors"])
 
 
 class CommandTests(unittest.TestCase):

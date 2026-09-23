@@ -27,6 +27,15 @@ from typing import Any
 
 from run_l3_30h import (
     FORMAL_INPUT_CONTRACT,
+    FORMAL_L2_ALLOCATED_RECORDS,
+    FORMAL_L2_BATCH_SIZE,
+    FORMAL_L2_BUCKET_MAX,
+    FORMAL_L2_BUCKETS,
+    FORMAL_L2_BUDGET_BYTES,
+    FORMAL_L2_COUNTER_BITS,
+    FORMAL_L2_PER_BUCKET_CAPACITY,
+    FORMAL_L2_RECORD_BYTES,
+    FORMAL_L2_TOTAL_CAPACITY,
     QUEUE_TYPE_IDS,
     build_formal_pair,
     formal_pair_integrity_snapshot,
@@ -206,6 +215,15 @@ def load_formal_configuration() -> dict[str, Any]:
         "delta": DELTA,
         "cut_percent": CUT_PERCENT,
         "blocks": BLOCKS,
+        "l2_buckets": FORMAL_L2_BUCKETS,
+        "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+        "l2_batch_size": FORMAL_L2_BATCH_SIZE,
+        "l2_budget_bytes": FORMAL_L2_BUDGET_BYTES,
+        "l2_record_bytes": FORMAL_L2_RECORD_BYTES,
+        "l2_allocated_records": FORMAL_L2_ALLOCATED_RECORDS,
+        "l2_per_bucket_capacity": FORMAL_L2_PER_BUCKET_CAPACITY,
+        "l2_total_capacity": FORMAL_L2_TOTAL_CAPACITY,
+        "l2_counter_bits": FORMAL_L2_COUNTER_BITS,
         "queue": QUEUE,
         "window_mode": WINDOW_MODE,
         "window_min": WINDOW_MIN,
@@ -406,6 +424,14 @@ def validate_capacity_lines(raw: str, gpu_count: int) -> list[str]:
             for match in pattern.finditer(raw)]
     if len(rows) != gpu_count:
         errors.append(f"expected {gpu_count} L2_CAPACITY rows, got {len(rows)}")
+    frozen = (
+        FORMAL_L2_BUDGET_BYTES,
+        FORMAL_L2_RECORD_BYTES,
+        FORMAL_L2_BUCKETS,
+        FORMAL_L2_PER_BUCKET_CAPACITY,
+        FORMAL_L2_ALLOCATED_RECORDS,
+        FORMAL_L2_COUNTER_BITS,
+    )
     for row in rows:
         budget, record_bytes, buckets, per_bucket, allocated, bits = row
         expected_allocated = budget // record_bytes if record_bytes else -1
@@ -416,6 +442,10 @@ def validate_capacity_lines(raw: str, gpu_count: int) -> list[str]:
                 allocated != expected_allocated or
                 per_bucket != expected_per_bucket or per_bucket <= 0 or bits != 32):
             errors.append(f"invalid L2_CAPACITY row: {row}")
+        if row != frozen:
+            errors.append(
+                f"L2_CAPACITY differs from frozen exact configuration: "
+                f"actual={row} expected={frozen}")
     if gpu_count == 2 and len(rows) == 2 and rows[0] != rows[1]:
         errors.append("dual GPUs reported different L2_CAPACITY rows")
     return errors
@@ -904,6 +934,9 @@ def main() -> int:
                 "cut_percent": CUT_PERCENT,
                 "blocks": BLOCKS,
                 "workers": WORKERS,
+                "l2_buckets": FORMAL_L2_BUCKETS,
+                "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+                "l2_batch_size": FORMAL_L2_BATCH_SIZE,
                 "queue": QUEUE,
                 "window_mode": WINDOW_MODE,
                 "window_min": WINDOW_MIN,

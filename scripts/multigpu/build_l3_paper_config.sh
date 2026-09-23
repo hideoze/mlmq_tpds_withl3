@@ -27,6 +27,9 @@ cmd=("$ROOT/SSSP/main.cu" "$ROOT/SSSP/csr_graph.cu" "$ROOT/SSSP/sssp_run.cu"
     -o "$OUT/mlmq"
     -DWORK_COUNT=false
     -DMLMQ_WORKER_THREADS=512
+    -DBNUM=8
+    -DBUCKET_MAX=4
+    -Dl2_batch_size=8
     -DL3_COOPERATIVE_COLLECT=true
     -DL3_DIRECT_RX=true
     -DL3_RETAIN_TX=true

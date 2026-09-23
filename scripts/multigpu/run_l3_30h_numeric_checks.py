@@ -26,6 +26,14 @@ import tarfile
 import time
 
 from run_l3_30h import (
+    FORMAL_L2_ALLOCATED_RECORDS,
+    FORMAL_L2_BATCH_SIZE,
+    FORMAL_L2_BUDGET_BYTES,
+    FORMAL_L2_BUCKET_MAX,
+    FORMAL_L2_BUCKETS,
+    FORMAL_L2_COUNTER_BITS,
+    FORMAL_L2_PER_BUCKET_CAPACITY,
+    FORMAL_L2_RECORD_BYTES,
     L2_CAPACITY_FIELDS,
     L2_FINAL_FIELDS,
     L3_CONFIG_FIELDS,
@@ -34,6 +42,7 @@ from run_l3_30h import (
     git_snapshot,
     parse_gpu_query,
     parse_dual_contract,
+    parse_l2_capacity_contract,
     parse_oracle_contract,
     read_gr_header,
     slurm_gpu_evidence,
@@ -632,6 +641,9 @@ def parse_numeric_run(raw, *, role, vertices, source, blocks, delta,
             errors.append("dual diagnostic unexpectedly logged NO_L3_CONFIG")
         role_contract = dual
     else:
+        capacity = parse_l2_capacity_contract(
+            raw, 1, require_frozen=True)
+        errors.extend(capacity["errors"])
         expected_partitions = []
         if partitions:
             errors.append("independent single unexpectedly logged GPU partitions")
@@ -803,6 +815,9 @@ def main(argv=None):
         "pair_build": pair_evidence,
         "configuration": {
             "blocks": args.blocks,
+            "l2_buckets": FORMAL_L2_BUCKETS,
+            "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+            "l2_batch_size": FORMAL_L2_BATCH_SIZE,
             "queue": QUEUE,
             "window_mode": WINDOW_MODE,
             "window_min": WINDOW_MIN,

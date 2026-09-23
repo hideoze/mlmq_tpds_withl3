@@ -62,9 +62,12 @@ def integer_line(prefix, fields, values):
 def dual_log(*, marker=None, gpu_count=2):
     lines = ["GPU0 partition: [0, 60)", "GPU1 partition: [60, 100)"]
     capacity = {
-        "budget": 2147483647, "record_bytes": 8, "buckets": 16,
-        "per_bucket": 16776704, "allocated_records": 268435455,
-        "counter_bits": 32,
+        "budget": numeric.FORMAL_L2_BUDGET_BYTES,
+        "record_bytes": numeric.FORMAL_L2_RECORD_BYTES,
+        "buckets": numeric.FORMAL_L2_BUCKETS,
+        "per_bucket": numeric.FORMAL_L2_PER_BUCKET_CAPACITY,
+        "allocated_records": numeric.FORMAL_L2_ALLOCATED_RECORDS,
+        "counter_bits": numeric.FORMAL_L2_COUNTER_BITS,
     }
     lines.extend(integer_line(
         "L2_CAPACITY", numeric.L2_CAPACITY_FIELDS, capacity) for _ in range(2))
@@ -81,7 +84,7 @@ def dual_log(*, marker=None, gpu_count=2):
         }
         ack = {"gpu": gpu, "active_slots": 1712, "capacity": 1712,
                "work_blocks": 107, "warps_per_block": 16}
-        final = {"gpu": gpu, "buckets": 16, "reads": 10,
+        final = {"gpu": gpu, "buckets": numeric.FORMAL_L2_BUCKETS, "reads": 10,
                  "writes": 10, "completed": 10, "guarded_writes": 10,
                  "max_bucket_writes": 2,
                  "per_bucket_capacity": capacity["per_bucket"],
@@ -103,7 +106,16 @@ def dual_log(*, marker=None, gpu_count=2):
 
 
 def single_log():
+    capacity = {
+        "budget": numeric.FORMAL_L2_BUDGET_BYTES,
+        "record_bytes": numeric.FORMAL_L2_RECORD_BYTES,
+        "buckets": numeric.FORMAL_L2_BUCKETS,
+        "per_bucket": numeric.FORMAL_L2_PER_BUCKET_CAPACITY,
+        "allocated_records": numeric.FORMAL_L2_ALLOCATED_RECORDS,
+        "counter_bits": numeric.FORMAL_L2_COUNTER_BITS,
+    }
     return "\n".join((
+        integer_line("L2_CAPACITY", numeric.L2_CAPACITY_FIELDS, capacity),
         "NO_L3_CONFIG workers=512 delta=400000 queue=L1SLF_L2DQ",
         "NO_L3_LAUNCH work_blocks=107 delta=400000 repeat=0",
         "WIDE_ORACLE vertices=100 correct=1",
@@ -228,6 +240,17 @@ class RunParserTests(unittest.TestCase):
             delta=400000, cut_percent=60)
         self.assertFalse(result["valid"])
         self.assertTrue(result["failure_markers"])
+
+    def test_single_wrong_capacity_is_rejected(self):
+        raw = single_log().replace(
+            f"buckets={numeric.FORMAL_L2_BUCKETS}", "buckets=16", 1)
+        result = numeric.parse_numeric_run(
+            raw, role="single", vertices=100, source=7, blocks=107,
+            delta=400000, cut_percent=60)
+        self.assertFalse(result["valid"])
+        self.assertTrue(any(
+            "frozen exact configuration" in error
+            for error in result["errors"]), result["errors"])
 
 
 if __name__ == "__main__":

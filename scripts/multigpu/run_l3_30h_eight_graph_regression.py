@@ -63,6 +63,14 @@ WINDOW_MODE = 2
 WINDOW_MIN = 25000
 WINDOW_MAX = 25000
 IDLE_BACKOFF = 0
+FORMAL_L2_BUCKETS = 8
+FORMAL_L2_BUCKET_MAX = 4
+FORMAL_L2_BATCH_SIZE = 8
+FORMAL_L2_BUDGET_BYTES = 2147483647
+FORMAL_L2_RECORD_BYTES = 8
+FORMAL_L2_ALLOCATED_RECORDS = 268435455
+FORMAL_L2_PER_BUCKET_CAPACITY = 33553920
+FORMAL_L2_COUNTER_BITS = 32
 FORMAL_TOOL_PATH = "/usr/local/cuda/bin:/usr/bin:/bin"
 NVIDIA_SMI = Path("/usr/bin/nvidia-smi")
 PROCESS_SAMPLES = WARMUPS + FORMAL_REPEATS
@@ -442,6 +450,9 @@ def dry_run_payload(
             "workers": WORKERS,
             "blocks": BLOCKS,
             "delta": DELTA,
+            "l2_buckets": FORMAL_L2_BUCKETS,
+            "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+            "l2_batch_size": FORMAL_L2_BATCH_SIZE,
             "queue": QUEUE,
             "rounds": ROUNDS,
             "order": ["AB", "BA"],
@@ -495,6 +506,23 @@ def load_canonical_runner() -> Any:
         spec.loader.exec_module(module)
     except (AttributeError, OSError, RuntimeError, SystemExit) as error:
         raise ContractError(f"cannot load canonical runner: {error}") from error
+    frozen = {
+        "FORMAL_L2_BUCKETS": FORMAL_L2_BUCKETS,
+        "FORMAL_L2_BUCKET_MAX": FORMAL_L2_BUCKET_MAX,
+        "FORMAL_L2_BATCH_SIZE": FORMAL_L2_BATCH_SIZE,
+        "FORMAL_L2_BUDGET_BYTES": FORMAL_L2_BUDGET_BYTES,
+        "FORMAL_L2_RECORD_BYTES": FORMAL_L2_RECORD_BYTES,
+        "FORMAL_L2_ALLOCATED_RECORDS": FORMAL_L2_ALLOCATED_RECORDS,
+        "FORMAL_L2_PER_BUCKET_CAPACITY": FORMAL_L2_PER_BUCKET_CAPACITY,
+        "FORMAL_L2_COUNTER_BITS": FORMAL_L2_COUNTER_BITS,
+    }
+    differences = {
+        name: {"actual": getattr(module, name, None), "expected": expected}
+        for name, expected in frozen.items()
+        if getattr(module, name, None) != expected
+    }
+    require(not differences,
+            f"canonical runner L2 geometry differs: {differences}")
     return module
 
 
@@ -751,6 +779,14 @@ def validate_capacity(row: dict[str, int], description: str) -> list[str]:
         return errors
     allocated = row["budget"] // row["record_bytes"]
     per_bucket = allocated // row["buckets"] // 512 * 512
+    frozen = {
+        "budget": FORMAL_L2_BUDGET_BYTES,
+        "record_bytes": FORMAL_L2_RECORD_BYTES,
+        "buckets": FORMAL_L2_BUCKETS,
+        "per_bucket": FORMAL_L2_PER_BUCKET_CAPACITY,
+        "allocated_records": FORMAL_L2_ALLOCATED_RECORDS,
+        "counter_bits": FORMAL_L2_COUNTER_BITS,
+    }
     if (
         row["allocated_records"] != allocated
         or row["per_bucket"] != per_bucket
@@ -758,6 +794,10 @@ def validate_capacity(row: dict[str, int], description: str) -> list[str]:
         or row["counter_bits"] != 32
     ):
         errors.append(f"{description} differs from the exact 512-record formula: {row}")
+    if row != frozen:
+        errors.append(
+            f"{description} differs from the frozen exact L2 configuration: "
+            f"actual={row} expected={frozen}")
     return errors
 
 
@@ -1726,6 +1766,9 @@ def execute(args: argparse.Namespace, manifest: dict[str, Any],
                 "workers": WORKERS,
                 "blocks": BLOCKS,
                 "delta": DELTA,
+                "l2_buckets": FORMAL_L2_BUCKETS,
+                "l2_bucket_max": FORMAL_L2_BUCKET_MAX,
+                "l2_batch_size": FORMAL_L2_BATCH_SIZE,
                 "queue": QUEUE,
                 "timeout_per_process_seconds": args.timeout,
                 "final_audit": "all",

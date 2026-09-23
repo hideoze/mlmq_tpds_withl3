@@ -73,19 +73,20 @@ def _worker_ack(gpu):
 
 
 def _l2_final(gpu, reads=11, writes=11, completed=11,
-              max_bucket_writes=3, per_bucket_capacity=1024,
+              max_bucket_writes=3,
+              per_bucket_capacity=runner.FORMAL_L2_PER_BUCKET_CAPACITY,
               counter_bits=32, overflow_guard=1, overflow_detected=0,
-              no_wrap=1):
+              no_wrap=1, buckets=runner.FORMAL_L2_BUCKETS):
     values = {
         "gpu": gpu,
-        "buckets": 1024,
+        "buckets": buckets,
         "reads": reads,
         "writes": writes,
         "completed": completed,
         "guarded_writes": writes,
         "max_bucket_writes": max_bucket_writes,
         "per_bucket_capacity": per_bucket_capacity,
-        "total_capacity": 1024 * per_bucket_capacity,
+        "total_capacity": buckets * per_bucket_capacity,
         "counter_bits": counter_bits,
         "overflow_guard": overflow_guard,
         "overflow_detected": overflow_detected,
@@ -94,14 +95,15 @@ def _l2_final(gpu, reads=11, writes=11, completed=11,
     return _integer_line("L2_FINAL", runner.L2_FINAL_FIELDS, values)
 
 
-def _l2_capacity():
+def _l2_capacity(buckets=runner.FORMAL_L2_BUCKETS):
+    allocated_records = runner.FORMAL_L2_ALLOCATED_RECORDS
     values = {
-        "budget": 8388608,
-        "record_bytes": 8,
-        "buckets": 1024,
-        "per_bucket": 1024,
-        "allocated_records": 1048576,
-        "counter_bits": 32,
+        "budget": runner.FORMAL_L2_BUDGET_BYTES,
+        "record_bytes": runner.FORMAL_L2_RECORD_BYTES,
+        "buckets": buckets,
+        "per_bucket": allocated_records // buckets // 512 * 512,
+        "allocated_records": allocated_records,
+        "counter_bits": runner.FORMAL_L2_COUNTER_BITS,
     }
     return _integer_line("L2_CAPACITY", runner.L2_CAPACITY_FIELDS, values)
 
@@ -165,7 +167,8 @@ class DualContractTests(unittest.TestCase):
             rows.append(_l3_config(gpu))
             rows.append(_worker_ack(gpu))
             rows.append(_l2_final(
-                gpu, max_bucket_writes=1025, per_bucket_capacity=1024,
+                gpu,
+                max_bucket_writes=runner.FORMAL_L2_PER_BUCKET_CAPACITY + 1,
                 no_wrap=0))
         rows.append("BENCH algorithm=MLMQ solve_ms=1 query_wall_ms=2 warmup=0")
         result = _parse_dual("\n".join(rows) + "\n")
@@ -189,6 +192,29 @@ class DualContractTests(unittest.TestCase):
         self.assertTrue(any("L2_CAPACITY" in error for error in result["errors"]),
                         result["errors"])
 
+    def test_formal_wrong_capacity_bucket_count_is_rejected(self):
+        wrong_buckets = runner.FORMAL_L2_BUCKETS * 2
+        per_bucket_capacity = (
+            runner.FORMAL_L2_ALLOCATED_RECORDS // wrong_buckets // 512 * 512)
+        rows = [_l2_capacity(wrong_buckets), _l2_capacity(wrong_buckets)]
+        for gpu in (0, 1):
+            rows.append(_l3_config(gpu))
+            rows.append(_worker_ack(gpu))
+            rows.append(_l2_final(
+                gpu, buckets=wrong_buckets,
+                per_bucket_capacity=per_bucket_capacity))
+        rows.append("BENCH algorithm=MLMQ solve_ms=1 query_wall_ms=2 warmup=0")
+        result = _parse_dual("\n".join(rows) + "\n")
+        self.assertFalse(result["valid"])
+        self.assertTrue(
+            any(
+                "formal L2_CAPACITY differs from the frozen exact "
+                "configuration" in error
+                for error in result["errors"]
+            ),
+            result["errors"],
+        )
+
     def test_overflow_guard_failure_is_rejected(self):
         raw = _dual_log().replace("overflow_guard=1", "overflow_guard=0", 1)
         result = _parse_dual(raw)
@@ -197,12 +223,50 @@ class DualContractTests(unittest.TestCase):
                             for error in result["errors"]), result["errors"])
 
     def test_total_capacity_must_match_allocation(self):
+        total_capacity = runner.FORMAL_L2_TOTAL_CAPACITY
         raw = _dual_log().replace(
-            "total_capacity=1048576", "total_capacity=1048575", 1)
+            f"total_capacity={total_capacity}",
+            f"total_capacity={total_capacity - 1}", 1)
         result = _parse_dual(raw)
         self.assertFalse(result["valid"])
-        self.assertTrue(any("total_capacity=1048575" in error
+        self.assertTrue(any(f"total_capacity={total_capacity - 1}" in error
                             for error in result["errors"]), result["errors"])
+
+    def test_formal_self_consistent_small_capacity_is_rejected(self):
+        small_budget = 1 << 28
+        allocated = small_budget // runner.FORMAL_L2_RECORD_BYTES
+        per_bucket = allocated // runner.FORMAL_L2_BUCKETS // 512 * 512
+        values = {
+            "budget": small_budget,
+            "record_bytes": runner.FORMAL_L2_RECORD_BYTES,
+            "buckets": runner.FORMAL_L2_BUCKETS,
+            "per_bucket": per_bucket,
+            "allocated_records": allocated,
+            "counter_bits": runner.FORMAL_L2_COUNTER_BITS,
+        }
+        capacity = _integer_line(
+            "L2_CAPACITY", runner.L2_CAPACITY_FIELDS, values)
+        rows = [capacity, capacity]
+        for gpu in (0, 1):
+            rows.extend((
+                _l3_config(gpu),
+                _worker_ack(gpu),
+                _l2_final(gpu, per_bucket_capacity=per_bucket),
+            ))
+        rows.append("BENCH algorithm=MLMQ solve_ms=1 query_wall_ms=2 warmup=0")
+        result = _parse_dual("\n".join(rows) + "\n")
+        self.assertFalse(result["valid"])
+        self.assertTrue(any(
+            "formal L2_CAPACITY differs from the frozen exact configuration"
+            in error for error in result["errors"]), result["errors"])
+
+    def test_formal_single_capacity_requires_one_frozen_row(self):
+        good = runner.parse_l2_capacity_contract(
+            _l2_capacity() + "\n", 1, require_frozen=True)
+        self.assertTrue(good["valid"], good["errors"])
+        missing = runner.parse_l2_capacity_contract(
+            "", 1, require_frozen=True)
+        self.assertFalse(missing["valid"])
 
 
 class OracleContractTests(unittest.TestCase):
@@ -454,6 +518,20 @@ class FormalPairBuildTests(unittest.TestCase):
         self.fixture.rehash("single")
         with self.assertRaisesRegex(SystemExit, "differs from canonical argv"):
             self.fixture.validate()
+
+    def test_single_and_dual_use_the_frozen_l2_geometry(self):
+        commands = runner.expected_pair_commands(
+            self.fixture.root, self.fixture.repo_root, self.fixture.version)
+        for label in ("dual", "single"):
+            with self.subTest(label=label):
+                definitions = runner.parse_compile_definitions(
+                    commands[label], label)
+                self.assertEqual(definitions["BNUM"],
+                                 str(runner.FORMAL_L2_BUCKETS))
+                self.assertEqual(definitions["BUCKET_MAX"],
+                                 str(runner.FORMAL_L2_BUCKET_MAX))
+                self.assertEqual(definitions["l2_batch_size"],
+                                 str(runner.FORMAL_L2_BATCH_SIZE))
 
     def test_compiler_influencing_environment_is_rejected(self):
         self.fixture.version["build_environment"]["CPATH"] = "/tmp/injected"
