@@ -33,8 +33,10 @@ from run_l3_30h import (
     FORMAL_L2_BUCKET_MAX,
     FORMAL_L2_BUCKETS,
     FORMAL_TOOL_PATH,
+    GIT_EXECUTABLE,
     QUEUE_TYPE_IDS,
     _git_head_file,
+    filesystem_regular_tree,
     formal_pair_integrity_snapshot,
     formal_runtime_environment,
     git_snapshot,
@@ -136,6 +138,55 @@ def command_record(out, name, command, *, environment=None, timeout=600,
 
 def safe_extract(archive, destination):
     return safe_extract_regular_archive(archive, destination)
+
+
+def git_revision_file(repo_root, revision, relative):
+    relative = Path(relative)
+    if (not re.fullmatch(r"[0-9a-f]{40}", revision) or relative.is_absolute() or
+            not relative.parts or any(part in ("", ".", "..")
+                                      for part in relative.parts)):
+        raise ValueError(f"unsafe Git object request: {revision}:{relative}")
+    process = subprocess.run(
+        [GIT_EXECUTABLE, "-C", str(repo_root), "show",
+         f"{revision}:{relative.as_posix()}"],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if process.returncode:
+        raise RuntimeError(
+            f"cannot read fixture from frozen revision {revision}: {relative}: "
+            + process.stderr.decode(errors="replace").strip())
+    return process.stdout
+
+
+def materialize_fixture_sources(source_snapshot, output, sources):
+    """Make a hermetic source root for fixtures with repository-relative includes."""
+    normalized = {}
+    for relative, contents in sources.items():
+        relative = Path(relative)
+        if (relative.is_absolute() or not relative.parts or
+                any(part in ("", ".", "..") for part in relative.parts)):
+            raise ValueError(f"unsafe fixture source path: {relative}")
+        normalized[relative] = contents
+    fixture_root = output / "fixture_source"
+    shutil.copytree(source_snapshot, fixture_root)
+    archived_tree = filesystem_regular_tree(source_snapshot)
+    copied_tree = filesystem_regular_tree(fixture_root)
+    if copied_tree != archived_tree:
+        raise RuntimeError("fixture source copy differs from archived SSSP/core")
+    materialized = {}
+    for relative, contents in sorted(normalized.items(), key=lambda item: str(item[0])):
+        destination = fixture_root / relative
+        if destination.exists() or destination.is_symlink():
+            raise RuntimeError(
+                f"fixture source unexpectedly exists in archived source: {relative}")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(contents)
+        materialized[relative.as_posix()] = destination
+    tree_bytes = json.dumps(
+        archived_tree, sort_keys=True, separators=(",", ":")).encode()
+    return fixture_root, materialized, {
+        "archived_path_count": len(archived_tree),
+        "archived_tree_manifest_sha256": hashlib.sha256(tree_bytes).hexdigest(),
+    }
 
 
 def patch_once(path, old, new, description):
@@ -768,6 +819,52 @@ def main():
             "only source/include/output paths were relocated"),
     )
     manifest["archived_dual_rebuild"] = production_build
+
+    # test_l3_supplement.cu uses repository-relative ../../SSSP includes.  Build
+    # it from a matching materialized snapshot so those includes and the core
+    # include path cannot resolve to two different source trees.
+    fixture_relatives = tuple(Path(name) for name in (
+        "scripts/multigpu/test_l3_supplement.cu",
+        "scripts/multigpu/test_dq_publication.cu",
+        "scripts/multigpu/test_dq_capacity.cu",
+        "scripts/multigpu/supplement_graph.cpp",
+    ))
+    frozen_head = git_info["head"]["output"]
+    fixture_objects = {
+        relative: git_revision_file(ROOT, frozen_head, relative)
+        for relative in fixture_relatives
+    }
+    for relative, contents in fixture_objects.items():
+        if (ROOT / relative).read_bytes() != contents:
+            raise RuntimeError(f"fixture differs from frozen commit: {relative}")
+    fixture_source_root, fixture_sources, fixture_tree = (
+        materialize_fixture_sources(
+            source_snapshot, output, fixture_objects))
+    fixture_tree_before = filesystem_regular_tree(fixture_source_root)
+    fixture_tree_before_sha256 = hashlib.sha256(json.dumps(
+        fixture_tree_before, sort_keys=True,
+        separators=(",", ":")).encode()).hexdigest()
+    manifest["fixture_source_snapshot"] = {
+        "root": str(fixture_source_root),
+        "sources": {
+            relative: {
+                "path": str(path),
+                "sha256": sha256(path),
+            }
+            for relative, path in fixture_sources.items()
+        },
+        "head": frozen_head,
+        "source_archive": str(pair / "dual_build/source.tgz"),
+        "source_archive_sha256": sha256(pair / "dual_build/source.tgz"),
+        "composite_path_count": len(fixture_tree_before),
+        "composite_tree_manifest_sha256": fixture_tree_before_sha256,
+        **fixture_tree,
+        "materialization": (
+            "exact archived dual SSSP/core plus exact frozen-commit fixtures "
+            "at their repository-relative paths"
+        ),
+    }
+    write_json(output / "manifest.json", manifest)
     common = [
         "-O3", "-std=c++17", "-rdc=true",
         "-gencode=arch=compute_80,code=sm_80",
@@ -775,31 +872,44 @@ def main():
     ]
     compile_specs = {
         "test_primitives": [
-            args.nvcc, ROOT / "scripts/multigpu/test_l3_supplement.cu",
+            args.nvcc,
+            fixture_sources["scripts/multigpu/test_l3_supplement.cu"],
             "-o", binaries / "test_primitives", *common,
-            "-I" + str(source_snapshot / "core/include"),
+            "-I" + str(fixture_source_root / "core/include"),
             "-DL3_DIRECT_RX=true", "-DL3_FAULT_INJECT_ACK_DELAY=true",
             "-DBULK_NO_CACHE=true",
         ],
         "test_dq": [
-            args.nvcc, ROOT / "scripts/multigpu/test_dq_publication.cu",
+            args.nvcc,
+            fixture_sources["scripts/multigpu/test_dq_publication.cu"],
             "-o", binaries / "test_dq", *common,
-            "-I" + str(source_snapshot / "core/include"),
+            "-I" + str(fixture_source_root / "core/include"),
         ],
         "test_capacity": [
-            args.nvcc, ROOT / "scripts/multigpu/test_dq_capacity.cu",
+            args.nvcc,
+            fixture_sources["scripts/multigpu/test_dq_capacity.cu"],
             "-o", binaries / "test_capacity", *common,
             "-I" + str(guarded_core / "include"),
         ],
     }
     builds = {}
     for name, command in compile_specs.items():
+        workspace_arguments = [
+            str(argument) for argument in command
+            if str(argument).startswith(str(ROOT) + os.sep)
+        ]
+        if workspace_arguments:
+            raise RuntimeError(
+                f"{name} compile command leaks live-worktree paths: "
+                f"{workspace_arguments}")
         record, _ = command_record(
             output, "build_" + name, command, timeout=900, required=True)
         binary = binaries / name
         record["binary"] = str(binary)
         record["binary_sha256"] = sha256(binary)
         builds[name] = record
+    if filesystem_regular_tree(fixture_source_root) != fixture_tree_before:
+        raise RuntimeError("fixture source snapshot changed during CUDA builds")
     manifest["fixture_builds"] = builds
     write_json(output / "manifest.json", manifest)
 
@@ -821,7 +931,8 @@ def main():
     export_build, _ = command_record(
         output, "build_export_graph",
         [args.cxx, "-std=c++17", "-O3",
-         ROOT / "scripts/multigpu/supplement_graph.cpp", "-o", exporter],
+         fixture_sources["scripts/multigpu/supplement_graph.cpp"],
+         "-o", exporter],
         timeout=300, required=True)
     export_build.update(binary=str(exporter), binary_sha256=sha256(exporter))
     fixture_dir = output / "sequential_fixture"
@@ -956,6 +1067,19 @@ def main():
 
     pair_integrity_after = None
     graph_integrity_after = None
+    fixture_integrity_after = None
+    try:
+        fixture_tree_after = filesystem_regular_tree(fixture_source_root)
+        fixture_integrity_after = {
+            "path_count": len(fixture_tree_after),
+            "tree_manifest_sha256": hashlib.sha256(json.dumps(
+                fixture_tree_after, sort_keys=True,
+                separators=(",", ":")).encode()).hexdigest(),
+        }
+        if fixture_tree_after != fixture_tree_before:
+            problems.append("fixture source snapshot changed during final checks")
+    except (OSError, RuntimeError, SystemExit) as error:
+        problems.append(f"post-check fixture source validation failed: {error}")
     try:
         pair_integrity_after = formal_pair_integrity_snapshot(pair, ROOT)
         if pair_integrity_after != pair_integrity_before:
@@ -988,6 +1112,7 @@ def main():
         status="complete" if valid else "failed",
         fixture_builds=builds,
         archived_dual_rebuild=production_build,
+        fixture_integrity_after=fixture_integrity_after,
         pair_integrity_after=pair_integrity_after,
         graph_integrity_after=graph_integrity_after,
         export_build=export_build,

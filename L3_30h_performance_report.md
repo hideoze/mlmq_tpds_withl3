@@ -3,9 +3,9 @@
 ## 当前结论
 
 当前已完成阶段 0、阶段 1、Route A、Route B1 与 Route B2，并已进入正式验收；
-但前三次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位源码归档门和
-BNUM=16 容量问题，第三次已证明 BNUM=8 主测可完整运行，但暴露了后续终检的工具
-路径编排错误。
+但前四次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位源码归档门和
+BNUM=16 容量问题，后两次已证明 BNUM=8 主测可完整运行，但依次暴露了终检工具
+路径和 fixture 源码物化错误。
 Route C 因作业 38122 的固定搜索范围内未找到可用 NVSHMEM 安装而按止损条件停止；
 这不是机器范围的“绝对未安装”声明。compact-candidate 只有小幅探索信号且仍低于
 目标，不进入当前重冻结候选；该候选仍是 USA、delta=400000、blocks=107、
@@ -30,6 +30,15 @@ pair 已权威记录 `/usr/bin/nvcc`，编排却仍传入计算节点不可解�
 `04_usa_sources`、`05_eight_graph` 和 Job B 均为 `NOT_RUN`，不得用该批的主测结果
 与后续批次拼接成完整验收。
 
+`a539b8a` / Job 38280 删除过时 nvcc 路径后再次完整通过 `01_primary`：合并 solve
+中位数为 `73.7722515 / 64.3301410 = 1.1467758`，两轮分别为 `1.1503776` 和
+`1.1684188`，仍是“有效但未达 1.20”。`02_final_checks` 已成功按 pair 记录的
+`/usr/bin/nvcc` 重建归档 dual 二进制，随后在执行任何 fixture 前编译失败：fixture
+源文件位于工作树并通过相对路径包含工作树 `SSSP`，同时命令显式包含归档
+`core/include`，使同一 `common.h` 以两个路径进入编译单元并产生重复定义。该失败
+是终检源码物化错误，不是 GPU 算法失败。`03_numeric_add`、`04_usa_sources`、
+`05_eight_graph` 和 Job B 再次为 `NOT_RUN`，Job 38280 目录原样保留。
+
 静态源码与正式二进制 SASS 证据高置信指向逐桶 DQ no-wrap guard：累计
 `write_reserve` 越过物理逐桶容量时会执行 device `trap`。队列地址虽取模，但
 当前协议没有证明安全复用所需的连续 retire frontier 或 generation。失败进程的
@@ -41,7 +50,7 @@ PC，此处只称“高置信定位”，不称指令级最终证实。
 `2026-09-23 15:43:29 +08:00` 起算。下文 Stage 1 性能数均是
 dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1 次预热 + 3 次
 正式）；它们可以用于淘汰或选候选，不能替代恢复同步后的 clean-SHA 两轮反序
-正式结果。Job 38227、38238 和 38271 的失败目录均原样保留，后续不得覆盖。
+正式结果。Job 38227、38238、38271 和 38280 的失败目录均原样保留，后续不得覆盖。
 
 ## 阶段状态
 
@@ -58,8 +67,8 @@ dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1
 | Route B1 | 已完成并止损 | RGG BFS 有小幅改善；USA layer-split 严重退化；重排未达到 1.20 |
 | Route B2 | 已完成并止损 | work/wait 诊断完成；compact-candidate 有小幅信号但仍未达到 1.20，最终拒绝 |
 | 同步/容量实现收口 | BNUM=8 候选已通过 clean-SHA 主测 | BNUM=16 正式运行暴露高置信 no-wrap 容量 trap；保留 fail-stop，将 dual/single 同步改为 BNUM=8；Job 38271 的两轮主测正确且无回绕 |
-| clean-SHA 定向验证 | 主测通过、全链未通过 | Job 38227 在采样前被 archive mode 误报挡住；Job 38238 在 round 1 dual 查询发生 CUDA 719；Job 38271 的 BNUM=8 `01_primary` 有效，`02_final_checks` 被错误 nvcc 路径挡住 |
-| 正式验收 | 未完成 | Job 38271 主测 solve `1.147967x`、目标未达；该 Job A 的 final/numeric/附加源点/八图步骤及 Job B 均未完成，必须在新 clean SHA 完整重跑 |
+| clean-SHA 定向验证 | 主测通过、全链未通过 | Job 38227/38238 分别暴露归档门和 BNUM=16 CUDA 719；Job 38271/38280 的 BNUM=8 主测有效，终检依次被 nvcc 路径和混合源码树挡住 |
+| 正式验收 | 未完成 | Job 38280 主测 solve `1.146776x`、目标未达；该 Job A 的 fixture/numeric/附加源点/八图步骤及 Job B 均未完成，必须在新 clean SHA 完整重跑 |
 
 ## 38082 历史批次
 
@@ -224,11 +233,11 @@ BUCKET_MAX 和 batch，正式 input contract 同时冻结这些字段。并发�
 
 ## 下一步
 
-1. 删除 Job A 终检中过时的 CUDA 路径硬编码，让终检与 pair 构建使用同一冻结
-   工具搜索路径，并继续强制编译器 realpath 与 SHA 一致；形成新的 clean SHA，
-   BNUM=8 算法配置保持不变。
+1. 将相对包含 `../../SSSP` 的 supplement fixture 放入归档源码的同构路径后编译，
+   并记录 fixture、SSSP、core 的 clean-HEAD/归档来源；形成新的 clean SHA，BNUM=8
+   算法配置保持不变。
 2. 在该 SHA 的新空目录重跑完整 Job A；任何 CUDA 错误、样本缺失、容量门或编排
-   失败都使整批无效，不能用 Job 38238 的 round 0 或 Job 38271 的主测补样。
+   失败都使整批无效，不能用 Job 38238 的 round 0 或 Job 38271/38280 的主测补样。
 3. Job A 全部步骤成功后，在不同 Slurm job 中运行同一 SHA 的独立 Job B。
 4. 再汇总固定附加源点、八图 G/G+ 回归、失败尝试、图表和论文回填；未完成项
    保持 `NOT_RUN`，探索值与正式结果分开。

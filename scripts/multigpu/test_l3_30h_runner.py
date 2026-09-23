@@ -701,6 +701,35 @@ class SafeArchiveTests(unittest.TestCase):
                 final_checks.safe_extract(archive, destination)
             self.assertFalse(destination.exists())
 
+    def test_final_checker_materializes_relative_fixture_in_archived_tree(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            snapshot = root / "snapshot"
+            (snapshot / "SSSP").mkdir(parents=True)
+            (snapshot / "core/include").mkdir(parents=True)
+            (snapshot / "SSSP/sentinel").write_bytes(b"sssp")
+            (snapshot / "core/include/sentinel").write_bytes(b"core")
+            fixture_root, fixtures, tree = final_checks.materialize_fixture_sources(
+                snapshot, root / "output", {
+                    Path("scripts/multigpu/test_l3_supplement.cu"): b"fixture",
+                })
+            fixture = fixtures["scripts/multigpu/test_l3_supplement.cu"]
+            self.assertEqual(fixture.read_bytes(), b"fixture")
+            self.assertEqual((fixture_root / "SSSP/sentinel").read_bytes(), b"sssp")
+            self.assertEqual(
+                (fixture_root / "core/include/sentinel").read_bytes(), b"core")
+            self.assertFalse((snapshot / "scripts").exists())
+            self.assertEqual(tree["archived_path_count"], 5)
+
+    def test_final_checker_rejects_unsafe_fixture_relative_path(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            snapshot = root / "snapshot"
+            snapshot.mkdir()
+            with self.assertRaisesRegex(ValueError, "unsafe fixture source path"):
+                final_checks.materialize_fixture_sources(
+                    snapshot, root / "output", {Path("../escape.cu"): b"fixture"})
+
     def test_path_traversal_and_duplicate_members_are_rejected(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
