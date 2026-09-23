@@ -3,9 +3,10 @@
 ## 当前结论
 
 当前已完成阶段 0、阶段 1、Route A、Route B1 与 Route B2，并已进入正式验收；
-但前四次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位源码归档门和
-BNUM=16 容量问题，后两次已证明 BNUM=8 主测可完整运行，但依次暴露了终检工具
-路径和 fixture 源码物化错误。
+但前五次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位源码归档门和
+BNUM=16 容量问题，后续批次证明 BNUM=8 主测和终检可完整运行，并继续暴露了三项
+互相独立的正式编排问题：终检工具路径、fixture 源码物化和 numeric 诊断的阻塞
+launch 环境。
 Route C 因作业 38122 的固定搜索范围内未找到可用 NVSHMEM 安装而按止损条件停止；
 这不是机器范围的“绝对未安装”声明。compact-candidate 只有小幅探索信号且仍低于
 目标，不进入当前重冻结候选；该候选仍是 USA、delta=400000、blocks=107、
@@ -39,6 +40,28 @@ pair 已权威记录 `/usr/bin/nvcc`，编排却仍传入计算节点不可解�
 是终检源码物化错误，不是 GPU 算法失败。`03_numeric_add`、`04_usa_sources`、
 `05_eight_graph` 和 Job B 再次为 `NOT_RUN`，Job 38280 目录原样保留。
 
+`feb2d92` / Job 38292 的 `01_primary` 同样有效，合并 solve 中位数为
+`73.1693135 / 65.8522925 = 1.1111126`，两轮分别为 `1.1147943` 和
+`1.1003592`，目标未达。该批首次完整通过 `02_final_checks`：4/4 small fixtures、
+顺序换源/reset 和 8/8 图正确性全部有效，`problems=[]`。`03_numeric_add` 的
+single/dual 派生二进制也成功构建，但 runner 强制 `CUDA_LAUNCH_BLOCKING=1`，
+使依赖多 stream 协作的持久 kernel 在第一个 `atmosmodm_single` 上等待后续尚未
+启动的 kernel。该运行 600 秒超时、`rc=124`、无 BENCH 样本；runner 随后进入
+dual 时 Job 38292 被定向取消以释放两张 A100，因此 orchestration.status 保留在
+`RUNNING/03_numeric_add`，不得解释为完成。移除该环境变量后，同一派生 single
+二进制在一张 A100 上以 `rc=0`、oracle correct 和 solve `7.100645 ms` 完成，形成
+直接因果复核；此定向复核不是性能证据。`04_usa_sources`、`05_eight_graph` 和
+Job B 为 `NOT_RUN`。
+
+同一取消作业后的第二项定向复核进一步确认 dual 诊断构建合同：清除
+`CUDA_LAUNCH_BLOCKING` 后，原始派生 dual 二进制在 W512 启动时报 CUDA 701
+（kernel 请求资源过多）；只为该正确性诊断派生构建增加
+`--ptxas-options=-maxrregcount=96` 后，相同 W512、BNUM=8 和算法宏在两张 A100 上
+以 `rc=0` 完成，wide oracle correct、final audit `mismatches=0/residual=0`，且
+no-wrap conservation 全部通过，solve 为 `7.957710 ms`。这两个定向运行都不是
+正式性能证据；寄存器上限不得加入正式 single/dual pair，也不得用其计时形成性能
+结论。
+
 静态源码与正式二进制 SASS 证据高置信指向逐桶 DQ no-wrap guard：累计
 `write_reserve` 越过物理逐桶容量时会执行 device `trap`。队列地址虽取模，但
 当前协议没有证明安全复用所需的连续 retire frontier 或 generation。失败进程的
@@ -50,7 +73,8 @@ PC，此处只称“高置信定位”，不称指令级最终证实。
 `2026-09-23 15:43:29 +08:00` 起算。下文 Stage 1 性能数均是
 dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1 次预热 + 3 次
 正式）；它们可以用于淘汰或选候选，不能替代恢复同步后的 clean-SHA 两轮反序
-正式结果。Job 38227、38238、38271 和 38280 的失败目录均原样保留，后续不得覆盖。
+正式结果。Job 38227、38238、38271、38280 和 38292 的失败/取消目录均原样保留，
+后续不得覆盖。
 
 ## 阶段状态
 
@@ -67,8 +91,8 @@ dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1
 | Route B1 | 已完成并止损 | RGG BFS 有小幅改善；USA layer-split 严重退化；重排未达到 1.20 |
 | Route B2 | 已完成并止损 | work/wait 诊断完成；compact-candidate 有小幅信号但仍未达到 1.20，最终拒绝 |
 | 同步/容量实现收口 | BNUM=8 候选已通过 clean-SHA 主测 | BNUM=16 正式运行暴露高置信 no-wrap 容量 trap；保留 fail-stop，将 dual/single 同步改为 BNUM=8；Job 38271 的两轮主测正确且无回绕 |
-| clean-SHA 定向验证 | 主测通过、全链未通过 | Job 38227/38238 分别暴露归档门和 BNUM=16 CUDA 719；Job 38271/38280 的 BNUM=8 主测有效，终检依次被 nvcc 路径和混合源码树挡住 |
-| 正式验收 | 未完成 | Job 38280 主测 solve `1.146776x`、目标未达；该 Job A 的 fixture/numeric/附加源点/八图步骤及 Job B 均未完成，必须在新 clean SHA 完整重跑 |
+| clean-SHA 定向验证 | 主测与终检通过、全链未通过 | Job 38227/38238 暴露归档门和 BNUM=16 CUDA 719；Job 38271/38280 依次暴露 nvcc 路径和混合源码树；Job 38292 通过 BNUM=8 主测与完整终检，numeric 被阻塞 launch 环境挡住 |
+| 正式验收 | 未完成 | Job 38292 主测 solve `1.111113x`、目标未达；numeric 仅完成首项超时记录，附加源点、八图性能回归及 Job B 均未执行，必须在新 clean SHA 完整重跑 |
 
 ## 38082 历史批次
 
@@ -233,11 +257,13 @@ BUCKET_MAX 和 batch，正式 input contract 同时冻结这些字段。并发�
 
 ## 下一步
 
-1. 将相对包含 `../../SSSP` 的 supplement fixture 放入归档源码的同构路径后编译，
-   并记录 fixture、SSSP、core 的 clean-HEAD/归档来源；形成新的 clean SHA，BNUM=8
-   算法配置保持不变。
+1. numeric runner 显式清除 `CUDA_LAUNCH_BLOCKING`，并只对 dual 正确性诊断派生
+   构建记录 96-register spill cap；保留 W512、查询末端已有的
+   `cudaDeviceSynchronize`、oracle、受检 int64 加法和容量门，明确禁止其计时用于
+   性能结论。形成新的 clean SHA，正式 pair 与 BNUM=8 算法配置保持不变。
 2. 在该 SHA 的新空目录重跑完整 Job A；任何 CUDA 错误、样本缺失、容量门或编排
-   失败都使整批无效，不能用 Job 38238 的 round 0 或 Job 38271/38280 的主测补样。
+   失败都使整批无效，不能用 Job 38238 的 round 0 或 Job 38271/38280/38292 的
+   主测补样。
 3. Job A 全部步骤成功后，在不同 Slurm job 中运行同一 SHA 的独立 Job B。
 4. 再汇总固定附加源点、八图 G/G+ 回归、失败尝试、图表和论文回填；未完成项
    保持 `NOT_RUN`，探索值与正式结果分开。

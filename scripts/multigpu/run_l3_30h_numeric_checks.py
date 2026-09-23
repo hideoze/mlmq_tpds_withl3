@@ -53,6 +53,9 @@ from run_usa_road_matrix import parse_bench, sha256, validate
 
 ROOT = Path(__file__).resolve().parents[2]
 DIAGNOSTIC_DEFINE = "-DMLMQ_CHECKED_ADD_DIAG=true"
+DIAGNOSTIC_MAX_REGISTERS = 96
+DIAGNOSTIC_REGISTER_FLAG = (
+    f"--ptxas-options=-maxrregcount={DIAGNOSTIC_MAX_REGISTERS}")
 QUEUE = "L1SLF_L2DQ"
 WINDOW_MODE = 2
 WINDOW_MIN = 25000
@@ -412,6 +415,12 @@ def derive_compile_command(original, source, binary, role=None):
                 if item.startswith("-DMLMQ_CHECKED_ADD_DIAG")]
     if existing:
         raise RuntimeError(f"formal command already has diagnostic macro: {existing}")
+    inherited_register_caps = [
+        item for item in original if "maxrregcount" in item.lower()]
+    if inherited_register_caps:
+        raise RuntimeError(
+            "formal command already has a register cap; the numeric diagnostic "
+            f"must record its build adjustment unambiguously: {inherited_register_caps}")
     source_hits = {name: 0 for name in ("main.cu", "csr_graph.cu", "sssp_run.cu")}
     include_hits = 0
     output_hits = 0
@@ -450,13 +459,29 @@ def derive_compile_command(original, source, binary, role=None):
     translated.append(DIAGNOSTIC_DEFINE)
     if translated.count(DIAGNOSTIC_DEFINE) != 1:
         raise RuntimeError("numeric diagnostic macro is not unique")
+    if role == "dual":
+        # The checked-add helper raises the persistent W512 kernel's register
+        # allocation above the launchable limit.  This spill cap is confined to
+        # the correctness-only derived binary; its timings are never evidence.
+        translated.append(DIAGNOSTIC_REGISTER_FLAG)
+    if translated.count(DIAGNOSTIC_REGISTER_FLAG) != (1 if role == "dual" else 0):
+        raise RuntimeError("numeric diagnostic register cap is not role-exact")
     return translated, {
         "source_argument_counts": source_hits,
         "core_include_replacements": include_hits,
         "output_replacements": output_hits,
         "diagnostic_define_count": translated.count(DIAGNOSTIC_DEFINE),
+        "diagnostic_max_registers": (
+            DIAGNOSTIC_MAX_REGISTERS if role == "dual" else None),
+        "diagnostic_register_flag_count": translated.count(
+            DIAGNOSTIC_REGISTER_FLAG),
         "formal_defines": definitions,
-        "only_semantic_change": "checked int64 candidate addition with device assert",
+        "only_source_semantic_change": (
+            "checked int64 candidate addition with device assert"),
+        "diagnostic_build_adjustments": (
+            ["dual-only register cap retains W512 launchability; timings forbidden"]
+            if role == "dual" else []),
+        "performance_claim_allowed": False,
     }
 
 
@@ -687,15 +712,15 @@ def gpu_process_snapshot(path):
     return process.stdout.strip()
 
 
-def run_solver(output, spec, role, binary, blocks, timeout):
-    prefix = output / f"{spec['name']}_{role}"
-    before = gpu_process_snapshot(prefix.with_suffix(".gpu_before.log"))
-    if before:
-        raise RuntimeError(f"GPU process present before {spec['name']} {role}: {before}")
-    environment = {key: value for key, value in os.environ.items()
+def numeric_runtime_environment(spec, blocks, base_environment=None):
+    source = os.environ if base_environment is None else base_environment
+    environment = {key: value for key, value in source.items()
                    if not key.startswith(ENV_PREFIXES)}
+    # Cooperating persistent kernels are launched on multiple streams.  A
+    # blocking launch can wait on the first persistent kernel before the peer
+    # and manager kernels needed for its progress have even been launched.
+    environment.pop("CUDA_LAUNCH_BLOCKING", None)
     environment.update({
-        "CUDA_LAUNCH_BLOCKING": "1",
         "MLMQ_BENCH": "1",
         "MLMQ_WORK_BLOCKS": str(blocks),
         "MLMQ_CUT_PERCENT": str(spec["cut_percent"]),
@@ -707,6 +732,15 @@ def run_solver(output, spec, role, binary, blocks, timeout):
         "BENCH_QUEUE": QUEUE,
         "L3_SUPPLEMENT_ORACLE": str(spec["oracle"]),
     })
+    return environment
+
+
+def run_solver(output, spec, role, binary, blocks, timeout):
+    prefix = output / f"{spec['name']}_{role}"
+    before = gpu_process_snapshot(prefix.with_suffix(".gpu_before.log"))
+    if before:
+        raise RuntimeError(f"GPU process present before {spec['name']} {role}: {before}")
+    environment = numeric_runtime_environment(spec, blocks)
     gpu_count = 1 if role == "single" else 2
     command = [binary, "-i", spec["graph"], "-n", str(gpu_count),
                "-d", str(spec["delta"])]
@@ -825,7 +859,17 @@ def main(argv=None):
             "idle_backoff": IDLE_BACKOFF,
             "warmups": 0,
             "repeats_per_binary_per_spec": 1,
-            "cuda_launch_blocking": True,
+            "cuda_launch_blocking": False,
+            "cuda_launch_blocking_policy": (
+                "explicitly removed because cooperating persistent kernels "
+                "must be launched concurrently on multiple streams"
+            ),
+            "single_diagnostic_max_registers": None,
+            "dual_diagnostic_max_registers": DIAGNOSTIC_MAX_REGISTERS,
+            "dual_diagnostic_register_policy": (
+                "diagnostic-only spill cap retains W512 launchability after "
+                "checked-add instrumentation; timings are forbidden"
+            ),
             "purpose": "checked transient candidate additions only",
             "performance_claim_allowed": False,
             "numeric_scope": {

@@ -202,7 +202,11 @@ class CommandTranslationTests(unittest.TestCase):
         command, evidence = numeric.derive_compile_command(
             self.command(), Path("/derived"), Path("/out/mlmq"), role="dual")
         self.assertEqual(command.count(numeric.DIAGNOSTIC_DEFINE), 1)
+        self.assertEqual(command.count(numeric.DIAGNOSTIC_REGISTER_FLAG), 1)
         self.assertEqual(evidence["diagnostic_define_count"], 1)
+        self.assertEqual(evidence["diagnostic_register_flag_count"], 1)
+        self.assertEqual(evidence["diagnostic_max_registers"], 96)
+        self.assertFalse(evidence["performance_claim_allowed"])
         self.assertIn("/derived/SSSP/sssp_run.cu", command)
         self.assertIn("-I/derived/core/include", command)
         self.assertNotIn("/formal/mlmq", command)
@@ -214,11 +218,57 @@ class CommandTranslationTests(unittest.TestCase):
             numeric.derive_compile_command(
                 command, Path("/derived"), Path("/out/mlmq"), role="dual")
 
+    def test_single_diagnostic_does_not_add_register_cap(self):
+        command, evidence = numeric.derive_compile_command(
+            self.command(), Path("/derived"), Path("/out/mlmq"), role="single")
+        self.assertNotIn(numeric.DIAGNOSTIC_REGISTER_FLAG, command)
+        self.assertEqual(evidence["diagnostic_register_flag_count"], 0)
+        self.assertIsNone(evidence["diagnostic_max_registers"])
+
+    def test_existing_register_cap_is_rejected(self):
+        variants = (
+            ["--ptxas-options=-maxrregcount=80"],
+            ["-Xptxas=-maxrregcount=80"],
+            ["--maxrregcount=80"],
+            ["-Xptxas", "-maxrregcount=80"],
+        )
+        for role in ("single", "dual"):
+            for variant in variants:
+                with self.subTest(role=role, variant=variant):
+                    with self.assertRaises(RuntimeError):
+                        numeric.derive_compile_command(
+                            self.command() + variant, Path("/derived"),
+                            Path("/out/mlmq"), role=role)
+
     def test_default_scope_override_is_rejected(self):
         command = self.command() + ["-DGHOST_DEPTH=1"]
         with self.assertRaises(RuntimeError):
             numeric.derive_compile_command(
                 command, Path("/derived"), Path("/out/mlmq"), role="dual")
+
+
+class RuntimeEnvironmentTests(unittest.TestCase):
+    def test_persistent_kernel_runtime_clears_launch_blocking(self):
+        spec = {
+            "cut_percent": 50,
+            "delta": 200000,
+            "source": 0,
+            "oracle": Path("/frozen/oracle.i32"),
+        }
+        environment = numeric.numeric_runtime_environment(
+            spec, 107, base_environment={
+                "CUDA_LAUNCH_BLOCKING": "1",
+                "CUDA_VISIBLE_DEVICES": "0,1",
+                "MLMQ_STALE": "1",
+                "KEEP_ME": "yes",
+            })
+        self.assertNotIn("CUDA_LAUNCH_BLOCKING", environment)
+        self.assertEqual(environment["CUDA_VISIBLE_DEVICES"], "0,1")
+        self.assertEqual(environment["KEEP_ME"], "yes")
+        self.assertNotIn("MLMQ_STALE", environment)
+        self.assertEqual(environment["MLMQ_WORK_BLOCKS"], "107")
+        self.assertEqual(environment["L3_SUPPLEMENT_ORACLE"],
+                         "/frozen/oracle.i32")
 
 
 class RunParserTests(unittest.TestCase):
