@@ -1,0 +1,730 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/pair_build/dual_build/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/augmented.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "configuration": "dual_l3",
+  "effective_contract": {
+    "dual_contract": {
+      "errors": [],
+      "expected_samples": 6,
+      "l2_capacity_present": true,
+      "l2_capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "l2_final_present": true,
+      "l2_final_required": false,
+      "observed_samples": 6,
+      "samples": [
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 128035,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 128035,
+              "max_bucket_writes": 41391,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 128035,
+              "total_capacity": 268431360,
+              "writes": 128035
+            },
+            {
+              "buckets": 8,
+              "completed": 140899,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 140899,
+              "max_bucket_writes": 30185,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 140899,
+              "total_capacity": 268431360,
+              "writes": 140899
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 170645,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 170645,
+              "max_bucket_writes": 57237,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 170645,
+              "total_capacity": 268431360,
+              "writes": 170645
+            },
+            {
+              "buckets": 8,
+              "completed": 148603,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 148603,
+              "max_bucket_writes": 23339,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 148603,
+              "total_capacity": 268431360,
+              "writes": 148603
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 146931,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 146931,
+              "max_bucket_writes": 26062,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 146931,
+              "total_capacity": 268431360,
+              "writes": 146931
+            },
+            {
+              "buckets": 8,
+              "completed": 163143,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 163143,
+              "max_bucket_writes": 62075,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 163143,
+              "total_capacity": 268431360,
+              "writes": 163143
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 168009,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 168009,
+              "max_bucket_writes": 64388,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 168009,
+              "total_capacity": 268431360,
+              "writes": 168009
+            },
+            {
+              "buckets": 8,
+              "completed": 142760,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 142760,
+              "max_bucket_writes": 23820,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 142760,
+              "total_capacity": 268431360,
+              "writes": 142760
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 169995,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 169995,
+              "max_bucket_writes": 115428,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 169995,
+              "total_capacity": 268431360,
+              "writes": 169995
+            },
+            {
+              "buckets": 8,
+              "completed": 148866,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 148866,
+              "max_bucket_writes": 29725,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 148866,
+              "total_capacity": 268431360,
+              "writes": 148866
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 181579,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 181579,
+              "max_bucket_writes": 67344,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 181579,
+              "total_capacity": 268431360,
+              "writes": 181579
+            },
+            {
+              "buckets": 8,
+              "completed": 146675,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 146675,
+              "max_bucket_writes": 24266,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 146675,
+              "total_capacity": 268431360,
+              "writes": 146675
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        }
+      ],
+      "valid": true
+    },
+    "errors": [],
+    "expected_l3_config_lines": 12,
+    "expected_oracle_lines": 6,
+    "expected_partitions": [
+      [
+        0,
+        0,
+        239616
+      ],
+      [
+        1,
+        239616,
+        435666
+      ]
+    ],
+    "l3_config_lines": 12,
+    "no_l3_config_lines": 0,
+    "no_l3_launch_lines": 0,
+    "oracle_contract": {
+      "errors": [],
+      "expected_samples": 6,
+      "observed_samples": 6,
+      "trailing_final_audit": 0,
+      "valid": true
+    },
+    "oracle_lines": 6,
+    "partitions": [
+      [
+        0,
+        0,
+        239616
+      ],
+      [
+        1,
+        239616,
+        435666
+      ]
+    ],
+    "single_capacity_contract": null
+  },
+  "finished_utc": "2026-09-23T15:38:47.767573+00:00",
+  "host_elapsed_seconds": 0.9181049689941574,
+  "prefix": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/cases/COL/G_plus/round000_1_dual_l3",
+  "rc": 0,
+  "reason": "ok",
+  "requested_gpu_count": 2,
+  "round": 0,
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.181546",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.083746",
+      "prepare_ms": "7.769096",
+      "query_wall_ms": "17.459282",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "9.424863",
+      "source": "217833",
+      "warmup": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.179513",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.060670",
+      "prepare_ms": "2.701282",
+      "query_wall_ms": "9.744963",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "1",
+      "solve_ms": "6.803480",
+      "source": "217833",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.389979",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.069521",
+      "prepare_ms": "2.415902",
+      "query_wall_ms": "9.534794",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "2",
+      "solve_ms": "6.659255",
+      "source": "217833",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.230902",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.078253",
+      "prepare_ms": "2.647592",
+      "query_wall_ms": "9.637993",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "3",
+      "solve_ms": "6.681210",
+      "source": "217833",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.221378",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.060048",
+      "prepare_ms": "2.502511",
+      "query_wall_ms": "10.209452",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "4",
+      "solve_ms": "7.425479",
+      "source": "217833",
+      "warmup": "0"
+    },
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.247690",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.064425",
+      "prepare_ms": "2.681275",
+      "query_wall_ms": "10.244178",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "5",
+      "solve_ms": "7.250744",
+      "source": "217833",
+      "warmup": "0"
+    }
+  ],
+  "sequence_in_round": 1,
+  "started_utc": "2026-09-23T15:38:45.594758+00:00",
+  "valid": true
+}

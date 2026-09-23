@@ -1,0 +1,59 @@
+{
+  "capacity_full": {
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_capacity"
+    ],
+    "command_sha256": "1d7f5dd49f5cb9a02064fe8106d61a07c422bdffb1cdfd9a675b5b90ec58c939",
+    "errors": [],
+    "finished_utc": "2026-09-23T15:23:37.605200+00:00",
+    "host_elapsed_seconds": 0.5345399859943427,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/capacity_full.log",
+    "log_sha256": "48c502afa33779ce0734638a37cd73b6a7d557ff2dbdf423ecdd924848f1604e",
+    "rc": 0,
+    "timed_out": false,
+    "valid": true
+  },
+  "capacity_overflow": {
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_capacity",
+      "overflow"
+    ],
+    "command_sha256": "443d3703c11b43684856daa573ff0d6dabd4719beefa1afbea5d93996c5b41ff",
+    "errors": [],
+    "finished_utc": "2026-09-23T15:23:38.381577+00:00",
+    "host_elapsed_seconds": 0.5316265569999814,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/capacity_overflow.log",
+    "log_sha256": "84443a044da5bd3bc7d6d7a792fb63f030e19847f7b21941cde837da01fca5a9",
+    "rc": 0,
+    "timed_out": false,
+    "valid": true
+  },
+  "dq_publication": {
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_dq"
+    ],
+    "command_sha256": "d106ade6d3e0547d23e5f2df083313fbde2d780cf25de2260c7a15cd92ff8c0f",
+    "errors": [],
+    "finished_utc": "2026-09-23T15:23:36.830129+00:00",
+    "host_elapsed_seconds": 0.6067671120108571,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dq_publication.log",
+    "log_sha256": "43038c79d02b449533ab505dcca8b0abc61020ab6b0530341bd6606ad42307fc",
+    "rc": 0,
+    "timed_out": false,
+    "valid": true
+  },
+  "primitives": {
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_primitives"
+    ],
+    "command_sha256": "a41e1017bdbb33fddf1766eab228f3bbc8caea5ed6447bc8754409442f52c443",
+    "errors": [],
+    "finished_utc": "2026-09-23T15:23:35.919116+00:00",
+    "host_elapsed_seconds": 0.7678284579887986,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/primitives.log",
+    "log_sha256": "3577be18630334ebf6aae4f3456dbff5a04428572bf77cb1a07d71f0b13cfc6d",
+    "rc": 0,
+    "timed_out": false,
+    "valid": true
+  }
+}

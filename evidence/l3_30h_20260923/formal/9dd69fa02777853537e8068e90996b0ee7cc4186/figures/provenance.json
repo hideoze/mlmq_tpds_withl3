@@ -1,0 +1,105 @@
+{
+  "created_utc": "2026-09-23T16:30:12.159981+00:00",
+  "figure": {
+    "height_inches": 2.55,
+    "pdf": "l3_30h_final.pdf",
+    "pdf_geometry": {
+      "height_inches": 2.55,
+      "width_inches": 3.5
+    },
+    "png": "l3_30h_final.png",
+    "png_geometry": {
+      "height_pixels": 1019,
+      "width_pixels": 1400,
+      "x_dpi": 399.9992,
+      "y_dpi": 399.9992
+    },
+    "requested_png_dpi": 400,
+    "single_column": true,
+    "width_inches": 3.5
+  },
+  "input": {
+    "expected_sha256": "a83c8a58e4c8f2b471560101be238686faf6e72313605b0e25609a086bec481c",
+    "expected_source_sha": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+    "explicit_source_evidence": null,
+    "hash_verified": true,
+    "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/summary.csv",
+    "raw_evidence": {
+      "artifact_ledger_sha256": "1df3fb535e92b5d8f1220c6a2013d6461bb767c1c02a2f13ee684f138f3140b3",
+      "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph",
+      "mode": "raw_job_a_sidecars",
+      "source_metadata": {
+        "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/run_manifest.json",
+        "sha256": "8c148e50dc1abb62e9ccb0500e52b6b917a592845982e4524030d184152f9f21",
+        "source_fields": {
+          "repository.head": "9dd69fa02777853537e8068e90996b0ee7cc4186"
+        }
+      },
+      "validated_sidecars": {
+        "complete.json": "f266f6c77282c7e6cf4c2d11105cf21493a0609f2843bff84e769ae367ae24de",
+        "repository_after_sampling.json": "4f1a84afdaec5d7c24b1dac7eeceddfe65760b74a4a478a90fe74b2b66e01be1",
+        "run_manifest.json": "8c148e50dc1abb62e9ccb0500e52b6b917a592845982e4524030d184152f9f21",
+        "status.json": "9be3b73e58723b316700747d7c919cc827f0238f97cbf99ed7cf940e182e0cdc",
+        "summary.json": "4ff045d102868c29390816d06fb5372d3b3849dcf18deb6af9291ec0c2f0edc8"
+      }
+    },
+    "sha256": "a83c8a58e4c8f2b471560101be238686faf6e72313605b0e25609a086bec481c",
+    "source_binding_modes": [
+      "raw_job_a_sidecars"
+    ],
+    "source_sha": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+    "source_sha_verified": true
+  },
+  "metric": {
+    "definition": "per-case median T1 single-GPU no-L3 solve_ms divided by median T2 dual-GPU L3 solve_ms",
+    "geomean_formula": "exp(mean(log(per-case speedup)))",
+    "geomean_requires_all_16_valid_cases": true,
+    "geomeans": {
+      "G": 0.8881843984033592,
+      "G+": 0.9298583563038166
+    },
+    "reference": 1.0,
+    "target": 1.2
+  },
+  "metrics_csv": {
+    "case_rows": 16,
+    "geomean_rows": 2,
+    "path": "metrics.csv"
+  },
+  "output_sha256": {
+    "l3_30h_final.pdf": "2f4cc249846a655433e8dbb3dbd121a80c820feb60be6defd31854994764a050",
+    "l3_30h_final.png": "1e00612dc1f9e32af7e419a8a5f7dadb31bb0e0e1b3225a97c785cce1a5d1d1e",
+    "metrics.csv": "175637e94378e60ef1c2df9bb98eeb2dd406edc4b1f13024d23f67c5426791b8"
+  },
+  "purpose": "final clean-SHA eight-graph G/G+ solve-speedup figure",
+  "schema": 1,
+  "software": {
+    "matplotlib": "3.6.3",
+    "python": "3.12.3",
+    "script": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/plot_l3_30h_final.py",
+    "script_sha256": "6184df7d27b0af69f900188f0a339cd24622f9378065f29ac5d2250f887637b8"
+  },
+  "validation": {
+    "all_error_counts_zero": true,
+    "case_count": 16,
+    "cases_per_view": 8,
+    "expected_case_count": 16,
+    "failed_or_partial_batches_allowed": false,
+    "graphs": [
+      "NY",
+      "BAY",
+      "COL",
+      "FLA",
+      "CAL",
+      "E",
+      "W",
+      "USA"
+    ],
+    "measurement_valid": true,
+    "solve_and_query_wall_speedup_identities_recomputed": true,
+    "views": [
+      "G",
+      "G+"
+    ]
+  }
+}

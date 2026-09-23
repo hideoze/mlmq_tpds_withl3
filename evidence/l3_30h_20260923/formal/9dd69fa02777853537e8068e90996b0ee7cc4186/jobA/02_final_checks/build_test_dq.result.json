@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/usr/bin/nvcc",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_dq_publication.cu",
+    "-o",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_dq",
+    "-O3",
+    "-std=c++17",
+    "-rdc=true",
+    "-gencode=arch=compute_80,code=sm_80",
+    "-I/mnt/a100/data/wyh/boost_1_87_0",
+    "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/core/include"
+  ],
+  "command_sha256": "98746c45f66308750a7d17f7bd38a1e42b04dbb6d6b50246ae956e6d7b947ddb",
+  "finished_utc": "2026-09-23T15:23:31.069101+00:00",
+  "host_elapsed_seconds": 3.2560611579974648,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_test_dq.log",
+  "log_sha256": "9b91fdc61c8df143f69072b7d02ea22b1367b040c01a285b1c158339ba4c754b",
+  "rc": 0,
+  "timed_out": false
+}

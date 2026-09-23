@@ -1,0 +1,457 @@
+{
+  "cleared_environment_variables": [
+    "BROWSER",
+    "CODEX_CI",
+    "CODEX_MANAGED_BY_NPM",
+    "CODEX_MANAGED_PACKAGE_ROOT",
+    "CODEX_PERMISSION_PROFILE",
+    "CODEX_SANDBOX_NETWORK_DISABLED",
+    "CODEX_SESSION_ID",
+    "CODEX_THREAD_ID",
+    "CODEX_VERSION",
+    "COLORTERM",
+    "DBUS_SESSION_BUS_ADDRESS",
+    "DEBUGINFOD_URLS",
+    "GH_PAGER",
+    "GIT_ASKPASS",
+    "GIT_PAGER",
+    "GPU_DEVICE_ORDINAL",
+    "HOME",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "HYDRA_BOOTSTRAP",
+    "HYDRA_LAUNCHER_EXTRA_ARGS",
+    "I_MPI_HYDRA_BOOTSTRAP",
+    "I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS",
+    "LD_LIBRARY_PATH",
+    "LESSCLOSE",
+    "LESSOPEN",
+    "LOGNAME",
+    "LS_COLORS",
+    "NO_COLOR",
+    "OLDPWD",
+    "OMPI_MCA_plm_slurm_args",
+    "PAGER",
+    "PRTE_MCA_plm_slurm_args",
+    "PWD",
+    "PYTHONDONTWRITEBYTECODE",
+    "ROCR_VISIBLE_DEVICES",
+    "SHELL",
+    "SHLVL",
+    "SLURMD_DEBUG",
+    "SLURMD_NODENAME",
+    "SRUN_DEBUG",
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "TERM",
+    "TERM_PROGRAM",
+    "TERM_PROGRAM_VERSION",
+    "USER",
+    "VSCODE_GIT_ASKPASS_EXTRA_ARGS",
+    "VSCODE_GIT_ASKPASS_MAIN",
+    "VSCODE_GIT_ASKPASS_NODE",
+    "VSCODE_GIT_IPC_HANDLE",
+    "VSCODE_IPC_HOOK_CLI",
+    "VSCODE_PYTHON_AUTOACTIVATE_GUARD",
+    "XDG_DATA_DIRS",
+    "XDG_RUNTIME_DIR",
+    "XDG_SESSION_CLASS",
+    "XDG_SESSION_ID",
+    "XDG_SESSION_TYPE",
+    "ZE_AFFINITY_MASK",
+    "_"
+  ],
+  "committed_files": {
+    "pair_builder": {
+      "head_path": "scripts/multigpu/build_l3_30h_pair.sh",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/build_l3_30h_pair.sh",
+      "sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb"
+    },
+    "runner": {
+      "head_path": "scripts/multigpu/run_l3_30h.py",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+      "sha256": "0641ec5b38b507a10107235faf423f38fb7e9492f05840f32e64517c9ea4a52d"
+    },
+    "source_manifest": {
+      "head_path": "evidence/l3_30h_20260923/final/usa_source_manifest.json",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_30h_20260923/final/usa_source_manifest.json",
+      "sha256": "79f138574cbafa7a171acbeded330e6bd1504a2a942f72add87ab6ca1f21963f"
+    },
+    "wrapper": {
+      "head_path": "scripts/multigpu/run_l3_30h_usa_sources.py",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h_usa_sources.py",
+      "sha256": "703942cc7369facee0e5f94d452f5c086e1c7ab5d3fe12e69cca5fd267c3e17d"
+    }
+  },
+  "configuration": {
+    "blocks": 107,
+    "cut_percent": 60,
+    "delta": 400000,
+    "external_pair_allowed": false,
+    "formal_per_process": 5,
+    "gpu_execution": "strictly serial",
+    "idle_backoff": 0,
+    "l2_batch_size": 8,
+    "l2_bucket_max": 4,
+    "l2_buckets": 8,
+    "queue": "L1SLF_L2DQ",
+    "round_order": [
+      "single then dual",
+      "dual then single"
+    ],
+    "rounds": 2,
+    "sources": [
+      18266241,
+      6146689
+    ],
+    "target": 1.2,
+    "target_failure_invalidates_measurement": false,
+    "warmups_per_process": 1,
+    "window_max": 25000,
+    "window_min": 25000,
+    "window_mode": 2,
+    "workers": 512
+  },
+  "created_utc": "2026-09-23T15:32:57.470966+00:00",
+  "formal_configuration": {
+    "identity": {
+      "head_path": "evidence/l3_30h_20260923/final/formal_input_contract.json",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_30h_20260923/final/formal_input_contract.json",
+      "sha256": "b7b73fbffae317a6784b05286bfb7056ebc38b5a6b2a7cf32a33d0f8d4b13905"
+    },
+    "payload": {
+      "blocks": 107,
+      "cut_percent": 60,
+      "delta": 400000,
+      "edges": 66684784,
+      "final_audit": "failure",
+      "graph_path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "idle_backoff": 0,
+      "l2_allocated_records": 268435455,
+      "l2_batch_size": 8,
+      "l2_bucket_max": 4,
+      "l2_buckets": 8,
+      "l2_budget_bytes": 2147483647,
+      "l2_counter_bits": 32,
+      "l2_per_bucket_capacity": 33553920,
+      "l2_record_bytes": 8,
+      "l2_total_capacity": 268431360,
+      "oracle_path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "queue": "L1SLF_L2DQ",
+      "repeats_per_process": 5,
+      "rounds": 2,
+      "schema": 1,
+      "source": 11973673,
+      "vertices": 23947347,
+      "warmups_per_process": 1,
+      "window_max": 25000,
+      "window_min": 25000,
+      "window_mode": 2
+    }
+  },
+  "fresh_pair_build_record": {
+    "builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+    "cleared_environment_variables": [
+      "LD_LIBRARY_PATH"
+    ],
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/build_l3_30h_pair.sh",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/pair_build"
+    ],
+    "environment": {
+      "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "NVCC": "/usr/bin/nvcc",
+      "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+      "TMPDIR": "/tmp"
+    },
+    "finished_utc": "2026-09-23T15:32:53.587461+00:00",
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/formal_pair_build_driver.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rc": 0,
+    "started_utc": "2026-09-23T15:29:51.567703+00:00",
+    "timed_out": false,
+    "timeout_seconds": 3600
+  },
+  "host": "ada-A100",
+  "input_integrity_start": {
+    "fixed_additional_source_1_oracle": {
+      "bytes": 95789388,
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old7982448_new18266241.i32",
+      "sha256": "f86e1b6509badf703eb50125156f3479938a928b2abbb2430910673bcf9ca9e3"
+    },
+    "fixed_additional_source_2_oracle": {
+      "bytes": 95789388,
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old15964897_new6146689.i32",
+      "sha256": "84664767003586c247a6657450796b0ee2ffbfde8ba84445f70ba05b9c008294"
+    },
+    "graph": {
+      "bytes": 725057080,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+    }
+  },
+  "pair_integrity_start": {
+    "git": {
+      "head": {
+        "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+        "rc": 0
+      },
+      "status": {
+        "output": "",
+        "rc": 0
+      }
+    },
+    "sha256": {
+      "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dual_build/command.json": "af1d984112a5e1bb7e0b3c346c6d3bdf714a7b553c6d831853563913da018d4e",
+      "dual_build/hashes.json": "391623d9885603ddf0d8e2125fc4e24e90e854749dd27d5a1ab04da357b9b6ba",
+      "dual_build/mlmq": "2ac08e6a0050fb5875537a4907d53da7e8a2ba804af25adffb5ca52be55c33ac",
+      "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+      "dual_build/status.json": "282ff43169096a2dd282d9266f75a1491c6ec5dda3dc31aa34ad38ad1a2e5f7c",
+      "dual_build/version.json": "f55fac99fb15ae78b05182f043a10bd256765e322971a749f02ef193bf223f5c",
+      "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_build/command.json": "a630feb5d2beafdf29f11d404a8fef21e41d3090d744cf0683f922f04e57a342",
+      "single_build/hashes.json": "70b52cb1b125c8ee9d1b12e77ad367f86e26ee5930b461969b899dc5f6cf5a94",
+      "single_build/mlmq": "26678bbe03932cd18fa3d8800f2ff3f26f541476ae9fcdb15659aa871e426eff",
+      "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "single_build/source.tgz": "d22e4fdaf7dda55c19ffd69637e50be0a453c8bb975ed7189ed67781cc31b817",
+      "single_build/status.json": "ee4d30b9382471eb2f2d16c1a4e1374c0b953d6300f4072df345a7cc8dbb4eb5",
+      "single_build/version.json": "f55fac99fb15ae78b05182f043a10bd256765e322971a749f02ef193bf223f5c",
+      "status.json": "a68e69c5a5d645ad77c8548905176ca6bfc4bdf6d8d4c5b3b2e523cb2b8169ef",
+      "version.json": "f55fac99fb15ae78b05182f043a10bd256765e322971a749f02ef193bf223f5c"
+    }
+  },
+  "pair_validation": {
+    "compiler": {
+      "path": "/usr/bin/nvcc",
+      "sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433"
+    },
+    "components": {
+      "dual": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/pair_build/dual_build",
+        "role": "dual_l3_paper",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "af1d984112a5e1bb7e0b3c346c6d3bdf714a7b553c6d831853563913da018d4e",
+          "mlmq": "2ac08e6a0050fb5875537a4907d53da7e8a2ba804af25adffb5ca52be55c33ac",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+          "status.json": "282ff43169096a2dd282d9266f75a1491c6ec5dda3dc31aa34ad38ad1a2e5f7c",
+          "version.json": "f55fac99fb15ae78b05182f043a10bd256765e322971a749f02ef193bf223f5c"
+        }
+      },
+      "single": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/pair_build/single_build",
+        "role": "single_no_l3",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "a630feb5d2beafdf29f11d404a8fef21e41d3090d744cf0683f922f04e57a342",
+          "mlmq": "26678bbe03932cd18fa3d8800f2ff3f26f541476ae9fcdb15659aa871e426eff",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "d22e4fdaf7dda55c19ffd69637e50be0a453c8bb975ed7189ed67781cc31b817",
+          "status.json": "ee4d30b9382471eb2f2d16c1a4e1374c0b953d6300f4072df345a7cc8dbb4eb5",
+          "version.json": "f55fac99fb15ae78b05182f043a10bd256765e322971a749f02ef193bf223f5c"
+        }
+      }
+    },
+    "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/pair_build",
+    "source_binding": {
+      "dual": {
+        "archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+        "entries": 87
+      },
+      "single": {
+        "archive_sha256": "d22e4fdaf7dda55c19ffd69637e50be0a453c8bb975ed7189ed67781cc31b817",
+        "entries": 35
+      }
+    },
+    "status": {
+      "dual_rc": 0,
+      "rc": 0,
+      "single_rc": 0,
+      "state": "complete",
+      "updated_utc": "2026-09-23T15:32:53.512537+00:00"
+    },
+    "version": {
+      "blocked_build_environment_present": [],
+      "blocked_build_environment_variables": [
+        "NVCC_PREPEND_FLAGS",
+        "NVCC_APPEND_FLAGS",
+        "CPATH",
+        "C_INCLUDE_PATH",
+        "CPLUS_INCLUDE_PATH",
+        "OBJC_INCLUDE_PATH",
+        "LIBRARY_PATH",
+        "LD_PRELOAD",
+        "LD_LIBRARY_PATH",
+        "CUDAFLAGS",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "LIBS",
+        "COMPILER_PATH",
+        "GCC_EXEC_PREFIX",
+        "CUDA_HOME",
+        "CUDA_PATH",
+        "CUDAHOSTCXX",
+        "NVCC_CCBIN"
+      ],
+      "boost_include_dir": "/mnt/a100/data/wyh/boost_1_87_0",
+      "branch": "l3-30h-performance-20260923",
+      "build_environment": {
+        "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "NVCC": "/usr/bin/nvcc",
+        "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+        "TMPDIR": "/tmp"
+      },
+      "created_utc": "2026-09-23T15:29:52.066286+00:00",
+      "describe": "9dd69fa",
+      "dual_builder": "scripts/multigpu/build_l3_paper_config.sh",
+      "dual_builder_sha256": "8a91ac0f84fa46b9916b633d70bec42ba5faaf9ccfd2823015a4b12759779b39",
+      "dual_source_post_build_diff": "dual_source_post_build_diff.log",
+      "dual_source_post_build_match": true,
+      "git_status_porcelain": [],
+      "git_status_porcelain_after_build": [],
+      "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "head_after_build": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "nvcc": "/usr/bin/nvcc",
+      "nvcc_resolved": "/usr/bin/nvcc",
+      "nvcc_sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+      "pair_builder": "scripts/multigpu/build_l3_30h_pair.sh",
+      "pair_builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+      "repository_root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+      "single_adapter": "scripts/multigpu/prepare_l3_30h_single.py",
+      "single_adapter_sha256": "b8cec3f2a53b717926a5c5139937e654ad6d2ed1a389292be177731cd8df0641"
+    }
+  },
+  "preflight": {
+    "allocation": {
+      "CUDA_VISIBLE_DEVICES": {
+        "count": 2,
+        "value": "0,1"
+      },
+      "SLURM_GPUS_ON_NODE": {
+        "count": 2,
+        "value": "2"
+      },
+      "SLURM_JOB_PARTITION": "a100",
+      "SLURM_STEP_GPUS": {
+        "count": 2,
+        "value": "0,1"
+      }
+    },
+    "compute_apps_before": [],
+    "formal_a100_cc80_required": true,
+    "nvidia_smi": {
+      "path": "/usr/bin/nvidia-smi",
+      "sha256": "10ba0a915bceeeefdaa23629581391af6ab16f472e2101cf5e2d6805d4a63ea8"
+    },
+    "snapshot_bytes": 2146,
+    "topology_bytes": 644,
+    "visible_gpu_count": 2,
+    "visible_gpus": [
+      {
+        "compute_capability": "8.0",
+        "index": "0",
+        "name": "NVIDIA A100 80GB PCIe",
+        "uuid": "GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3"
+      },
+      {
+        "compute_capability": "8.0",
+        "index": "1",
+        "name": "NVIDIA A100 80GB PCIe",
+        "uuid": "GPU-5a40464a-79b5-7559-27c4-49b0a63b164a"
+      }
+    ]
+  },
+  "purpose": "fixed additional USA-source robustness measurement",
+  "repository": {
+    "branch": "l3-30h-performance-20260923",
+    "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+    "root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "status_porcelain": []
+  },
+  "runtime_environment": {
+    "CUDA_VISIBLE_DEVICES": "0,1",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LC_CTYPE": "C.UTF-8",
+    "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "SLURM_CLUSTER_NAME": "adacluster",
+    "SLURM_CONF": "/var/lib/slurm/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "12",
+    "SLURM_CPUS_PER_TASK": "12",
+    "SLURM_CPU_BIND": "quiet,mask_cpu:0xFFF",
+    "SLURM_CPU_BIND_LIST": "0xFFF",
+    "SLURM_CPU_BIND_TYPE": "mask_cpu:",
+    "SLURM_CPU_BIND_VERBOSE": "quiet",
+    "SLURM_DISTRIBUTION": "cyclic",
+    "SLURM_GPUS_ON_NODE": "2",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "38304",
+    "SLURM_JOB_CPUS_PER_NODE": "12",
+    "SLURM_JOB_END_TIME": "1790187445",
+    "SLURM_JOB_GID": "100",
+    "SLURM_JOB_GROUP": "users",
+    "SLURM_JOB_ID": "38304",
+    "SLURM_JOB_NAME": "l3-30h-A",
+    "SLURM_JOB_NODELIST": "ada-A100",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "a100",
+    "SLURM_JOB_START_TIME": "1790176645",
+    "SLURM_JOB_UID": "1084",
+    "SLURM_JOB_USER": "Dingzhong",
+    "SLURM_LAUNCH_NODE_IPADDR": "10.0.0.1",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_NODE": "65536",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "ada-A100",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SRUN_COMM_HOST": "10.0.0.1",
+    "SLURM_SRUN_COMM_PORT": "60326",
+    "SLURM_STEPID": "0",
+    "SLURM_STEP_GPUS": "0,1",
+    "SLURM_STEP_ID": "0",
+    "SLURM_STEP_LAUNCHER_PORT": "60326",
+    "SLURM_STEP_NODELIST": "ada-A100",
+    "SLURM_STEP_NUM_NODES": "1",
+    "SLURM_STEP_NUM_TASKS": "1",
+    "SLURM_STEP_TASKS_PER_NODE": "1",
+    "SLURM_SUBMIT_DIR": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "SLURM_SUBMIT_HOST": "ada-709",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "502356",
+    "SLURM_TOPOLOGY_ADDR": "ada-A100",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "node",
+    "SLURM_TRES_PER_TASK": "cpu:12",
+    "SLURM_UMASK": "0022",
+    "TMPDIR": "/tmp"
+  },
+  "schema": 1,
+  "slurm_job_id": "38304",
+  "source_manifest": {
+    "identity": {
+      "head_path": "evidence/l3_30h_20260923/final/usa_source_manifest.json",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_30h_20260923/final/usa_source_manifest.json",
+      "sha256": "79f138574cbafa7a171acbeded330e6bd1504a2a942f72add87ab6ca1f21963f"
+    },
+    "roles": [
+      "fixed_additional_source_1",
+      "fixed_additional_source_2"
+    ],
+    "selection_status": "FROZEN_BEFORE_FORMAL_SAMPLING"
+  }
+}

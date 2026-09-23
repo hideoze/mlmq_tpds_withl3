@@ -1,0 +1,16 @@
+{
+  "command": [
+    "scontrol",
+    "show",
+    "job",
+    "-dd",
+    "38304"
+  ],
+  "command_sha256": "2c19440ad8bff425ccce1c21f3ae454e56ed4dc9ff9f7c47c5b71cd93ad9ad3d",
+  "finished_utc": "2026-09-23T15:21:19.992427+00:00",
+  "host_elapsed_seconds": 0.014537850976921618,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/slurm_job.log",
+  "log_sha256": "23f77ec43194f73bd6b7f02b63a75574ce7652d597a74dd6c0c23e0e0eecee4e",
+  "rc": 0,
+  "timed_out": false
+}

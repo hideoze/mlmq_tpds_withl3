@@ -1,0 +1,14 @@
+{
+  "command": [
+    "nvidia-smi",
+    "topo",
+    "-m"
+  ],
+  "command_sha256": "33d9c641dd70352536ff7f40111baba420cd6cf0b80b8e827559f50af82cdca8",
+  "finished_utc": "2026-09-23T15:21:19.541266+00:00",
+  "host_elapsed_seconds": 0.044689158006804064,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/topology.log",
+  "log_sha256": "2c00f133826d4b05eb77104f1d21083b90936b55a36a97e40283b898f2989361",
+  "rc": 0,
+  "timed_out": false
+}

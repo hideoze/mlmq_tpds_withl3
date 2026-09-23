@@ -1,0 +1,290 @@
+{
+  "BAY_G": {
+    "graph": {
+      "bytes": 8971568,
+      "header": {
+        "edge_size": 4,
+        "edges": 800172,
+        "version": 1,
+        "vertices": 321270
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/BAY/landmark.gr",
+      "sha256": "0c9b8f7cf580397d9fc67367a5870c5278cf4c31ace89d3eab12e7370e549d90"
+    },
+    "oracle": {
+      "bytes": 1285080,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+      "sha256": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+    }
+  },
+  "BAY_G_plus": {
+    "graph": {
+      "bytes": 9648480,
+      "header": {
+        "edge_size": 4,
+        "edges": 884786,
+        "version": 1,
+        "vertices": 321270
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/augmented.gr",
+      "sha256": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf"
+    },
+    "oracle": {
+      "bytes": 1285080,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+      "sha256": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+    }
+  },
+  "CAL_G": {
+    "graph": {
+      "bytes": 52388488,
+      "header": {
+        "edge_size": 4,
+        "edges": 4657742,
+        "version": 1,
+        "vertices": 1890815
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/CAL/landmark.gr",
+      "sha256": "68c2c6b2367bfd31b94aab1f49ad43676391118c38cd32ee140a3565870ffa83"
+    },
+    "oracle": {
+      "bytes": 7563260,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/oracle.i32",
+      "sha256": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+    }
+  },
+  "CAL_G_plus": {
+    "graph": {
+      "bytes": 57505064,
+      "header": {
+        "edge_size": 4,
+        "edges": 5297314,
+        "version": 1,
+        "vertices": 1890815
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/augmented.gr",
+      "sha256": "8a96eb63f7ebdb7b3bfefc604ee1d305e63b8a2f298426da3d34c3cb75ae0653"
+    },
+    "oracle": {
+      "bytes": 7563260,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/oracle.i32",
+      "sha256": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+    }
+  },
+  "COL_G": {
+    "graph": {
+      "bytes": 11941888,
+      "header": {
+        "edge_size": 4,
+        "edges": 1057066,
+        "version": 1,
+        "vertices": 435666
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "sha256": "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02"
+    },
+    "oracle": {
+      "bytes": 1742664,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/oracle.i32",
+      "sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+    }
+  },
+  "COL_G_plus": {
+    "graph": {
+      "bytes": 13281392,
+      "header": {
+        "edge_size": 4,
+        "edges": 1224504,
+        "version": 1,
+        "vertices": 435666
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/augmented.gr",
+      "sha256": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19"
+    },
+    "oracle": {
+      "bytes": 1742664,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/oracle.i32",
+      "sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+    }
+  },
+  "E_G": {
+    "graph": {
+      "bytes": 99013928,
+      "header": {
+        "edge_size": 4,
+        "edges": 8778114,
+        "version": 1,
+        "vertices": 3598623
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/E/landmark.gr",
+      "sha256": "ade94913f189242434fe1cbe2c12e74340921fd379bb366b9913b5a94958c471"
+    },
+    "oracle": {
+      "bytes": 14394492,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/oracle.i32",
+      "sha256": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+    }
+  },
+  "E_G_plus": {
+    "graph": {
+      "bytes": 108056904,
+      "header": {
+        "edge_size": 4,
+        "edges": 9908486,
+        "version": 1,
+        "vertices": 3598623
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/augmented.gr",
+      "sha256": "d522c12d6951421dc80c775cd38938350cc5dfb498d52784fa98ff7a9ce30d31"
+    },
+    "oracle": {
+      "bytes": 14394492,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/oracle.i32",
+      "sha256": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+    }
+  },
+  "FLA_G": {
+    "graph": {
+      "bytes": 30265424,
+      "header": {
+        "edge_size": 4,
+        "edges": 2712798,
+        "version": 1,
+        "vertices": 1070376
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/FLA/landmark.gr",
+      "sha256": "90d79eaa748594bef016485d2aff3f5d104a3919da02ee40baff22ef457298d8"
+    },
+    "oracle": {
+      "bytes": 4281504,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/oracle.i32",
+      "sha256": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+    }
+  },
+  "FLA_G_plus": {
+    "graph": {
+      "bytes": 32736048,
+      "header": {
+        "edge_size": 4,
+        "edges": 3021626,
+        "version": 1,
+        "vertices": 1070376
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/augmented.gr",
+      "sha256": "02c0e956fc627fbae535879b4f7f56c252dbe2e09ba83d8938ee7826dfbb23c5"
+    },
+    "oracle": {
+      "bytes": 4281504,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/oracle.i32",
+      "sha256": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+    }
+  },
+  "NY_G": {
+    "graph": {
+      "bytes": 7955600,
+      "header": {
+        "edge_size": 4,
+        "edges": 730100,
+        "version": 1,
+        "vertices": 264346
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/NY/landmark.gr",
+      "sha256": "61d7210370a505501dfad3788295ee2489608896f672ff47a545bb2f2ee868f9"
+    },
+    "oracle": {
+      "bytes": 1057384,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/oracle.i32",
+      "sha256": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+    }
+  },
+  "NY_G_plus": {
+    "graph": {
+      "bytes": 8424112,
+      "header": {
+        "edge_size": 4,
+        "edges": 788664,
+        "version": 1,
+        "vertices": 264346
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/augmented.gr",
+      "sha256": "910e458a05ab713c2d021b7a5857093f3b118286b2cd01963a91940798c0b5b6"
+    },
+    "oracle": {
+      "bytes": 1057384,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/oracle.i32",
+      "sha256": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+    }
+  },
+  "USA_G": {
+    "graph": {
+      "bytes": 653247800,
+      "header": {
+        "edge_size": 4,
+        "edges": 57708624,
+        "version": 1,
+        "vertices": 23947347
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "sha256": "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7"
+    },
+    "oracle": {
+      "bytes": 95789388,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+    }
+  },
+  "USA_G_plus": {
+    "graph": {
+      "bytes": 725057080,
+      "header": {
+        "edge_size": 4,
+        "edges": 66684784,
+        "version": 1,
+        "vertices": 23947347
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+    },
+    "oracle": {
+      "bytes": 95789388,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+    }
+  },
+  "W_G": {
+    "graph": {
+      "bytes": 172082032,
+      "header": {
+        "edge_size": 4,
+        "edges": 15248146,
+        "version": 1,
+        "vertices": 6262104
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/W/landmark.gr",
+      "sha256": "9ad135bb15d8d6e53a6ad06749f2812ac16aae3660dafc95db2de28aad1f12a6"
+    },
+    "oracle": {
+      "bytes": 25048416,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/oracle.i32",
+      "sha256": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+    }
+  },
+  "W_G_plus": {
+    "graph": {
+      "bytes": 190555616,
+      "header": {
+        "edge_size": 4,
+        "edges": 17557344,
+        "version": 1,
+        "vertices": 6262104
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/augmented.gr",
+      "sha256": "8879c9ea0671bdc50df24b91ff50837cc9bb3f2c4fecf81ad41206b8bda9cce9"
+    },
+    "oracle": {
+      "bytes": 25048416,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/oracle.i32",
+      "sha256": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+cd -- /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3
+exec /usr/bin/python3 -s /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h_eight_graph_regression.py --graph-manifest /mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_latest_rerun_38082/matrix/manifest.json --out /mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph --timeout 400

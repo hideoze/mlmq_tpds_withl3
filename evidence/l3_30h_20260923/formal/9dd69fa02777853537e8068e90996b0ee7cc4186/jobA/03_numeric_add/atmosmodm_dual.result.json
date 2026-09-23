@@ -1,0 +1,206 @@
+{
+  "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+  "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+    "-i",
+    "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_dual.command.json",
+  "command_record_sha256": "59f27b16e146120cc51cb29533d1e04c0513ba35460d87ff653099232a336dae",
+  "contract": {
+    "bench_rows": [
+      {
+        "algorithm": "MLMQ",
+        "collection_ms": "3.400139",
+        "correct": "1",
+        "gpu_count": "2",
+        "post_solve_ms": "0.099661",
+        "prepare_ms": "7.970333",
+        "query_wall_ms": "19.293229",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "0",
+        "solve_ms": "7.822932",
+        "source": "0",
+        "warmup": "0"
+      }
+    ],
+    "errors": [],
+    "expected_partitions": [
+      [
+        0,
+        0,
+        744876
+      ],
+      [
+        1,
+        744876,
+        1489752
+      ]
+    ],
+    "failure_markers": [],
+    "oracle": {
+      "errors": [],
+      "expected_samples": 1,
+      "observed_samples": 1,
+      "trailing_final_audit": 0,
+      "valid": true
+    },
+    "partitions": [
+      [
+        0,
+        0,
+        744876
+      ],
+      [
+        1,
+        744876,
+        1489752
+      ]
+    ],
+    "purpose": "transient candidate-add correctness only; timings are not evidence",
+    "role_contract": {
+      "errors": [],
+      "expected_samples": 1,
+      "l2_capacity_present": true,
+      "l2_capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "l2_final_present": true,
+      "l2_final_required": true,
+      "observed_samples": 1,
+      "samples": [
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 132012,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 132012,
+              "max_bucket_writes": 24166,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 132012,
+              "total_capacity": 268431360,
+              "writes": 132012
+            },
+            {
+              "buckets": 8,
+              "completed": 137316,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 137316,
+              "max_bucket_writes": 25367,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 137316,
+              "total_capacity": 268431360,
+              "writes": 137316
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        }
+      ],
+      "valid": true
+    },
+    "valid": true
+  },
+  "errors": [],
+  "finished_utc": "2026-09-23T15:28:57.066095+00:00",
+  "gpu_processes_after": "",
+  "gpu_processes_before": "",
+  "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+  "graph_sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+  "host_elapsed_seconds_diagnostic_only": 1.0931690809957217,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_dual.log",
+  "log_sha256": "a8c49c5698e5c280d59142cffc988a193a48ccbbd64138f6c3d5984fd4dcd67c",
+  "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+  "oracle_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+  "rc": 0,
+  "requested_gpu_count": 2,
+  "role": "dual",
+  "source": 0,
+  "timed_out": false,
+  "valid": true
+}

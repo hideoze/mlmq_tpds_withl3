@@ -1,0 +1,77 @@
+{
+  "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+  "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "-n",
+    "1",
+    "-d",
+    "400000"
+  ],
+  "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_single.command.json",
+  "command_record_sha256": "acebaa4ac427513233ef3e27c477e749fd1f7020fc593bc4fcfcd8cd0632e815",
+  "contract": {
+    "bench_rows": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "correct": "1",
+        "gpu_count": "1",
+        "query_wall_ms": "159.659986",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "0",
+        "solve_ms": "77.866451",
+        "source": "18266241",
+        "warmup": "0"
+      }
+    ],
+    "errors": [],
+    "expected_partitions": [],
+    "failure_markers": [],
+    "oracle": {
+      "errors": [],
+      "expected_samples": 1,
+      "observed_samples": 1,
+      "trailing_final_audit": 1,
+      "valid": true
+    },
+    "partitions": [],
+    "purpose": "transient candidate-add correctness only; timings are not evidence",
+    "role_contract": {
+      "no_l3_config": [
+        [
+          "512",
+          "400000",
+          "L1SLF_L2DQ"
+        ]
+      ],
+      "no_l3_launch": [
+        [
+          107,
+          400000,
+          0
+        ]
+      ]
+    },
+    "valid": true
+  },
+  "errors": [],
+  "finished_utc": "2026-09-23T15:29:25.697413+00:00",
+  "gpu_processes_after": "",
+  "gpu_processes_before": "",
+  "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+  "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+  "host_elapsed_seconds_diagnostic_only": 5.381807488010963,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_single.log",
+  "log_sha256": "de904e91347a5c71f3214e8861171da3b3c3d83694f6ba1c866cf96367fc4e67",
+  "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old7982448_new18266241.i32",
+  "oracle_sha256": "f86e1b6509badf703eb50125156f3479938a928b2abbb2430910673bcf9ca9e3",
+  "rc": 0,
+  "requested_gpu_count": 1,
+  "role": "single",
+  "source": 18266241,
+  "timed_out": false,
+  "valid": true
+}

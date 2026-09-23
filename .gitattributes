@@ -1,0 +1,2 @@
+# Preserve the byte-identical raw Job A CSV while treating CR as part of CRLF.
+evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/summary.csv whitespace=cr-at-eol

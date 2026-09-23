@@ -1,0 +1,14 @@
+{
+  "command": [
+    "nvidia-smi",
+    "--query-compute-apps=pid",
+    "--format=csv,noheader"
+  ],
+  "command_sha256": "c4727c372f6dee9510e9599765977526c1547aef76115c54d7368301e9341384",
+  "finished_utc": "2026-09-23T15:21:19.750014+00:00",
+  "host_elapsed_seconds": 0.02224832502542995,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/compute_apps.log",
+  "log_sha256": "39ed7ca97e23243c39d9f05ef0eb04af85be47418c2cee0d62227722e35afeee",
+  "rc": 0,
+  "timed_out": false
+}

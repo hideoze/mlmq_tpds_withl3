@@ -1,0 +1,34 @@
+{
+  "dual": {
+    "builder": "scripts/multigpu/build_l3_paper_config.sh",
+    "macro_authority": "builder command.json",
+    "source": [
+      "SSSP",
+      "core"
+    ],
+    "source_root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3"
+  },
+  "evidence": {
+    "git_status": "git_status.txt",
+    "nvcc_version": "nvcc_version.txt",
+    "post_sync_core_diff": "core_post_sync_diff.log",
+    "pre_sync_core_diff": "core_snapshot_diff.log",
+    "single_adapter_log": "single_adapter.log"
+  },
+  "pair_contract": {
+    "dual": "current dual-GPU L3 paper configuration",
+    "single": "independent committed no-L3 single-GPU source",
+    "single_is_dual_n1": false
+  },
+  "single": {
+    "base_snapshot": "evidence/l3_supplement_20260921_v2/single_source",
+    "core_sync_action": "replaced staging core with current repository core",
+    "l3_compile_defines": [],
+    "performance_adapter": "scripts/multigpu/prepare_l3_30h_single.py",
+    "performance_adapter_effect": "explicit validated MLMQ_WORK_BLOCKS and NO_L3_LAUNCH log",
+    "post_sync_check": "byte-for-byte recursive diff passed",
+    "snapshot_core_matches_current_before_sync": false,
+    "snapshot_materialization": "git archive HEAD (ignores working-tree edits)",
+    "staging": "single_source"
+  }
+}

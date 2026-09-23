@@ -1,0 +1,317 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/archived_dual",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/augmented.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "cut_percent": 50,
+  "environment": {
+    "BENCH_DELTA": "200000",
+    "BENCH_QUEUE": "L1SLF_L2DQ",
+    "BENCH_REPEATS": "1",
+    "BENCH_SOURCE": "160635",
+    "BENCH_WARMUPS": "0",
+    "CUDA_VISIBLE_DEVICES": "0,1",
+    "L3_SUPPLEMENT_ORACLE": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+    "MLMQ_BENCH": "1",
+    "MLMQ_CUT_PERCENT": "50",
+    "MLMQ_FINAL_AUDIT": "failure",
+    "MLMQ_WORK_BLOCKS": "107",
+    "SLURM_CLUSTER_NAME": "adacluster",
+    "SLURM_CONF": "/var/lib/slurm/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "12",
+    "SLURM_CPUS_PER_TASK": "12",
+    "SLURM_CPU_BIND": "quiet,mask_cpu:0xFFF",
+    "SLURM_CPU_BIND_LIST": "0xFFF",
+    "SLURM_CPU_BIND_TYPE": "mask_cpu:",
+    "SLURM_CPU_BIND_VERBOSE": "quiet",
+    "SLURM_DISTRIBUTION": "cyclic",
+    "SLURM_GPUS_ON_NODE": "2",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "38304",
+    "SLURM_JOB_CPUS_PER_NODE": "12",
+    "SLURM_JOB_END_TIME": "1790187445",
+    "SLURM_JOB_GID": "100",
+    "SLURM_JOB_GROUP": "users",
+    "SLURM_JOB_ID": "38304",
+    "SLURM_JOB_NAME": "l3-30h-A",
+    "SLURM_JOB_NODELIST": "ada-A100",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "a100",
+    "SLURM_JOB_START_TIME": "1790176645",
+    "SLURM_JOB_UID": "1084",
+    "SLURM_JOB_USER": "Dingzhong",
+    "SLURM_LAUNCH_NODE_IPADDR": "10.0.0.1",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_NODE": "65536",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "ada-A100",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SRUN_COMM_HOST": "10.0.0.1",
+    "SLURM_SRUN_COMM_PORT": "60326",
+    "SLURM_STEPID": "0",
+    "SLURM_STEP_GPUS": "0,1",
+    "SLURM_STEP_ID": "0",
+    "SLURM_STEP_LAUNCHER_PORT": "60326",
+    "SLURM_STEP_NODELIST": "ada-A100",
+    "SLURM_STEP_NUM_NODES": "1",
+    "SLURM_STEP_NUM_TASKS": "1",
+    "SLURM_STEP_TASKS_PER_NODE": "1",
+    "SLURM_SUBMIT_DIR": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "SLURM_SUBMIT_HOST": "ada-709",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "502356",
+    "SLURM_TOPOLOGY_ADDR": "ada-A100",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "node",
+    "SLURM_TRES_PER_TASK": "cpu:12",
+    "SLURM_UMASK": "0022"
+  },
+  "expected_partitions": [
+    [
+      0,
+      0,
+      160635
+    ],
+    [
+      1,
+      160635,
+      321270
+    ]
+  ],
+  "gpu_after_sha256": "7596d4393c2fad106ca4ad0c174e9de77beb866083c5fd77b27140f549318150",
+  "gpu_before_sha256": "84c585e6a688fc9a256378852f7c17e32a6bdba7082478b622eea7dda9c8b9ed",
+  "graph": "BAY",
+  "host_elapsed_seconds": 0.8175773890106939,
+  "input_hashes": {
+    "augmented": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf",
+    "oracle": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+  },
+  "log_sha256": "9635f70c3a68c84e38123b2bb6de2380b37250deb3f2fcf3eba0c67eb14d5d85",
+  "partitions": [
+    [
+      0,
+      0,
+      160635
+    ],
+    [
+      1,
+      160635,
+      321270
+    ]
+  ],
+  "rc": 0,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "collection_ms": "0.321241",
+      "correct": "1",
+      "gpu_count": "2",
+      "post_solve_ms": "0.101399",
+      "prepare_ms": "8.032346",
+      "query_wall_ms": "15.202016",
+      "queue": "L1SLF_L2DQ",
+      "repeat": "0",
+      "solve_ms": "6.746891",
+      "source": "160635",
+      "warmup": "0"
+    }
+  ],
+  "source": 160635,
+  "strict_contract": {
+    "capacity_no_wrap": {
+      "argument": "every query reports guarded_writes, max_bucket_writes, per_bucket_capacity, total_capacity, counter_bits, overflow_guard, overflow_detected, and no_wrap; these exact fields must agree with the initial L2 allocation, while the isolated guarded fixture also tests exact-full acceptance and first-overflow rejection",
+      "capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "errors": [],
+      "proofs": [
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 0,
+          "guarded_writes": 216911,
+          "matches_allocation": true,
+          "max_bucket_writes": 65610,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 0,
+          "total_capacity": 268431360,
+          "total_writes": 216911
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 1,
+          "guarded_writes": 141278,
+          "matches_allocation": true,
+          "max_bucket_writes": 42218,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 0,
+          "total_capacity": 268431360,
+          "total_writes": 141278
+        }
+      ],
+      "valid": true
+    },
+    "dual": {
+      "errors": [],
+      "expected_samples": 1,
+      "l2_capacity_present": true,
+      "l2_capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "l2_final_present": true,
+      "l2_final_required": true,
+      "observed_samples": 1,
+      "samples": [
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 216911,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 216911,
+              "max_bucket_writes": 65610,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 216911,
+              "total_capacity": 268431360,
+              "writes": 216911
+            },
+            {
+              "buckets": 8,
+              "completed": 141278,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 141278,
+              "max_bucket_writes": 42218,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 141278,
+              "total_capacity": 268431360,
+              "writes": 141278
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        }
+      ],
+      "valid": true
+    },
+    "errors": [],
+    "oracle": {
+      "errors": [],
+      "expected_samples": 1,
+      "observed_samples": 1,
+      "trailing_final_audit": 0,
+      "valid": true
+    },
+    "valid": true
+  },
+  "valid": true
+}

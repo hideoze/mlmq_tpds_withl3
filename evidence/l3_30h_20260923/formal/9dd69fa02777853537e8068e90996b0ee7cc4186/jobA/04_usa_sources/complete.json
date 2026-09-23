@@ -1,0 +1,10 @@
+{
+  "all_sources_target_met": false,
+  "expected_formal_queries": 40,
+  "expected_processes": 8,
+  "expected_queries": 48,
+  "measurement_valid": true,
+  "sources": 2,
+  "target_met_count": 0,
+  "target_result_affects_exit_status": false
+}

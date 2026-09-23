@@ -1,0 +1,1137 @@
+{
+  "allocation": {
+    "CUDA_VISIBLE_DEVICES": {
+      "count": 2,
+      "value": "0,1"
+    },
+    "SLURM_GPUS_ON_NODE": {
+      "count": 2,
+      "value": "2"
+    },
+    "SLURM_JOB_PARTITION": "a100",
+    "SLURM_STEP_GPUS": {
+      "count": 2,
+      "value": "0,1"
+    }
+  },
+  "archived_dual_rebuild": {
+    "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/archived_dual",
+    "binary_sha256": "1d11f3cc19183c5da6e9210ca821c15f64aad7b549ad8f08e051553101f23efc",
+    "command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/archived_dual",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse"
+    ],
+    "command_sha256": "a4b3727f0259aa67be9113ce5582cce4160e62d5f5ea06a4ffeb7db7e8f74950",
+    "derivation": "exact validated clean-HEAD dual archive and canonical command; only source/include/output paths were relocated",
+    "finished_utc": "2026-09-23T15:23:13.503582+00:00",
+    "host_elapsed_seconds": 102.68506987197907,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_archived_dual.log",
+    "log_sha256": "90396bd6969684f4661ec802b305baf634edec8e2f13197115fc0dad45a2b605",
+    "original_pair_command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/mlmq",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse"
+    ],
+    "rc": 0,
+    "source_archive": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/source.tgz",
+    "source_archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+    "timed_out": false
+  },
+  "capacity_guard": {
+    "after_sha256": "006e0770d33427530cc1d4f1eb9a9453513d1ed8d22785e5739e4f6cbd451a3b",
+    "before_sha256": "4c3341c897cfbc6df077fe5f331da7bba8955727ecc4cd0a26b8811145fb64ac",
+    "claim": "controlled boundary acceptance/rejection only",
+    "patch": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/capacity_guard.patch",
+    "patch_sha256": "b32187246e815c5727cf03901a84071895e26758b276661e6a07386ef68e6d6b",
+    "production_source_modified": false,
+    "source_archive": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/source.tgz",
+    "source_archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b"
+  },
+  "cleared_environment_variables": [
+    "BROWSER",
+    "CODEX_CI",
+    "CODEX_MANAGED_BY_NPM",
+    "CODEX_MANAGED_PACKAGE_ROOT",
+    "CODEX_PERMISSION_PROFILE",
+    "CODEX_SANDBOX_NETWORK_DISABLED",
+    "CODEX_SESSION_ID",
+    "CODEX_THREAD_ID",
+    "CODEX_VERSION",
+    "COLORTERM",
+    "DBUS_SESSION_BUS_ADDRESS",
+    "DEBUGINFOD_URLS",
+    "GH_PAGER",
+    "GIT_ASKPASS",
+    "GIT_PAGER",
+    "GPU_DEVICE_ORDINAL",
+    "HOME",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "HYDRA_BOOTSTRAP",
+    "HYDRA_LAUNCHER_EXTRA_ARGS",
+    "I_MPI_HYDRA_BOOTSTRAP",
+    "I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS",
+    "LD_LIBRARY_PATH",
+    "LESSCLOSE",
+    "LESSOPEN",
+    "LOGNAME",
+    "LS_COLORS",
+    "NO_COLOR",
+    "OLDPWD",
+    "OMPI_MCA_plm_slurm_args",
+    "PAGER",
+    "PRTE_MCA_plm_slurm_args",
+    "PWD",
+    "PYTHONDONTWRITEBYTECODE",
+    "ROCR_VISIBLE_DEVICES",
+    "SHELL",
+    "SHLVL",
+    "SLURMD_DEBUG",
+    "SLURMD_NODENAME",
+    "SRUN_DEBUG",
+    "SSH_CLIENT",
+    "SSH_CONNECTION",
+    "TERM",
+    "TERM_PROGRAM",
+    "TERM_PROGRAM_VERSION",
+    "USER",
+    "VSCODE_GIT_ASKPASS_EXTRA_ARGS",
+    "VSCODE_GIT_ASKPASS_MAIN",
+    "VSCODE_GIT_ASKPASS_NODE",
+    "VSCODE_GIT_IPC_HANDLE",
+    "VSCODE_IPC_HOOK_CLI",
+    "VSCODE_PYTHON_AUTOACTIVATE_GUARD",
+    "XDG_DATA_DIRS",
+    "XDG_RUNTIME_DIR",
+    "XDG_SESSION_CLASS",
+    "XDG_SESSION_ID",
+    "XDG_SESSION_TYPE",
+    "ZE_AFFINITY_MASK",
+    "_"
+  ],
+  "configuration": {
+    "blocks": 107,
+    "boost_include": "/mnt/a100/data/wyh/boost_1_87_0",
+    "cxx": "/usr/bin/x86_64-linux-gnu-g++-13",
+    "cxx_sha256": "52f1ddb33fe78b9441e0f42e9cd22c571f1101938e046c8a26582494e041cc73",
+    "delta": 200000,
+    "idle_backoff": 0,
+    "l2_batch_size": 8,
+    "l2_bucket_max": 4,
+    "l2_buckets": 8,
+    "nvcc": "/usr/bin/nvcc",
+    "nvcc_sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+    "purpose": "correctness only; no performance conclusion",
+    "queue": "L1SLF_L2DQ",
+    "repeats_per_graph": 1,
+    "warmups": 0,
+    "window_max": 25000,
+    "window_min": 25000,
+    "window_mode": 2
+  },
+  "created_utc": "2026-09-23T15:21:18.366091+00:00",
+  "effective_environment": {
+    "CUDA_VISIBLE_DEVICES": "0,1",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LC_CTYPE": "C.UTF-8",
+    "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+    "SLURM_CLUSTER_NAME": "adacluster",
+    "SLURM_CONF": "/var/lib/slurm/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "12",
+    "SLURM_CPUS_PER_TASK": "12",
+    "SLURM_CPU_BIND": "quiet,mask_cpu:0xFFF",
+    "SLURM_CPU_BIND_LIST": "0xFFF",
+    "SLURM_CPU_BIND_TYPE": "mask_cpu:",
+    "SLURM_CPU_BIND_VERBOSE": "quiet",
+    "SLURM_DISTRIBUTION": "cyclic",
+    "SLURM_GPUS_ON_NODE": "2",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "38304",
+    "SLURM_JOB_CPUS_PER_NODE": "12",
+    "SLURM_JOB_END_TIME": "1790187445",
+    "SLURM_JOB_GID": "100",
+    "SLURM_JOB_GROUP": "users",
+    "SLURM_JOB_ID": "38304",
+    "SLURM_JOB_NAME": "l3-30h-A",
+    "SLURM_JOB_NODELIST": "ada-A100",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "a100",
+    "SLURM_JOB_START_TIME": "1790176645",
+    "SLURM_JOB_UID": "1084",
+    "SLURM_JOB_USER": "Dingzhong",
+    "SLURM_LAUNCH_NODE_IPADDR": "10.0.0.1",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_NODE": "65536",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "ada-A100",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SRUN_COMM_HOST": "10.0.0.1",
+    "SLURM_SRUN_COMM_PORT": "60326",
+    "SLURM_STEPID": "0",
+    "SLURM_STEP_GPUS": "0,1",
+    "SLURM_STEP_ID": "0",
+    "SLURM_STEP_LAUNCHER_PORT": "60326",
+    "SLURM_STEP_NODELIST": "ada-A100",
+    "SLURM_STEP_NUM_NODES": "1",
+    "SLURM_STEP_NUM_TASKS": "1",
+    "SLURM_STEP_TASKS_PER_NODE": "1",
+    "SLURM_SUBMIT_DIR": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "SLURM_SUBMIT_HOST": "ada-709",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "502356",
+    "SLURM_TOPOLOGY_ADDR": "ada-A100",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "node",
+    "SLURM_TRES_PER_TASK": "cpu:12",
+    "SLURM_UMASK": "0022",
+    "TMPDIR": "/tmp"
+  },
+  "export_build": {
+    "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph",
+    "binary_sha256": "16403ec8619a5acf40d0b5759a00c08faa1833bcc493134972cbf88c4b9799bc",
+    "command": [
+      "/usr/bin/x86_64-linux-gnu-g++-13",
+      "-std=c++17",
+      "-O3",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/supplement_graph.cpp",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph"
+    ],
+    "command_sha256": "61f6ae09e7cb5a924a0fe0c8db52571e519df096e3849c9d4f2be2eef90eccc4",
+    "finished_utc": "2026-09-23T15:23:39.265890+00:00",
+    "host_elapsed_seconds": 0.6356679550081026,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_export_graph.log",
+    "log_sha256": "4f63d7334b5003fbb3dfeab7c5f51414eefcb577bf94433cb1742e67fbe64631",
+    "rc": 0,
+    "timed_out": false
+  },
+  "finished_utc": "2026-09-23T15:25:57.112739+00:00",
+  "fixture_builds": {
+    "test_capacity": {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_capacity",
+      "binary_sha256": "15b70102127baa2e57e9989e92b8fc21b5fba562b899e7b30a8e371698ae4c2b",
+      "command": [
+        "/usr/bin/nvcc",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_dq_capacity.cu",
+        "-o",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_capacity",
+        "-O3",
+        "-std=c++17",
+        "-rdc=true",
+        "-gencode=arch=compute_80,code=sm_80",
+        "-I/mnt/a100/data/wyh/boost_1_87_0",
+        "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/guarded_core/include"
+      ],
+      "command_sha256": "6b2bfc40979dd8ac69ba55d3645d05d82dc9eb27185a93d17e39fefb5dd642ed",
+      "finished_utc": "2026-09-23T15:23:34.827291+00:00",
+      "host_elapsed_seconds": 3.529877383989515,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_test_capacity.log",
+      "log_sha256": "89d730eb09a4b5c8b907121d21d7225e585287f3a3cbd0bf467ebac4a27ab919",
+      "rc": 0,
+      "timed_out": false
+    },
+    "test_dq": {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_dq",
+      "binary_sha256": "c10e34bca8463a5ff988799475ace67ea47a0afed9a9f489bb7969ba22d372d1",
+      "command": [
+        "/usr/bin/nvcc",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_dq_publication.cu",
+        "-o",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_dq",
+        "-O3",
+        "-std=c++17",
+        "-rdc=true",
+        "-gencode=arch=compute_80,code=sm_80",
+        "-I/mnt/a100/data/wyh/boost_1_87_0",
+        "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/core/include"
+      ],
+      "command_sha256": "98746c45f66308750a7d17f7bd38a1e42b04dbb6d6b50246ae956e6d7b947ddb",
+      "finished_utc": "2026-09-23T15:23:31.069101+00:00",
+      "host_elapsed_seconds": 3.2560611579974648,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_test_dq.log",
+      "log_sha256": "9b91fdc61c8df143f69072b7d02ea22b1367b040c01a285b1c158339ba4c754b",
+      "rc": 0,
+      "timed_out": false
+    },
+    "test_primitives": {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_primitives",
+      "binary_sha256": "2f7aa9db68555fb65f635180de554dad563c12545d498a5eac6ccf051cf6c92b",
+      "command": [
+        "/usr/bin/nvcc",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_l3_supplement.cu",
+        "-o",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_primitives",
+        "-O3",
+        "-std=c++17",
+        "-rdc=true",
+        "-gencode=arch=compute_80,code=sm_80",
+        "-I/mnt/a100/data/wyh/boost_1_87_0",
+        "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/core/include",
+        "-DL3_DIRECT_RX=true",
+        "-DL3_FAULT_INJECT_ACK_DELAY=true",
+        "-DBULK_NO_CACHE=true"
+      ],
+      "command_sha256": "6def2736267a7f36d8bc5bac5a11534f28d2edc41ecdc6ca9880dbdec50bce8d",
+      "finished_utc": "2026-09-23T15:23:27.593828+00:00",
+      "host_elapsed_seconds": 3.898857851017965,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_test_primitives.log",
+      "log_sha256": "585757b7aaf1120788b0abd9d2cdefafd9f1394e8e73bd42c86a461c547c70cd",
+      "rc": 0,
+      "timed_out": false
+    }
+  },
+  "fixture_integrity_after": {
+    "path_count": 93,
+    "tree_manifest_sha256": "397398ae7adb9bda3dc0b3dfd6dcda1eb32d9a0f92919a27ecce2806ee3ff49a"
+  },
+  "fixture_source_snapshot": {
+    "archived_path_count": 87,
+    "archived_tree_manifest_sha256": "97e74bde9c3d1393f1420aea8fb836fd526c5c97ae3a9b88419c9f7976e0d0e6",
+    "composite_path_count": 93,
+    "composite_tree_manifest_sha256": "397398ae7adb9bda3dc0b3dfd6dcda1eb32d9a0f92919a27ecce2806ee3ff49a",
+    "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+    "materialization": "exact archived dual SSSP/core plus exact frozen-commit fixtures at their repository-relative paths",
+    "root": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source",
+    "source_archive": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/source.tgz",
+    "source_archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+    "sources": {
+      "scripts/multigpu/supplement_graph.cpp": {
+        "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/supplement_graph.cpp",
+        "sha256": "8dbad76761258ffae0c0a6d7beffe5c2abb958bbd8219302183f2e9bdb9dca03"
+      },
+      "scripts/multigpu/test_dq_capacity.cu": {
+        "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_dq_capacity.cu",
+        "sha256": "1c7faa43341af41409789410f4b932bba0713c24802a9574af9833f70a65dd54"
+      },
+      "scripts/multigpu/test_dq_publication.cu": {
+        "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_dq_publication.cu",
+        "sha256": "176f98ba528fdd10d144db71034b36e067b406aa165619f999b6e4a97e6a6c7d"
+      },
+      "scripts/multigpu/test_l3_supplement.cu": {
+        "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_l3_supplement.cu",
+        "sha256": "b48fa30633d2a9c644919530269b861c21fee3aa6798f1608e033929985ee659"
+      }
+    }
+  },
+  "git": {
+    "head": {
+      "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "rc": 0
+    },
+    "status": {
+      "output": "",
+      "rc": 0
+    }
+  },
+  "graph_integrity_after": {
+    "graphs": {
+      "BAY": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/augmented.gr",
+          "sha256": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+          "sha256": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+        }
+      },
+      "CAL": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/augmented.gr",
+          "sha256": "8a96eb63f7ebdb7b3bfefc604ee1d305e63b8a2f298426da3d34c3cb75ae0653"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/oracle.i32",
+          "sha256": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+        }
+      },
+      "COL": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/augmented.gr",
+          "sha256": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/oracle.i32",
+          "sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+        }
+      },
+      "E": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/augmented.gr",
+          "sha256": "d522c12d6951421dc80c775cd38938350cc5dfb498d52784fa98ff7a9ce30d31"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/oracle.i32",
+          "sha256": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+        }
+      },
+      "FLA": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/augmented.gr",
+          "sha256": "02c0e956fc627fbae535879b4f7f56c252dbe2e09ba83d8938ee7826dfbb23c5"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/oracle.i32",
+          "sha256": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+        }
+      },
+      "NY": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/augmented.gr",
+          "sha256": "910e458a05ab713c2d021b7a5857093f3b118286b2cd01963a91940798c0b5b6"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/oracle.i32",
+          "sha256": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+        }
+      },
+      "USA": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+          "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+          "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+        }
+      },
+      "W": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/augmented.gr",
+          "sha256": "8879c9ea0671bdc50df24b91ff50837cc9bb3f2c4fecf81ad41206b8bda9cce9"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/oracle.i32",
+          "sha256": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+        }
+      }
+    },
+    "manifest": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_latest_rerun_38082/matrix/manifest.json",
+      "sha256": "f2e269821c3686fa25f5c5aa33f4519e585a78aa2be23199bae28c1ede5fe071"
+    }
+  },
+  "graph_integrity_before": {
+    "graphs": {
+      "BAY": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/augmented.gr",
+          "sha256": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+          "sha256": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+        }
+      },
+      "CAL": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/augmented.gr",
+          "sha256": "8a96eb63f7ebdb7b3bfefc604ee1d305e63b8a2f298426da3d34c3cb75ae0653"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/oracle.i32",
+          "sha256": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+        }
+      },
+      "COL": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/augmented.gr",
+          "sha256": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/oracle.i32",
+          "sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+        }
+      },
+      "E": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/augmented.gr",
+          "sha256": "d522c12d6951421dc80c775cd38938350cc5dfb498d52784fa98ff7a9ce30d31"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/oracle.i32",
+          "sha256": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+        }
+      },
+      "FLA": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/augmented.gr",
+          "sha256": "02c0e956fc627fbae535879b4f7f56c252dbe2e09ba83d8938ee7826dfbb23c5"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/oracle.i32",
+          "sha256": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+        }
+      },
+      "NY": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/augmented.gr",
+          "sha256": "910e458a05ab713c2d021b7a5857093f3b118286b2cd01963a91940798c0b5b6"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/oracle.i32",
+          "sha256": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+        }
+      },
+      "USA": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+          "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+          "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+        }
+      },
+      "W": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/augmented.gr",
+          "sha256": "8879c9ea0671bdc50df24b91ff50837cc9bb3f2c4fecf81ad41206b8bda9cce9"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/oracle.i32",
+          "sha256": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+        }
+      }
+    },
+    "manifest": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_latest_rerun_38082/matrix/manifest.json",
+      "sha256": "f2e269821c3686fa25f5c5aa33f4519e585a78aa2be23199bae28c1ede5fe071"
+    }
+  },
+  "host": "ada-A100",
+  "inputs": {
+    "dual_binary": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/mlmq",
+      "sha256": "d7a249dd093699d357a80cec5d0766ff790f025f5f9f5097f3bd65e174c8aa9c"
+    },
+    "graph_manifest": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_latest_rerun_38082/matrix/manifest.json",
+      "sha256": "f2e269821c3686fa25f5c5aa33f4519e585a78aa2be23199bae28c1ede5fe071"
+    },
+    "graphs": {
+      "BAY": {
+        "cut_percent": 50,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/augmented.gr",
+        "hashes": {
+          "augmented": "25b04739e9e3e133a5204ffc7f5cd8617378e5ac64861dea32076f78ea426cdf",
+          "oracle": "223b7b35be099b2df0a454f3d03e06a20e17f13dc7ed5e8f6deb363848cafd37"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 884786,
+          "version": 1,
+          "vertices": 321270
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/BAY/oracle.i32",
+        "source": 160635
+      },
+      "CAL": {
+        "cut_percent": 50,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/augmented.gr",
+        "hashes": {
+          "augmented": "8a96eb63f7ebdb7b3bfefc604ee1d305e63b8a2f298426da3d34c3cb75ae0653",
+          "oracle": "9b7f310b96dfc59b70e27174673a9a1a9295529ee922cb926ecdc97100c835ea"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 5297314,
+          "version": 1,
+          "vertices": 1890815
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/CAL/oracle.i32",
+        "source": 945407
+      },
+      "COL": {
+        "cut_percent": 55,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/augmented.gr",
+        "hashes": {
+          "augmented": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19",
+          "oracle": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 1224504,
+          "version": 1,
+          "vertices": 435666
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/COL/oracle.i32",
+        "source": 217833
+      },
+      "E": {
+        "cut_percent": 50,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/augmented.gr",
+        "hashes": {
+          "augmented": "d522c12d6951421dc80c775cd38938350cc5dfb498d52784fa98ff7a9ce30d31",
+          "oracle": "b87a67a50786d562e60693d718409f6bc75d3eef3d7d78a1edf7fd2d9277854a"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 9908486,
+          "version": 1,
+          "vertices": 3598623
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/E/oracle.i32",
+        "source": 1799311
+      },
+      "FLA": {
+        "cut_percent": 50,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/augmented.gr",
+        "hashes": {
+          "augmented": "02c0e956fc627fbae535879b4f7f56c252dbe2e09ba83d8938ee7826dfbb23c5",
+          "oracle": "546ce4088a071793db39cbc65d6995de86ef124c7568c18ddf220b8a10ad00fe"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 3021626,
+          "version": 1,
+          "vertices": 1070376
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/FLA/oracle.i32",
+        "source": 0
+      },
+      "NY": {
+        "cut_percent": 60,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/augmented.gr",
+        "hashes": {
+          "augmented": "910e458a05ab713c2d021b7a5857093f3b118286b2cd01963a91940798c0b5b6",
+          "oracle": "570fc278946737673b812dd78f327eedbb263f83b14860b4ba0f6f70006a8e20"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 788664,
+          "version": 1,
+          "vertices": 264346
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/NY/oracle.i32",
+        "source": 132173
+      },
+      "USA": {
+        "cut_percent": 60,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "hashes": {
+          "augmented": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+          "oracle": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 66684784,
+          "version": 1,
+          "vertices": 23947347
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+        "source": 11973673
+      },
+      "W": {
+        "cut_percent": 40,
+        "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/augmented.gr",
+        "hashes": {
+          "augmented": "8879c9ea0671bdc50df24b91ff50837cc9bb3f2c4fecf81ad41206b8bda9cce9",
+          "oracle": "bb00fa6fede681e63e40bde2ef1d7e981acae402a9dbe9480614e532e3ffd6c9"
+        },
+        "header": {
+          "edge_size": 4,
+          "edges": 17557344,
+          "version": 1,
+          "vertices": 6262104
+        },
+        "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/W/oracle.i32",
+        "source": 3131052
+      }
+    },
+    "runner": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h_final_checks.py",
+      "sha256": "d4c77269bd16181990b955a0b1a364c47a60a396fe4553477197a69bc1a45022"
+    },
+    "test_sources": {
+      "scripts/multigpu/supplement_graph.cpp": "8dbad76761258ffae0c0a6d7beffe5c2abb958bbd8219302183f2e9bdb9dca03",
+      "scripts/multigpu/test_dq_capacity.cu": "1c7faa43341af41409789410f4b932bba0713c24802a9574af9833f70a65dd54",
+      "scripts/multigpu/test_dq_publication.cu": "176f98ba528fdd10d144db71034b36e067b406aa165619f999b6e4a97e6a6c7d",
+      "scripts/multigpu/test_l3_supplement.cu": "b48fa30633d2a9c644919530269b861c21fee3aa6798f1608e033929985ee659"
+    }
+  },
+  "launch_environment": {
+    "CUDA_VISIBLE_DEVICES": "0,1",
+    "SLURM_CLUSTER_NAME": "adacluster",
+    "SLURM_CONF": "/var/lib/slurm/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "12",
+    "SLURM_CPUS_PER_TASK": "12",
+    "SLURM_CPU_BIND": "quiet,mask_cpu:0xFFF",
+    "SLURM_CPU_BIND_LIST": "0xFFF",
+    "SLURM_CPU_BIND_TYPE": "mask_cpu:",
+    "SLURM_CPU_BIND_VERBOSE": "quiet",
+    "SLURM_DISTRIBUTION": "cyclic",
+    "SLURM_GPUS_ON_NODE": "2",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "38304",
+    "SLURM_JOB_CPUS_PER_NODE": "12",
+    "SLURM_JOB_END_TIME": "1790187445",
+    "SLURM_JOB_GID": "100",
+    "SLURM_JOB_GROUP": "users",
+    "SLURM_JOB_ID": "38304",
+    "SLURM_JOB_NAME": "l3-30h-A",
+    "SLURM_JOB_NODELIST": "ada-A100",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "a100",
+    "SLURM_JOB_START_TIME": "1790176645",
+    "SLURM_JOB_UID": "1084",
+    "SLURM_JOB_USER": "Dingzhong",
+    "SLURM_LAUNCH_NODE_IPADDR": "10.0.0.1",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_NODE": "65536",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "ada-A100",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SRUN_COMM_HOST": "10.0.0.1",
+    "SLURM_SRUN_COMM_PORT": "60326",
+    "SLURM_STEPID": "0",
+    "SLURM_STEP_GPUS": "0,1",
+    "SLURM_STEP_ID": "0",
+    "SLURM_STEP_LAUNCHER_PORT": "60326",
+    "SLURM_STEP_NODELIST": "ada-A100",
+    "SLURM_STEP_NUM_NODES": "1",
+    "SLURM_STEP_NUM_TASKS": "1",
+    "SLURM_STEP_TASKS_PER_NODE": "1",
+    "SLURM_SUBMIT_DIR": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "SLURM_SUBMIT_HOST": "ada-709",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "502356",
+    "SLURM_TOPOLOGY_ADDR": "ada-A100",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "node",
+    "SLURM_TRES_PER_TASK": "cpu:12",
+    "SLURM_UMASK": "0022"
+  },
+  "pair_build": {
+    "compiler": {
+      "path": "/usr/bin/nvcc",
+      "sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433"
+    },
+    "components": {
+      "dual": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build",
+        "role": "dual_l3_paper",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "6659a1da61d2c8a5e793cc1744558bf7efd2b75d23fcfb9cf772ef21fe6a0072",
+          "mlmq": "d7a249dd093699d357a80cec5d0766ff790f025f5f9f5097f3bd65e174c8aa9c",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+          "status.json": "b196ccf97c17be6b59a9ce421b30914a0b9b4d5575cc7cefb6c1dfe84136bb86",
+          "version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99"
+        }
+      },
+      "single": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/single_build",
+        "role": "single_no_l3",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "0906c07808ed19ac24aeba4068ccdcb8c2e0cca8825235fa5af254c55ed1eae9",
+          "mlmq": "3a37af1099d41d155ed6bbd5438039bce5060311d3b14a520c002c04069f79ad",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "748cbb5bb0dbd2934dcbf4ec36bd83f0549fa519647b738187f8c54e2aa8aa95",
+          "status.json": "d9451f8c6dc638def4d57ef6cbf6179e5854f72a9a6392dd19beb4b5f7d3ce8f",
+          "version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99"
+        }
+      }
+    },
+    "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build",
+    "source_binding": {
+      "dual": {
+        "archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+        "entries": 87
+      },
+      "single": {
+        "archive_sha256": "748cbb5bb0dbd2934dcbf4ec36bd83f0549fa519647b738187f8c54e2aa8aa95",
+        "entries": 35
+      }
+    },
+    "status": {
+      "dual_rc": 0,
+      "rc": 0,
+      "single_rc": 0,
+      "state": "complete",
+      "updated_utc": "2026-09-23T15:20:35.016958+00:00"
+    },
+    "version": {
+      "blocked_build_environment_present": [],
+      "blocked_build_environment_variables": [
+        "NVCC_PREPEND_FLAGS",
+        "NVCC_APPEND_FLAGS",
+        "CPATH",
+        "C_INCLUDE_PATH",
+        "CPLUS_INCLUDE_PATH",
+        "OBJC_INCLUDE_PATH",
+        "LIBRARY_PATH",
+        "LD_PRELOAD",
+        "LD_LIBRARY_PATH",
+        "CUDAFLAGS",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "LIBS",
+        "COMPILER_PATH",
+        "GCC_EXEC_PREFIX",
+        "CUDA_HOME",
+        "CUDA_PATH",
+        "CUDAHOSTCXX",
+        "NVCC_CCBIN"
+      ],
+      "boost_include_dir": "/mnt/a100/data/wyh/boost_1_87_0",
+      "branch": "l3-30h-performance-20260923",
+      "build_environment": {
+        "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "NVCC": "/usr/bin/nvcc",
+        "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+        "TMPDIR": "/tmp"
+      },
+      "created_utc": "2026-09-23T15:17:32.707606+00:00",
+      "describe": "9dd69fa",
+      "dual_builder": "scripts/multigpu/build_l3_paper_config.sh",
+      "dual_builder_sha256": "8a91ac0f84fa46b9916b633d70bec42ba5faaf9ccfd2823015a4b12759779b39",
+      "dual_source_post_build_diff": "dual_source_post_build_diff.log",
+      "dual_source_post_build_match": true,
+      "git_status_porcelain": [],
+      "git_status_porcelain_after_build": [],
+      "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "head_after_build": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "nvcc": "/usr/bin/nvcc",
+      "nvcc_resolved": "/usr/bin/nvcc",
+      "nvcc_sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+      "pair_builder": "scripts/multigpu/build_l3_30h_pair.sh",
+      "pair_builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+      "repository_root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+      "single_adapter": "scripts/multigpu/prepare_l3_30h_single.py",
+      "single_adapter_sha256": "b8cec3f2a53b717926a5c5139937e654ad6d2ed1a389292be177731cd8df0641"
+    }
+  },
+  "pair_integrity_after": {
+    "git": {
+      "head": {
+        "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+        "rc": 0
+      },
+      "status": {
+        "output": "",
+        "rc": 0
+      }
+    },
+    "sha256": {
+      "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dual_build/command.json": "6659a1da61d2c8a5e793cc1744558bf7efd2b75d23fcfb9cf772ef21fe6a0072",
+      "dual_build/hashes.json": "f52c5e590dd79ca7604aa5f850488acae8c0e2d34bda6a70578c0fd15ae0ac54",
+      "dual_build/mlmq": "d7a249dd093699d357a80cec5d0766ff790f025f5f9f5097f3bd65e174c8aa9c",
+      "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+      "dual_build/status.json": "b196ccf97c17be6b59a9ce421b30914a0b9b4d5575cc7cefb6c1dfe84136bb86",
+      "dual_build/version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99",
+      "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_build/command.json": "0906c07808ed19ac24aeba4068ccdcb8c2e0cca8825235fa5af254c55ed1eae9",
+      "single_build/hashes.json": "3d81037a9a60838c1f7b65ff8c11c70bc67d7cd21707a6b66e7fd565d13e4129",
+      "single_build/mlmq": "3a37af1099d41d155ed6bbd5438039bce5060311d3b14a520c002c04069f79ad",
+      "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "single_build/source.tgz": "748cbb5bb0dbd2934dcbf4ec36bd83f0549fa519647b738187f8c54e2aa8aa95",
+      "single_build/status.json": "d9451f8c6dc638def4d57ef6cbf6179e5854f72a9a6392dd19beb4b5f7d3ce8f",
+      "single_build/version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99",
+      "status.json": "b2f8b770146a7203562718e26559da94cd66bec6344a3c3e96958c4aa5627127",
+      "version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99"
+    }
+  },
+  "pair_integrity_before": {
+    "git": {
+      "head": {
+        "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+        "rc": 0
+      },
+      "status": {
+        "output": "",
+        "rc": 0
+      }
+    },
+    "sha256": {
+      "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dual_build/command.json": "6659a1da61d2c8a5e793cc1744558bf7efd2b75d23fcfb9cf772ef21fe6a0072",
+      "dual_build/hashes.json": "f52c5e590dd79ca7604aa5f850488acae8c0e2d34bda6a70578c0fd15ae0ac54",
+      "dual_build/mlmq": "d7a249dd093699d357a80cec5d0766ff790f025f5f9f5097f3bd65e174c8aa9c",
+      "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+      "dual_build/status.json": "b196ccf97c17be6b59a9ce421b30914a0b9b4d5575cc7cefb6c1dfe84136bb86",
+      "dual_build/version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99",
+      "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_build/command.json": "0906c07808ed19ac24aeba4068ccdcb8c2e0cca8825235fa5af254c55ed1eae9",
+      "single_build/hashes.json": "3d81037a9a60838c1f7b65ff8c11c70bc67d7cd21707a6b66e7fd565d13e4129",
+      "single_build/mlmq": "3a37af1099d41d155ed6bbd5438039bce5060311d3b14a520c002c04069f79ad",
+      "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "single_build/source.tgz": "748cbb5bb0dbd2934dcbf4ec36bd83f0549fa519647b738187f8c54e2aa8aa95",
+      "single_build/status.json": "d9451f8c6dc638def4d57ef6cbf6179e5854f72a9a6392dd19beb4b5f7d3ce8f",
+      "single_build/version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99",
+      "status.json": "b2f8b770146a7203562718e26559da94cd66bec6344a3c3e96958c4aa5627127",
+      "version.json": "4953c15bf2c0f7302ac8443e64d154ee92cb792ad7883495ae48cf61a7c63a99"
+    }
+  },
+  "preflight": {
+    "compute_apps": {
+      "command": [
+        "nvidia-smi",
+        "--query-compute-apps=pid",
+        "--format=csv,noheader"
+      ],
+      "command_sha256": "c4727c372f6dee9510e9599765977526c1547aef76115c54d7368301e9341384",
+      "finished_utc": "2026-09-23T15:21:19.750014+00:00",
+      "host_elapsed_seconds": 0.02224832502542995,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/compute_apps.log",
+      "log_sha256": "39ed7ca97e23243c39d9f05ef0eb04af85be47418c2cee0d62227722e35afeee",
+      "rc": 0,
+      "timed_out": false
+    },
+    "gpu_query": {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,uuid,name,compute_cap",
+        "--format=csv,noheader,nounits"
+      ],
+      "command_sha256": "96642c6b170235a084c18865bd8f6310d282fa224a945cf2976d8c7e71ce52ae",
+      "finished_utc": "2026-09-23T15:21:19.298743+00:00",
+      "host_elapsed_seconds": 0.028874098003143445,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/gpu_query.log",
+      "log_sha256": "8e84479f8972b12aa60117e98c3bef450b021ef594f94901354e774d47d7e2e7",
+      "rc": 0,
+      "timed_out": false,
+      "visible_gpus": [
+        {
+          "compute_capability": "8.0",
+          "index": "0",
+          "name": "NVIDIA A100 80GB PCIe",
+          "uuid": "GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3"
+        },
+        {
+          "compute_capability": "8.0",
+          "index": "1",
+          "name": "NVIDIA A100 80GB PCIe",
+          "uuid": "GPU-5a40464a-79b5-7559-27c4-49b0a63b164a"
+        }
+      ]
+    },
+    "nvidia_smi": {
+      "command": [
+        "nvidia-smi"
+      ],
+      "command_sha256": "c5ca604bda77b5cd6164e657ceea9382808155f80ebd2040a28a0c93f20f012e",
+      "finished_utc": "2026-09-23T15:21:19.072501+00:00",
+      "host_elapsed_seconds": 0.48478720302227885,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/nvidia_smi.log",
+      "log_sha256": "e317efec901404bc228ab555dcb7021eee1739fd98e7fa36e1ad1f50a6dcdf9a",
+      "rc": 0,
+      "timed_out": false
+    },
+    "slurm_job": {
+      "command": [
+        "scontrol",
+        "show",
+        "job",
+        "-dd",
+        "38304"
+      ],
+      "command_sha256": "2c19440ad8bff425ccce1c21f3ae454e56ed4dc9ff9f7c47c5b71cd93ad9ad3d",
+      "finished_utc": "2026-09-23T15:21:19.992427+00:00",
+      "host_elapsed_seconds": 0.014537850976921618,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/slurm_job.log",
+      "log_sha256": "23f77ec43194f73bd6b7f02b63a75574ce7652d597a74dd6c0c23e0e0eecee4e",
+      "rc": 0,
+      "timed_out": false
+    },
+    "topology": {
+      "command": [
+        "nvidia-smi",
+        "topo",
+        "-m"
+      ],
+      "command_sha256": "33d9c641dd70352536ff7f40111baba420cd6cf0b80b8e827559f50af82cdca8",
+      "finished_utc": "2026-09-23T15:21:19.541266+00:00",
+      "host_elapsed_seconds": 0.044689158006804064,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/topology.log",
+      "log_sha256": "2c00f133826d4b05eb77104f1d21083b90936b55a36a97e40283b898f2989361",
+      "rc": 0,
+      "timed_out": false
+    }
+  },
+  "problems": [],
+  "results": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/results.json",
+  "schema": 1,
+  "sequential_build": {
+    "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+    "binary_sha256": "198ec322b915c3de40764ccc9cb58e42260205094395c6808c9f537c5ec57b36",
+    "command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse",
+      "-DQUERY_WORKSPACE_DIAG=true"
+    ],
+    "command_sha256": "54654b1fc50ce702ac853ba93118c09320707ba406ea0193e1d1bd6c11ae2b2a",
+    "derivation": "archived dual source plus recorded host-only query selector",
+    "diagnostic_compile_defines": [
+      "-DQUERY_WORKSPACE_DIAG=true"
+    ],
+    "finished_utc": "2026-09-23T15:25:24.677869+00:00",
+    "host_elapsed_seconds": 104.04935181100154,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_sequential_dual.log",
+    "log_sha256": "3c48f2be353249e39a4b60c5299c1916847e54934423982cab11d4a007638d8c",
+    "original_pair_command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/mlmq",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse"
+    ],
+    "query_workspace_diag_enabled": true,
+    "rc": 0,
+    "timed_out": false
+  },
+  "slurm_job_id": "38304",
+  "status": "complete"
+}

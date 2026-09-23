@@ -1,0 +1,28 @@
+{
+  "all_16_solve_speedup_geomean_T1_over_T2": 0.908782528878082,
+  "all_cases_target_met": false,
+  "cases": 16,
+  "expected_formal_queries": 320,
+  "expected_processes": 64,
+  "expected_queries": 384,
+  "geomeans": {
+    "G": {
+      "graph_count": 8,
+      "query_wall_speedup_geomean_T1_over_T2": 0.9983237479004106,
+      "solve_speedup_geomean_T1_over_T2": 0.8881843984033592,
+      "valid": true
+    },
+    "G+": {
+      "graph_count": 8,
+      "query_wall_speedup_geomean_T1_over_T2": 1.0679749777932377,
+      "solve_speedup_geomean_T1_over_T2": 0.9298583563038166,
+      "valid": true
+    }
+  },
+  "measurement_valid": true,
+  "target_met_case_count": 0,
+  "target_result_affects_exit_status": false,
+  "validated_formal_queries": 320,
+  "validated_processes": 64,
+  "validated_queries": 384
+}

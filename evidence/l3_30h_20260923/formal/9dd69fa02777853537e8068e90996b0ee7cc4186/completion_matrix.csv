@@ -1,0 +1,11 @@
+check,required,status,target_met,evidence,outer_workflow,inner_sampling,classification
+same_clean_sha,True,PASS,,9dd69fa02777853537e8068e90996b0ee7cc4186,,,
+distinct_slurm_allocations,True,PASS,,JobA=38304; JobB=38305,,,
+job_a_primary,True,PASS,False,"01_primary: rc0, 10+10 formal samples, all validity gates",formal JobA,formal,formal_primary
+job_a_final_checks,True,PASS,,"4/4 fixtures, reset, and 8/8 graph correctness",,,
+job_a_numeric_checked_add,True,PASS,,10/10 diagnostic-only checked-add runs,,,
+job_a_fixed_usa_sources,True,PASS,False,"2 sources, 8 processes, 48 queries (40 retained non-warmup)",formal JobA,exploratory,full_sample_clean_sha_extension_regression
+job_a_eight_graph_regression,True,PASS,False,"16 cases, 64 processes, 384 queries (320 retained non-warmup)",formal JobA,exploratory,full_sample_clean_sha_extension_regression
+job_b_primary_confirmation,True,PASS,False,independent allocation and fresh 10+10 formal samples,formal JobB,formal,formal_primary_confirmation
+performance_target_1.20,False,VALID_BELOW_TARGET,False,target outcome does not alter execution validity,,,
+formal_workflow,True,PASS,False,VALID_BELOW_TARGET,,,

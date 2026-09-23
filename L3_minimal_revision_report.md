@@ -1,13 +1,61 @@
 # L3 最小收尾报告
 
-> 本报告主体记录同步补丁版的核查与 job `38059` / `38075`；按用户要求回退补丁后的工作区复测结果见文末。
+> 本报告原主体记录同步补丁版的核查与 job `38059` / `38075`；按用户要求回退补丁后的工作区复测结果见文末。最新正式结论以 clean SHA `9dd69fa02777853537e8068e90996b0ee7cc4186` 的 Job A 38304 与 Job B 38305 为准，旧数字保留为历史证据，不与最终批次拼接。
 
-## 版本与范围
+## 最新正式收尾增补（2026-09-23）
+
+冻结源码为 `9dd69fa02777853537e8068e90996b0ee7cc4186`。Job A 38304 与独立
+Job B 38305 均为双 A100 Slurm 作业，二者 `status=COMPLETE`、`rc=0`，正式源码、
+构建、输入、样本和容量/守恒完整性检查均通过。最终判定是：**execution PASS /
+measurement valid / target false / `VALID_BELOW_TARGET`**。固定验收口径是
+`S = median(T1 single solve) / median(T2 dual solve)`，目标为 `S >= 1.20`。
+原始证据根目录为
+`/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/`。
+
+| 批次 | T1 solve median (ms) | T2 solve median (ms) | `S` | measurement | target |
+|---|---:|---:|---:|---|---|
+| Job A 38304 | 73.3605045 | 64.6717355 | 1.1343518762 | valid | false |
+| 独立 Job B 38305 | 73.3405565 | 64.5799375 | 1.1356554270 | valid | false |
+
+Job A 的正确性收尾同样完成：4/4 small fixtures、顺序换源/reset、8/8 图终检均
+有效且 `problems=[]`；numeric checked-add 的 single/dual 10/10 项通过。numeric
+派生构建只证明冻结查询集的瞬态加法正确性，明确
+`performance_claim_allowed=false`，其中 solve 时间不能作为性能证据。
+
+clean-SHA 全样本扩展回归结果如下；主报告给出逐图、逐源 T1/T2 和全部证据指针：
+
+| 范围 | 有效性与规模 | solve-only 结果 |
+|---|---|---:|
+| USA source 18266241 | measurement valid | `S=0.7343201845` |
+| USA source 6146689 | measurement valid | `S=1.0907633645` |
+| 八图原图 G | 8/8 case valid | 几何平均 `0.8881843984` |
+| 八图增广图 G+ | 8/8 case valid | 几何平均 `0.9298583563` |
+
+八图 G/G+ 合计 16/16 case、64 个进程、384 个查询（含预热）、320 个计时查询；
+达到 1.20 的 case 为 0/16。两项 USA 附加源点也均低于 1.20。因而“有效”只表示
+运行、正确性和测量合同成立，不表示性能目标成立。
+
+这里的扩展矩阵由 Job A 外层在 clean SHA 下 fresh-build 冻结 pair，并执行完整
+两轮反序、每进程 1 次预热 + 5 次计时及前后完整性门。内层通用 runner 因复用
+外层 pair 而原样标记 `sampling="exploratory"`；因此它是 formal-equivalent gates
+下的 full-sample extension regression，不是把内层模式改称 formal。真正的正式
+primary 与独立确认仍是上表 Job A/B 的 `sampling=formal` 批次。
+
+此前 Job 38227、38238、38271、38280、38292 以及 dirty 探针继续隔离保留为失败/
+探索与因果证据；最终 Job A/B 没有从这些批次补样。当前仓库没有论文 `.tex`、
+`TPDS.pdf` 或可编译论文工程，因此论文正文插入、TeX 编译与版面复核均为
+**NOT_RUN (manuscript source absent)**，不能报告为 PASS。
+
+建议在取得论文源码后回填的英文短段落如下；目前只记录文本，尚未插入或编译：
+
+> Under the frozen clean revision, the primary and independent confirmation runs produce valid same-input solve-only speedups of **1.134x** and **1.136x**, respectively, both below the fixed **1.20x** target. Across eight graphs, the geometric-mean speedups are **0.888x** on G and **0.930x** on G+, with none of the 16 graph/view cases meeting 1.20x. Thus, the two-GPU implementation and measurement workflow pass correctness and execution validation, while the performance result is valid but below target.
+
+## 历史同步核查的版本与范围
 
 - 基础版本：`main` / `a50f719`（本轮从远端拉取后开始）；最终源码版本由本报告提交的 Git 历史标识。
 - 同步回归候选源码、矩阵与 fixture 构建产物：`tmp/l3_minimal_revision_20260923_final_r4/`；论文配置构建单独保存在 `tmp/l3_minimal_revision_20260923_final/paper_config_build_current/`。均使用新目录，不覆盖旧 evidence。
 - 论文配置：CUDA 12.4.131，`sm_80`，`MLMQ_WORKER_THREADS=512`；构建参数以 `tmp/l3_minimal_revision_20260923_final/paper_config_build_current/command.json` 为准，构建状态 `rc=0`，二进制 SHA256 `35af0a88b85bdbffd4b57a2ed772a1742b536902811a15b9900e6e5cdf48101a`。
-- `TPDS.pdf` 和论文 `.tex` 源码不在当前仓库中；没有可安全修改的正文文件，本文记录应回填的最终短段落。
+- `TPDS.pdf` 和论文 `.tex` 源码不在当前仓库中；没有可安全修改的正文文件。旧段落仅保留下方历史结果，最终应回填内容以“最新正式收尾增补”为准。
 
 ## 同步发布与观察关系
 
@@ -35,7 +83,10 @@
 
 GPU 作业内均先检查 `nvidia-smi` 与拓扑；两张卡均为空闲后才执行。matrix 为正式性能结果；容量和换源检查是单独运行，audit 不把它们合并为性能样本。定向测试支持代码所述同步合同，但不构成所有编译分支与执行轨迹的形式化证明。
 
-## 性能数字与论文短段落
+## 历史性能数字与论文短段落（job 38059）
+
+本节原样保留 job 38059 口径及当时拟稿，只用于追溯；它不是最终 clean-SHA 正式
+结论，也不得替代上方 Job 38304/38305 的 `VALID_BELOW_TARGET` 段落。
 
 | 比值 | 最终结果 |
 |---|---:|
@@ -48,7 +99,7 @@ GPU 作业内均先检查 `nvidia-smi` 与拓扑；两张卡均为空闲后才�
 
 历史 ADDS 比较来自 job 37646、固定官方二进制 SHA256 `511e88f56762914829a055aea0215a6c8e3c0d1dfc1c078f5f2247a559638ec2`。本轮矩阵的原图、G+、oracle 哈希及 source/cut 均与归档 8/8 相同；矩阵实际主机也是 A100 80GB。旧批次同为 A100、两轮交错、每轮 1 次预热和 5 次正式测量，因此沿用其 ADDS G+ 数值并与本轮 M2-shortcut 重算。两边均是 solve-only，但 ADDS 的参数选择单独计时而 MLMQ 计入窗口/通信路径，正文保留此边界和 job 37646 来源。
 
-建议替换正文的英文短段落（明确为 solve-only，不称端到端加速）：
+当时建议替换正文的英文短段落如下（现已被上方最新正式段落取代）：
 
 > On identical shortcut-augmented inputs, the two-GPU configuration achieves a geometric-mean speedup of **1.643x** over single-GPU ADDS. Relative to one-GPU MLMQ, same-input speedups are **0.899x** on G and **0.921x** on G+; USA reaches **1.068x** on G+, the only G+ graph with a ratio above one. Shortcuts improve the two-GPU solve time by **1.302x** and the single-GPU solve time by **1.270x**. These solve-only results demonstrate a working two-GPU extension while showing that additional speedup remains workload dependent.
 

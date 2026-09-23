@@ -2,11 +2,87 @@
 
 ## 当前结论
 
-当前已完成阶段 0、阶段 1、Route A、Route B1 与 Route B2，并已进入正式验收；
-但前五次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位源码归档门和
-BNUM=16 容量问题，后续批次证明 BNUM=8 主测和终检可完整运行，并继续暴露了三项
-互相独立的正式编排问题：终检工具路径、fixture 源码物化和 numeric 诊断的阻塞
-launch 环境。
+正式执行已经收口。冻结 clean SHA
+`9dd69fa02777853537e8068e90996b0ee7cc4186` 的 Job A 38304 与独立 Job B 38305
+均以 `rc=0`、`status=COMPLETE` 完成，且源码、构建、输入和采样完整性门均通过。
+原始正式证据根目录为
+`/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/`。
+最终分类为：**execution PASS / measurement valid / target false /
+`VALID_BELOW_TARGET`**。这表示实现与正式测量有效，但固定 solve-only 门槛
+`S >= 1.20` 未达到；不得把执行通过写成性能目标通过。
+
+| 正式主测 | 输入与源点（逻辑 ID -> 冻结布局 ID） | T1 median / IQR / MAD (ms) | T2 median / IQR / MAD (ms) | round 0 / round 1 `S` | combined `S` | 1.20 target |
+|---|---|---:|---:|---:|---:|---|
+| Job A 38304 | USA G+，`0 -> 11973673` | 73.3605045 / 0.5703575 / 0.3674960 | 64.6717355 / 1.0505103 / 0.6058680 | 1.1177602878 / 1.1374969373 | 1.1343518762 | false |
+| 独立 Job B 38305 | USA G+，`0 -> 11973673` | 73.3405565 / 0.6623133 / 0.3687345 | 64.5799375 / 1.0865965 / 0.5707030 | 1.1392450291 / 1.1306786575 | 1.1356554270 | false |
+
+两批正式主测均为 `sampling=formal`，每批 T1/T2 各 10 个、合计 20 个计时样本完整，
+`formal_integrity_valid=true`。所有原样 solve/query-wall 样本、四个进程记录和逐轮
+统计分别保存在 Job A 的 [records](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/records.json)、
+[samples](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/samples.json)、
+[summary](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/summary.json)
+及 Job B 的 [records](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/records.json)、
+[samples](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/samples.json)、
+[summary](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/summary.json)。
+合并 query-wall 比值分别为 2.0904831244 与 2.1020434941，但只作为次级边界报告，
+不能替代上表 solve-only 验收。
+
+Job A 的终检全部有效：4/4 small fixtures、顺序换源/reset 和 8/8 图正确性检查均
+通过，`problems=[]`。numeric checked-add 是正确性专用诊断，single/dual 共
+10/10 项通过；该派生构建明确 `performance_claim_allowed=false`，其中计时不进入
+性能结论。两个冻结附加 USA 源点的逐源结果为：
+
+| 稳健性源点 | 逻辑 ID -> 冻结布局 ID | T1 median (ms) | T2 median (ms) | round 0 / round 1 `S` | combined `S` |
+|---|---|---:|---:|---:|---:|
+| additional 1 | `7982448 -> 18266241` | 73.3442000 | 99.8804085 | 0.7077949713 / 0.7424814402 | 0.7343201845 |
+| additional 2 | `15964897 -> 6146689` | 60.3638890 | 55.3409575 | 1.0915499763 / 1.0904844026 | 1.0907633645 |
+
+两项测量均有效但未达目标，原样逐轮数组位于 additional 1 的
+[summary.json](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/sources/fixed_additional_source_1/summary.json)
+和 additional 2 的
+[summary.json](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/sources/fixed_additional_source_2/summary.json)。
+
+八图逐图/逐源 solve-only 结果如下；G 与 G+ 的 source 均是同一冻结布局 ID：
+
+| 图 | source | G T1 / T2 (ms) | G `S` | G+ T1 / T2 (ms) | G+ `S` |
+|---|---:|---:|---:|---:|---:|
+| NY | 132173 | 6.4820350 / 7.2509915 | 0.8939515375 | 6.0012980 / 6.5845435 | 0.9114220295 |
+| BAY | 160635 | 5.0066155 / 5.7178005 | 0.8756191301 | 4.1111360 / 4.8006820 | 0.8563649915 |
+| COL | 217833 | 8.4261215 / 10.0421045 | 0.8390792488 | 5.8036630 / 7.0449735 | 0.8238019632 |
+| FLA | 0 | 20.6379750 / 21.9721555 | 0.9392785792 | 17.3261735 / 18.1160940 | 0.9563967542 |
+| CAL | 945407 | 24.3467280 / 26.9236450 | 0.9042879595 | 16.9820485 / 18.3103230 | 0.9274576150 |
+| E | 1799311 | 28.3792305 / 33.3588815 | 0.8507248812 | 22.7811780 / 24.7179085 | 0.9216466676 |
+| W | 3131052 | 38.1140805 / 44.9916625 | 0.8471365222 | 29.4475200 / 30.0333170 | 0.9804950948 |
+| USA | 11973673 | 94.5793005 / 98.1853925 | 0.9632726222 | 74.4119290 / 68.6201200 | 1.0844039474 |
+
+八图 G/G+ 回归 16/16 case 有效，共 64 个进程、384 个查询（含预热）、
+320 个计时查询；G 的 solve 几何平均为 `0.8881843984`，G+ 为
+`0.9298583563`，16 项中达到 1.20 的数量为 0。该结果与主测共同说明：当前 L3
+实现已通过执行、正确性和证据完整性验收，但在冻结工作负载上属于有效低于目标，
+而不是性能验收通过。
+
+附加源点与八图由正式 Job A 外层在同一 clean SHA 下分别 fresh-build 并冻结
+independent-single/dual pair，前后核验 worktree、pair 与输入完整性；每个 case 均
+执行两轮反序、每进程 1 次预热 + 5 次计时。内层通用 `run_l3_30h.py` 为复用外层
+刚构建的冻结 pair，按接口原样记录 `sampling="exploratory"`。因此这些结果准确
+称为“外层 formal-equivalent gates 下的 full-sample clean-SHA 扩展回归”，不把
+内层 runner mode 重标为 formal，也不用于 primary target selection。逐 case 原样
+数组和 source 见 [summary.json](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/summary.json)
+与 [case_index.json](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/case_index.json)。
+
+前五次 clean-SHA Job A 和 dirty 探针继续作为隔离的失败/探索证据保留；它们没有
+被用于补齐 Job 38304/38305 的任何样本，也没有与最终批次拼接。当前仓库不含论文
+`.tex` 或可编译论文工程，因此论文正文插入与 TeX 编译状态为 **NOT_RUN
+(manuscript source absent)**；本报告只给出可回填结论。
+
+## 历史过程与因果定位（保留）
+
+截至 Job 38292，阶段 0、阶段 1、Route A、Route B1 与 Route B2 已完成并进入
+正式验收，但当时前五次 clean-SHA Job A 均未形成完整可接受批次。前两次用于定位
+源码归档门和 BNUM=16 容量问题，后续批次证明 BNUM=8 主测和终检可完整运行，并
+继续暴露了三项互相独立的正式编排问题：终检工具路径、fixture 源码物化和 numeric
+诊断的阻塞 launch 环境。上述状态已由 Job 38304/38305 的完整通过取代，但保留于此
+作为失败账本和因果证据。
 Route C 因作业 38122 的固定搜索范围内未找到可用 NVSHMEM 安装而按止损条件停止；
 这不是机器范围的“绝对未安装”声明。compact-candidate 只有小幅探索信号且仍低于
 目标，不进入当前重冻结候选；该候选仍是 USA、delta=400000、blocks=107、
@@ -90,9 +166,11 @@ dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1
 | Route A | 已完成并止损 | blocks、backoff、固定短窗口均未形成可冻结净收益 |
 | Route B1 | 已完成并止损 | RGG BFS 有小幅改善；USA layer-split 严重退化；重排未达到 1.20 |
 | Route B2 | 已完成并止损 | work/wait 诊断完成；compact-candidate 有小幅信号但仍未达到 1.20，最终拒绝 |
-| 同步/容量实现收口 | BNUM=8 候选已通过 clean-SHA 主测 | BNUM=16 正式运行暴露高置信 no-wrap 容量 trap；保留 fail-stop，将 dual/single 同步改为 BNUM=8；Job 38271 的两轮主测正确且无回绕 |
-| clean-SHA 定向验证 | 主测与终检通过、全链未通过 | Job 38227/38238 暴露归档门和 BNUM=16 CUDA 719；Job 38271/38280 依次暴露 nvcc 路径和混合源码树；Job 38292 通过 BNUM=8 主测与完整终检，numeric 被阻塞 launch 环境挡住 |
-| 正式验收 | 未完成 | Job 38292 主测 solve `1.111113x`、目标未达；numeric 仅完成首项超时记录，附加源点、八图性能回归及 Job B 均未执行，必须在新 clean SHA 完整重跑 |
+| 同步/容量实现收口 | 已完成 | BNUM=16 正式运行暴露高置信 no-wrap 容量 trap；保留 fail-stop，并将 dual/single 同步改为 BNUM=8；最终 Job A/B 正确且无回绕 |
+| clean-SHA 定向验证 | 已完成 | 旧 Job 38227--38292 分别暴露并隔离归档、容量、工具路径、混合源码树和诊断 launch 问题；`9dd69fa...` 的 Job 38304 全链通过 |
+| 正式验收 | 执行 PASS；有效但低于目标 | Job A 38304 与独立 Job B 38305 均 COMPLETE、measurement valid；solve 分别 `1.1343518762x` 与 `1.1356554270x`，所以 `target_met=false`、`VALID_BELOW_TARGET` |
+| 数值与扩展回归 | 已完成 | numeric 10/10 正确性诊断通过；附加 USA 两源点有效；八图 G/G+ 16/16 valid，320 个计时查询，0/16 达到 1.20；内层 exploratory、外层 formal-equivalent gates |
+| 论文正文插入/TeX 编译 | NOT_RUN | 当前仓库缺少论文 `.tex` 与可编译论文工程；报告提供回填文本，但不虚构编译或版面证据 |
 
 ## 38082 历史批次
 
@@ -118,9 +196,10 @@ dirty-worktree、`07df3ad` 回退同步运行时上的探索样本（每进程 1
 26,618,272 条负权边，已在 GPU 前淘汰。`atmosmodm` 与 `rmat22` 经源点 0 的
 int64 Dijkstra 核实后可安全转为当前 int32 oracle；RGG 和 RMAT 的不可达语义
 显式保留。文件字节只能证明编码与数值范围，不能单独证明数据转换来源。
-最终 USA G+ 另以 `usa_augmented_dataset_manifest.json` 全量核对；`atmosmodm`、
-`rmat22` 与 USA 三个冻结源点的每次活跃候选加法仍必须由最终 clean pair 的
-checked-add 派生构建运行后，才能把数值合同由 `NOT_PROVEN` 改为通过。
+最终 USA G+ 另以 `usa_augmented_dataset_manifest.json` 全量核对。当时
+`atmosmodm`、`rmat22` 与 USA 三个冻结源点的每次活跃候选加法仍待最终 clean pair
+的 checked-add 派生构建关闭；Job 38304 已完成 10/10 正确性诊断并将该冻结查询集
+的 numeric gate 置为 PASS。该诊断禁止用于性能主张。
 
 作业 38131 在同一 allocation 内串行运行五组配对，全部 rc=0、oracle PASS：
 
@@ -255,15 +334,21 @@ BUCKET_MAX 和 batch，正式 input contract 同时冻结这些字段。并发�
   `S=median(T1 solve)/median(T2 solve)`。
 - GPU 性能作业串行独占；CPU 审计、构建、测试和报告整理可并行。
 
-## 下一步
+## 正式收口与文档状态
 
-1. numeric runner 显式清除 `CUDA_LAUNCH_BLOCKING`，并只对 dual 正确性诊断派生
-   构建记录 96-register spill cap；保留 W512、查询末端已有的
-   `cudaDeviceSynchronize`、oracle、受检 int64 加法和容量门，明确禁止其计时用于
-   性能结论。形成新的 clean SHA，正式 pair 与 BNUM=8 算法配置保持不变。
-2. 在该 SHA 的新空目录重跑完整 Job A；任何 CUDA 错误、样本缺失、容量门或编排
-   失败都使整批无效，不能用 Job 38238 的 round 0 或 Job 38271/38280/38292 的
-   主测补样。
-3. Job A 全部步骤成功后，在不同 Slurm job 中运行同一 SHA 的独立 Job B。
-4. 再汇总固定附加源点、八图 G/G+ 回归、失败尝试、图表和论文回填；未完成项
-   保持 `NOT_RUN`，探索值与正式结果分开。
+原“下一步”中的 numeric launch 合同修正、完整 Job A、独立 Job B、附加源点与八图
+回归均已在 clean SHA `9dd69fa02777853537e8068e90996b0ee7cc4186` 完成。最终
+证据只取 Job 38304/38305；Job 38227--38292 和 dirty 探针继续位于独立目录，作为
+失败与因果账本，不参与正式样本计数。
+
+正式证据已归档到
+[`evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/)，
+其中包含独立复算的 [`formal_summary.json`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/formal_summary.json)、
+[`completion_matrix.json`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/completion_matrix.json)、
+[`SHA256SUMS`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/SHA256SUMS)、
+单栏 [`PDF`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/figures/l3_30h_final.pdf) /
+[`PNG`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/figures/l3_30h_final.png)
+以及 [`paper_update.md`](evidence/l3_30h_20260923/formal/9dd69fa02777853537e8068e90996b0ee7cc4186/paper_update.md)。
+当前仓库缺少论文源码，因此正文插入、TeX 编译和版面检查保持
+`NOT_RUN (manuscript source absent)`；若后续提供论文工程，应使用上述冻结图与
+`VALID_BELOW_TARGET` 段落完成这三项，不能把尚未执行的文档检查写成 PASS。

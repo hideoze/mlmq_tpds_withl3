@@ -1,0 +1,7 @@
+workflow=job_b
+status=COMPLETE
+rc=0
+head=9dd69fa02777853537e8068e90996b0ee7cc4186
+slurm_job_id=38305
+job_a_slurm_job_id=38304
+updated_utc=2026-09-23T15:48:03Z

@@ -1,0 +1,88 @@
+{
+  "overall_status": "PASS",
+  "records": [
+    {
+      "check": "same_clean_sha",
+      "evidence": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "required": true,
+      "status": "PASS",
+      "target_met": null
+    },
+    {
+      "check": "distinct_slurm_allocations",
+      "evidence": "JobA=38304; JobB=38305",
+      "required": true,
+      "status": "PASS",
+      "target_met": null
+    },
+    {
+      "check": "job_a_primary",
+      "classification": "formal_primary",
+      "evidence": "01_primary: rc0, 10+10 formal samples, all validity gates",
+      "inner_sampling": "formal",
+      "outer_workflow": "formal JobA",
+      "required": true,
+      "status": "PASS",
+      "target_met": false
+    },
+    {
+      "check": "job_a_final_checks",
+      "evidence": "4/4 fixtures, reset, and 8/8 graph correctness",
+      "required": true,
+      "status": "PASS",
+      "target_met": null
+    },
+    {
+      "check": "job_a_numeric_checked_add",
+      "evidence": "10/10 diagnostic-only checked-add runs",
+      "required": true,
+      "status": "PASS",
+      "target_met": null
+    },
+    {
+      "check": "job_a_fixed_usa_sources",
+      "classification": "full_sample_clean_sha_extension_regression",
+      "evidence": "2 sources, 8 processes, 48 queries (40 retained non-warmup)",
+      "inner_sampling": "exploratory",
+      "outer_workflow": "formal JobA",
+      "required": true,
+      "status": "PASS",
+      "target_met": false
+    },
+    {
+      "check": "job_a_eight_graph_regression",
+      "classification": "full_sample_clean_sha_extension_regression",
+      "evidence": "16 cases, 64 processes, 384 queries (320 retained non-warmup)",
+      "inner_sampling": "exploratory",
+      "outer_workflow": "formal JobA",
+      "required": true,
+      "status": "PASS",
+      "target_met": false
+    },
+    {
+      "check": "job_b_primary_confirmation",
+      "classification": "formal_primary_confirmation",
+      "evidence": "independent allocation and fresh 10+10 formal samples",
+      "inner_sampling": "formal",
+      "outer_workflow": "formal JobB",
+      "required": true,
+      "status": "PASS",
+      "target_met": false
+    },
+    {
+      "check": "performance_target_1.20",
+      "evidence": "target outcome does not alter execution validity",
+      "required": false,
+      "status": "VALID_BELOW_TARGET",
+      "target_met": false
+    },
+    {
+      "check": "formal_workflow",
+      "evidence": "VALID_BELOW_TARGET",
+      "required": true,
+      "status": "PASS",
+      "target_met": false
+    }
+  ],
+  "schema": 1
+}

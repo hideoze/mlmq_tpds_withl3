@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "command_sha256": "262624a9f877cdfcf58bcd5d18250958c91172e1ee2ae42d376b1d343c12e841",
+  "finished_utc": "2026-09-23T15:25:25.704609+00:00",
+  "host_elapsed_seconds": 0.8023705900122877,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_reset.log",
+  "log_sha256": "f62a325cf70ac89a80b159a535650d7a07bbfd461ea8fdde82d3e4ee0b5888f1",
+  "rc": 0,
+  "timed_out": false
+}

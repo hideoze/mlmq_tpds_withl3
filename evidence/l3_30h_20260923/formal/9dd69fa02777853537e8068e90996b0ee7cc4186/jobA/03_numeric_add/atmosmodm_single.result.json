@@ -1,0 +1,77 @@
+{
+  "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+  "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+    "-i",
+    "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+    "-n",
+    "1",
+    "-d",
+    "200000"
+  ],
+  "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_single.command.json",
+  "command_record_sha256": "8fe6a914e7687e39ed1075ded970005c4ad76aac389224fc883e47afe613d1bc",
+  "contract": {
+    "bench_rows": [
+      {
+        "algorithm": "MLMQ",
+        "baseline": "original_no_l3",
+        "correct": "1",
+        "gpu_count": "1",
+        "query_wall_ms": "13.750907",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "0",
+        "solve_ms": "6.927664",
+        "source": "0",
+        "warmup": "0"
+      }
+    ],
+    "errors": [],
+    "expected_partitions": [],
+    "failure_markers": [],
+    "oracle": {
+      "errors": [],
+      "expected_samples": 1,
+      "observed_samples": 1,
+      "trailing_final_audit": 1,
+      "valid": true
+    },
+    "partitions": [],
+    "purpose": "transient candidate-add correctness only; timings are not evidence",
+    "role_contract": {
+      "no_l3_config": [
+        [
+          "512",
+          "200000",
+          "L1SLF_L2DQ"
+        ]
+      ],
+      "no_l3_launch": [
+        [
+          107,
+          200000,
+          0
+        ]
+      ]
+    },
+    "valid": true
+  },
+  "errors": [],
+  "finished_utc": "2026-09-23T15:28:55.481733+00:00",
+  "gpu_processes_after": "",
+  "gpu_processes_before": "",
+  "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+  "graph_sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+  "host_elapsed_seconds_diagnostic_only": 0.8315537559974473,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_single.log",
+  "log_sha256": "32f2d42bb184a8f47f0d6607b81b22e47b484a5e2e0cccbfe1f2c31d0151e1e2",
+  "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+  "oracle_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+  "rc": 0,
+  "requested_gpu_count": 1,
+  "role": "single",
+  "source": 0,
+  "timed_out": false,
+  "valid": true
+}

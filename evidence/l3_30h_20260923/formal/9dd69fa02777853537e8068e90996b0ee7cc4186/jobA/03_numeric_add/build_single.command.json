@@ -1,0 +1,38 @@
+{
+  "command": [
+    "/usr/bin/nvcc",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_sources/single/SSSP/main.cu",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_sources/single/SSSP/csr_graph.cu",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_sources/single/SSSP/sssp_run.cu",
+    "-o",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+    "-DWORK_COUNT=false",
+    "-DMLMQ_WORKER_THREADS=512",
+    "-DBNUM=8",
+    "-DBUCKET_MAX=4",
+    "-Dl2_batch_size=8",
+    "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+    "-O3",
+    "-m64",
+    "-gencode=arch=compute_80,code=sm_80",
+    "-rdc=true",
+    "-lcuda",
+    "-lcudart",
+    "-w",
+    "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_sources/single/core/include",
+    "-I/mnt/a100/data/wyh/boost_1_87_0",
+    "-lcusparse",
+    "-DMLMQ_CHECKED_ADD_DIAG=true"
+  ],
+  "cwd": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+  "environment": {
+    "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "NVCC": "/usr/bin/nvcc",
+    "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+    "TMPDIR": "/tmp"
+  },
+  "started_utc": "2026-09-23T15:26:04.442393+00:00",
+  "timeout_seconds": 1800
+}

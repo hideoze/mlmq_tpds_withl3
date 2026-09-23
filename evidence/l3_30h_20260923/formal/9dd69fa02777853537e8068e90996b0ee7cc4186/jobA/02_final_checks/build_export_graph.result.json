@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/usr/bin/x86_64-linux-gnu-g++-13",
+    "-std=c++17",
+    "-O3",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/supplement_graph.cpp",
+    "-o",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph"
+  ],
+  "command_sha256": "61f6ae09e7cb5a924a0fe0c8db52571e519df096e3849c9d4f2be2eef90eccc4",
+  "finished_utc": "2026-09-23T15:23:39.265890+00:00",
+  "host_elapsed_seconds": 0.6356679550081026,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_export_graph.log",
+  "log_sha256": "4f63d7334b5003fbb3dfeab7c5f51414eefcb577bf94433cb1742e67fbe64631",
+  "rc": 0,
+  "timed_out": false
+}

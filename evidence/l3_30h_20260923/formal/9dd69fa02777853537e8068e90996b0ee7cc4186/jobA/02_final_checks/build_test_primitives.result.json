@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/nvcc",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/scripts/multigpu/test_l3_supplement.cu",
+    "-o",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_primitives",
+    "-O3",
+    "-std=c++17",
+    "-rdc=true",
+    "-gencode=arch=compute_80,code=sm_80",
+    "-I/mnt/a100/data/wyh/boost_1_87_0",
+    "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/fixture_source/core/include",
+    "-DL3_DIRECT_RX=true",
+    "-DL3_FAULT_INJECT_ACK_DELAY=true",
+    "-DBULK_NO_CACHE=true"
+  ],
+  "command_sha256": "6def2736267a7f36d8bc5bac5a11534f28d2edc41ecdc6ca9880dbdec50bce8d",
+  "finished_utc": "2026-09-23T15:23:27.593828+00:00",
+  "host_elapsed_seconds": 3.898857851017965,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_test_primitives.log",
+  "log_sha256": "585757b7aaf1120788b0abd9d2cdefafd9f1394e8e73bd42c86a461c547c70cd",
+  "rc": 0,
+  "timed_out": false
+}

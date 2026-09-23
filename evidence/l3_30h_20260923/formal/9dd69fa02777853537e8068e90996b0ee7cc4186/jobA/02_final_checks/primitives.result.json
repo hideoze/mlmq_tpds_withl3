@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/test_primitives"
+  ],
+  "command_sha256": "a41e1017bdbb33fddf1766eab228f3bbc8caea5ed6447bc8754409442f52c443",
+  "finished_utc": "2026-09-23T15:23:35.919116+00:00",
+  "host_elapsed_seconds": 0.7678284579887986,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/primitives.log",
+  "log_sha256": "3577be18630334ebf6aae4f3456dbff5a04428572bf77cb1a07d71f0b13cfc6d",
+  "rc": 0,
+  "timed_out": false
+}

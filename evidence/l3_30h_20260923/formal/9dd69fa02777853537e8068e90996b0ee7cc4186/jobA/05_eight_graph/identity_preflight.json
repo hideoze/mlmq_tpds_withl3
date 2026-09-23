@@ -1,0 +1,24 @@
+{
+  "committed_files": {
+    "driver": {
+      "head_path": "scripts/multigpu/run_l3_30h_eight_graph_regression.py",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h_eight_graph_regression.py",
+      "sha256": "66c04632d9334131b94ecb8b8bfa8189d60769d5cb01599f841e783c607e7cb0"
+    },
+    "matrix_manifest": {
+      "head_path": "evidence/l3_latest_rerun_38082/matrix/manifest.json",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_latest_rerun_38082/matrix/manifest.json",
+      "sha256": "f2e269821c3686fa25f5c5aa33f4519e585a78aa2be23199bae28c1ede5fe071"
+    },
+    "runner": {
+      "head_path": "scripts/multigpu/run_l3_30h.py",
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+      "sha256": "0641ec5b38b507a10107235faf423f38fb7e9492f05840f32e64517c9ea4a52d"
+    }
+  },
+  "repository": {
+    "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+    "root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+    "status_porcelain": []
+  }
+}

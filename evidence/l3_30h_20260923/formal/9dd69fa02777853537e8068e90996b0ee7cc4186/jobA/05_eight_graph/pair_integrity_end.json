@@ -1,0 +1,26 @@
+{
+  "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/pair_build",
+  "dual_binary_sha256": "06b4d6f7e4d7faf4bf50ae78c11becb50addb61b06cc1ad7a4c5d5fdd52210f4",
+  "files": {
+    "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "dual_build/command.json": "570a52d475a81bff5907f3dc11e2604d509b37ee637a2fb497d3fa2a4bc4ce45",
+    "dual_build/hashes.json": "a0b9e0b693a551caaafdc99676e65762e1830eb821858b0f0f9f3a569a0587db",
+    "dual_build/mlmq": "06b4d6f7e4d7faf4bf50ae78c11becb50addb61b06cc1ad7a4c5d5fdd52210f4",
+    "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+    "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+    "dual_build/status.json": "0d80c33d9de2eef8ce4ccb28e6a5fcbd7a8c26e90a839e5a336680a719300638",
+    "dual_build/version.json": "2895bcd6f5496f58c58c704a297373920645cd5e330c1467f81b15173f1c3ef9",
+    "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+    "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "single_build/command.json": "9f4ddaecd389fac4a8cb390ca51da80e58550e843f516756c4fc7ab9af2d3429",
+    "single_build/hashes.json": "9dd8f0293a292dcfb752503b204d1671c8a9c1841782f78178c60c51ac268df6",
+    "single_build/mlmq": "1f6434e4f2aa6f608974ad7594b6e2b155643540fc9d1fb7286d46daa72223b7",
+    "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+    "single_build/source.tgz": "601a76e2e6db03e6c601a74f27fe37a18c345d55271cffa5ce9d2f855f172fef",
+    "single_build/status.json": "3f21e09826ae7a3648f8d20893adc5dcf67c9ac8377c328b2f9a961b78980392",
+    "single_build/version.json": "2895bcd6f5496f58c58c704a297373920645cd5e330c1467f81b15173f1c3ef9",
+    "status.json": "ba7253b982a9056833e4d46cd7c0221559a94e74743c10ef152ae821066b4260",
+    "version.json": "2895bcd6f5496f58c58c704a297373920645cd5e330c1467f81b15173f1c3ef9"
+  },
+  "single_binary_sha256": "1f6434e4f2aa6f608974ad7594b6e2b155643540fc9d1fb7286d46daa72223b7"
+}

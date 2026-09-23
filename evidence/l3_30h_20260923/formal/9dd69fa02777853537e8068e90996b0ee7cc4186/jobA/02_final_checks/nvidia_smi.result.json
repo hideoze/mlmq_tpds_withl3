@@ -1,0 +1,12 @@
+{
+  "command": [
+    "nvidia-smi"
+  ],
+  "command_sha256": "c5ca604bda77b5cd6164e657ceea9382808155f80ebd2040a28a0c93f20f012e",
+  "finished_utc": "2026-09-23T15:21:19.072501+00:00",
+  "host_elapsed_seconds": 0.48478720302227885,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/nvidia_smi.log",
+  "log_sha256": "e317efec901404bc228ab555dcb7021eee1739fd98e7fa36e1ad1f50a6dcdf9a",
+  "rc": 0,
+  "timed_out": false
+}

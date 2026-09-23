@@ -1,0 +1,6 @@
+{
+  "builder": "scripts/multigpu/build_l3_paper_config.sh",
+  "rc": 0,
+  "role": "dual_l3_paper",
+  "updated_utc": "2026-09-23T15:31:44.698535+00:00"
+}

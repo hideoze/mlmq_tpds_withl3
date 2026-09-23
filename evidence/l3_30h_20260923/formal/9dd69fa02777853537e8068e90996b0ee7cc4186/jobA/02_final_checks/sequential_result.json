@@ -1,0 +1,882 @@
+{
+  "build": {
+    "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+    "binary_sha256": "198ec322b915c3de40764ccc9cb58e42260205094395c6808c9f537c5ec57b36",
+    "command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse",
+      "-DQUERY_WORKSPACE_DIAG=true"
+    ],
+    "command_sha256": "54654b1fc50ce702ac853ba93118c09320707ba406ea0193e1d1bd6c11ae2b2a",
+    "derivation": "archived dual source plus recorded host-only query selector",
+    "diagnostic_compile_defines": [
+      "-DQUERY_WORKSPACE_DIAG=true"
+    ],
+    "finished_utc": "2026-09-23T15:25:24.677869+00:00",
+    "host_elapsed_seconds": 104.04935181100154,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/build_sequential_dual.log",
+    "log_sha256": "3c48f2be353249e39a4b60c5299c1916847e54934423982cab11d4a007638d8c",
+    "original_pair_command": [
+      "/usr/bin/nvcc",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/main.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/csr_graph.cu",
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/SSSP/sssp_run.cu",
+      "-o",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/01_primary/pair_build/dual_build/mlmq",
+      "-DWORK_COUNT=false",
+      "-DMLMQ_WORKER_THREADS=512",
+      "-DBNUM=8",
+      "-DBUCKET_MAX=4",
+      "-Dl2_batch_size=8",
+      "-DL3_COOPERATIVE_COLLECT=true",
+      "-DL3_DIRECT_RX=true",
+      "-DL3_RETAIN_TX=true",
+      "-DL3_WINDOW_MODE=2",
+      "-DL3_WINDOW_MIN_CYCLES=25000ull",
+      "-DL3_WINDOW_MAX_CYCLES=25000ull",
+      "-DL3_IDLE_BACKOFF=false",
+      "-DL3_WORKER_RECOVERY=true",
+      "-DL3_TERM_WAIT_ACK=true",
+      "-DL3_ACK_SCAN=true",
+      "-DL3_ACK_WIDE_SCAN=true",
+      "-DL3_BOUNDARY_INDEX=true",
+      "-DL3_L2_FINAL_COUNTS=true",
+      "-DDQ_COUNTER_OVERFLOW_GUARD=true",
+      "-DL3_CHAIN_SHORTCUTS=false",
+      "-DL3_IDLE_TOKEN_PROBE=true",
+      "-O3",
+      "-m64",
+      "-gencode=arch=compute_80,code=sm_80",
+      "-rdc=true",
+      "-lcuda",
+      "-lcudart",
+      "-w",
+      "-I/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/core/include",
+      "-I/mnt/a100/data/wyh/boost_1_87_0",
+      "-lcusparse"
+    ],
+    "query_workspace_diag_enabled": true,
+    "rc": 0,
+    "timed_out": false
+  },
+  "contract": {
+    "bench_rows": [
+      {
+        "algorithm": "MLMQ",
+        "collection_ms": "0.087677",
+        "correct": "1",
+        "gpu_count": "2",
+        "post_solve_ms": "0.099678",
+        "prepare_ms": "7.466365",
+        "query_wall_ms": "19.232800",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "0",
+        "solve_ms": "11.578882",
+        "source": "0",
+        "warmup": "0"
+      },
+      {
+        "algorithm": "MLMQ",
+        "collection_ms": "0.046058",
+        "correct": "1",
+        "gpu_count": "2",
+        "post_solve_ms": "0.061055",
+        "prepare_ms": "6.910409",
+        "query_wall_ms": "13.981409",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "1",
+        "solve_ms": "6.963816",
+        "source": "1030",
+        "warmup": "0"
+      },
+      {
+        "algorithm": "MLMQ",
+        "collection_ms": "0.040355",
+        "correct": "1",
+        "gpu_count": "2",
+        "post_solve_ms": "0.073634",
+        "prepare_ms": "2.538872",
+        "query_wall_ms": "2.848800",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "2",
+        "solve_ms": "0.195861",
+        "source": "2050",
+        "warmup": "0"
+      },
+      {
+        "algorithm": "MLMQ",
+        "collection_ms": "0.038759",
+        "correct": "1",
+        "gpu_count": "2",
+        "post_solve_ms": "0.068482",
+        "prepare_ms": "2.769556",
+        "query_wall_ms": "8.965213",
+        "queue": "L1SLF_L2DQ",
+        "repeat": "3",
+        "solve_ms": "6.088338",
+        "source": "0",
+        "warmup": "0"
+      }
+    ],
+    "capacity_no_wrap": {
+      "argument": "every query reports guarded_writes, max_bucket_writes, per_bucket_capacity, total_capacity, counter_bits, overflow_guard, overflow_detected, and no_wrap; these exact fields must agree with the initial L2 allocation, while the isolated guarded fixture also tests exact-full acceptance and first-overflow rejection",
+      "capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "errors": [],
+      "proofs": [
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 0,
+          "guarded_writes": 1578,
+          "matches_allocation": true,
+          "max_bucket_writes": 1578,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 0,
+          "total_capacity": 268431360,
+          "total_writes": 1578
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 1,
+          "guarded_writes": 2,
+          "matches_allocation": true,
+          "max_bucket_writes": 2,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 0,
+          "total_capacity": 268431360,
+          "total_writes": 2
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 0,
+          "guarded_writes": 515,
+          "matches_allocation": true,
+          "max_bucket_writes": 515,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 1,
+          "total_capacity": 268431360,
+          "total_writes": 515
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 1,
+          "guarded_writes": 1,
+          "matches_allocation": true,
+          "max_bucket_writes": 1,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 1,
+          "total_capacity": 268431360,
+          "total_writes": 1
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 1,
+          "guarded_writes": 1,
+          "matches_allocation": true,
+          "max_bucket_writes": 1,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 2,
+          "total_capacity": 268431360,
+          "total_writes": 1
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 0,
+          "guarded_writes": 0,
+          "matches_allocation": true,
+          "max_bucket_writes": 0,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 2,
+          "total_capacity": 268431360,
+          "total_writes": 0
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 0,
+          "guarded_writes": 1547,
+          "matches_allocation": true,
+          "max_bucket_writes": 1547,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 3,
+          "total_capacity": 268431360,
+          "total_writes": 1547
+        },
+        {
+          "allocated_records": 268435455,
+          "counter_bits": 32,
+          "gpu": 1,
+          "guarded_writes": 3,
+          "matches_allocation": true,
+          "max_bucket_writes": 2,
+          "no_wrap": 1,
+          "overflow_detected": 0,
+          "overflow_guard": 1,
+          "per_bucket_capacity": 33553920,
+          "sample": 3,
+          "total_capacity": 268431360,
+          "total_writes": 3
+        }
+      ],
+      "valid": true
+    },
+    "dual": {
+      "errors": [],
+      "expected_samples": 4,
+      "l2_capacity_present": true,
+      "l2_capacity_rows": [
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        },
+        {
+          "allocated_records": 268435455,
+          "buckets": 8,
+          "budget": 2147483647,
+          "counter_bits": 32,
+          "per_bucket": 33553920,
+          "record_bytes": 8
+        }
+      ],
+      "l2_final_present": true,
+      "l2_final_required": true,
+      "observed_samples": 4,
+      "samples": [
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 1578,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 1578,
+              "max_bucket_writes": 1578,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 1578,
+              "total_capacity": 268431360,
+              "writes": 1578
+            },
+            {
+              "buckets": 8,
+              "completed": 2,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 2,
+              "max_bucket_writes": 2,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 2,
+              "total_capacity": 268431360,
+              "writes": 2
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 515,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 515,
+              "max_bucket_writes": 515,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 515,
+              "total_capacity": 268431360,
+              "writes": 515
+            },
+            {
+              "buckets": 8,
+              "completed": 1,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 1,
+              "max_bucket_writes": 1,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 1,
+              "total_capacity": 268431360,
+              "writes": 1
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 1,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 1,
+              "max_bucket_writes": 1,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 1,
+              "total_capacity": 268431360,
+              "writes": 1
+            },
+            {
+              "buckets": 8,
+              "completed": 0,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 0,
+              "max_bucket_writes": 0,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 0,
+              "total_capacity": 268431360,
+              "writes": 0
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        },
+        {
+          "l2_final": [
+            {
+              "buckets": 8,
+              "completed": 1547,
+              "counter_bits": 32,
+              "gpu": 0,
+              "guarded_writes": 1547,
+              "max_bucket_writes": 1547,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 1547,
+              "total_capacity": 268431360,
+              "writes": 1547
+            },
+            {
+              "buckets": 8,
+              "completed": 3,
+              "counter_bits": 32,
+              "gpu": 1,
+              "guarded_writes": 3,
+              "max_bucket_writes": 2,
+              "no_wrap": 1,
+              "overflow_detected": 0,
+              "overflow_guard": 1,
+              "per_bucket_capacity": 33553920,
+              "reads": 3,
+              "total_capacity": 268431360,
+              "writes": 3
+            }
+          ],
+          "l3_config": [
+            {
+              "delta": 200000,
+              "gpu": 0,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            },
+            {
+              "delta": 200000,
+              "gpu": 1,
+              "idle_backoff": 0,
+              "queue_type": 19,
+              "rx_express": 0,
+              "rx_express_batch": 32,
+              "rx_express_enabled": 0,
+              "rx_express_slots": 64,
+              "rx_l2_pull": 0,
+              "rx_l2_pull_claim": 0,
+              "rx_l2_pull_enabled": 0,
+              "rx_priority_bootstrap": 0,
+              "term_wait_ack": 1,
+              "window_max": 25000,
+              "window_min": 25000,
+              "window_mode": 2,
+              "work_blocks": 107,
+              "worker_recovery": 1
+            }
+          ],
+          "worker_ack": [
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 0,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            },
+            {
+              "active_slots": 1712,
+              "capacity": 1712,
+              "gpu": 1,
+              "warps_per_block": 16,
+              "work_blocks": 107
+            }
+          ]
+        }
+      ],
+      "valid": true
+    },
+    "errors": [],
+    "oracle": {
+      "errors": [],
+      "expected_samples": 4,
+      "observed_samples": 4,
+      "trailing_final_audit": 0,
+      "valid": true
+    },
+    "query_reuse": {
+      "0": [
+        [
+          0,
+          1
+        ],
+        [
+          1030,
+          2
+        ],
+        [
+          2050,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "1": [
+        [
+          0,
+          1
+        ],
+        [
+          1030,
+          2
+        ],
+        [
+          2050,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ]
+    },
+    "selected_sources": [
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        1030,
+        2
+      ],
+      [
+        2,
+        2050,
+        2
+      ],
+      [
+        3,
+        0,
+        2
+      ]
+    ],
+    "valid": true
+  },
+  "exports": {
+    "0": {
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/fixture.gr",
+        "0",
+        "1026",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.gr",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.i32"
+      ],
+      "command_sha256": "235f595fad019bb096852e7baa0deb03d1983ee71f74d9540220fb4bc4df95b7",
+      "finished_utc": "2026-09-23T15:23:39.649973+00:00",
+      "host_elapsed_seconds": 0.11409088200889528,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/export_source_0.log",
+      "log_sha256": "828bb3e61e8423f98ebc86673bd3e0e077283ab5533038561d8f226b17145a37",
+      "outputs": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.gr",
+          "sha256": "59a814ec13ef9aaaf5cadc9f7f52bd4cb1899122bf967be04ded6e023acf5439"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.i32",
+          "sha256": "bfdf00c813c9686fb7f9c61f103c9790d58c64e911fa1267c066e0206f6b954f"
+        }
+      },
+      "rc": 0,
+      "timed_out": false
+    },
+    "1030": {
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/fixture.gr",
+        "1030",
+        "1026",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s1030.gr",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s1030.i32"
+      ],
+      "command_sha256": "40acc82a244f4101728043b94f4da5ba0cdf7bce6324f5aacc82179649d79a71",
+      "finished_utc": "2026-09-23T15:23:39.976734+00:00",
+      "host_elapsed_seconds": 0.12899219800601713,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/export_source_1030.log",
+      "log_sha256": "217682c8d5af8701d5fa6d351d779c2069caea441992cc8be5f85a35fcd21538",
+      "outputs": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s1030.gr",
+          "sha256": "59a814ec13ef9aaaf5cadc9f7f52bd4cb1899122bf967be04ded6e023acf5439"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s1030.i32",
+          "sha256": "026f0d2db513731bf3220b68190a238a87a045fc5d310e9492eb3a1f47a583ef"
+        }
+      },
+      "rc": 0,
+      "timed_out": false
+    },
+    "2050": {
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/export_graph",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/fixture.gr",
+        "2050",
+        "1026",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s2050.gr",
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s2050.i32"
+      ],
+      "command_sha256": "d6b067203c6b494b77737d578fe1b689ac1c659d4aee5db1dc949f9226f118fe",
+      "finished_utc": "2026-09-23T15:23:40.318930+00:00",
+      "host_elapsed_seconds": 0.08733686202322133,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/export_source_2050.log",
+      "log_sha256": "a8bfa7ed5b338c73975a70ef810258b092b5c11277c3519816cf16bdc792f84b",
+      "outputs": {
+        "graph": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s2050.gr",
+          "sha256": "59a814ec13ef9aaaf5cadc9f7f52bd4cb1899122bf967be04ded6e023acf5439"
+        },
+        "oracle": {
+          "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s2050.i32",
+          "sha256": "487a5f1595102e370c7479e94a38c58db0cccac4461dd7cac27ec362edcf7af4"
+        }
+      },
+      "rc": 0,
+      "timed_out": false
+    }
+  },
+  "fixture": {
+    "edges": 5638,
+    "sha256": "24b038d8d69316667b28647d457aa0096bc7c756789a3b539255151617501821",
+    "vertices": 2052
+  },
+  "patch": {
+    "after_sha256": "f13277783bd11ac9ef417e5c93724a0614d0ba3e5d22d2756d5a7eaef0b70830",
+    "before_sha256": "2922bc3b0e9bf07e032ec919aa0959c73de2bd0bec2bf4d52fa995696720da40",
+    "patch": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_host_hook.patch",
+    "patch_sha256": "1f1aca7ccbd95c648ad7a0e894b2d0b293dcd203efca578a69b027e51fa8e3b9",
+    "scope": "host-only source/oracle selection before each query",
+    "source": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/dual_source/SSSP/main.cu"
+  },
+  "run": {
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/binaries/sequential_dual",
+      "-i",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_fixture/s0.gr",
+      "-n",
+      "2",
+      "-d",
+      "200000"
+    ],
+    "command_sha256": "262624a9f877cdfcf58bcd5d18250958c91172e1ee2ae42d376b1d343c12e841",
+    "finished_utc": "2026-09-23T15:25:25.704609+00:00",
+    "host_elapsed_seconds": 0.8023705900122877,
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/02_final_checks/sequential_reset.log",
+    "log_sha256": "f62a325cf70ac89a80b159a535650d7a07bbfd461ea8fdde82d3e4ee0b5888f1",
+    "rc": 0,
+    "timed_out": false
+  }
+}

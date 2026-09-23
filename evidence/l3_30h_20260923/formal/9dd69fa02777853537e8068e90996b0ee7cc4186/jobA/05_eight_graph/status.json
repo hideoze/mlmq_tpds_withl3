@@ -1,0 +1,10 @@
+{
+  "all_cases_target_met": false,
+  "completed_cases": 16,
+  "completed_utc": "2026-09-23T15:42:25.000231+00:00",
+  "expected_cases": 16,
+  "measurement_valid": true,
+  "status": "measurement_valid",
+  "summary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/summary.json",
+  "target_met_case_count": 0
+}

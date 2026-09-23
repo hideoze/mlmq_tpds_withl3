@@ -1,0 +1,1518 @@
+{
+  "compiler_integrity_after": {
+    "expected_sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+    "path": "/usr/bin/nvcc",
+    "sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+    "valid": true
+  },
+  "completed_runs": 10,
+  "expected_runs": 10,
+  "frozen_input_integrity_after": {
+    "errors": [],
+    "files": {
+      "atmosmodm": {
+        "graph": {
+          "bytes": 94476128,
+          "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+          "regular_file": true,
+          "sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478"
+        },
+        "oracle": {
+          "bytes": 5959008,
+          "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+          "regular_file": true,
+          "sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b"
+        }
+      },
+      "rmat22": {
+        "graph": {
+          "bytes": 299363568,
+          "path": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+          "regular_file": true,
+          "sha256": "164e61cce40603749d8df44fd5bcff9445a0b4bd83f0045be11670a63234b994"
+        },
+        "oracle": {
+          "bytes": 16777216,
+          "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/rmat22_s0.i32",
+          "regular_file": true,
+          "sha256": "ef421f45303c022800cc317b672d1a7aeddb02df29d7450230e49a5113ccf60e"
+        }
+      },
+      "usa_additional_1": {
+        "graph": {
+          "bytes": 725057080,
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+          "regular_file": true,
+          "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+        },
+        "oracle": {
+          "bytes": 95789388,
+          "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old7982448_new18266241.i32",
+          "regular_file": true,
+          "sha256": "f86e1b6509badf703eb50125156f3479938a928b2abbb2430910673bcf9ca9e3"
+        }
+      },
+      "usa_additional_2": {
+        "graph": {
+          "bytes": 725057080,
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+          "regular_file": true,
+          "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+        },
+        "oracle": {
+          "bytes": 95789388,
+          "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old15964897_new6146689.i32",
+          "regular_file": true,
+          "sha256": "84664767003586c247a6657450796b0ee2ffbfde8ba84445f70ba05b9c008294"
+        }
+      },
+      "usa_primary": {
+        "graph": {
+          "bytes": 725057080,
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+          "regular_file": true,
+          "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+        },
+        "oracle": {
+          "bytes": 95789388,
+          "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+          "regular_file": true,
+          "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+        }
+      }
+    },
+    "valid": true
+  },
+  "numeric_gate": "PASS_FOR_FROZEN_QUERY_SET",
+  "performance_claim_allowed": false,
+  "problems": [],
+  "runs": [
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+      "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+        "-i",
+        "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+        "-n",
+        "1",
+        "-d",
+        "200000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_single.command.json",
+      "command_record_sha256": "8fe6a914e7687e39ed1075ded970005c4ad76aac389224fc883e47afe613d1bc",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "baseline": "original_no_l3",
+            "correct": "1",
+            "gpu_count": "1",
+            "query_wall_ms": "13.750907",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "6.927664",
+            "source": "0",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 1,
+          "valid": true
+        },
+        "partitions": [],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "no_l3_config": [
+            [
+              "512",
+              "200000",
+              "L1SLF_L2DQ"
+            ]
+          ],
+          "no_l3_launch": [
+            [
+              107,
+              200000,
+              0
+            ]
+          ]
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:28:55.481733+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+      "graph_sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+      "host_elapsed_seconds_diagnostic_only": 0.8315537559974473,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_single.log",
+      "log_sha256": "32f2d42bb184a8f47f0d6607b81b22e47b484a5e2e0cccbfe1f2c31d0151e1e2",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+      "oracle_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+      "rc": 0,
+      "requested_gpu_count": 1,
+      "role": "single",
+      "source": 0,
+      "spec": "atmosmodm",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+      "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+        "-i",
+        "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+        "-n",
+        "2",
+        "-d",
+        "200000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_dual.command.json",
+      "command_record_sha256": "59f27b16e146120cc51cb29533d1e04c0513ba35460d87ff653099232a336dae",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "collection_ms": "3.400139",
+            "correct": "1",
+            "gpu_count": "2",
+            "post_solve_ms": "0.099661",
+            "prepare_ms": "7.970333",
+            "query_wall_ms": "19.293229",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "7.822932",
+            "source": "0",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [
+          [
+            0,
+            0,
+            744876
+          ],
+          [
+            1,
+            744876,
+            1489752
+          ]
+        ],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 0,
+          "valid": true
+        },
+        "partitions": [
+          [
+            0,
+            0,
+            744876
+          ],
+          [
+            1,
+            744876,
+            1489752
+          ]
+        ],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "errors": [],
+          "expected_samples": 1,
+          "l2_capacity_present": true,
+          "l2_capacity_rows": [
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            },
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            }
+          ],
+          "l2_final_present": true,
+          "l2_final_required": true,
+          "observed_samples": 1,
+          "samples": [
+            {
+              "l2_final": [
+                {
+                  "buckets": 8,
+                  "completed": 132012,
+                  "counter_bits": 32,
+                  "gpu": 1,
+                  "guarded_writes": 132012,
+                  "max_bucket_writes": 24166,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 132012,
+                  "total_capacity": 268431360,
+                  "writes": 132012
+                },
+                {
+                  "buckets": 8,
+                  "completed": 137316,
+                  "counter_bits": 32,
+                  "gpu": 0,
+                  "guarded_writes": 137316,
+                  "max_bucket_writes": 25367,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 137316,
+                  "total_capacity": 268431360,
+                  "writes": 137316
+                }
+              ],
+              "l3_config": [
+                {
+                  "delta": 200000,
+                  "gpu": 0,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                },
+                {
+                  "delta": 200000,
+                  "gpu": 1,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                }
+              ],
+              "worker_ack": [
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 0,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                },
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 1,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                }
+              ]
+            }
+          ],
+          "valid": true
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:28:57.066095+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/atmosmodm.gr",
+      "graph_sha256": "c428695cedd4cdec1e889a73bb53cc445aae53e8d7a7635fcda206df944ae478",
+      "host_elapsed_seconds_diagnostic_only": 1.0931690809957217,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/atmosmodm_dual.log",
+      "log_sha256": "a8c49c5698e5c280d59142cffc988a193a48ccbbd64138f6c3d5984fd4dcd67c",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/atmosmodm_s0.i32",
+      "oracle_sha256": "15e8a91b2db3f4b4c358b3aa23972c6dc843dbdd2dfc831bc75abf5c0cb2be8b",
+      "rc": 0,
+      "requested_gpu_count": 2,
+      "role": "dual",
+      "source": 0,
+      "spec": "atmosmodm",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+      "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+        "-i",
+        "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+        "-n",
+        "1",
+        "-d",
+        "200000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/rmat22_single.command.json",
+      "command_record_sha256": "fe5da4c8a41725a4d3780e58551489220f9d7f06080af100b789d6ea2f4f752a",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "baseline": "original_no_l3",
+            "correct": "1",
+            "gpu_count": "1",
+            "query_wall_ms": "18.209298",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "9.695641",
+            "source": "0",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 1,
+          "valid": true
+        },
+        "partitions": [],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "no_l3_config": [
+            [
+              "512",
+              "200000",
+              "L1SLF_L2DQ"
+            ]
+          ],
+          "no_l3_launch": [
+            [
+              107,
+              200000,
+              0
+            ]
+          ]
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:00.619292+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+      "graph_sha256": "164e61cce40603749d8df44fd5bcff9445a0b4bd83f0045be11670a63234b994",
+      "host_elapsed_seconds_diagnostic_only": 3.1178203749877866,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/rmat22_single.log",
+      "log_sha256": "1d6355759f8895685f4919004f315a100ee428b8c3f0cda4ed047d03ca955930",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/rmat22_s0.i32",
+      "oracle_sha256": "ef421f45303c022800cc317b672d1a7aeddb02df29d7450230e49a5113ccf60e",
+      "rc": 0,
+      "requested_gpu_count": 1,
+      "role": "single",
+      "source": 0,
+      "spec": "rmat22",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+      "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+        "-i",
+        "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+        "-n",
+        "2",
+        "-d",
+        "200000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/rmat22_dual.command.json",
+      "command_record_sha256": "c242eb4d4b9ad7928f008926c530d02ecda5bcc5c7cbf78b1254a7cce7dad249",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "collection_ms": "4.460101",
+            "correct": "1",
+            "gpu_count": "2",
+            "post_solve_ms": "0.100206",
+            "prepare_ms": "6.499401",
+            "query_wall_ms": "2161.109384",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "2150.049653",
+            "source": "0",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [
+          [
+            0,
+            0,
+            2097152
+          ],
+          [
+            1,
+            2097152,
+            4194304
+          ]
+        ],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 0,
+          "valid": true
+        },
+        "partitions": [
+          [
+            0,
+            0,
+            2097152
+          ],
+          [
+            1,
+            2097152,
+            4194304
+          ]
+        ],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "errors": [],
+          "expected_samples": 1,
+          "l2_capacity_present": true,
+          "l2_capacity_rows": [
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            },
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            }
+          ],
+          "l2_final_present": true,
+          "l2_final_required": true,
+          "observed_samples": 1,
+          "samples": [
+            {
+              "l2_final": [
+                {
+                  "buckets": 8,
+                  "completed": 5901536,
+                  "counter_bits": 32,
+                  "gpu": 1,
+                  "guarded_writes": 5901536,
+                  "max_bucket_writes": 1309935,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 5901536,
+                  "total_capacity": 268431360,
+                  "writes": 5901536
+                },
+                {
+                  "buckets": 8,
+                  "completed": 7099568,
+                  "counter_bits": 32,
+                  "gpu": 0,
+                  "guarded_writes": 7099568,
+                  "max_bucket_writes": 2357583,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 7099568,
+                  "total_capacity": 268431360,
+                  "writes": 7099568
+                }
+              ],
+              "l3_config": [
+                {
+                  "delta": 200000,
+                  "gpu": 1,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                },
+                {
+                  "delta": 200000,
+                  "gpu": 0,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                }
+              ],
+              "worker_ack": [
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 1,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                },
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 0,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                }
+              ]
+            }
+          ],
+          "valid": true
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:07.019720+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/a100/data1/Dingzhong/mlmq/data/sssp-int/rmat22.gr",
+      "graph_sha256": "164e61cce40603749d8df44fd5bcff9445a0b4bd83f0045be11670a63234b994",
+      "host_elapsed_seconds_diagnostic_only": 5.948105647985358,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/rmat22_dual.log",
+      "log_sha256": "56a8f85c0a1f8de05ea3440ea08d110b51400d9310e8b29dd774a6e705ed80ea",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/oracles/rmat22_s0.i32",
+      "oracle_sha256": "ef421f45303c022800cc317b672d1a7aeddb02df29d7450230e49a5113ccf60e",
+      "rc": 0,
+      "requested_gpu_count": 2,
+      "role": "dual",
+      "source": 0,
+      "spec": "rmat22",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+      "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "1",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_primary_single.command.json",
+      "command_record_sha256": "36744735fdce232aff4dc8b97ea7a7a8573349b914512b36fdc0c867d72b107e",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "baseline": "original_no_l3",
+            "correct": "1",
+            "gpu_count": "1",
+            "query_wall_ms": "158.231329",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "77.036995",
+            "source": "11973673",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 1,
+          "valid": true
+        },
+        "partitions": [],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "no_l3_config": [
+            [
+              "512",
+              "400000",
+              "L1SLF_L2DQ"
+            ]
+          ],
+          "no_l3_launch": [
+            [
+              107,
+              400000,
+              0
+            ]
+          ]
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:12.820513+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 5.317548330989666,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_primary_single.log",
+      "log_sha256": "78b904031a4d564487970e0ae2e31bccd87aaa0b8515674f046f1b49a0ba68a0",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "rc": 0,
+      "requested_gpu_count": 1,
+      "role": "single",
+      "source": 11973673,
+      "spec": "usa_primary",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+      "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "2",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_primary_dual.command.json",
+      "command_record_sha256": "9dd7eefe3303c685a330fd52ad531715fb097e2f11c579dc551ece6a3ef4c998",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "collection_ms": "43.677958",
+            "correct": "1",
+            "gpu_count": "2",
+            "post_solve_ms": "0.106330",
+            "prepare_ms": "7.685781",
+            "query_wall_ms": "121.296483",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "69.826381",
+            "source": "11973673",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 0,
+          "valid": true
+        },
+        "partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "errors": [],
+          "expected_samples": 1,
+          "l2_capacity_present": true,
+          "l2_capacity_rows": [
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            },
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            }
+          ],
+          "l2_final_present": true,
+          "l2_final_required": true,
+          "observed_samples": 1,
+          "samples": [
+            {
+              "l2_final": [
+                {
+                  "buckets": 8,
+                  "completed": 11009457,
+                  "counter_bits": 32,
+                  "gpu": 0,
+                  "guarded_writes": 11009457,
+                  "max_bucket_writes": 1473453,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 11009457,
+                  "total_capacity": 268431360,
+                  "writes": 11009457
+                },
+                {
+                  "buckets": 8,
+                  "completed": 8978353,
+                  "counter_bits": 32,
+                  "gpu": 1,
+                  "guarded_writes": 8978353,
+                  "max_bucket_writes": 2036621,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 8978353,
+                  "total_capacity": 268431360,
+                  "writes": 8978353
+                }
+              ],
+              "l3_config": [
+                {
+                  "delta": 400000,
+                  "gpu": 0,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                },
+                {
+                  "delta": 400000,
+                  "gpu": 1,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                }
+              ],
+              "worker_ack": [
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 0,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                },
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 1,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                }
+              ]
+            }
+          ],
+          "valid": true
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:19.787943+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 6.476169653993566,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_primary_dual.log",
+      "log_sha256": "c1e08c23808e7b43264cc0c2be904b4571aa57ee08dc24118fad3bb2be898a78",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "rc": 0,
+      "requested_gpu_count": 2,
+      "role": "dual",
+      "source": 11973673,
+      "spec": "usa_primary",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+      "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "1",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_single.command.json",
+      "command_record_sha256": "acebaa4ac427513233ef3e27c477e749fd1f7020fc593bc4fcfcd8cd0632e815",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "baseline": "original_no_l3",
+            "correct": "1",
+            "gpu_count": "1",
+            "query_wall_ms": "159.659986",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "77.866451",
+            "source": "18266241",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 1,
+          "valid": true
+        },
+        "partitions": [],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "no_l3_config": [
+            [
+              "512",
+              "400000",
+              "L1SLF_L2DQ"
+            ]
+          ],
+          "no_l3_launch": [
+            [
+              107,
+              400000,
+              0
+            ]
+          ]
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:25.697413+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 5.381807488010963,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_single.log",
+      "log_sha256": "de904e91347a5c71f3214e8861171da3b3c3d83694f6ba1c866cf96367fc4e67",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old7982448_new18266241.i32",
+      "oracle_sha256": "f86e1b6509badf703eb50125156f3479938a928b2abbb2430910673bcf9ca9e3",
+      "rc": 0,
+      "requested_gpu_count": 1,
+      "role": "single",
+      "source": 18266241,
+      "spec": "usa_additional_1",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+      "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "2",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_dual.command.json",
+      "command_record_sha256": "f6e242146139db9863c1bb0658ff7faad88e1cb3f5d15d65a2678fc113df82ec",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "collection_ms": "45.418394",
+            "correct": "1",
+            "gpu_count": "2",
+            "post_solve_ms": "0.114868",
+            "prepare_ms": "7.998244",
+            "query_wall_ms": "169.991391",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "116.459848",
+            "source": "18266241",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 0,
+          "valid": true
+        },
+        "partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "errors": [],
+          "expected_samples": 1,
+          "l2_capacity_present": true,
+          "l2_capacity_rows": [
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            },
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            }
+          ],
+          "l2_final_present": true,
+          "l2_final_required": true,
+          "observed_samples": 1,
+          "samples": [
+            {
+              "l2_final": [
+                {
+                  "buckets": 8,
+                  "completed": 17195659,
+                  "counter_bits": 32,
+                  "gpu": 0,
+                  "guarded_writes": 17195659,
+                  "max_bucket_writes": 8501341,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 17195659,
+                  "total_capacity": 268431360,
+                  "writes": 17195659
+                },
+                {
+                  "buckets": 8,
+                  "completed": 8825051,
+                  "counter_bits": 32,
+                  "gpu": 1,
+                  "guarded_writes": 8825051,
+                  "max_bucket_writes": 1485818,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 8825051,
+                  "total_capacity": 268431360,
+                  "writes": 8825051
+                }
+              ],
+              "l3_config": [
+                {
+                  "delta": 400000,
+                  "gpu": 0,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                },
+                {
+                  "delta": 400000,
+                  "gpu": 1,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                }
+              ],
+              "worker_ack": [
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 0,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                },
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 1,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                }
+              ]
+            }
+          ],
+          "valid": true
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:32.746387+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 6.577254506002646,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_1_dual.log",
+      "log_sha256": "fddf9c7fcd7d5f5dd7ee8d92685b4608321f7bf113b5c14d5093b3dd67605ef6",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old7982448_new18266241.i32",
+      "oracle_sha256": "f86e1b6509badf703eb50125156f3479938a928b2abbb2430910673bcf9ca9e3",
+      "rc": 0,
+      "requested_gpu_count": 2,
+      "role": "dual",
+      "source": 18266241,
+      "spec": "usa_additional_1",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+      "binary_sha256": "6a267b4e016ebf447fb387987b91a1f7ac50b5a61a5551e6431fc291179913e8",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_single",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "1",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_2_single.command.json",
+      "command_record_sha256": "ff0a05ac5a8c19e444f16d1f18c4ea647bd69c90df72f28652a4075136730b66",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "baseline": "original_no_l3",
+            "correct": "1",
+            "gpu_count": "1",
+            "query_wall_ms": "144.941142",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "63.519371",
+            "source": "6146689",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 1,
+          "valid": true
+        },
+        "partitions": [],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "no_l3_config": [
+            [
+              "512",
+              "400000",
+              "L1SLF_L2DQ"
+            ]
+          ],
+          "no_l3_launch": [
+            [
+              107,
+              400000,
+              0
+            ]
+          ]
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:38.888838+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 5.599770366010489,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_2_single.log",
+      "log_sha256": "f50d49b242924b27f417b43c6ea083355642df8f46f155a0009e76b83ac466bc",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old15964897_new6146689.i32",
+      "oracle_sha256": "84664767003586c247a6657450796b0ee2ffbfde8ba84445f70ba05b9c008294",
+      "rc": 0,
+      "requested_gpu_count": 1,
+      "role": "single",
+      "source": 6146689,
+      "spec": "usa_additional_2",
+      "timed_out": false,
+      "valid": true
+    },
+    {
+      "binary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+      "binary_sha256": "d6483aa7b2b0bd90f7ae290bd099976bd146c87921accc096d79dd9d81c5e9da",
+      "command": [
+        "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/derived_binaries/mlmq_numeric_dual",
+        "-i",
+        "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+        "-n",
+        "2",
+        "-d",
+        "400000"
+      ],
+      "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_2_dual.command.json",
+      "command_record_sha256": "2202ddc08976af36a5ef6712f012e66b2f90d3f9e4ec1e65fdbb76d7bdb5ccc2",
+      "contract": {
+        "bench_rows": [
+          {
+            "algorithm": "MLMQ",
+            "collection_ms": "42.786295",
+            "correct": "1",
+            "gpu_count": "2",
+            "post_solve_ms": "0.105077",
+            "prepare_ms": "7.054794",
+            "query_wall_ms": "108.452165",
+            "queue": "L1SLF_L2DQ",
+            "repeat": "0",
+            "solve_ms": "58.505961",
+            "source": "6146689",
+            "warmup": "0"
+          }
+        ],
+        "errors": [],
+        "expected_partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "failure_markers": [],
+        "oracle": {
+          "errors": [],
+          "expected_samples": 1,
+          "observed_samples": 1,
+          "trailing_final_audit": 0,
+          "valid": true
+        },
+        "partitions": [
+          [
+            0,
+            0,
+            14368408
+          ],
+          [
+            1,
+            14368408,
+            23947347
+          ]
+        ],
+        "purpose": "transient candidate-add correctness only; timings are not evidence",
+        "role_contract": {
+          "errors": [],
+          "expected_samples": 1,
+          "l2_capacity_present": true,
+          "l2_capacity_rows": [
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            },
+            {
+              "allocated_records": 268435455,
+              "buckets": 8,
+              "budget": 2147483647,
+              "counter_bits": 32,
+              "per_bucket": 33553920,
+              "record_bytes": 8
+            }
+          ],
+          "l2_final_present": true,
+          "l2_final_required": true,
+          "observed_samples": 1,
+          "samples": [
+            {
+              "l2_final": [
+                {
+                  "buckets": 8,
+                  "completed": 10438245,
+                  "counter_bits": 32,
+                  "gpu": 0,
+                  "guarded_writes": 10438245,
+                  "max_bucket_writes": 1634246,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 10438245,
+                  "total_capacity": 268431360,
+                  "writes": 10438245
+                },
+                {
+                  "buckets": 8,
+                  "completed": 8571839,
+                  "counter_bits": 32,
+                  "gpu": 1,
+                  "guarded_writes": 8571839,
+                  "max_bucket_writes": 1202250,
+                  "no_wrap": 1,
+                  "overflow_detected": 0,
+                  "overflow_guard": 1,
+                  "per_bucket_capacity": 33553920,
+                  "reads": 8571839,
+                  "total_capacity": 268431360,
+                  "writes": 8571839
+                }
+              ],
+              "l3_config": [
+                {
+                  "delta": 400000,
+                  "gpu": 0,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                },
+                {
+                  "delta": 400000,
+                  "gpu": 1,
+                  "idle_backoff": 0,
+                  "queue_type": 19,
+                  "rx_express": 0,
+                  "rx_express_batch": 32,
+                  "rx_express_enabled": 0,
+                  "rx_express_slots": 64,
+                  "rx_l2_pull": 0,
+                  "rx_l2_pull_claim": 0,
+                  "rx_l2_pull_enabled": 0,
+                  "rx_priority_bootstrap": 0,
+                  "term_wait_ack": 1,
+                  "window_max": 25000,
+                  "window_min": 25000,
+                  "window_mode": 2,
+                  "work_blocks": 107,
+                  "worker_recovery": 1
+                }
+              ],
+              "worker_ack": [
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 0,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                },
+                {
+                  "active_slots": 1712,
+                  "capacity": 1712,
+                  "gpu": 1,
+                  "warps_per_block": 16,
+                  "work_blocks": 107
+                }
+              ]
+            }
+          ],
+          "valid": true
+        },
+        "valid": true
+      },
+      "errors": [],
+      "finished_utc": "2026-09-23T15:29:46.099260+00:00",
+      "gpu_processes_after": "",
+      "gpu_processes_before": "",
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "host_elapsed_seconds_diagnostic_only": 6.746531423006672,
+      "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/usa_additional_2_dual.log",
+      "log_sha256": "222d2a1bd33e02424471ef65c8df83415a92964a2e55065d175376051ff0e4f9",
+      "oracle": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/tmp/l3_30h_20260923/formal_oracles/USA/source_old15964897_new6146689.i32",
+      "oracle_sha256": "84664767003586c247a6657450796b0ee2ffbfde8ba84445f70ba05b9c008294",
+      "rc": 0,
+      "requested_gpu_count": 2,
+      "role": "dual",
+      "source": 6146689,
+      "spec": "usa_additional_2",
+      "timed_out": false,
+      "valid": true
+    }
+  ],
+  "scope": "exact final clean pair, exact five frozen graph/oracle/source queries, ordinary L1SLF_L2DQ/default-BULK large/small expansion; not arbitrary inputs or disabled owner-commit/ghost/tile-loan paths",
+  "valid": true
+}

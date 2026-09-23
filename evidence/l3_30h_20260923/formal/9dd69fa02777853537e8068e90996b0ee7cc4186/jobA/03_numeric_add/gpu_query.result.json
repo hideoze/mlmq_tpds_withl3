@@ -1,0 +1,15 @@
+{
+  "command": [
+    "nvidia-smi",
+    "--query-gpu=index,uuid,name,compute_cap",
+    "--format=csv,noheader,nounits"
+  ],
+  "command_record": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/gpu_query.command.json",
+  "command_record_sha256": "5693fde8d255083ccacad016ae49b8f8a90d640d8927a819cd79799d50b936d6",
+  "finished_utc": "2026-09-23T15:26:00.689498+00:00",
+  "host_elapsed_seconds_diagnostic_only": 0.027808405982796103,
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/03_numeric_add/gpu_query.log",
+  "log_sha256": "6c6903b044c437378176776ab5f01fa40510182b4d4102771a1359aa411dda7a",
+  "rc": 0,
+  "timed_out": false
+}

@@ -1,0 +1,17 @@
+{
+  "compute_apps_after": [],
+  "visible_gpus": [
+    {
+      "compute_capability": "8.0",
+      "index": "0",
+      "name": "NVIDIA A100 80GB PCIe",
+      "uuid": "GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3"
+    },
+    {
+      "compute_capability": "8.0",
+      "index": "1",
+      "name": "NVIDIA A100 80GB PCIe",
+      "uuid": "GPU-5a40464a-79b5-7559-27c4-49b0a63b164a"
+    }
+  ]
+}

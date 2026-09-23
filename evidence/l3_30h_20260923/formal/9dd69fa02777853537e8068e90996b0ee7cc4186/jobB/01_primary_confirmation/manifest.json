@@ -1,0 +1,622 @@
+{
+  "all_processes_valid": true,
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+    "--sampling",
+    "formal",
+    "--input-contract",
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_30h_20260923/final/formal_input_contract.json",
+    "--graph",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+    "--oracle",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+    "--source",
+    "11973673",
+    "--delta",
+    "400000",
+    "--cut-percent",
+    "60",
+    "--blocks",
+    "107",
+    "--warmups",
+    "1",
+    "--repeats",
+    "5",
+    "--rounds",
+    "2",
+    "--timeout",
+    "400",
+    "--out",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation",
+    "--queue",
+    "L1SLF_L2DQ",
+    "--final-audit",
+    "failure",
+    "--expected-window-mode",
+    "2",
+    "--expected-window-min",
+    "25000",
+    "--expected-window-max",
+    "25000",
+    "--expected-idle-backoff",
+    "0"
+  ],
+  "completed_utc": "2026-09-23T15:48:03.240451+00:00",
+  "configuration": {
+    "blocks": 107,
+    "blocks_scope": "same requested value; independently logged by T1 and T2",
+    "cut_percent": 60,
+    "delta": 400000,
+    "expected_window": {
+      "idle_backoff": 0,
+      "max_cycles": 25000,
+      "min_cycles": 25000,
+      "mode": 2
+    },
+    "final_audit": "failure",
+    "formal_repeats_per_process": 5,
+    "gpu_contract": {
+      "dual_l3": 2,
+      "fallback_allowed": false,
+      "single_no_l3": 1
+    },
+    "l2_geometry": {
+      "allocated_records": 268435455,
+      "batch_size": 8,
+      "bucket_max": 4,
+      "buckets": 8,
+      "budget_bytes": 2147483647,
+      "counter_bits": 32,
+      "per_bucket_capacity": 33553920,
+      "record_bytes": 8,
+      "total_capacity": 268431360
+    },
+    "queue": "L1SLF_L2DQ",
+    "rounds": 2,
+    "sampling": "formal",
+    "source": 11973673,
+    "target_speedup": 1.2,
+    "timeout_seconds": 400,
+    "timing_formula": "S = median(all T1 solve_ms) / median(all T2 solve_ms)",
+    "warmups_per_process": 1
+  },
+  "created_utc": "2026-09-23T15:47:28.044030+00:00",
+  "formal_data_integrity_after_sampling": {
+    "graph": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "size": 725057080
+    },
+    "oracle": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "size": 95789388
+    }
+  },
+  "formal_data_integrity_before_sampling": {
+    "graph": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "size": 725057080
+    },
+    "oracle": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "size": 95789388
+    }
+  },
+  "formal_input_contract": {
+    "contract": {
+      "blocks": 107,
+      "cut_percent": 60,
+      "delta": 400000,
+      "edges": 66684784,
+      "final_audit": "failure",
+      "graph_path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "graph_sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "idle_backoff": 0,
+      "l2_allocated_records": 268435455,
+      "l2_batch_size": 8,
+      "l2_bucket_max": 4,
+      "l2_buckets": 8,
+      "l2_budget_bytes": 2147483647,
+      "l2_counter_bits": 32,
+      "l2_per_bucket_capacity": 33553920,
+      "l2_record_bytes": 8,
+      "l2_total_capacity": 268431360,
+      "oracle_path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "queue": "L1SLF_L2DQ",
+      "repeats_per_process": 5,
+      "rounds": 2,
+      "schema": 1,
+      "source": 11973673,
+      "vertices": 23947347,
+      "warmups_per_process": 1,
+      "window_max": 25000,
+      "window_min": 25000,
+      "window_mode": 2
+    },
+    "head_path": "evidence/l3_30h_20260923/final/formal_input_contract.json",
+    "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_30h_20260923/final/formal_input_contract.json",
+    "sha256": "b7b73fbffae317a6784b05286bfb7056ebc38b5a6b2a7cf32a33d0f8d4b13905"
+  },
+  "formal_integrity_after_sampling": {
+    "git": {
+      "head": {
+        "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+        "rc": 0
+      },
+      "status": {
+        "output": "",
+        "rc": 0
+      }
+    },
+    "sha256": {
+      "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dual_build/command.json": "006b95d73dd2bf718f30fcf6381cb395caf84c4283eabae8933fd30d8efedea0",
+      "dual_build/hashes.json": "259e3c5a31c567a0af715e4c79e25002be376df6f53f891a294b88ae921ab004",
+      "dual_build/mlmq": "24ef721ade109a31641d1ac1fc198ad99ebfa7f54c87c08db82034db270dd304",
+      "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+      "dual_build/status.json": "bc44c0747ead8479df93a83674269d5774c10bf6976b99f14f5c504bf3b3276d",
+      "dual_build/version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87",
+      "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_build/command.json": "dbd3ff6acbd210b49388e14e0fb55c48be3cd984d1bf3612343330dfc9099ba5",
+      "single_build/hashes.json": "55f5a6ab8225149f19201aa7312cf50d3799dd390d7dff76b932c89f7a8374d2",
+      "single_build/mlmq": "28f78646f3610f00f394e2481aa831c1c044c1f38cbc8f7aaf921b4f81279b78",
+      "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "single_build/source.tgz": "2ccb51fa11b7747bb967446c340ea5d27c89801df6b6d946fb773da9e834412d",
+      "single_build/status.json": "b638fa98b5396ff19c581ccb59e7b9aa9fdb307f081f0ec58168db46222dc422",
+      "single_build/version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87",
+      "status.json": "5e5598db5c045c125340415cb1eef8264a4ae67a8b9b8df77b858a8cc78113bd",
+      "version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87"
+    }
+  },
+  "formal_integrity_before_sampling": {
+    "git": {
+      "head": {
+        "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+        "rc": 0
+      },
+      "status": {
+        "output": "",
+        "rc": 0
+      }
+    },
+    "sha256": {
+      "dual_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "dual_build/command.json": "006b95d73dd2bf718f30fcf6381cb395caf84c4283eabae8933fd30d8efedea0",
+      "dual_build/hashes.json": "259e3c5a31c567a0af715e4c79e25002be376df6f53f891a294b88ae921ab004",
+      "dual_build/mlmq": "24ef721ade109a31641d1ac1fc198ad99ebfa7f54c87c08db82034db270dd304",
+      "dual_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "dual_build/source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+      "dual_build/status.json": "bc44c0747ead8479df93a83674269d5774c10bf6976b99f14f5c504bf3b3276d",
+      "dual_build/version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87",
+      "single_build/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "single_build/command.json": "dbd3ff6acbd210b49388e14e0fb55c48be3cd984d1bf3612343330dfc9099ba5",
+      "single_build/hashes.json": "55f5a6ab8225149f19201aa7312cf50d3799dd390d7dff76b932c89f7a8374d2",
+      "single_build/mlmq": "28f78646f3610f00f394e2481aa831c1c044c1f38cbc8f7aaf921b4f81279b78",
+      "single_build/provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+      "single_build/source.tgz": "2ccb51fa11b7747bb967446c340ea5d27c89801df6b6d946fb773da9e834412d",
+      "single_build/status.json": "b638fa98b5396ff19c581ccb59e7b9aa9fdb307f081f0ec58168db46222dc422",
+      "single_build/version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87",
+      "status.json": "5e5598db5c045c125340415cb1eef8264a4ae67a8b9b8df77b858a8cc78113bd",
+      "version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87"
+    }
+  },
+  "formal_integrity_error": null,
+  "formal_integrity_valid": true,
+  "formal_pair_build": {
+    "compiler": {
+      "path": "/usr/bin/nvcc",
+      "sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433"
+    },
+    "components": {
+      "dual": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build/dual_build",
+        "role": "dual_l3_paper",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "006b95d73dd2bf718f30fcf6381cb395caf84c4283eabae8933fd30d8efedea0",
+          "mlmq": "24ef721ade109a31641d1ac1fc198ad99ebfa7f54c87c08db82034db270dd304",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+          "status.json": "bc44c0747ead8479df93a83674269d5774c10bf6976b99f14f5c504bf3b3276d",
+          "version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87"
+        }
+      },
+      "single": {
+        "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build/single_build",
+        "role": "single_no_l3",
+        "verified_sha256": {
+          "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "command.json": "dbd3ff6acbd210b49388e14e0fb55c48be3cd984d1bf3612343330dfc9099ba5",
+          "mlmq": "28f78646f3610f00f394e2481aa831c1c044c1f38cbc8f7aaf921b4f81279b78",
+          "provenance.json": "7b77a312c57d9e2175ad63ae34560615a28390e90f60772a7063fa1f5b943079",
+          "source.tgz": "2ccb51fa11b7747bb967446c340ea5d27c89801df6b6d946fb773da9e834412d",
+          "status.json": "b638fa98b5396ff19c581ccb59e7b9aa9fdb307f081f0ec58168db46222dc422",
+          "version.json": "0dea53b7fd9fc0ec45840a6dd2e58b442444d45b5726af382e6fd4862886ce87"
+        }
+      }
+    },
+    "directory": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build",
+    "source_binding": {
+      "dual": {
+        "archive_sha256": "9857392aead4cd1d3c247961db899c22822e8f6429162f50bab3cf6d0881e48b",
+        "entries": 87
+      },
+      "single": {
+        "archive_sha256": "2ccb51fa11b7747bb967446c340ea5d27c89801df6b6d946fb773da9e834412d",
+        "entries": 35
+      }
+    },
+    "status": {
+      "dual_rc": 0,
+      "rc": 0,
+      "single_rc": 0,
+      "state": "complete",
+      "updated_utc": "2026-09-23T15:47:24.093371+00:00"
+    },
+    "version": {
+      "blocked_build_environment_present": [],
+      "blocked_build_environment_variables": [
+        "NVCC_PREPEND_FLAGS",
+        "NVCC_APPEND_FLAGS",
+        "CPATH",
+        "C_INCLUDE_PATH",
+        "CPLUS_INCLUDE_PATH",
+        "OBJC_INCLUDE_PATH",
+        "LIBRARY_PATH",
+        "LD_PRELOAD",
+        "LD_LIBRARY_PATH",
+        "CUDAFLAGS",
+        "CFLAGS",
+        "CXXFLAGS",
+        "CPPFLAGS",
+        "LDFLAGS",
+        "LIBS",
+        "COMPILER_PATH",
+        "GCC_EXEC_PREFIX",
+        "CUDA_HOME",
+        "CUDA_PATH",
+        "CUDAHOSTCXX",
+        "NVCC_CCBIN"
+      ],
+      "boost_include_dir": "/mnt/a100/data/wyh/boost_1_87_0",
+      "branch": "l3-30h-performance-20260923",
+      "build_environment": {
+        "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "NVCC": "/usr/bin/nvcc",
+        "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+        "TMPDIR": "/tmp"
+      },
+      "created_utc": "2026-09-23T15:44:07.648645+00:00",
+      "describe": "9dd69fa",
+      "dual_builder": "scripts/multigpu/build_l3_paper_config.sh",
+      "dual_builder_sha256": "8a91ac0f84fa46b9916b633d70bec42ba5faaf9ccfd2823015a4b12759779b39",
+      "dual_source_post_build_diff": "dual_source_post_build_diff.log",
+      "dual_source_post_build_match": true,
+      "git_status_porcelain": [],
+      "git_status_porcelain_after_build": [],
+      "head": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "head_after_build": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "nvcc": "/usr/bin/nvcc",
+      "nvcc_resolved": "/usr/bin/nvcc",
+      "nvcc_sha256": "161d3b102575c96201a515d1b64259d4eab039f95d310604131eb42293a69433",
+      "pair_builder": "scripts/multigpu/build_l3_30h_pair.sh",
+      "pair_builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+      "repository_root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+      "single_adapter": "scripts/multigpu/prepare_l3_30h_single.py",
+      "single_adapter_sha256": "b8cec3f2a53b717926a5c5139937e654ad6d2ed1a389292be177731cd8df0641"
+    }
+  },
+  "formal_pair_build_record": {
+    "builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+    "cleared_environment_variables": [
+      "LD_LIBRARY_PATH"
+    ],
+    "command": [
+      "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/build_l3_30h_pair.sh",
+      "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build"
+    ],
+    "environment": {
+      "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "NVCC": "/usr/bin/nvcc",
+      "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+      "TMPDIR": "/tmp"
+    },
+    "finished_utc": "2026-09-23T15:47:24.164815+00:00",
+    "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/formal_pair_build_driver.log",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rc": 0,
+    "started_utc": "2026-09-23T15:44:06.596954+00:00",
+    "timed_out": false,
+    "timeout_seconds": 3600
+  },
+  "git": {
+    "head": {
+      "output": "9dd69fa02777853537e8068e90996b0ee7cc4186",
+      "rc": 0
+    },
+    "status": {
+      "output": "",
+      "rc": 0
+    }
+  },
+  "host": "ada-A100",
+  "inputs": {
+    "dual_binary": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build/dual_build/mlmq",
+      "sha256": "24ef721ade109a31641d1ac1fc198ad99ebfa7f54c87c08db82034db270dd304"
+    },
+    "graph": {
+      "header": {
+        "edge_size": 4,
+        "edges": 66684784,
+        "version": 1,
+        "vertices": 23947347
+      },
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/augmented.gr",
+      "sha256": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb"
+    },
+    "oracle": {
+      "bytes": 95789388,
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+    },
+    "runner": {
+      "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_30h.py",
+      "sha256": "0641ec5b38b507a10107235faf423f38fb7e9492f05840f32e64517c9ea4a52d"
+    },
+    "single_binary": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/pair_build/single_build/mlmq",
+      "sha256": "28f78646f3610f00f394e2481aa831c1c044c1f38cbc8f7aaf921b4f81279b78"
+    }
+  },
+  "measurement_valid": true,
+  "numeric_target_met": false,
+  "preflight": {
+    "allocation": {
+      "CUDA_VISIBLE_DEVICES": {
+        "count": 2,
+        "value": "0,1"
+      },
+      "SLURM_GPUS_ON_NODE": {
+        "count": 2,
+        "value": "2"
+      },
+      "SLURM_JOB_PARTITION": "a100",
+      "SLURM_STEP_GPUS": {
+        "count": 2,
+        "value": "0,1"
+      }
+    },
+    "compute_apps_before": [],
+    "formal_a100_cc80_required": true,
+    "nvidia_smi": {
+      "path": "/usr/bin/nvidia-smi",
+      "sha256": "10ba0a915bceeeefdaa23629581391af6ab16f472e2101cf5e2d6805d4a63ea8"
+    },
+    "snapshot_bytes": 2146,
+    "topology_bytes": 644,
+    "visible_gpu_count": 2,
+    "visible_gpus": [
+      {
+        "compute_capability": "8.0",
+        "index": "0",
+        "name": "NVIDIA A100 80GB PCIe",
+        "uuid": "GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3"
+      },
+      {
+        "compute_capability": "8.0",
+        "index": "1",
+        "name": "NVIDIA A100 80GB PCIe",
+        "uuid": "GPU-5a40464a-79b5-7559-27c4-49b0a63b164a"
+      }
+    ]
+  },
+  "process_count": 4,
+  "runtime_environment": {
+    "base_whitelist": [
+      "CUDA_VISIBLE_DEVICES",
+      "LANG",
+      "LC_ALL",
+      "LC_CTYPE",
+      "PATH",
+      "SLURM_CLUSTER_NAME",
+      "SLURM_CONF",
+      "SLURM_CPUS_ON_NODE",
+      "SLURM_CPUS_PER_TASK",
+      "SLURM_CPU_BIND",
+      "SLURM_CPU_BIND_LIST",
+      "SLURM_CPU_BIND_TYPE",
+      "SLURM_CPU_BIND_VERBOSE",
+      "SLURM_DISTRIBUTION",
+      "SLURM_GPUS_ON_NODE",
+      "SLURM_GTIDS",
+      "SLURM_JOBID",
+      "SLURM_JOB_CPUS_PER_NODE",
+      "SLURM_JOB_END_TIME",
+      "SLURM_JOB_GID",
+      "SLURM_JOB_GROUP",
+      "SLURM_JOB_ID",
+      "SLURM_JOB_NAME",
+      "SLURM_JOB_NODELIST",
+      "SLURM_JOB_NUM_NODES",
+      "SLURM_JOB_PARTITION",
+      "SLURM_JOB_START_TIME",
+      "SLURM_JOB_UID",
+      "SLURM_JOB_USER",
+      "SLURM_LAUNCH_NODE_IPADDR",
+      "SLURM_LOCALID",
+      "SLURM_MEM_PER_NODE",
+      "SLURM_NNODES",
+      "SLURM_NODEID",
+      "SLURM_NODELIST",
+      "SLURM_NPROCS",
+      "SLURM_NTASKS",
+      "SLURM_PRIO_PROCESS",
+      "SLURM_PROCID",
+      "SLURM_SRUN_COMM_HOST",
+      "SLURM_SRUN_COMM_PORT",
+      "SLURM_STEPID",
+      "SLURM_STEP_GPUS",
+      "SLURM_STEP_ID",
+      "SLURM_STEP_LAUNCHER_PORT",
+      "SLURM_STEP_NODELIST",
+      "SLURM_STEP_NUM_NODES",
+      "SLURM_STEP_NUM_TASKS",
+      "SLURM_STEP_TASKS_PER_NODE",
+      "SLURM_SUBMIT_DIR",
+      "SLURM_SUBMIT_HOST",
+      "SLURM_TASKS_PER_NODE",
+      "SLURM_TASK_PID",
+      "SLURM_TOPOLOGY_ADDR",
+      "SLURM_TOPOLOGY_ADDR_PATTERN",
+      "SLURM_TRES_PER_TASK",
+      "SLURM_UMASK",
+      "TMPDIR"
+    ],
+    "cleared_environment_variables": [
+      "BROWSER",
+      "CODEX_CI",
+      "CODEX_MANAGED_BY_NPM",
+      "CODEX_MANAGED_PACKAGE_ROOT",
+      "CODEX_PERMISSION_PROFILE",
+      "CODEX_SANDBOX_NETWORK_DISABLED",
+      "CODEX_SESSION_ID",
+      "CODEX_THREAD_ID",
+      "CODEX_VERSION",
+      "COLORTERM",
+      "DBUS_SESSION_BUS_ADDRESS",
+      "DEBUGINFOD_URLS",
+      "GH_PAGER",
+      "GIT_ASKPASS",
+      "GIT_PAGER",
+      "GPU_DEVICE_ORDINAL",
+      "HOME",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "HYDRA_BOOTSTRAP",
+      "HYDRA_LAUNCHER_EXTRA_ARGS",
+      "I_MPI_HYDRA_BOOTSTRAP",
+      "I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS",
+      "LD_LIBRARY_PATH",
+      "LESSCLOSE",
+      "LESSOPEN",
+      "LOGNAME",
+      "LS_COLORS",
+      "NO_COLOR",
+      "OLDPWD",
+      "OMPI_MCA_plm_slurm_args",
+      "PAGER",
+      "PRTE_MCA_plm_slurm_args",
+      "PWD",
+      "PYTHONDONTWRITEBYTECODE",
+      "ROCR_VISIBLE_DEVICES",
+      "SHELL",
+      "SHLVL",
+      "SLURMD_DEBUG",
+      "SLURMD_NODENAME",
+      "SRUN_DEBUG",
+      "SSH_CLIENT",
+      "SSH_CONNECTION",
+      "TERM",
+      "TERM_PROGRAM",
+      "TERM_PROGRAM_VERSION",
+      "USER",
+      "VSCODE_GIT_ASKPASS_EXTRA_ARGS",
+      "VSCODE_GIT_ASKPASS_MAIN",
+      "VSCODE_GIT_ASKPASS_NODE",
+      "VSCODE_GIT_IPC_HANDLE",
+      "VSCODE_IPC_HOOK_CLI",
+      "VSCODE_PYTHON_AUTOACTIVATE_GUARD",
+      "XDG_DATA_DIRS",
+      "XDG_RUNTIME_DIR",
+      "XDG_SESSION_CLASS",
+      "XDG_SESSION_ID",
+      "XDG_SESSION_TYPE",
+      "ZE_AFFINITY_MASK",
+      "_"
+    ],
+    "effective": {
+      "BENCH_DELTA": "400000",
+      "BENCH_QUEUE": "L1SLF_L2DQ",
+      "BENCH_REPEATS": "5",
+      "BENCH_SOURCE": "11973673",
+      "BENCH_WARMUPS": "1",
+      "CUDA_VISIBLE_DEVICES": "0,1",
+      "L3_SUPPLEMENT_ORACLE": "/mnt/709/data3/home/Dingzhong/src/mlmq_tpds_withl3/tmp/l3_no_sync_rerun_20260923/graphs/USA/oracle.i32",
+      "LANG": "C",
+      "LC_ALL": "C",
+      "LC_CTYPE": "C.UTF-8",
+      "MLMQ_BENCH": "1",
+      "MLMQ_CUT_PERCENT": "60",
+      "MLMQ_FINAL_AUDIT": "failure",
+      "MLMQ_WORK_BLOCKS": "107",
+      "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+      "SLURM_CLUSTER_NAME": "adacluster",
+      "SLURM_CONF": "/var/lib/slurm/slurmd/conf-cache/slurm.conf",
+      "SLURM_CPUS_ON_NODE": "12",
+      "SLURM_CPUS_PER_TASK": "12",
+      "SLURM_CPU_BIND": "quiet,mask_cpu:0xFFF",
+      "SLURM_CPU_BIND_LIST": "0xFFF",
+      "SLURM_CPU_BIND_TYPE": "mask_cpu:",
+      "SLURM_CPU_BIND_VERBOSE": "quiet",
+      "SLURM_DISTRIBUTION": "cyclic",
+      "SLURM_GPUS_ON_NODE": "2",
+      "SLURM_GTIDS": "0",
+      "SLURM_JOBID": "38305",
+      "SLURM_JOB_CPUS_PER_NODE": "12",
+      "SLURM_JOB_END_TIME": "1790181842",
+      "SLURM_JOB_GID": "100",
+      "SLURM_JOB_GROUP": "users",
+      "SLURM_JOB_ID": "38305",
+      "SLURM_JOB_NAME": "l3-30h-B",
+      "SLURM_JOB_NODELIST": "ada-A100",
+      "SLURM_JOB_NUM_NODES": "1",
+      "SLURM_JOB_PARTITION": "a100",
+      "SLURM_JOB_START_TIME": "1790178242",
+      "SLURM_JOB_UID": "1084",
+      "SLURM_JOB_USER": "Dingzhong",
+      "SLURM_LAUNCH_NODE_IPADDR": "10.0.0.1",
+      "SLURM_LOCALID": "0",
+      "SLURM_MEM_PER_NODE": "65536",
+      "SLURM_NNODES": "1",
+      "SLURM_NODEID": "0",
+      "SLURM_NODELIST": "ada-A100",
+      "SLURM_NPROCS": "1",
+      "SLURM_NTASKS": "1",
+      "SLURM_PRIO_PROCESS": "0",
+      "SLURM_PROCID": "0",
+      "SLURM_SRUN_COMM_HOST": "10.0.0.1",
+      "SLURM_SRUN_COMM_PORT": "60227",
+      "SLURM_STEPID": "0",
+      "SLURM_STEP_GPUS": "0,1",
+      "SLURM_STEP_ID": "0",
+      "SLURM_STEP_LAUNCHER_PORT": "60227",
+      "SLURM_STEP_NODELIST": "ada-A100",
+      "SLURM_STEP_NUM_NODES": "1",
+      "SLURM_STEP_NUM_TASKS": "1",
+      "SLURM_STEP_TASKS_PER_NODE": "1",
+      "SLURM_SUBMIT_DIR": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+      "SLURM_SUBMIT_HOST": "ada-709",
+      "SLURM_TASKS_PER_NODE": "1",
+      "SLURM_TASK_PID": "509885",
+      "SLURM_TOPOLOGY_ADDR": "ada-A100",
+      "SLURM_TOPOLOGY_ADDR_PATTERN": "node",
+      "SLURM_TRES_PER_TASK": "cpu:12",
+      "SLURM_UMASK": "0022",
+      "TMPDIR": "/tmp"
+    }
+  },
+  "slurm_job_id": "38305",
+  "status": "measurement_valid",
+  "summary": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobB/01_primary_confirmation/summary.json",
+  "target_met": false
+}

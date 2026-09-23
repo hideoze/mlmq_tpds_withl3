@@ -1,0 +1,268 @@
+{
+  "all_samples_file": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/cases/NY/G/samples.json",
+  "combined": {
+    "S_query_wall_T1_over_T2": 0.883941062562385,
+    "S_solve_T1_over_T2": 0.8939515375242131,
+    "T1": {
+      "expected_formal_samples": 10,
+      "formal_sample_count": 10,
+      "query_wall": {
+        "count": 10,
+        "iqr_ms": 0.4620379999999997,
+        "mad_ms": 0.22834799999999955,
+        "median_ms": 8.930982499999999,
+        "q1_ms": 8.88105025,
+        "q3_ms": 9.34308825,
+        "samples_ms": [
+          8.906254,
+          8.95457,
+          9.217155,
+          8.658584,
+          9.385066,
+          8.907395,
+          13.128045,
+          12.841095,
+          8.746685,
+          8.872649
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 10,
+        "iqr_ms": 0.5352172499999996,
+        "mad_ms": 0.24347299999999983,
+        "median_ms": 6.482035,
+        "q1_ms": 6.35798225,
+        "q3_ms": 6.8931995,
+        "samples_ms": [
+          6.456988,
+          6.507082,
+          6.768599,
+          6.209614,
+          6.934733,
+          6.341062,
+          10.646114,
+          10.361839,
+          6.26751,
+          6.408743
+        ]
+      },
+      "valid": true
+    },
+    "T2": {
+      "expected_formal_samples": 10,
+      "formal_sample_count": 10,
+      "query_wall": {
+        "count": 10,
+        "iqr_ms": 0.47974125,
+        "mad_ms": 0.2604985000000015,
+        "median_ms": 10.103594999999999,
+        "q1_ms": 9.8313825,
+        "q3_ms": 10.31112375,
+        "samples_ms": [
+          10.259025,
+          10.32849,
+          10.769932,
+          10.042843,
+          9.772737,
+          10.399697,
+          10.164347,
+          9.697936,
+          9.780069,
+          9.985323
+        ]
+      },
+      "reason": "ok",
+      "solve": {
+        "count": 10,
+        "iqr_ms": 0.256335,
+        "mad_ms": 0.13521249999999974,
+        "median_ms": 7.2509915,
+        "q1_ms": 7.097062,
+        "q3_ms": 7.353397,
+        "samples_ms": [
+          7.297067,
+          7.204916,
+          7.997951,
+          7.091795,
+          7.097158,
+          7.361562,
+          7.367583,
+          7.09703,
+          7.094967,
+          7.328902
+        ]
+      },
+      "valid": true
+    },
+    "target": 1.2,
+    "target_met": false,
+    "valid": true
+  },
+  "formal_integrity_error": null,
+  "formal_integrity_valid": true,
+  "formula": "S = median(T1) / median(T2)",
+  "measurement_valid": true,
+  "numeric_target_met": false,
+  "records_file": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/05_eight_graph/cases/NY/G/records.json",
+  "rounds": [
+    {
+      "S_query_wall_T1_over_T2": 0.8728480532994121,
+      "S_solve_T1_over_T2": 0.9031447417291194,
+      "T1": {
+        "expected_formal_samples": 5,
+        "formal_sample_count": 5,
+        "query_wall": {
+          "count": 5,
+          "iqr_ms": 0.31090099999999943,
+          "mad_ms": 0.2625849999999996,
+          "median_ms": 8.95457,
+          "q1_ms": 8.906254,
+          "q3_ms": 9.217155,
+          "samples_ms": [
+            8.906254,
+            8.95457,
+            9.217155,
+            8.658584,
+            9.385066
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 5,
+          "iqr_ms": 0.3116110000000001,
+          "mad_ms": 0.26151700000000044,
+          "median_ms": 6.507082,
+          "q1_ms": 6.456988,
+          "q3_ms": 6.768599,
+          "samples_ms": [
+            6.456988,
+            6.507082,
+            6.768599,
+            6.209614,
+            6.934733
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 5,
+        "formal_sample_count": 5,
+        "query_wall": {
+          "count": 5,
+          "iqr_ms": 0.2856470000000009,
+          "mad_ms": 0.21618199999999987,
+          "median_ms": 10.259025,
+          "q1_ms": 10.042843,
+          "q3_ms": 10.32849,
+          "samples_ms": [
+            10.259025,
+            10.32849,
+            10.769932,
+            10.042843,
+            9.772737
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 5,
+          "iqr_ms": 0.1999089999999999,
+          "mad_ms": 0.10775799999999958,
+          "median_ms": 7.204916,
+          "q1_ms": 7.097158,
+          "q3_ms": 7.297067,
+          "samples_ms": [
+            7.297067,
+            7.204916,
+            7.997951,
+            7.091795,
+            7.097158
+          ]
+        },
+        "valid": true
+      },
+      "round": 0,
+      "valid": true
+    },
+    {
+      "S_query_wall_T1_over_T2": 0.8920487599650007,
+      "S_solve_T1_over_T2": 0.8744479050204246,
+      "T1": {
+        "expected_formal_samples": 5,
+        "formal_sample_count": 5,
+        "query_wall": {
+          "count": 5,
+          "iqr_ms": 3.968446,
+          "mad_ms": 0.1607099999999999,
+          "median_ms": 8.907395,
+          "q1_ms": 8.872649,
+          "q3_ms": 12.841095,
+          "samples_ms": [
+            8.907395,
+            13.128045,
+            12.841095,
+            8.746685,
+            8.872649
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 5,
+          "iqr_ms": 4.020777,
+          "mad_ms": 0.1412330000000006,
+          "median_ms": 6.408743,
+          "q1_ms": 6.341062,
+          "q3_ms": 10.361839,
+          "samples_ms": [
+            6.341062,
+            10.646114,
+            10.361839,
+            6.26751,
+            6.408743
+          ]
+        },
+        "valid": true
+      },
+      "T2": {
+        "expected_formal_samples": 5,
+        "formal_sample_count": 5,
+        "query_wall": {
+          "count": 5,
+          "iqr_ms": 0.3842780000000001,
+          "mad_ms": 0.20525400000000005,
+          "median_ms": 9.985323,
+          "q1_ms": 9.780069,
+          "q3_ms": 10.164347,
+          "samples_ms": [
+            10.399697,
+            10.164347,
+            9.697936,
+            9.780069,
+            9.985323
+          ]
+        },
+        "reason": "ok",
+        "solve": {
+          "count": 5,
+          "iqr_ms": 0.264532,
+          "mad_ms": 0.03868099999999952,
+          "median_ms": 7.328902,
+          "q1_ms": 7.09703,
+          "q3_ms": 7.361562,
+          "samples_ms": [
+            7.361562,
+            7.367583,
+            7.09703,
+            7.094967,
+            7.328902
+          ]
+        },
+        "valid": true
+      },
+      "round": 1,
+      "valid": true
+    }
+  ],
+  "sampling": "exploratory",
+  "target_met": false
+}

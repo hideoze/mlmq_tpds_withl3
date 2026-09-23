@@ -1,0 +1,25 @@
+{
+  "builder_sha256": "42cd5392fee2810349616f6978f3b5f210196f5e23a870fc172f9e660baccefb",
+  "cleared_environment_variables": [
+    "LD_LIBRARY_PATH"
+  ],
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/build_l3_30h_pair.sh",
+    "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/pair_build"
+  ],
+  "environment": {
+    "BOOST_INCLUDE_DIR": "/mnt/a100/data/wyh/boost_1_87_0",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "NVCC": "/usr/bin/nvcc",
+    "PATH": "/usr/local/cuda/bin:/usr/bin:/bin",
+    "TMPDIR": "/tmp"
+  },
+  "finished_utc": "2026-09-23T15:32:53.587461+00:00",
+  "log": "/mnt/709/data3/home/Dingzhong/l3_30h_formal/9dd69fa02777853537e8068e90996b0ee7cc4186/jobA/04_usa_sources/formal_pair_build_driver.log",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rc": 0,
+  "started_utc": "2026-09-23T15:29:51.567703+00:00",
+  "timed_out": false,
+  "timeout_seconds": 3600
+}
