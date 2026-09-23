@@ -290,7 +290,6 @@ final_checks_command=(
     --pair-build "$primary_pair"
     --graph-manifest "$matrix_manifest"
     --out "$final_checks_out"
-    --nvcc /usr/local/cuda/bin/nvcc
     --cxx /usr/bin/g++
     --boost-include /a100-data/wyh/boost_1_87_0
     --blocks 107
