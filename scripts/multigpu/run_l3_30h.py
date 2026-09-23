@@ -101,8 +101,8 @@ def read_regular_archive_tree(archive):
     """Read an archive as an exact regular-file/directory tree.
 
     Links, devices, FIFOs, duplicate normalized names and traversal paths are
-    rejected.  The returned mapping is stable enough to compare a build source
-    archive byte-for-byte (for files) and mode-for-mode with a clean HEAD tree.
+    rejected.  The returned mapping retains exact archive permission bits for
+    safe extraction and byte-for-byte post-extraction validation.
     """
     archive = Path(archive)
     tree = {}
@@ -156,6 +156,24 @@ def read_regular_archive_tree(archive):
                     f"{parent_name}")
             parent = parent.parent
     return tree
+
+
+def git_semantic_source_tree(tree):
+    """Normalize a source manifest to permissions representable by Git.
+
+    Git records the executable bit for regular files, but not the remaining
+    permission bits, and it does not record directory permission bits.  Keep
+    every path, type, size and digest while reducing permissions to precisely
+    that source-control semantic boundary.
+    """
+    normalized = {}
+    for name, row in tree.items():
+        normalized_row = dict(row)
+        mode = normalized_row.pop("mode")
+        if row["type"] == "file":
+            normalized_row["git_executable"] = bool(mode & 0o111)
+        normalized[name] = normalized_row
+    return normalized
 
 
 def safe_extract_regular_archive(archive, destination):
@@ -289,28 +307,34 @@ def materialize_expected_single_tree(repo_root, destination):
 def validate_pair_source_trees(pair, repo_root):
     expected_dual = expected_head_tree(repo_root, ("SSSP", "core"))
     actual_dual = read_regular_archive_tree(pair / "dual_build/source.tgz")
-    if actual_dual != expected_dual:
+    expected_dual_git = git_semantic_source_tree(expected_dual)
+    actual_dual_git = git_semantic_source_tree(actual_dual)
+    if actual_dual_git != expected_dual_git:
         missing = sorted(set(expected_dual) - set(actual_dual))[:8]
         extra = sorted(set(actual_dual) - set(expected_dual))[:8]
         changed = sorted(
             name for name in set(actual_dual) & set(expected_dual)
-            if actual_dual[name] != expected_dual[name])[:8]
+            if actual_dual_git[name] != expected_dual_git[name])[:8]
         raise SystemExit(
             "formal dual source archive differs from clean HEAD "
-            f"SSSP/core: missing={missing} extra={extra} changed={changed}")
+            "SSSP/core under Git path/type/content/executable semantics: "
+            f"missing={missing} extra={extra} changed={changed}")
     with tempfile.TemporaryDirectory(prefix="l3-single-expected-") as temporary:
         expected_root = Path(temporary) / "source"
         expected_single = materialize_expected_single_tree(repo_root, expected_root)
     actual_single = read_regular_archive_tree(pair / "single_build/source.tgz")
-    if actual_single != expected_single:
+    expected_single_git = git_semantic_source_tree(expected_single)
+    actual_single_git = git_semantic_source_tree(actual_single)
+    if actual_single_git != expected_single_git:
         missing = sorted(set(expected_single) - set(actual_single))[:8]
         extra = sorted(set(actual_single) - set(expected_single))[:8]
         changed = sorted(
             name for name in set(actual_single) & set(expected_single)
-            if actual_single[name] != expected_single[name])[:8]
+            if actual_single_git[name] != expected_single_git[name])[:8]
         raise SystemExit(
             "formal single source archive differs from deterministic HEAD "
-            f"snapshot+core+adapter: missing={missing} extra={extra} changed={changed}")
+            "snapshot+core+adapter under Git path/type/content/executable "
+            f"semantics: missing={missing} extra={extra} changed={changed}")
     return {
         "dual": {"entries": len(actual_dual), "archive_sha256": sha256(
             pair / "dual_build/source.tgz")},

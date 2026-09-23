@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """CPU-only contract tests for the L3 30-hour paired runner."""
 
+import copy
 import json
 from pathlib import Path
 import subprocess
@@ -18,6 +19,18 @@ if str(SCRIPT_DIR) not in sys.path:
 
 import run_l3_30h as runner  # noqa: E402
 import run_l3_30h_final_checks as final_checks  # noqa: E402
+
+
+def _rewrite_archive_modes(archive, transform):
+    rewritten = archive.with_suffix(".mode-rewrite.tgz")
+    with tarfile.open(archive, "r:*") as source:
+        with tarfile.open(rewritten, "w:gz") as output:
+            for original in source.getmembers():
+                member = copy.copy(original)
+                member.mode = transform(member)
+                contents = source.extractfile(original) if original.isreg() else None
+                output.addfile(member, contents)
+    rewritten.replace(archive)
 
 
 def _integer_line(prefix, fields, values):
@@ -471,6 +484,30 @@ class FormalPairBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "differs from clean HEAD"):
             self.fixture.validate()
 
+    def test_non_git_permission_differences_are_accepted(self):
+        archive = self.fixture.root / "dual_build/source.tgz"
+        _rewrite_archive_modes(
+            archive,
+            lambda member: (0o700 if member.isdir() else
+                            (0o700 if member.mode & 0o111 else 0o600)),
+        )
+        self.fixture.rehash("dual")
+        result = self.fixture.validate()
+        self.assertEqual(result["status"]["state"], "complete")
+
+    def test_rehashed_executable_bit_change_is_rejected(self):
+        archive = self.fixture.root / "dual_build/source.tgz"
+
+        def change_makefile_mode(member):
+            if member.name.rstrip("/") == "SSSP/Makefile":
+                return member.mode | 0o100
+            return member.mode
+
+        _rewrite_archive_modes(archive, change_makefile_mode)
+        self.fixture.rehash("dual")
+        with self.assertRaisesRegex(SystemExit, "differs from clean HEAD"):
+            self.fixture.validate()
+
     def test_alternate_or_duplicate_define_syntax_is_rejected(self):
         for command in (
                 ["nvcc", "-D", "WORK_COUNT=false"],
@@ -482,6 +519,72 @@ class FormalPairBuildTests(unittest.TestCase):
 
 
 class SafeArchiveTests(unittest.TestCase):
+    def test_git_semantic_tree_ignores_untracked_permission_bits(self):
+        digest = "a" * 64
+        expected = {
+            "SSSP": {"type": "dir", "mode": 0o775},
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o664, "size": 7,
+                "sha256": digest,
+            },
+            "SSSP/tool.sh": {
+                "type": "file", "mode": 0o775, "size": 9,
+                "sha256": digest,
+            },
+        }
+        actual = {
+            "SSSP": {"type": "dir", "mode": 0o700},
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o600, "size": 7,
+                "sha256": digest,
+            },
+            "SSSP/tool.sh": {
+                "type": "file", "mode": 0o755, "size": 9,
+                "sha256": digest,
+            },
+        }
+        self.assertEqual(
+            runner.git_semantic_source_tree(actual),
+            runner.git_semantic_source_tree(expected),
+        )
+
+    def test_git_semantic_tree_rejects_executable_bit_change(self):
+        digest = "b" * 64
+        expected = {
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o664, "size": 7,
+                "sha256": digest,
+            },
+        }
+        actual = {
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o755, "size": 7,
+                "sha256": digest,
+            },
+        }
+        self.assertNotEqual(
+            runner.git_semantic_source_tree(actual),
+            runner.git_semantic_source_tree(expected),
+        )
+
+    def test_git_semantic_tree_keeps_content_identity_strict(self):
+        expected = {
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o664, "size": 7,
+                "sha256": "a" * 64,
+            },
+        }
+        actual = {
+            "SSSP/plain.cu": {
+                "type": "file", "mode": 0o600, "size": 7,
+                "sha256": "b" * 64,
+            },
+        }
+        self.assertNotEqual(
+            runner.git_semantic_source_tree(actual),
+            runner.git_semantic_source_tree(expected),
+        )
+
     def test_symlink_traversal_archive_is_rejected_before_extraction(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
