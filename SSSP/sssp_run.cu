@@ -2345,6 +2345,9 @@ int &node_in_num, QUEUE_TYPE mlmq, int qshm_size, int block_id, int warp_id, int
                     chain_snapshot=*((volatile VALUE_TYPE *)&node_data[src_v-v_begin]);
 #if (L3_CHAIN_PARTITION_DIAG == true)
                     atomicAdd(g_l3_chain_partition_counts,1ull);
+                    const unsigned visits=atomicAdd(g_l3_chain_segment_visits+first_edge,1u)+1u;
+                    atomicAdd(g_l3_chain_partition_counts+(visits==1u?5:6),1ull);
+                    atomicMax(g_l3_chain_partition_counts+7,(unsigned long long)visits);
 #endif
                 }
             }
@@ -10744,8 +10747,9 @@ int sssp_re_init(int gpu_id)
 
     cudaSetDevice(gpu_id);
 #if (L3_CHAIN_PARTITION_DIAG == true)
-    unsigned long long zero_chain_counts[5]={};
+    unsigned long long zero_chain_counts[8]={};
     g_benchmark.require(cudaMemcpyToSymbol(g_l3_chain_partition_counts,zero_chain_counts,sizeof(zero_chain_counts))==cudaSuccess,"chain counters reset");
+    l3_chain_partition_diag_reset(gpu_id);
 #endif
 #if (L3_REGION_DIAG == true)
     unsigned long long region_zero[4]={};
@@ -11454,9 +11458,10 @@ void kernel_adaptive(int gpu_id, int src, mlmq_setup setup)
         }
 #endif
 #if (L3_CHAIN_PARTITION_DIAG == true)
-        unsigned long long chain_counts[5]={};
+        unsigned long long chain_counts[8]={};
         g_benchmark.require(cudaMemcpyFromSymbol(chain_counts,g_l3_chain_partition_counts,sizeof(chain_counts))==cudaSuccess,"chain counters read");
-        printf("L3_CHAIN_PARTITION gpu=%d closures=%llu materialized=%llu tails=%llu rx_sources=%llu route_reads=%llu\n",gpu_id,chain_counts[0],chain_counts[1],chain_counts[2],chain_counts[3],chain_counts[4]);
+        g_benchmark.require(chain_counts[0]==chain_counts[5]+chain_counts[6],"chain closure accounting");
+        printf("L3_CHAIN_PARTITION gpu=%d closures=%llu materialized=%llu tails=%llu rx_sources=%llu route_reads=%llu unique_segments=%llu repeated_closures=%llu max_segment_visits=%llu\n",gpu_id,chain_counts[0],chain_counts[1],chain_counts[2],chain_counts[3],chain_counts[4],chain_counts[5],chain_counts[6],chain_counts[7]);
 #endif
 #if (L3_REGION_DIAG == true)
         unsigned long long region_counts[4]={};

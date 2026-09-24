@@ -34,6 +34,9 @@
 #ifndef L3_CHAIN_PARTITION_DIAG
 #define L3_CHAIN_PARTITION_DIAG false
 #endif
+#if (L3_CHAIN_PARTITION_DIAG == true && L3_CHAIN_PARTITION == false)
+#error "chain partition diagnostics require L3_CHAIN_PARTITION=true"
+#endif
 #if (L3_CHAIN_PARTITION == true)
 constexpr int L3_CHAIN_PARTITION_TAG = 1 << 30;
 #endif

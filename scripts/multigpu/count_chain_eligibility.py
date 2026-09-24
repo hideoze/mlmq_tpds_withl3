@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Count chain-shortcut eligibility on Galois binary .gr graphs.
+"""Legacy degree/in-degree screening on Galois binary .gr graphs.
 
-strict = degree-2 vertex, both neighbors same side of cut (current rule adds
-in-degree==2); loose = drop the in-degree requirement. Original edges are
-always retained, so shortcuts are additive and sound either way.
+This is a cheap half-cut heuristic retained for historical comparison.  Use
+``analyze_l3_chain_partitions.cpp`` for exact current-builder coverage at the
+frozen experimental cut; that tool also checks distinct reciprocal neighbors,
+segments, overflow and index bytes.
 """
 import struct, sys, json
 from pathlib import Path
@@ -15,10 +16,12 @@ def load(fn):
     version, sizeEdgeTy, numNodes, numEdges = struct.unpack_from('<QQQQ', data, 0)
     assert version == 1, version
     off = 32
-    row = struct.unpack_from(f'<{numNodes+1}Q', data, off)
-    off += 8 * numNodes  # row array has numNodes entries + trailing read
-    # Galois layout: outIdx has numNodes+1 entries; then dst uint32 array
-    off = 32 + 8 * (numNodes + 1)
+    # Galois v1 stores one cumulative row end per vertex, not an explicit
+    # leading zero and not numNodes+1 entries.  Materialize the conventional
+    # CSR leading zero for the degree calculations below.
+    row_ends = struct.unpack_from(f'<{numNodes}Q', data, off)
+    row = (0, *row_ends)
+    off = 32 + 8 * numNodes
     dst = struct.unpack_from(f'<{numEdges}I', data, off)
     return numNodes, numEdges, row, dst
 

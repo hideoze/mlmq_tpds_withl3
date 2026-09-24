@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "task": "bounded original-G runtime L3 chain partition validation",
+  "frozen_before_current_gpu_performance": true,
+  "primary_metric": "query_wall_ms including complete distance D2H materialization",
+  "secondary_metric": "solve_ms",
+  "target_same_graph_A_mlmq_over_C": 1.2,
+  "sampling": {
+    "rounds": 2,
+    "warmups_per_process": 1,
+    "formal_samples_per_process": 5,
+    "round_0_order": ["A_mlmq", "A_adds", "D_best", "B_control", "C_chain"],
+    "round_1_order": ["C_chain", "B_control", "D_best", "A_adds", "A_mlmq"]
+  },
+  "roles": {
+    "A_mlmq": "independent no-L3 one-GPU MLMQ on original G",
+    "A_adds": "frozen official one-GPU ADDS on original G",
+    "B_control": "two-GPU current data plane with term-only worker and runtime chain disabled",
+    "C_chain": "same compiler/runtime contract as B except runtime chain enabled",
+    "D_best": "current best two-GPU reference with the normal non-term-only worker path",
+    "C_diagnostic": "C with counters; correctness/diagnostics only and excluded from timing"
+  },
+  "inputs": {
+    "USA": {
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "graph_sha256": "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7",
+      "known_augmented_sha256_rejected": "85c273900a89422369a06f5524f784b58ed91ceef36addb4ae3710dff5a1d6eb",
+      "vertices": 23947347,
+      "edges": 57708624,
+      "source": 11973673,
+      "delta": 400000,
+      "cut_percent": 60,
+      "cut_vertex": 14368408,
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+    },
+    "COL": {
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "graph_sha256": "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02",
+      "known_augmented_sha256_rejected": "ef77be4ca0c903e918f1e2ac28c14d2d376c71b9df9118ac7c8afad5db759e19",
+      "vertices": 435666,
+      "edges": 1057066,
+      "source": 217833,
+      "delta": 200000,
+      "cut_percent": 55,
+      "cut_vertex": 239616,
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/oracle.i32",
+      "oracle_sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+    }
+  },
+  "preselection": {
+    "criterion": "exact current runtime-builder indexed-interior coverage at each frozen road cut, inspected before current speed runs",
+    "coverage": {
+      "NY": 0.066091410500,
+      "BAY": 0.092495408846,
+      "FLA": 0.103032018655,
+      "E": 0.139247428808,
+      "CAL": 0.144460986400,
+      "W": 0.165693830700,
+      "USA": 0.177243976128,
+      "COL": 0.191867164296
+    },
+    "second_graph": "COL",
+    "rgg_boundary": "considered as an optional later extension, but not substituted for the plan-required preselected second road graph"
+  },
+  "decision_rule": "Continue this route only if C lowers primary complete-query time versus matched B on both frozen graphs and shows credible progress toward A/C >= 1.20; otherwise retain evidence and stop the branch."
+}
