@@ -1,0 +1,140 @@
+{
+  "all_correct": true,
+  "allocation": {
+    "gpus": [
+      "0, GPU-14740a2b-c6f1-76c6-fd69-dc9d036f3ab3, NVIDIA A100 80GB PCIe, 8.0",
+      "1, GPU-5a40464a-79b5-7559-27c4-49b0a63b164a, NVIDIA A100 80GB PCIe, 8.0"
+    ],
+    "job_id": "38312"
+  },
+  "binaries": {
+    "A_adds": {
+      "path": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/adds_official_v4/adds",
+      "sha256": "511e88f56762914829a055aea0215a6c8e3c0d1dfc1c078f5f2247a559638ec2"
+    },
+    "A_mlmq": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/reference_pair/single_build/mlmq",
+      "sha256": "1631c04b840611f720fb92088052e2387f127535bfa881ee6bf10ce8a4565928"
+    },
+    "B_control": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_control/mlmq",
+      "sha256": "e4050c49eb46531893005807ee986065ed3caa2c64bd2bf83f9e17a818e403bf"
+    },
+    "C_chain": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain/mlmq",
+      "sha256": "4788dc9b4a0ec698e16fce1b43c09e4c1b0bb8112d217a5610ffb64d83019eb2"
+    },
+    "C_diagnostic": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+      "sha256": "71e184689afad842203bbf8b92177c0433bcd6bb33e9fcd1abbe33e540304072"
+    },
+    "D_best": {
+      "path": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/reference_pair/dual_build/mlmq",
+      "sha256": "ede76f79390077dcde6e30adc2c8721ccf7a1bc08b45a4f202ad17eba8fd9be3"
+    }
+  },
+  "build_dir": "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build",
+  "build_manifest_sha256": "acaca41382cb7b15e45b9eff2620342dad37944e139f02e5f2f6e989a8efeadf",
+  "completed_utc": "2026-09-24T02:35:44.171590+00:00",
+  "configuration": {
+    "B_and_C_term_only_worker": true,
+    "C_degree_gate": true,
+    "D_current_best_term_only_worker": false,
+    "blocks": 107,
+    "formal_samples_per_process": 5,
+    "primary_timing": "query_wall_ms including full distance D2H; solve_ms is secondary",
+    "queue": "L1SLF_L2DQ",
+    "round_1_reversed": true,
+    "rounds": 2,
+    "sampling": "formal",
+    "timed_diagnostics": false,
+    "warmups_per_process": 1,
+    "worker_threads": 512
+  },
+  "created_utc": "2026-09-24T02:33:28.505237+00:00",
+  "formal_contract": {
+    "decision_rule": "Continue this route only if C lowers primary complete-query time versus matched B on both frozen graphs and shows credible progress toward A/C >= 1.20; otherwise retain evidence and stop the branch.",
+    "path": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/evidence/l3_chain_runtime_20260924/formal_contract.json",
+    "sha256": "716586f3beec425bed997df2a1707ab8d141492c53b3a68164a8984982b37f37"
+  },
+  "git_branch": "l3-chain-runtime-20260924",
+  "git_head": "a91a61e5c8949b29dccaea1e8d8abc242a71a7de",
+  "historical_boundary": "Stage230/231 already found this route correct but slower; this run is a bounded current-BNUM8/current-data-plane revalidation, not an unbounded search",
+  "host": "ada-A100",
+  "inputs": [
+    {
+      "cut_percent": 60,
+      "delta": 400000,
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+      "graph_sha256": "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7",
+      "header": {
+        "edge_payload_bytes": 4,
+        "edges": 57708624,
+        "version": 1,
+        "vertices": 23947347
+      },
+      "input_kind": "original CSR G in frozen reordered layout; no augmented shortcut edges",
+      "name": "USA",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/oracle.i32",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+      "source": 11973673
+    },
+    {
+      "cut_percent": 55,
+      "delta": 200000,
+      "graph": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+      "graph_sha256": "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02",
+      "header": {
+        "edge_payload_bytes": 4,
+        "edges": 1057066,
+        "version": 1,
+        "vertices": 435666
+      },
+      "input_kind": "original CSR G in frozen reordered layout; no augmented shortcut edges",
+      "name": "COL",
+      "oracle": "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/oracle.i32",
+      "oracle_sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018",
+      "source": 217833
+    }
+  ],
+  "invocation": [
+    "/usr/bin/python3",
+    "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3/scripts/multigpu/run_l3_chain_trial.py",
+    "--build-dir",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build",
+    "--adds",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/adds_official_v4/adds",
+    "--spec",
+    "USA",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/USA/oracle.i32",
+    "11973673",
+    "400000",
+    "60",
+    "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7",
+    "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44",
+    "--spec",
+    "COL",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/COL/landmark.gr",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/l3_supplement_20260921_v2/graphs/COL/oracle.i32",
+    "217833",
+    "200000",
+    "55",
+    "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02",
+    "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018",
+    "--sampling",
+    "formal",
+    "--timeout",
+    "900",
+    "--out",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/formal"
+  ],
+  "query_count": 138,
+  "record_count": 30,
+  "schema": 1,
+  "selection": {
+    "first": "USA required by L3_chained.md",
+    "second": "COL fixed before current speed runs after the exact runtime builder scanned all eight road graphs: it had the highest indexed-interior coverage (19.1867%) with representative multi-interior segment lengths"
+  },
+  "status": "complete"
+}

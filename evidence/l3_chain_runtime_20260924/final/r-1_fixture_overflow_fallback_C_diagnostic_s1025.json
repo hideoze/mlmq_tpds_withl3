@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/formal/fixtures/overflow_fallback.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "1025",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "2.633161",
+      "collection_ms": "0.022900",
+      "query_wall_ms": "9.233478",
+      "prepare_ms": "6.387233",
+      "post_solve_ms": "0.190156",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "1025",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "0.168545",
+      "collection_ms": "0.029828",
+      "query_wall_ms": "2.988342",
+      "prepare_ms": "2.716469",
+      "post_solve_ms": "0.073484",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.7472338460211176
+}

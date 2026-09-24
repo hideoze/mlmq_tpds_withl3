@@ -1,0 +1,119 @@
+
+Fatbin elf code:
+================
+arch = sm_80
+code version = [1,7]
+host = linux
+compile_size = 64bit
+
+Resource usage:
+ Common:
+  GLOBAL:6036
+ Function _ZN3cub17CUB_200302_800_NS11EmptyKernelIvEEvv:
+  REG:4 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:352 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_warpsync:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_votesync_ballot:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z26l3_worker_recovery_servicePiS_iiiii$51:
+  REG:46 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_votesync_any:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_votesync_all:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_matchsync_any_b32:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_shflsync_idx_p:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_shflsync_idx:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm70_shflsync_up_p:
+  REG:24 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:86 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct12l1_SLF_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:85 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:80 SHARED:32912 LOCAL:0 CONSTANT[0]:1056 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:94 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:712 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:80 SHARED:32912 LOCAL:0 CONSTANT[0]:1056 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_batch_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:90 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:712 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:336 SHARED:32912 LOCAL:0 CONSTANT[0]:1144 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E21l2_multi_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:175 STACK:672 SHARED:1040 LOCAL:0 CONSTANT[0]:800 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function __cuda_sm20_div_rn_f64_full:
+  REG:30 STACK:0 SHARED:0 LOCAL:0 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:86 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:85 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct12l1_hop_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:87 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1040 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:109 STACK:88 SHARED:1040 LOCAL:0 CONSTANT[0]:696 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1040 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:110 STACK:88 SHARED:1040 LOCAL:0 CONSTANT[0]:696 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1040 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_multi_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:112 STACK:88 SHARED:1040 LOCAL:0 CONSTANT[0]:696 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1032 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:105 STACK:88 SHARED:1040 LOCAL:0 CONSTANT[0]:688 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1032 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:107 STACK:96 SHARED:1040 LOCAL:0 CONSTANT[0]:688 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:208 SHARED:32912 LOCAL:0 CONSTANT[0]:1032 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E13l2_bgpq_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:105 STACK:88 SHARED:1040 LOCAL:0 CONSTANT[0]:688 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct19l1_filter_queue_newIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:86 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct17l1_near_far_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:84 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:77 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:88 SHARED:32912 LOCAL:0 CONSTANT[0]:1064 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E15l2_vector_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:89 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:720 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_filter_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:86 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct15l1_vector_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:85 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z19manage_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_iT_10mlmq_setupiiiS7_iiiS7_PjSA_S7_S7_15l3_channel_viewS7_S7_S7_S7_PS1_S7_SC_S7_PyS7_iiSD_:
+  REG:80 STACK:104 SHARED:32912 LOCAL:0 CONSTANT[0]:1128 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z17work_block_kernelI8ml_queueI11node_struct13l1_none_queueIS1_E14l2_delta_queueIS1_EEEviiPiS7_S7_S7_iT_10mlmq_setupiiS7_PyS7_S7_iiiS7_PjSB_SB_S7_iiS7_iS7_S7_S7_S7_:
+  REG:75 STACK:72 SHARED:1040 LOCAL:0 CONSTANT[0]:784 TEXTURE:0 SURFACE:0 SAMPLER:0
+ Function _Z21l3_fill_values_kernelIiEvPT_S1_mS0_:
+  REG:12 STACK:0 SHARED:0 LOCAL:0 CONSTANT[0]:380 TEXTURE:0 SURFACE:0 SAMPLER:0

@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/src/mlmq_ppopp26/tmp/landmark206_matrix/USA/landmark.gr",
+    "-n",
+    "2",
+    "-d",
+    "400000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "11973673",
+      "repeat": "0",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "252.264809",
+      "collection_ms": "50.461047",
+      "query_wall_ms": "309.801391",
+      "prepare_ms": "6.939355",
+      "post_solve_ms": "0.136149",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 7.701428916014265
+}

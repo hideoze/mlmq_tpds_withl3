@@ -1,0 +1,28 @@
+JobId=38312 JobName=l3chain-a91a61e
+   UserId=Dingzhong(1084) GroupId=users(100) MCS_label=N/A
+   Priority=1 Nice=0 Account=(null) QOS=(null)
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=0 Reboot=0 ExitCode=0:0
+   RunTime=00:02:28 TimeLimit=02:00:00 TimeMin=N/A
+   SubmitTime=2026-09-24T10:33:16 EligibleTime=2026-09-24T10:33:16
+   AccrueTime=Unknown
+   StartTime=2026-09-24T10:33:16 EndTime=2026-09-24T10:35:44 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-24T10:33:16 Scheduler=Main
+   Partition=a100 AllocNode:Sid=0.0.0.0:3109436
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=ada-A100
+   BatchHost=ada-A100
+   NumNodes=1 NumCPUs=12 NumTasks=1 CPUs/Task=8 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=8,mem=64G,node=1,billing=8
+   AllocTRES=cpu=12,mem=64G,node=1,billing=12
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=8 MinMemoryNode=64G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=python3
+   WorkDir=/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3
+   Power=
+   TresPerNode=gres/gpu:a100:2
+   TresPerTask=cpu:8
+   
+

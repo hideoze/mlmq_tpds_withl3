@@ -1,0 +1,6 @@
+{
+  "only_treatment_macro_differs": true,
+  "schema": 1,
+  "treatment": "L3_CHAIN_PARTITION false in B, true in C",
+  "valid": true
+}

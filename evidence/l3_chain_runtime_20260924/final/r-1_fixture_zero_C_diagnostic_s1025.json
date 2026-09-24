@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/formal/fixtures/zero.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "1025",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "4.347475",
+      "collection_ms": "0.084448",
+      "query_wall_ms": "12.043960",
+      "prepare_ms": "7.504905",
+      "post_solve_ms": "0.106957",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "1025",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "1.343675",
+      "collection_ms": "0.021425",
+      "query_wall_ms": "4.444103",
+      "prepare_ms": "2.913158",
+      "post_solve_ms": "0.165824",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.7489929939911235
+}

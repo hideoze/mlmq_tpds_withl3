@@ -1,0 +1,31 @@
+{"graph": "fixture_reciprocal", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["3.569183", "1.473545"]}
+{"graph": "fixture_reciprocal", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["3.536556", "1.336791"]}
+{"graph": "fixture_zero", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["3.495158", "1.446737"]}
+{"graph": "fixture_zero", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["4.347475", "1.343675"]}
+{"graph": "fixture_branches_concurrent", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["4.560552", "1.598983"]}
+{"graph": "fixture_branches_concurrent", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["3.887287", "1.650845"]}
+{"graph": "fixture_parallel_fallback", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["2.309600", "0.182858"]}
+{"graph": "fixture_overflow_fallback", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["2.633161", "0.168545"]}
+{"graph": "USA", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["252.264809"]}
+{"graph": "COL", "role": "C_diagnostic", "round": -1, "valid": true, "solve_ms": ["13.352668"]}
+{"graph": "USA", "role": "A_mlmq", "round": 0, "valid": true, "solve_ms": ["96.071523", "102.425624", "96.511952", "95.446200", "100.734237", "95.404102"]}
+{"graph": "USA", "role": "A_adds", "round": 0, "valid": true, "solve_ms": ["138.275797", "136.243091", "136.677149", "136.381866", "136.841378", "137.440115"]}
+{"graph": "USA", "role": "D_best", "round": 0, "valid": true, "solve_ms": ["100.209377", "97.916625", "98.074312", "98.125910", "98.093955", "98.140941"]}
+{"graph": "USA", "role": "B_control", "round": 0, "valid": true, "solve_ms": ["100.085314", "98.954117", "97.849198", "97.719792", "97.879702", "97.816164"]}
+{"graph": "USA", "role": "C_chain", "round": 0, "valid": true, "solve_ms": ["168.422722", "117.135494", "113.852831", "169.656313", "128.001776", "102.795249"]}
+{"graph": "COL", "role": "A_mlmq", "round": 0, "valid": true, "solve_ms": ["8.600484", "8.681091", "8.639845", "8.599437", "8.895005", "8.514447"]}
+{"graph": "COL", "role": "A_adds", "round": 0, "valid": true, "solve_ms": ["27.991578", "25.003791", "24.971938", "24.873836", "25.031616", "25.121254"]}
+{"graph": "COL", "role": "D_best", "round": 0, "valid": true, "solve_ms": ["12.069010", "10.253440", "10.082474", "10.117533", "10.201868", "10.050430"]}
+{"graph": "COL", "role": "B_control", "round": 0, "valid": true, "solve_ms": ["12.370372", "10.482524", "10.008412", "10.123666", "10.140714", "10.750517"]}
+{"graph": "COL", "role": "C_chain", "round": 0, "valid": true, "solve_ms": ["14.045873", "10.505985", "10.779569", "10.577725", "10.799761", "10.634607"]}
+{"graph": "COL", "role": "C_chain", "round": 1, "valid": true, "solve_ms": ["12.680336", "11.410204", "10.957403", "10.685499", "10.552580", "10.729359"]}
+{"graph": "COL", "role": "B_control", "round": 1, "valid": true, "solve_ms": ["12.040951", "10.090473", "9.908796", "10.637392", "10.179393", "10.047829"]}
+{"graph": "COL", "role": "D_best", "round": 1, "valid": true, "solve_ms": ["12.072338", "10.114935", "10.046333", "10.286895", "10.049897", "10.060221"]}
+{"graph": "COL", "role": "A_adds", "round": 1, "valid": true, "solve_ms": ["27.929969", "25.068994", "25.111788", "25.093010", "24.936609", "25.010246"]}
+{"graph": "COL", "role": "A_mlmq", "round": 1, "valid": true, "solve_ms": ["8.601906", "8.633106", "8.576613", "8.821626", "8.801904", "8.901231"]}
+{"graph": "USA", "role": "C_chain", "round": 1, "valid": true, "solve_ms": ["168.739198", "130.182610", "156.347041", "103.345404", "115.555116", "112.444960"]}
+{"graph": "USA", "role": "B_control", "round": 1, "valid": true, "solve_ms": ["101.992518", "97.905756", "97.965114", "97.888152", "109.125808", "97.956562"]}
+{"graph": "USA", "role": "D_best", "round": 1, "valid": true, "solve_ms": ["100.204079", "100.427096", "98.341239", "98.203125", "99.324712", "111.918103"]}
+{"graph": "USA", "role": "A_adds", "round": 1, "valid": true, "solve_ms": ["138.601554", "136.342307", "135.688863", "136.077912", "136.689219", "135.750055"]}
+{"graph": "USA", "role": "A_mlmq", "round": 1, "valid": true, "solve_ms": ["100.176539", "95.723954", "99.735417", "95.599254", "97.940384", "95.677462"]}
+L3_CHAIN_TRIAL_COMPLETE records=30 queries=138 target=0

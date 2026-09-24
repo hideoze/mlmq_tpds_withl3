@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/formal/fixtures/parallel_fallback.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "0",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "2.309600",
+      "collection_ms": "0.083722",
+      "query_wall_ms": "9.888867",
+      "prepare_ms": "7.386817",
+      "post_solve_ms": "0.108580",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "0",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "0.182858",
+      "collection_ms": "0.044198",
+      "query_wall_ms": "3.009200",
+      "prepare_ms": "2.714197",
+      "post_solve_ms": "0.067871",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.7456798859930132
+}

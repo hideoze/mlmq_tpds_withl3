@@ -1,0 +1,26 @@
+{
+  "artifact_hashes": {
+    "A_adds": "511e88f56762914829a055aea0215a6c8e3c0d1dfc1c078f5f2247a559638ec2",
+    "A_mlmq": "1631c04b840611f720fb92088052e2387f127535bfa881ee6bf10ce8a4565928",
+    "B_control": "e4050c49eb46531893005807ee986065ed3caa2c64bd2bf83f9e17a818e403bf",
+    "C_chain": "4788dc9b4a0ec698e16fce1b43c09e4c1b0bb8112d217a5610ffb64d83019eb2",
+    "C_diagnostic": "71e184689afad842203bbf8b92177c0433bcd6bb33e9fcd1abbe33e540304072",
+    "D_best": "ede76f79390077dcde6e30adc2c8721ccf7a1bc08b45a4f202ad17eba8fd9be3"
+  },
+  "build_manifest_sha256": "acaca41382cb7b15e45b9eff2620342dad37944e139f02e5f2f6e989a8efeadf",
+  "errors": [],
+  "formal_contract_sha256": "716586f3beec425bed997df2a1707ab8d141492c53b3a68164a8984982b37f37",
+  "git_head": "a91a61e5c8949b29dccaea1e8d8abc242a71a7de",
+  "git_status": [],
+  "input_hashes": {
+    "COL": {
+      "graph_sha256": "7158d69e3e6c8fb9b9b699de1a423c0a21eab146793ea865cafb25a4d59b3f02",
+      "oracle_sha256": "095a726b9de16780d6ab9ccc7e55bf2876035ab2398e51df41566e4b13f9e018"
+    },
+    "USA": {
+      "graph_sha256": "7a4e9747b3e1febc4ad452e1b0156e636882482b34d2462f8308e70de533b8d7",
+      "oracle_sha256": "19b674d79f5bc48d26107facb6327c8f8661d40a5bb80db67dd8feb260757a44"
+    }
+  },
+  "valid": true
+}

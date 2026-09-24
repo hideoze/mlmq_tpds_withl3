@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "bc_command_contract.json": {
+      "bytes": 134,
+      "sha256": "bc3b80ad5798efeca97181dc7d92844a74ef79ecd7ae3097d08c41de7a7e00ff"
+    },
+    "dual_chain/mlmq": {
+      "bytes": 12017688,
+      "sha256": "4788dc9b4a0ec698e16fce1b43c09e4c1b0bb8112d217a5610ffb64d83019eb2"
+    },
+    "dual_chain_diag/mlmq": {
+      "bytes": 12095792,
+      "sha256": "71e184689afad842203bbf8b92177c0433bcd6bb33e9fcd1abbe33e540304072"
+    },
+    "dual_control/mlmq": {
+      "bytes": 11903504,
+      "sha256": "e4050c49eb46531893005807ee986065ed3caa2c64bd2bf83f9e17a818e403bf"
+    },
+    "reference_pair/dual_build/mlmq": {
+      "bytes": 11944464,
+      "sha256": "ede76f79390077dcde6e30adc2c8721ccf7a1bc08b45a4f202ad17eba8fd9be3"
+    },
+    "reference_pair/single_build/mlmq": {
+      "bytes": 5647160,
+      "sha256": "1631c04b840611f720fb92088052e2387f127535bfa881ee6bf10ce8a4565928"
+    },
+    "tools/analyze_l3_chain_partitions": {
+      "bytes": 27288,
+      "sha256": "802b07638fccee3b4dc0f8a835041f72f4029a94a988ed798f35525fe7a7150a"
+    },
+    "tools/test_l3_chain_partition": {
+      "bytes": 36344,
+      "sha256": "faa5a218f3a772d98182b9958bd9ff9b11d30301a46b8d2baac5b6289b8c1b3d"
+    },
+    "tools/test_l3_chain_partition.log": {
+      "bytes": 122,
+      "sha256": "5da79f9fcb890328ec5b00a344431e4e5aeb9caf705e45af106f495ada4a77e0"
+    }
+  },
+  "boost_include_dir": "/a100-data/wyh/boost_1_87_0",
+  "branch": "l3-chain-runtime-20260924",
+  "created_utc": "2026-09-24T02:31:51.091343+00:00",
+  "git_status": [],
+  "head": "a91a61e5c8949b29dccaea1e8d8abc242a71a7de",
+  "nvcc": "/usr/local/cuda-12.4/bin/nvcc",
+  "roles": {
+    "A_mlmq": "reference_pair/single_build/mlmq",
+    "B_control": "dual_control/mlmq",
+    "C_chain": "dual_chain/mlmq",
+    "C_diagnostic": "dual_chain_diag/mlmq",
+    "D_best": "reference_pair/dual_build/mlmq"
+  },
+  "root": "/mnt/709/data3/home/Dingzhong/.codex/worktrees/bbd4/mlmq_tpds_withl3",
+  "schema": 1,
+  "status": "complete"
+}

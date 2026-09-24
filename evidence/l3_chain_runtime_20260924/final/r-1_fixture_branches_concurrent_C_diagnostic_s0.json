@@ -1,0 +1,45 @@
+{
+  "command": [
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/build/dual_chain_diag/mlmq",
+    "-i",
+    "/mnt/709/data3/home/Dingzhong/l3_chain_runtime/a91a61e/formal/fixtures/branches_concurrent.gr",
+    "-n",
+    "2",
+    "-d",
+    "200000"
+  ],
+  "rc": 0,
+  "valid": true,
+  "reason": "ok",
+  "samples": [
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "0",
+      "repeat": "0",
+      "warmup": "1",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "4.560552",
+      "collection_ms": "0.039067",
+      "query_wall_ms": "11.410693",
+      "prepare_ms": "6.710417",
+      "post_solve_ms": "0.100623",
+      "correct": "1"
+    },
+    {
+      "algorithm": "MLMQ",
+      "gpu_count": "2",
+      "source": "0",
+      "repeat": "1",
+      "warmup": "0",
+      "queue": "L1SLF_L2DQ",
+      "solve_ms": "1.598983",
+      "collection_ms": "0.019120",
+      "query_wall_ms": "4.472961",
+      "prepare_ms": "2.783343",
+      "post_solve_ms": "0.071500",
+      "correct": "1"
+    }
+  ],
+  "host_elapsed_seconds": 0.7861969720106572
+}

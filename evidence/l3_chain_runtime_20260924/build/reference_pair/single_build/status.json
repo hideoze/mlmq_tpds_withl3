@@ -1,0 +1,6 @@
+{
+  "builder": "independent_nvcc",
+  "rc": 0,
+  "role": "single_no_l3",
+  "updated_utc": "2026-09-24T02:28:21.602409+00:00"
+}

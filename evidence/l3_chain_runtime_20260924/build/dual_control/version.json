@@ -1,0 +1,16 @@
+{
+  "boost_include_dir": "/a100-data/wyh/boost_1_87_0",
+  "branch": "l3-chain-runtime-20260924",
+  "chain_partition": false,
+  "created_utc": "2026-09-24T02:29:30.851527+00:00",
+  "degree_gate": true,
+  "diagnostics": false,
+  "git_status": [],
+  "head": "a91a61e5c8949b29dccaea1e8d8abc242a71a7de",
+  "nvcc": "/usr/local/cuda-12.4/bin/nvcc",
+  "nvcc_sha256": "bbcea3024f3ada9aafcbf9a8370c14dad1f4fb04b48147ad83dd7e13854ba0ed",
+  "schema": 1,
+  "term_only_worker": true,
+  "variant": "dual_control",
+  "worker_threads": 512
+}
